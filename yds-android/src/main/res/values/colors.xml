@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- YDS Color Palettes -->
+    <color name="yds_logo_blue">#1653DB</color>
+    <color name="yds_logo_yello">#FFC441</color>
+    <color name="yds_point_blue">#00A3FF</color>
+    <color name="yds_point_blue_a10">#1A00A3FF</color>
+    <color name="yds_warning_red">#FF5252</color>
+
+    <color name="yds_white_000">#FFFFFF</color>
+    <color name="yds_black_000">#111111</color>
+    <color name="yds_gray_050">#F8F9FA</color>
+    <color name="yds_gray_100">#F3F5F7</color>
+    <color name="yds_gray_200">#ECEEF0</color>
+    <color name="yds_gray_300">#E2E5E8</color>
+    <color name="yds_gray_400">#D4D8DC</color>
+    <color name="yds_gray_500">#B5B9BD</color>
+    <color name="yds_gray_600">#8E9398</color>
+    <color name="yds_gray_700">#505458</color>
+    <color name="yds_gray_800">#3A3D40</color>
+    <color name="yds_gray_900">#252729</color>
+
+    <color name="yds_pink_100_a10">#1AFF6CBF</color>
+    <color name="yds_pink_100">#FF6CBF</color>
+    <color name="yds_pink_200">#FF47AD</color>
+    <color name="yds_pink_300">#FF1F99</color>
+    <color name="yds_pink_400">#F21F93</color>
+
+    <color name="yds_cherry_100_a10">#1AFF679E</color>
+    <color name="yds_cherry_100">#FF679E</color>
+    <color name="yds_cherry_200">#FE4488</color>
+    <color name="yds_cherry_300">#FD2271</color>
+    <color name="yds_cherry_400">#EC1F6E</color>
+
+    <color name="yds_red_100_a10">#1AFF6D70</color>
+    <color name="yds_red_100">#FF6D70</color>
+    <color name="yds_red_200">#FF4448</color>
+    <color name="yds_red_300">#FF2F2A</color>
+    <color name="yds_red_400">#FF212C</color>
+
+    <color name="yds_orange_100_a10">#1AFFAC6C</color>
+    <color name="yds_orange_100">#FFAC6C</color>
+    <color name="yds_orange_200">#FD9A55</color>
+    <color name="yds_orange_300">#FC8A46</color>
+    <color name="yds_orange_400">#F67F44</color>
+
+    <color name="yds_yellow_100_a10">#1AFDD859</color>
+    <color name="yds_yellow_100">#FDD859</color>
+    <color name="yds_yellow_200">#FDCD39</color>
+    <color name="yds_yellow_300">#FCC529</color>
+    <color name="yds_yellow_400">#FCB823</color>
+
+    <color name="yds_lime_100_a10">#1AD1EF4D</color>
+    <color name="yds_lime_100">#D1EF4D</color>
+    <color name="yds_lime_200">#C9EB23</color>
+    <color name="yds_lime_300">#BED91B</color>
+    <color name="yds_lime_400">#AEC20C</color>
+
+    <color name="yds_green_100_a10">#1A5BDE9F</color>
+    <color name="yds_green_100">#5BDE9F</color>
+    <color name="yds_green_200">#0BD588</color>
+    <color name="yds_green_300">#00CC74</color>
+    <color name="yds_green_400">#00BB68</color>
+
+    <color name="yds_emerald_100_a10">#1A27D2D2</color>
+    <color name="yds_emerald_100">#27D2D2</color>
+    <color name="yds_emerald_200">#00C9CB</color>
+    <color name="yds_emerald_300">#00BFC7</color>
+    <color name="yds_emerald_400">#00AFB5</color>
+
+    <color name="yds_aqua_100_a10">#1A2ABDF2</color>
+    <color name="yds_aqua_100">#2ABDF2</color>
+    <color name="yds_aqua_200">#00AFF0</color>
+    <color name="yds_aqua_300">#00A1ED</color>
+    <color name="yds_aqua_400">#0094DF</color>
+
+    <color name="yds_blue_100_a10">#1A5CA3FF</color>
+    <color name="yds_blue_100">#5CA3FF</color>
+    <color name="yds_blue_200">#4E93FD</color>
+    <color name="yds_blue_300">#4D84EE</color>
+    <color name="yds_blue_400">#4972D9</color>
+
+    <color name="yds_violet_100_a10">#1AA487F6</color>
+    <color name="yds_violet_100">#A487F6</color>
+    <color name="yds_violet_200">#8E6BF2</color>
+    <color name="yds_violet_300">#7851EB</color>
+    <color name="yds_violet_400">#6C4BE4</color>
+
+    <color name="yds_purple_100_a10">#1AD487ED</color>
+    <color name="yds_purple_100">#D487ED</color>
+    <color name="yds_purple_200">#BE55E1</color>
+    <color name="yds_purple_300">#AD2CD4</color>
+    <color name="yds_purple_400">#9B00C8</color>
+
+    <!-- Opacity options ex) logo blue alpha 10% : #1A1653DB-->
+    <!--    100% — FF-->
+    <!--    99% — FC-->
+    <!--    98% — FA-->
+    <!--    97% — F7-->
+    <!--    96% — F5-->
+    <!--    95% — F2-->
+    <!--    94% — F0-->
+    <!--    93% — ED-->
+    <!--    92% — EB-->
+    <!--    91% — E8-->
+    <!--    90% — E6-->
+    <!--    89% — E3-->
+    <!--    88% — E0-->
+    <!--    87% — DE-->
+    <!--    86% — DB-->
+    <!--    85% — D9-->
+    <!--    84% — D6-->
+    <!--    83% — D4-->
+    <!--    82% — D1-->
+    <!--    81% — CF-->
+    <!--    80% — CC-->
+    <!--    79% — C9-->
+    <!--    78% — C7-->
+    <!--    77% — C4-->
+    <!--    76% — C2-->
+    <!--    75% — BF-->
+    <!--    74% — BD-->
+    <!--    73% — BA-->
+    <!--    72% — B8-->
+    <!--    71% — B5-->
+    <!--    70% — B3-->
+    <!--    69% — B0-->
+    <!--    68% — AD-->
+    <!--    67% — AB-->
+    <!--    66% — A8-->
+    <!--    65% — A6-->
+    <!--    64% — A3-->
+    <!--    63% — A1-->
+    <!--    62% — 9E-->
+    <!--    61% — 9C-->
+    <!--    60% — 99-->
+    <!--    59% — 96-->
+    <!--    58% — 94-->
+    <!--    57% — 91-->
+    <!--    56% — 8F-->
+    <!--    55% — 8C-->
+    <!--    54% — 8A-->
+    <!--    53% — 87-->
+    <!--    52% — 85-->
+    <!--    51% — 82-->
+    <!--    50% — 80-->
+    <!--    49% — 7D-->
+    <!--    48% — 7A-->
+    <!--    47% — 78-->
+    <!--    46% — 75-->
+    <!--    45% — 73-->
+    <!--    44% — 70-->
+    <!--    43% — 6E-->
+    <!--    42% — 6B-->
+    <!--    41% — 69-->
+    <!--    40% — 66-->
+    <!--    39% — 63-->
+    <!--    38% — 61-->
+    <!--    37% — 5E-->
+    <!--    36% — 5C-->
+    <!--    35% — 59-->
+    <!--    34% — 57-->
+    <!--    33% — 54-->
+    <!--    32% — 52-->
+    <!--    31% — 4F-->
+    <!--    30% — 4D-->
+    <!--    29% — 4A-->
+    <!--    28% — 47-->
+    <!--    27% — 45-->
+    <!--    26% — 42-->
+    <!--    25% — 40-->
+    <!--    24% — 3D-->
+    <!--    23% — 3B-->
+    <!--    22% — 38-->
+    <!--    21% — 36-->
+    <!--    20% — 33-->
+    <!--    19% — 30-->
+    <!--    18% — 2E-->
+    <!--    17% — 2B-->
+    <!--    16% — 29-->
+    <!--    15% — 26-->
+    <!--    14% — 24-->
+    <!--    13% — 21-->
+    <!--    12% — 1F-->
+    <!--    11% — 1C-->
+    <!--    10% — 1A-->
+    <!--    9% — 17-->
+    <!--    8% — 14-->
+    <!--    7% — 12-->
+    <!--    6% — 0F-->
+    <!--    5% — 0D-->
+    <!--    4% — 0A-->
+    <!--    3% — 08-->
+    <!--    2% — 05-->
+    <!--    1% — 03-->
+    <!--    0% — 00-->
+
+
+</resources>

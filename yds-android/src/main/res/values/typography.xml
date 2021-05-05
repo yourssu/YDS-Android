@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Typography -->
+
+    <!-- T1 -->
+    <style name="T1.Regular" parent="TextRegular">
+        <item name="android:textSize">@dimen/t1_font_size_dp</item>
+    </style>
+
+    <style name="T1.Medium" parent="TextMedium">
+        <item name="android:textSize">@dimen/t1_font_size</item>
+    </style>
+
+    <style name="T1.Bold" parent="TextBold">
+        <item name="android:textSize">@dimen/t1_font_size_dp</item>
+    </style>
+
+    <!-- T2 -->
+    <style name="T2.Regular" parent="TextRegular">
+        <item name="android:textSize">@dimen/t2_font_size_dp</item>
+    </style>
+
+    <style name="T2.Medium" parent="TextMedium">
+        <item name="android:textSize">@dimen/t2_font_size_dp</item>
+    </style>
+
+    <style name="T2.Bold" parent="TextBold">
+        <item name="android:textSize">@dimen/t2_font_size_dp</item>
+    </style>
+
+    <!-- T3 -->
+    <style name="T3.Regular" parent="TextRegular">
+        <item name="android:textSize">@dimen/t3_font_size_dp</item>
+    </style>
+
+    <style name="T3.Medium" parent="TextMedium">
+        <item name="android:textSize">@dimen/t3_font_size_dp</item>
+    </style>
+
+    <style name="T3.Bold" parent="TextBold">
+        <item name="android:textSize">@dimen/t3_font_size_dp</item>
+    </style>
+
+    <!-- T4 -->
+    <style name="T4.Regular" parent="TextRegular">
+        <item name="android:textSize">@dimen/t4_font_size_dp</item>
+    </style>
+
+    <style name="T4.Medium" parent="TextMedium">
+        <item name="android:textSize">@dimen/t4_font_size_dp</item>
+    </style>
+
+    <style name="T4.Bold" parent="TextBold">
+        <item name="android:textSize">@dimen/t4_font_size_dp</item>
+    </style>
+
+    <!-- T5 -->
+    <style name="T5.Regular" parent="TextRegular">
+        <item name="android:textSize">@dimen/t5_font_size_dp</item>
+    </style>
+
+    <style name="T5.Medium" parent="TextMedium">
+        <item name="android:textSize">@dimen/t5_font_size_dp</item>
+    </style>
+
+    <style name="T5.Bold" parent="TextBold">
+        <item name="android:textSize">@dimen/t5_font_size_dp</item>
+    </style>
+
+    <!-- T6 -->
+    <style name="T6.Regular" parent="TextRegular">
+        <item name="android:textSize">@dimen/t6_font_size_dp</item>
+    </style>
+
+    <style name="T6.Medium" parent="TextMedium">
+        <item name="android:textSize">@dimen/t6_font_size_dp</item>
+    </style>
+
+    <style name="T6.Bold" parent="TextBold">
+        <item name="android:textSize">@dimen/t6_font_size_dp</item>
+    </style>
+
+</resources>

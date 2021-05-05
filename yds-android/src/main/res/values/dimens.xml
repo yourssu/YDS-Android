@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Font Size -->
+    <dimen name="t1_font_size">20sp</dimen>
+    <dimen name="t2_font_size">18sp</dimen>
+    <dimen name="t3_font_size">16sp</dimen>
+    <dimen name="t4_font_size">14sp</dimen>
+    <dimen name="t5_font_size">12sp</dimen>
+    <dimen name="t6_font_size">11sp</dimen>
+
+
+    <!-- Fixed Font size -->
+    <dimen name="t1_font_size_dp">20dp</dimen>
+    <dimen name="t2_font_size_dp">18dp</dimen>
+    <dimen name="t3_font_size_dp">16dp</dimen>
+    <dimen name="t4_font_size_dp">14dp</dimen>
+    <dimen name="t5_font_size_dp">12dp</dimen>
+    <dimen name="t6_font_size_dp">11dp</dimen>
+
+    <!-- Text Button -->
+    <dimen name="yds_button_icon_size_small">12dp</dimen>
+    <dimen name="yds_button_drawable_padding">2dp</dimen>
+
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/yds_black_000</item>
+        <item name="yds_iconSize">@dimen/yds_button_icon_size_small</item>
+        <item name="yds_iconPadding">@dimen/yds_button_drawable_padding</item>
+    </style>
+
+    <style name="TextButton.Medium">
+        <item name="android:textAppearance">@style/T3.Medium</item>
+    </style>
+
+    <style name="TextButton.Small">
+        <item name="android:textAppearance">@style/T4.Medium</item>
+    </style>
+
+    <style name="TextButton.XSmall">
+        <item name="android:textAppearance">@style/T5.Medium</item>
+    </style>
+
+</resources>

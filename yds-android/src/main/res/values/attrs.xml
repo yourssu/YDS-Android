@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ************************************************** -->
+    <!-- Layout attr -->
+    <!-- ************************************************** -->
+    <attr name="yds_useTextColorAsIconTintColor" format="boolean" />
+
+
+    <!-- ************************************************** -->
+    <!-- Appearance attr -->
+    <!-- ************************************************** -->
+    <attr name="yds_iconPadding" format="dimension" />
+    <attr name="yds_iconSize" format="dimension">
+        <enum name="wrap_content" value="-2" />
+    </attr>
+    <attr name="yds_startIcon" format="reference|color" />
+    <attr name="yds_endIcon" format="reference|color" />
+    <attr name="yds_startIconTintColor" format="color" />
+    <attr name="yds_endIconTintColor" format="color" />
+
+
+    <!-- ************************************************** -->
+    <!-- Status attr -->
+    <!-- ************************************************** -->
+    <attr name="yds_completed" format="boolean" />
+    <attr name="yds_selected" format="boolean" />
+
+    <!-- ************************************************** -->
+    <!-- Custom view Styleables -->
+    <!-- ************************************************** -->
+
+    <!-- TextButton -->
+    <declare-styleable name="TextButton">
+        <attr name="android:text" />
+        <attr name="android:textAppearance" />
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:layout_height" />
+        <attr name="yds_iconPadding" />
+        <attr name="yds_completed" />
+        <attr name="yds_startIcon" />
+        <attr name="yds_endIcon" />
+        <attr name="yds_iconSize" />
+        <attr name="yds_startIconTintColor" />
+        <attr name="yds_endIconTintColor" />
+        <attr name="yds_useTextColorAsIconTintColor" />
+    </declare-styleable>
+
+</resources>
