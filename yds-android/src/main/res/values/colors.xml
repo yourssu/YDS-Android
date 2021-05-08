@@ -21,77 +21,135 @@
     <color name="yds_gray_800">#3A3D40</color>
     <color name="yds_gray_900">#252729</color>
 
-    <color name="yds_pink_100_a10">#1AFF6CBF</color>
-    <color name="yds_pink_100">#FF6CBF</color>
-    <color name="yds_pink_200">#FF47AD</color>
-    <color name="yds_pink_300">#FF1F99</color>
-    <color name="yds_pink_400">#F21F93</color>
+    <color name="yds_pink_050">#FDE6F4</color>
+    <color name="yds_pink_100">#FBC1E5</color>
+    <color name="yds_pink_200">#FC98D3</color>
+    <color name="yds_pink_300">#FF6CBF</color>
+    <color name="yds_pink_400">#FF47AD</color>
+    <color name="yds_pink_500">#FF1F99</color>
+    <color name="yds_pink_600">#F21F93</color>
+    <color name="yds_pink_700">#DA1F8B</color>
+    <color name="yds_pink_800">#C31F85</color>
 
-    <color name="yds_cherry_100_a10">#1AFF679E</color>
-    <color name="yds_cherry_100">#FF679E</color>
-    <color name="yds_cherry_200">#FE4488</color>
-    <color name="yds_cherry_300">#FD2271</color>
-    <color name="yds_cherry_400">#EC1F6E</color>
+    <color name="yds_red_050">#FFEBEE</color>
+    <color name="yds_red_100">#FFCDD2</color>
+    <color name="yds_red_200">#EF9A9A</color>
+    <color name="yds_red_300">#E57373</color>
+    <color name="yds_red_400">#EF5350</color>
+    <color name="yds_red_500">#F44236</color>
+    <color name="yds_red_600">#E53835</color>
+    <color name="yds_red_700">#D32E2F</color>
+    <color name="yds_red_800">#C62728</color>
 
-    <color name="yds_red_100_a10">#1AFF6D70</color>
-    <color name="yds_red_100">#FF6D70</color>
-    <color name="yds_red_200">#FF4448</color>
-    <color name="yds_red_300">#FF2F2A</color>
-    <color name="yds_red_400">#FF212C</color>
+    <color name="yds_orange_050">#FFF1E4</color>
+    <color name="yds_orange_100">#FFDBBC</color>
+    <color name="yds_orange_200">#FFC492</color>
+    <color name="yds_orange_300">#FFAC6C</color>
+    <color name="yds_orange_400">#FD9A55</color>
+    <color name="yds_orange_500">#FC8A46</color>
+    <color name="yds_orange_600">#F67F44</color>
+    <color name="yds_orange_700">#EE7141</color>
+    <color name="yds_orange_800">#E6623E</color>
 
-    <color name="yds_orange_100_a10">#1AFFAC6C</color>
-    <color name="yds_orange_100">#FFAC6C</color>
-    <color name="yds_orange_200">#FD9A55</color>
-    <color name="yds_orange_300">#FC8A46</color>
-    <color name="yds_orange_400">#F67F44</color>
+    <color name="yds_yellow_050">#FFF8DC</color>
+    <color name="yds_yellow_100">#FFF0AB</color>
+    <color name="yds_yellow_200">#FFE672</color>
+    <color name="yds_yellow_300">#FFDC3A</color>
+    <color name="yds_yellow_400">#FFD200</color>
+    <color name="yds_yellow_500">#FBC000</color>
+    <color name="yds_yellow_600">#F6B000</color>
+    <color name="yds_yellow_700">#E1A714</color>
+    <color name="yds_yellow_800">#CC9200</color>
 
-    <color name="yds_yellow_100_a10">#1AFDD859</color>
-    <color name="yds_yellow_100">#FDD859</color>
-    <color name="yds_yellow_200">#FDCD39</color>
-    <color name="yds_yellow_300">#FCC529</color>
-    <color name="yds_yellow_400">#FCB823</color>
+    <color name="yds_lime_050">#F9FBE7</color>
+    <color name="yds_lime_100">#F0F4C3</color>
+    <color name="yds_lime_200">#E5EE9C</color>
+    <color name="yds_lime_300">#DBE775</color>
+    <color name="yds_lime_400">#D3E157</color>
+    <color name="yds_lime_500">#CCDC39</color>
+    <color name="yds_lime_600">#BFCA33</color>
+    <color name="yds_lime_700">#AEB42B</color>
+    <color name="yds_lime_800">#9D9D24</color>
 
-    <color name="yds_lime_100_a10">#1AD1EF4D</color>
-    <color name="yds_lime_100">#D1EF4D</color>
-    <color name="yds_lime_200">#C9EB23</color>
-    <color name="yds_lime_300">#BED91B</color>
-    <color name="yds_lime_400">#AEC20C</color>
+    <color name="yds_green_050">#E5F9EE</color>
+    <color name="yds_green_100">#BFF0D5</color>
+    <color name="yds_green_200">#93E7BB</color>
+    <color name="yds_green_300">#5BDE9F</color>
+    <color name="yds_green_400">#0BD588</color>
+    <color name="yds_green_500">#00CC74</color>
+    <color name="yds_green_600">#00BB68</color>
+    <color name="yds_green_700">#00A85B</color>
+    <color name="yds_green_800">#00964F</color>
 
-    <color name="yds_green_100_a10">#1A5BDE9F</color>
-    <color name="yds_green_100">#5BDE9F</color>
-    <color name="yds_green_200">#0BD588</color>
-    <color name="yds_green_300">#00CC74</color>
-    <color name="yds_green_400">#00BB68</color>
+    <color name="yds_emerald_050">#E0F8F7</color>
+    <color name="yds_emerald_100">#B3ECEA</color>
+    <color name="yds_emerald_200">#82E0DF</color>
+    <color name="yds_emerald_300">#51D2D4</color>
+    <color name="yds_emerald_400">#2BC9CC</color>
+    <color name="yds_emerald_500">#00BFC7</color>
+    <color name="yds_emerald_600">#00AFB5</color>
+    <color name="yds_emerald_700">#069A9C</color>
+    <color name="yds_emerald_800">#088585</color>
 
-    <color name="yds_emerald_100_a10">#1A27D2D2</color>
-    <color name="yds_emerald_100">#27D2D2</color>
-    <color name="yds_emerald_200">#00C9CB</color>
-    <color name="yds_emerald_300">#00BFC7</color>
-    <color name="yds_emerald_400">#00AFB5</color>
+    <color name="yds_aqua_050">#E0F4FD</color>
+    <color name="yds_aqua_100">#B2E3FA</color>
+    <color name="yds_aqua_200">#7FD0F7</color>
+    <color name="yds_aqua_300">#4CBEF3</color>
+    <color name="yds_aqua_400">#26B0F1</color>
+    <color name="yds_aqua_500">#00A2EE</color>
+    <color name="yds_aqua_600">#0095DF</color>
+    <color name="yds_aqua_700">#0182CB</color>
+    <color name="yds_aqua_800">#0171B7</color>
 
-    <color name="yds_aqua_100_a10">#1A2ABDF2</color>
-    <color name="yds_aqua_100">#2ABDF2</color>
-    <color name="yds_aqua_200">#00AFF0</color>
-    <color name="yds_aqua_300">#00A1ED</color>
-    <color name="yds_aqua_400">#0094DF</color>
+    <color name="yds_blue_050">#E4F1FA</color>
+    <color name="yds_blue_100">#BEDCF3</color>
+    <color name="yds_blue_200">#98C6EC</color>
+    <color name="yds_blue_300">#74B0E2</color>
+    <color name="yds_blue_400">#489AE7</color>
+    <color name="yds_blue_500">#4B90D7</color>
+    <color name="yds_blue_600">#4582CA</color>
+    <color name="yds_blue_700">#3C71B8</color>
+    <color name="yds_blue_800">#3661A5</color>
 
-    <color name="yds_blue_100_a10">#1A5CA3FF</color>
-    <color name="yds_blue_100">#5CA3FF</color>
-    <color name="yds_blue_200">#4E93FD</color>
-    <color name="yds_blue_300">#4D84EE</color>
-    <color name="yds_blue_400">#4972D9</color>
+    <color name="yds_indigo_050">#E8EAF6</color>
+    <color name="yds_indigo_100">#C5CAE9</color>
+    <color name="yds_indigo_200">#9FA8DA</color>
+    <color name="yds_indigo_300">#7986CB</color>
+    <color name="yds_indigo_400">#5C6CC0</color>
+    <color name="yds_indigo_500">#3F52B5</color>
+    <color name="yds_indigo_600">#394AAB</color>
+    <color name="yds_indigo_700">#2F409F</color>
+    <color name="yds_indigo_800">#273693</color>
 
-    <color name="yds_violet_100_a10">#1AA487F6</color>
-    <color name="yds_violet_100">#A487F6</color>
-    <color name="yds_violet_200">#8E6BF2</color>
-    <color name="yds_violet_300">#7851EB</color>
-    <color name="yds_violet_400">#6C4BE4</color>
+    <color name="yds_violet_050">#EDE7F6</color>
+    <color name="yds_violet_100">#D1C4E9</color>
+    <color name="yds_violet_200">#B39DDB</color>
+    <color name="yds_violet_300">#9575CD</color>
+    <color name="yds_violet_400">#7E57C2</color>
+    <color name="yds_violet_500">#673AB7</color>
+    <color name="yds_violet_600">#5E35B1</color>
+    <color name="yds_violet_700">#512DA8</color>
+    <color name="yds_violet_800">#4527A0</color>
 
-    <color name="yds_purple_100_a10">#1AD487ED</color>
-    <color name="yds_purple_100">#D487ED</color>
-    <color name="yds_purple_200">#BE55E1</color>
-    <color name="yds_purple_300">#AD2CD4</color>
-    <color name="yds_purple_400">#9B00C8</color>
+    <color name="yds_purple_050">#F2E5F5</color>
+    <color name="yds_purple_100">#DFBFE7</color>
+    <color name="yds_purple_200">#CA95D8</color>
+    <color name="yds_purple_300">#B56CC8</color>
+    <color name="yds_purple_400">#A54DBB</color>
+    <color name="yds_purple_500">#9632AF</color>
+    <color name="yds_purple_600">#882EA9</color>
+    <color name="yds_purple_700">#7629A0</color>
+    <color name="yds_purple_800">#652597</color>
+
+    <color name="yds_brown_050">#EFEBE9</color>
+    <color name="yds_brown_100">#D7CCC8</color>
+    <color name="yds_brown_200">#BCAAA4</color>
+    <color name="yds_brown_300">#A1887F</color>
+    <color name="yds_brown_400">#8D6E63</color>
+    <color name="yds_brown_500">#795548</color>
+    <color name="yds_brown_600">#6D4C41</color>
+    <color name="yds_brown_700">#5D4037</color>
+    <color name="yds_brown_800">#4E342E</color>
 
     <!-- Opacity options ex) logo blue alpha 10% : #1A1653DB-->
     <!--    100% — FF-->
@@ -195,6 +253,4 @@
     <!--    2% — 05-->
     <!--    1% — 03-->
     <!--    0% — 00-->
-
-
 </resources>
