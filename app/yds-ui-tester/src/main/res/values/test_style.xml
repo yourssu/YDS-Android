@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Title1">
+        <item name="android:textSize">28dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">4.2dp</item>
+        <item name="android:paddingBottom">4.2dp</item>
+        <item name="android:lineSpacingExtra">8.4dp</item>
+    </style>
+
+    <style name="Title2">
+        <item name="android:textSize">24dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">3.6dp</item>
+        <item name="android:paddingBottom">3.6dp</item>
+        <item name="android:lineSpacingExtra">7.2dp</item>
+    </style>
+
+    <style name="SubTitle1">
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+    </style>
+
+    <style name="SubTitle2">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">2.4dp</item>
+        <item name="android:paddingBottom">2.4dp</item>
+        <item name="android:lineSpacingExtra">4.8dp</item>
+    </style>
+
+    <style name="SubTitle3">
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">2.1dp</item>
+        <item name="android:paddingBottom">2.1dp</item>
+        <item name="android:lineSpacingExtra">4.2dp</item>
+    </style>
+
+    <style name="Body1">
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">4.5dp</item>
+        <item name="android:paddingBottom">4.5dp</item>
+        <item name="android:lineSpacingExtra">9dp</item>
+    </style>
+
+    <style name="Body2">
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">4.2dp</item>
+        <item name="android:paddingBottom">4.2dp</item>
+        <item name="android:lineSpacingExtra">8.4dp</item>
+    </style>
+
+    <style name="Button0">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="Button1">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="Button2">
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="Button3">
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="Button4">
+        <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="Caption1">
+        <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">1.8dp</item>
+        <item name="android:paddingBottom">1.8dp</item>
+        <item name="android:lineSpacingExtra">3.6dp</item>
+    </style>
+
+    <style name="Caption2">
+        <item name="android:textSize">11dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingTop">1.65dp</item>
+        <item name="android:paddingBottom">1.65dp</item>
+        <item name="android:lineSpacingExtra">3.3dp</item>
+    </style>
+</resources>

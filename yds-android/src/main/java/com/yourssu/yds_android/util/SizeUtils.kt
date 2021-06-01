@@ -2,23 +2,19 @@ package com.yourssu.yds_android.util
 
 import android.content.Context
 import android.util.TypedValue
+import androidx.annotation.DimenRes
 
-fun dpToPx(context: Context, dp: Float): Float {
-    val displayMetrics = context.resources.displayMetrics
+infix fun Context.dpToPx(dp: Float): Float {
+    val displayMetrics = this.resources.displayMetrics
     return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, displayMetrics)
 }
 
-fun dpToIntPx(context: Context, dp: Float): Int {
-    val displayMetrics = context.resources.displayMetrics
+infix fun Context.dpToIntPx(dp: Float): Int {
+    val displayMetrics = this.resources.displayMetrics
     return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, displayMetrics).toInt()
 }
 
-fun Float.dpToPx(context: Context): Float {
-    val displayMetrics = context.resources.displayMetrics
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, displayMetrics)
-}
+infix fun Context.getDimenFloat(@DimenRes dimenRes: Int): Float = this.resources.getDimension(dimenRes)
 
-fun Float.dpToIntPx(context: Context): Int {
-    val displayMetrics = context.resources.displayMetrics
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, displayMetrics).toInt()
-}
+infix fun Context.getDimenInt(@DimenRes dimenRes: Int): Int = this.resources.getDimensionPixelSize(dimenRes)
+

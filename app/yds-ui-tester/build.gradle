@@ -3,9 +3,21 @@ plugins {
     id 'kotlin-android'
 }
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
+
+    // 당연하지만 배포용은 아니고 release 테스트용
+    signingConfigs {
+        release {
+            storeFile file("./ydsyourssu.jks")
+            storePassword "ydsyourssu"
+            keyAlias "yourssu"
+            keyPassword "ydsyourssu"
+        }
+    }
 
     defaultConfig {
         applicationId "com.yourssu.yds_android"
@@ -21,6 +33,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -29,6 +42,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    android {
+        buildFeatures {
+            dataBinding = true
+        }
     }
 }
 
