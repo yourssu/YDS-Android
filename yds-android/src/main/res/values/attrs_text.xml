@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Text">
+        <attr name="typo" format="enum">
+            <enum name="title1" value="0" />
+            <enum name="title2" value="1" />
+            <enum name="subtitle1" value="2" />
+            <enum name="subtitle2" value="3" />
+            <enum name="subtitle3" value="4" />
+            <enum name="body1" value="5" />
+            <enum name="body2" value="6" />
+            <enum name="button0" value="7" />
+            <enum name="button1" value="8" />
+            <enum name="button2" value="9" />
+            <enum name="button3" value="10" />
+            <enum name="button4" value="11" />
+            <enum name="caption1" value="12" />
+            <enum name="caption2" value="13" />
+        </attr>
+    </declare-styleable>
+</resources>
