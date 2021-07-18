@@ -52,13 +52,12 @@
     <drawable name="gray800">#3A3D40</drawable>
     <drawable name="gray900">#252729</drawable>
 
-    <!-- Gray Alpha 10 -->
+    <!-- WB Alpha -->
+    <drawable name="white000A10">#1AFFFFFF</drawable>
+    <drawable name="white000A30">#4DFFFFFF</drawable>
+    <drawable name="white000A70">#B3FFFFFF</drawable>
     <drawable name="gray900A10">#1A252729</drawable>
-
-    <!-- Gray Alpha 30 -->
     <drawable name="gray900A30">#4D252729</drawable>
-
-    <!-- Gray Alpha 70 -->
     <drawable name="gray900A70">#B3252729</drawable>
 
     <!-- Pink -->

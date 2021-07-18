@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     // 당연하지만 배포용은 아니고 release 테스트용
@@ -22,7 +22,7 @@ android {
     defaultConfig {
         applicationId "com.yourssu.yds_android"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
