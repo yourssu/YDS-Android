@@ -22,6 +22,7 @@
     <!-- Dim -->
     <color name="dimNormal">@drawable/gray900A30</color>
     <color name="dimThick">@drawable/gray900A70</color>
+    <color name="dimThickReversed">@drawable/white000A70</color>
 
     <!-- Border -->
     <color name="borderThin">@drawable/gray100</color>
@@ -30,17 +31,21 @@
 
     <!-- Button -->
     <color name="buttonNormal">@drawable/gray700</color>
+    <color name="buttonNormalPressed">@drawable/gray600</color>
+    <color name="buttonBG">@drawable/gray200</color>
     <color name="buttonReversed">@drawable/white000</color>
     <color name="buttonDisabled">@drawable/gray500</color>
     <color name="buttonDisabledBG">@drawable/gray200</color>
     <color name="buttonPoint">@drawable/pointBlue400</color>
+    <color name="buttonPointPressed">@drawable/pointBlue300</color>
     <color name="buttonPointBG">@drawable/pointBlue050</color>
     <color name="buttonWarned">@drawable/warningRed400</color>
+    <color name="buttonWarnedPressed">@drawable/warningRed300</color>
     <color name="buttonWarnedBG">@drawable/warningRed050</color>
 
-    <!-- TabBar -->
-    <color name="tabBarNormal">@drawable/gray600</color>
-    <color name="tabBarSelected">@drawable/pointBlue400</color>
+    <!-- BottomBar -->
+    <color name="bottomBarNormal">@drawable/gray600</color>
+    <color name="bottomBarSelected">@drawable/gray800</color>
 
     <!-- inputField -->
     <color name="inputFieldNormal">@drawable/white000</color>
@@ -53,49 +58,51 @@
     <color name="shadowThin">@drawable/gray400</color>
     <color name="shadowNormal">@drawable/gray500</color>
 
-    <!-- MonoTag -->
-    <color name="monoTagPrimary">@drawable/gray300</color>
-    <color name="monoTagBG">@drawable/gray100</color>
-    <color name="monoTagText">@drawable/gray900</color>
+    <!-- ///////////////  ItemColor  //////////////// -->
 
-    <!-- GreenTag -->
-    <color name="greenTagPrimary">@drawable/green300</color>
-    <color name="greenTagBG">@drawable/green050</color>
-    <color name="greenTagText">@drawable/green800</color>
+    <!-- MonoItem -->
+    <color name="monoItemPrimary">@drawable/gray700</color>
+    <color name="monoItemBG">@drawable/gray100</color>
+    <color name="monoItemText">@drawable/gray800</color>
 
-    <!-- EmeraldTag -->
-    <color name="emeraldTagPrimary">@drawable/emerald300</color>
-    <color name="emeraldTagBG">@drawable/emerald050</color>
-    <color name="emeraldTagText">@drawable/emerald800</color>
+    <!-- GreenItem -->
+    <color name="greenItemPrimary">@drawable/green300</color>
+    <color name="greenItemBG">@drawable/green050</color>
+    <color name="greenItemText">@drawable/green800</color>
 
-    <!-- AquaTag -->
-    <color name="aquaTagPrimary">@drawable/aqua300</color>
-    <color name="aquaTagBG">@drawable/aqua050</color>
-    <color name="aquaTagText">@drawable/aqua800</color>
+    <!-- EmeraldItem -->
+    <color name="emeraldItemPrimary">@drawable/emerald300</color>
+    <color name="emeraldItemBG">@drawable/emerald050</color>
+    <color name="emeraldItemText">@drawable/emerald800</color>
 
-    <!-- BlueTag -->
-    <color name="blueTagPrimary">@drawable/blue300</color>
-    <color name="blueTagBG">@drawable/blue050</color>
-    <color name="blueTagText">@drawable/blue800</color>
+    <!-- AquaItem -->
+    <color name="aquaItemPrimary">@drawable/aqua300</color>
+    <color name="aquaItemBG">@drawable/aqua050</color>
+    <color name="aquaItemText">@drawable/aqua700</color>
 
-    <!-- IndigoTag -->
-    <color name="indigoTagPrimary">@drawable/indigo300</color>
-    <color name="indigoTagBG">@drawable/indigo050</color>
-    <color name="indigoTagText">@drawable/indigo500</color>
+    <!-- BlueItem -->
+    <color name="blueItemPrimary">@drawable/blue300</color>
+    <color name="blueItemBG">@drawable/blue050</color>
+    <color name="blueItemText">@drawable/blue700</color>
+
+    <!-- IndigoItem -->
+    <color name="indigoItemPrimary">@drawable/indigo300</color>
+    <color name="indigoItemBG">@drawable/indigo050</color>
+    <color name="indigoItemText">@drawable/indigo400</color>
     
-    <!-- VioletTag -->
-    <color name="violetTagPrimary">@drawable/violet300</color>
-    <color name="violetTagBG">@drawable/violet050</color>
-    <color name="violetTagText">@drawable/violet500</color>
+    <!-- VioletItem -->
+    <color name="violetItemPrimary">@drawable/violet300</color>
+    <color name="violetItemBG">@drawable/violet050</color>
+    <color name="violetItemText">@drawable/violet400</color>
 
-    <!-- PurpleTag -->
-    <color name="purpleTagPrimary">@drawable/purple300</color>
-    <color name="purpleTagBG">@drawable/purple050</color>
-    <color name="purpleTagText">@drawable/purple500</color>
+    <!-- PurpleItem -->
+    <color name="purpleItemPrimary">@drawable/purple300</color>
+    <color name="purpleItemBG">@drawable/purple050</color>
+    <color name="purpleItemText">@drawable/purple400</color>
 
-    <!-- PinkTag -->
-    <color name="pinkTagPrimary">@drawable/pink300</color>
-    <color name="pinkTagBG">@drawable/pink050</color>
-    <color name="pinkTagText">@drawable/pink800</color>
+    <!-- PinkItem -->
+    <color name="pinkItemPrimary">@drawable/pink300</color>
+    <color name="pinkItemBG">@drawable/pink050</color>
+    <color name="pinkItemText">@drawable/pink600</color>
 
 </resources>

@@ -1,9 +1,9 @@
-package com.yourssu.design.undercarriage.base
+package com.yourssu.design.undercarriage.draw
 
 import android.content.Context
 import android.graphics.Path
 import android.graphics.RectF
-import com.yourssu.design.undercarriage.util.dpToPx
+import com.yourssu.design.undercarriage.size.dpToPx
 
 
 interface ClipRadius {

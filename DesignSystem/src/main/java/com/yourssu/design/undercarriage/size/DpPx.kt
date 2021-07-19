@@ -1,4 +1,4 @@
-package com.yourssu.design.undercarriage.util
+package com.yourssu.design.undercarriage.size
 
 import android.content.Context
 import android.util.TypedValue

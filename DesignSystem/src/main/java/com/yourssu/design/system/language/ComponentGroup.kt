@@ -1,4 +1,4 @@
-package com.yourssu.design.undercarriage.ydsl
+package com.yourssu.design.system.language
 
 import android.content.Context
 import android.view.View

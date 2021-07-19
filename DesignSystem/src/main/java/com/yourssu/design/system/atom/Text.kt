@@ -7,8 +7,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.yourssu.design.R
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.foundation.Typography
-import com.yourssu.design.undercarriage.util.getDimenFloat
-import com.yourssu.design.undercarriage.ydsl.ComponentGroup
+import com.yourssu.design.undercarriage.size.getDimenFloat
+import com.yourssu.design.system.language.ComponentGroup
 
 class Text: AppCompatTextView {
     constructor(context: Context) : super(context) {

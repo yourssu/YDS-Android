@@ -3,14 +3,12 @@ package com.yourssu.design.system.atom
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.FrameLayout
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutBottomSheetBinding
 import com.yourssu.design.undercarriage.base.BaseFullDialog
-import com.yourssu.design.undercarriage.ydsl.ComponentGroup
+import com.yourssu.design.system.language.ComponentGroup
 
 class BottomSheet constructor(context: Context): BaseFullDialog(context), ComponentGroup {
     // 생성되기 전에 호출되는 경우 존재

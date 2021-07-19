@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.YDS" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- 다크모드 미지원 서비스 용도 -->
+    <style name="Theme.Light.YourssuDesignSystem" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@drawable/pointBlue400</item>
-        <!-- 스크롤 및 다크 모드 확인 필요 -->
+        <item name="colorPrimaryVariant">@android:color/transparent</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- 다크모드 지원 서비스 용도 -->
+    <style name="Theme.DayNight.YourssuDesignSystem" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@drawable/pointBlue400</item>
         <item name="colorPrimaryVariant">@android:color/transparent</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
     </style>
-
-
-    <style name="Dialog">Dialog</style>
-
-    <style name="Dialog.FullScreen">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="windowActionBarOverlay">false</item>
-        <item name="colorPrimaryVariant">@android:color/transparent</item>
-    </style>
 </resources>
-
