@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <import type="com.yourssu.design.system.atom.Divider" />
+
+        <variable
+            name="activity"
+            type="com.yourssu.yds_ui_tester.DividerActivity" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".DividerActivity">
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Divider - horizontal, thin" />
+
+        <com.yourssu.design.system.atom.Divider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:direction="horizontal"
+            app:dividerThickness="thin" />
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Divider - horizontal, thick" />
+
+        <com.yourssu.design.system.atom.Divider
+            android:id="@+id/data_binding_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:direction="horizontal"
+            app:dividerThickness="thick" />
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Divider - vertical, thin" />
+
+        <com.yourssu.design.system.atom.Divider
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            app:direction="vertical"
+            app:dividerThickness="thin" />
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Divider - vertical, thick" />
+
+        <com.yourssu.design.system.atom.Divider
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            app:direction="vertical"
+            app:dividerThickness="thick" />
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Divider DataBinding" />
+
+        <com.yourssu.design.system.atom.Divider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:direction="horizontal"
+            app:dividerThickness="@{activity.isThick ? Divider.THICK : Divider.THIN}" />
+
+        <Button
+            android:id="@+id/button_change_thickness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change Divider thickness" />
+
+    </LinearLayout>
+</layout>

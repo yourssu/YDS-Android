@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.YourssuDesignSystem">
+        <activity android:name=".DividerActivity" />
         <activity android:name=".DesignSystemListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
