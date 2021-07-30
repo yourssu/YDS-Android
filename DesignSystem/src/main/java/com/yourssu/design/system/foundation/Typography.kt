@@ -22,7 +22,7 @@ import com.yourssu.design.system.foundation.Typo.Title3
 
 
 @Retention(AnnotationRetention.SOURCE)
-@IntDef(Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption1, Caption2)
+@IntDef(value = [Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption1, Caption2])
 annotation class Typography
 
 object Typo {
