@@ -23,4 +23,4 @@ jobs:
       - name: Grant execute permission for apk
         run: chmod 777 app/yds-ui-tester/build/outputs/apk/release/yds-ui-tester-release.apk
       - name: Upload to Slack
-        run: curl -F file=@"app/yds-ui-tester/build/outputs/apk/release/yds-ui-tester-release.apk" -F "initial_comment=YDS StoryBook" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization = Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
+        run: curl -F file=@"app/yds-ui-tester/build/outputs/apk/release/yds-ui-tester-release.apk" -F "initial_comment=YDS StoryBook" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
