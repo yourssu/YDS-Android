@@ -24,4 +24,4 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew --no-daemon :app:yds-ui-tester:assembleRelease
       - name: Upload to Slack
-        run: curl -F file=@"app/yds-ui-tester/build/outputs/apk/release/YDS-StoryBook_${GITHUB_RUN_NUMBER}-release.apk" -F "initial_comment=YDS StoryBook" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
+        run: curl -F file=@"app/yds-ui-tester/build/outputs/apk/release/YDS-StoryBook-${GITHUB_RUN_NUMBER}-release.apk" -F "initial_comment=YDS StoryBook" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
