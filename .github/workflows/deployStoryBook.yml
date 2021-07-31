@@ -1,8 +1,8 @@
-name: Deploy StoryBook
+name: Deploy YDS StoryBook
 
 on:
   push:
-    branches: [ feature/mint/test-deploy ]
+    branches: [ develop, master ]
 
 jobs:
   upload:
