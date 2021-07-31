@@ -23,10 +23,11 @@ android {
         applicationId "com.yourssu.yds_android"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
+        versionCode ((System.getenv("BUILD_NUMBER") as Integer ?: 10000))
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", "YDS-StoryBook_" + versionCode)
     }
 
     buildTypes {
