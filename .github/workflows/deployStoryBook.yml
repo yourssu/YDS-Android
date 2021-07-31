@@ -2,7 +2,7 @@ name: Deploy StoryBook
 
 on:
   push:
-    branches: [ develop, master ]
+    branches: [ feature/mint/test-deploy ]
 
 jobs:
   upload:
