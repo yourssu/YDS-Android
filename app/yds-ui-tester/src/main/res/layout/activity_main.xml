@@ -38,12 +38,37 @@
                     android:layout_marginTop="30dp"
                     android:background="@color/greenItemBG" />
 
-                <com.yourssu.design.system.atom.ProfileImage
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    app:size="extraLarge"
-                    android:src="@drawable/wind" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:background="@color/blueItemBG">
+                    <com.yourssu.design.system.atom.ProfileImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bunny"
+                        app:size="extraLarge" />
+                    <com.yourssu.design.system.atom.ProfileImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bunny"
+                        app:size="large" />
+                    <com.yourssu.design.system.atom.ProfileImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bunny"
+                        app:size="medium" />
+                    <com.yourssu.design.system.atom.ProfileImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bunny"
+                        app:size="small" />
+                </LinearLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"
