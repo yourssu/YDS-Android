@@ -72,7 +72,6 @@ class Divider : View {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
         if (direction == HORIZONTAL) {
             setMeasuredDimension(measuredWidth, dividerThicknessInPx)
