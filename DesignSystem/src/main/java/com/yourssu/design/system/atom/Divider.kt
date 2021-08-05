@@ -72,11 +72,13 @@ class Divider : View {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val height = MeasureSpec.getSize(heightMeasureSpec)
 
         if (direction == HORIZONTAL) {
-            setMeasuredDimension(measuredWidth, dividerThicknessInPx)
+            setMeasuredDimension(width, dividerThicknessInPx)
         } else {
-            setMeasuredDimension(dividerThicknessInPx, measuredHeight)
+            setMeasuredDimension(dividerThicknessInPx, height)
         }
     }
 
