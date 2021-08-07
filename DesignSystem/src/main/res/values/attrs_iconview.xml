@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="IconView">
-        <attr name="size" format="enum">
+        <attr name="iconViewSize" format="enum">
             <enum name="extraSmall" value="0" />
             <enum name="small" value="1" />
             <enum name="medium" value="2" />

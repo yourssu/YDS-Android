@@ -34,6 +34,10 @@ class IconView: AppCompatImageView {
             setIconResource()
         }
 
+    fun setIconViewSize(@IconSize value: Int) {
+        size = value
+    }
+
     fun setIconResource(@Icon.Iconography value: Int) {
         icon = value
     }
@@ -42,7 +46,7 @@ class IconView: AppCompatImageView {
         if (attrs != null) {
             val typedArray = context.obtainStyledAttributes(attrs, R.styleable.IconView)
 
-            size = typedArray.getInteger(R.styleable.IconView_size, Medium)
+            size = typedArray.getInteger(R.styleable.IconView_iconViewSize, Medium)
             icon = typedArray.getInteger(R.styleable.IconView_iconResource, Icon.ic_adbadge_filled)
 
             setIconResource()

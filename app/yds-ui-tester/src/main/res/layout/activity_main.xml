@@ -50,25 +50,25 @@
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:size="extraLarge" />
+                        app:profileSize="extraLarge" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:size="large" />
+                        app:profileSize="large" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:size="medium" />
+                        app:profileSize="medium" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:size="small" />
+                        app:profileSize="small" />
                 </LinearLayout>
 
                 <FrameLayout
@@ -88,13 +88,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/blueItemBG"
-                    app:size="medium"
+                    app:iconViewSize="medium"
                     app:iconResource="ic_arrow_right_line" />
                 <com.yourssu.design.system.atom.IconView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/blueItemBG"
-                    app:size="large"
+                    app:iconViewSize="large"
                     android:tint="@color/aquaItemText"
                     app:iconResource="@{activity.triggerTextStyle ? Icon.ic_adbadge_line : Icon.ic_bell_filled}" />
 

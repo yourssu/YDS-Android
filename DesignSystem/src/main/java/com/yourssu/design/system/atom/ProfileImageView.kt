@@ -36,11 +36,15 @@ class ProfileImageView : AppCompatImageView {
             requestLayout()
         }
 
+    fun setProfileSize(@ProfileSize value: Int) {
+        size = value
+    }
+
     private fun initView(context: Context, attrs: AttributeSet?) {
         if (attrs != null) {
             val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ProfileImage)
 
-            size = typedArray.getInteger(R.styleable.ProfileImage_size, Small)
+            size = typedArray.getInteger(R.styleable.ProfileImage_profileSize, Small)
 
             typedArray.recycle()
         }
