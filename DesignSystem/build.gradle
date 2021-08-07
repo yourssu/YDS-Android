@@ -4,6 +4,12 @@ plugins {
 }
 
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.yourssu'
+
+def versionProperties = new Properties()
+versionProperties.load(new FileInputStream(file("../version.properties")))
 
 android {
     compileSdkVersion 30
@@ -12,8 +18,8 @@ android {
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "0.0.1"
+        versionCode ((System.getenv("BUILD_NUMBER") as Integer ?: 10000))
+        versionName versionProperties['versionName']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
