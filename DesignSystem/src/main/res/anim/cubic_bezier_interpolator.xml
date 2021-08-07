@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- YDS 의 모든 애니메이션은 별도의 정의가 없으면 해당 Interpolator 를 사용해야 함 -->
+<pathInterpolator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:controlX1="0.25"
+    android:controlY1="0.1"
+    android:controlX2="0.25"
+    android:controlY2="1" />

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Opacity options 은 최하단에 있음 -->
+
+<!-- YDS 내부에서 쓰일 컬러팔레트
+     사용자가 컬러로 사용할 수 없도록 drawable 로 만들고
+     color 정의에선 reference type 으로 강제 한다
+     다크모드도 잘 동작한다 -->
+<resources>
+
+    <!-- Logo -->
+    <drawable name="logoBlue">#1653DB</drawable>
+    <drawable name="logoYellow">#FFC441</drawable>
+
+    <!-- PointBlue -->
+    <drawable name="pointBlue050">#E1F2FE</drawable>
+    <drawable name="pointBlue100">#B6DDFE</drawable>
+    <drawable name="pointBlue200">#86C8FE</drawable>
+    <drawable name="pointBlue300">#4EB2FE</drawable>
+    <drawable name="pointBlue400">#00A3FF</drawable>
+    <drawable name="pointBlue500">#0092FE</drawable>
+    <drawable name="pointBlue600">#0084F0</drawable>
+    <drawable name="pointBlue700">#0072DD</drawable>
+    <drawable name="pointBlue800">#0060CB</drawable>
+    <drawable name="pointBlue900">#0042AB</drawable>
+
+    <!-- WarningRed -->
+    <drawable name="warningRed050">#FFECEF</drawable>
+    <drawable name="warningRed100">#FFCED4</drawable>
+    <drawable name="warningRed200">#F99C9D</drawable>
+    <drawable name="warningRed300">#F37476</drawable>
+    <drawable name="warningRed400">#FF5252</drawable>
+    <drawable name="warningRed500">#FF3E36</drawable>
+    <drawable name="warningRed600">#F73536</drawable>
+    <drawable name="warningRed700">#E42930</drawable>
+    <drawable name="warningRed800">#D72028</drawable>
+    <drawable name="warningRed900">#C8111C</drawable>
+
+    <!-- White & Black -->
+    <drawable name="white000">#FFFFFF</drawable>
+    <drawable name="black000">#111111</drawable>
+
+    <!-- Gray -->
+    <drawable name="gray050">#F8F9FA</drawable>
+    <drawable name="gray100">#F3F5F7</drawable>
+    <drawable name="gray200">#ECEEF0</drawable>
+    <drawable name="gray300">#E2E5E8</drawable>
+    <drawable name="gray400">#D4D8DC</drawable>
+    <drawable name="gray500">#B5B9BD</drawable>
+    <drawable name="gray600">#8E9398</drawable>
+    <drawable name="gray700">#505458</drawable>
+    <drawable name="gray800">#3A3D40</drawable>
+    <drawable name="gray900">#252729</drawable>
+
+    <!-- WB Alpha -->
+    <drawable name="white000A10">#1AFFFFFF</drawable>
+    <drawable name="white000A30">#4DFFFFFF</drawable>
+    <drawable name="white000A70">#B3FFFFFF</drawable>
+    <drawable name="gray900A10">#1A252729</drawable>
+    <drawable name="gray900A30">#4D252729</drawable>
+    <drawable name="gray900A70">#B3252729</drawable>
+
+    <!-- Pink -->
+    <drawable name="pink050">#FDE6F4</drawable>
+    <drawable name="pink100">#FBC1E5</drawable>
+    <drawable name="pink200">#FC98D3</drawable>
+    <drawable name="pink300">#FF6CBF</drawable>
+    <drawable name="pink400">#FF47AD</drawable>
+    <drawable name="pink500">#FF1F99</drawable>
+    <drawable name="pink600">#F21F93</drawable>
+    <drawable name="pink700">#DA1F8B</drawable>
+    <drawable name="pink800">#C31F85</drawable>
+
+    <!-- Red -->
+    <drawable name="red050">#FFEBEE</drawable>
+    <drawable name="red100">#FFCDD2</drawable>
+    <drawable name="red200">#EF9A9A</drawable>
+    <drawable name="red300">#E57373</drawable>
+    <drawable name="red400">#EF5350</drawable>
+    <drawable name="red500">#F44236</drawable>
+    <drawable name="red600">#E53835</drawable>
+    <drawable name="red700">#D32E2F</drawable>
+    <drawable name="red800">#C62728</drawable>
+
+    <!-- Orange -->
+    <drawable name="orange050">#FFF1E4</drawable>
+    <drawable name="orange100">#FFDBBC</drawable>
+    <drawable name="orange200">#FFC492</drawable>
+    <drawable name="orange300">#FFAC6C</drawable>
+    <drawable name="orange400">#FD9A55</drawable>
+    <drawable name="orange500">#FC8A46</drawable>
+    <drawable name="orange600">#F67F44</drawable>
+    <drawable name="orange700">#EE7141</drawable>
+    <drawable name="orange800">#E6623E</drawable>
+
+    <!-- Yellow -->
+    <drawable name="yellow050">#FFF8DC</drawable>
+    <drawable name="yellow100">#FFF0AB</drawable>
+    <drawable name="yellow200">#FFE672</drawable>
+    <drawable name="yellow300">#FFDC3A</drawable>
+    <drawable name="yellow400">#FFD200</drawable>
+    <drawable name="yellow500">#FBC000</drawable>
+    <drawable name="yellow600">#F6B000</drawable>
+    <drawable name="yellow700">#E1A714</drawable>
+    <drawable name="yellow800">#CC9200</drawable>
+
+    <!-- Lime -->
+    <drawable name="lime050">#F9FBE7</drawable>
+    <drawable name="lime100">#F0F4C3</drawable>
+    <drawable name="lime200">#E5EE9C</drawable>
+    <drawable name="lime300">#DBE775</drawable>
+    <drawable name="lime400">#D3E157</drawable>
+    <drawable name="lime500">#CCDC39</drawable>
+    <drawable name="lime600">#BFCA33</drawable>
+    <drawable name="lime700">#AEB42B</drawable>
+    <drawable name="lime800">#9D9D24</drawable>
+
+    <!-- Green -->
+    <drawable name="green050">#E5F9EE</drawable>
+    <drawable name="green100">#BFF0D5</drawable>
+    <drawable name="green200">#93E7BB</drawable>
+    <drawable name="green300">#5BDE9F</drawable>
+    <drawable name="green400">#0BD588</drawable>
+    <drawable name="green500">#00CC74</drawable>
+    <drawable name="green600">#00BB68</drawable>
+    <drawable name="green700">#00A85B</drawable>
+    <drawable name="green800">#00964F</drawable>
+
+    <!-- Emerald -->
+    <drawable name="emerald050">#E0F8F7</drawable>
+    <drawable name="emerald100">#B3ECEA</drawable>
+    <drawable name="emerald200">#82E0DF</drawable>
+    <drawable name="emerald300">#51D2D4</drawable>
+    <drawable name="emerald400">#2BC9CC</drawable>
+    <drawable name="emerald500">#00BFC7</drawable>
+    <drawable name="emerald600">#00AFB5</drawable>
+    <drawable name="emerald700">#069A9C</drawable>
+    <drawable name="emerald800">#088585</drawable>
+
+    <!-- Aqua -->
+    <drawable name="aqua050">#E0F4FD</drawable>
+    <drawable name="aqua100">#B2E3FA</drawable>
+    <drawable name="aqua200">#7FD0F7</drawable>
+    <drawable name="aqua300">#4CBEF3</drawable>
+    <drawable name="aqua400">#26B0F1</drawable>
+    <drawable name="aqua500">#00A2EE</drawable>
+    <drawable name="aqua600">#0095DF</drawable>
+    <drawable name="aqua700">#0182CB</drawable>
+    <drawable name="aqua800">#0171B7</drawable>
+
+    <!-- Blue -->
+    <drawable name="blue050">#E4F1FA</drawable>
+    <drawable name="blue100">#BEDCF3</drawable>
+    <drawable name="blue200">#98C6EC</drawable>
+    <drawable name="blue300">#74B0E2</drawable>
+    <drawable name="blue400">#489AE7</drawable>
+    <drawable name="blue500">#4B90D7</drawable>
+    <drawable name="blue600">#4582CA</drawable>
+    <drawable name="blue700">#3C71B8</drawable>
+    <drawable name="blue800">#3661A5</drawable>
+
+    <!-- Indigo -->
+    <drawable name="indigo050">#E8EAF6</drawable>
+    <drawable name="indigo100">#C5CAE9</drawable>
+    <drawable name="indigo200">#9FA8DA</drawable>
+    <drawable name="indigo300">#7986CB</drawable>
+    <drawable name="indigo400">#5C6CC0</drawable>
+    <drawable name="indigo500">#3F52B5</drawable>
+    <drawable name="indigo600">#394AAB</drawable>
+    <drawable name="indigo700">#2F409F</drawable>
+    <drawable name="indigo800">#273693</drawable>
+
+    <!-- Violet -->
+    <drawable name="violet050">#EDE7F6</drawable>
+    <drawable name="violet100">#D1C4E9</drawable>
+    <drawable name="violet200">#B39DDB</drawable>
+    <drawable name="violet300">#9575CD</drawable>
+    <drawable name="violet400">#7E57C2</drawable>
+    <drawable name="violet500">#673AB7</drawable>
+    <drawable name="violet600">#5E35B1</drawable>
+    <drawable name="violet700">#512DA8</drawable>
+    <drawable name="violet800">#4527A0</drawable>
+
+    <!-- Purple -->
+    <drawable name="purple050">#F2E5F5</drawable>
+    <drawable name="purple100">#DFBFE7</drawable>
+    <drawable name="purple200">#CA95D8</drawable>
+    <drawable name="purple300">#B56CC8</drawable>
+    <drawable name="purple400">#A54DBB</drawable>
+    <drawable name="purple500">#9632AF</drawable>
+    <drawable name="purple600">#882EA9</drawable>
+    <drawable name="purple700">#7629A0</drawable>
+    <drawable name="purple800">#652597</drawable>
+
+    <!-- Brown -->
+    <drawable name="brown050">#EFEBE9</drawable>
+    <drawable name="brown100">#D7CCC8</drawable>
+    <drawable name="brown200">#BCAAA4</drawable>
+    <drawable name="brown300">#A1887F</drawable>
+    <drawable name="brown400">#8D6E63</drawable>
+    <drawable name="brown500">#795548</drawable>
+    <drawable name="brown600">#6D4C41</drawable>
+    <drawable name="brown700">#5D4037</drawable>
+    <drawable name="brown800">#4E342E</drawable>
+</resources>
+
+<!--
+Opacity options
+ex) logo blue alpha 10%(1A) : #1A1653DB (logo blue : #1653DB)
+
+100% — FF
+99% — FC
+98% — FA
+97% — F7
+96% — F5
+95% — F2
+94% — F0
+93% — ED
+92% — EB
+91% — E8
+90% — E6
+89% — E3
+88% — E0
+87% — DE
+86% — DB
+85% — D9
+84% — D6
+83% — D4
+82% — D1
+81% — CF
+80% — CC
+79% — C9
+78% — C7
+77% — C4
+76% — C2
+75% — BF
+74% — BD
+73% — BA
+72% — B8
+71% — B5
+70% — B3
+69% — B0
+68% — AD
+67% — AB
+66% — A8
+65% — A6
+64% — A3
+63% — A1
+62% — 9E
+61% — 9C
+60% — 99
+59% — 96
+58% — 94
+57% — 91
+56% — 8F
+55% — 8C
+54% — 8A
+53% — 87
+52% — 85
+51% — 82
+50% — 80
+49% — 7D
+48% — 7A
+47% — 78
+46% — 75
+45% — 73
+44% — 70
+43% — 6E
+42% — 6B
+41% — 69
+40% — 66
+39% — 63
+38% — 61
+37% — 5E
+36% — 5C
+35% — 59
+34% — 57
+33% — 54
+32% — 52
+31% — 4F
+30% — 4D
+29% — 4A
+28% — 47
+27% — 45
+26% — 42
+25% — 40
+24% — 3D
+23% — 3B
+22% — 38
+21% — 36
+20% — 33
+19% — 30
+18% — 2E
+17% — 2B
+16% — 29
+15% — 26
+14% — 24
+13% — 21
+12% — 1F
+11% — 1C
+10% — 1A
+9% — 17
+8% — 14
+7% — 12
+6% — 0F
+5% — 0D
+4% — 0A
+3% — 08
+2% — 05
+1% — 03
+0% — 00
+-->

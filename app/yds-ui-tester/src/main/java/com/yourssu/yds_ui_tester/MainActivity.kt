@@ -2,16 +2,21 @@ package com.yourssu.yds_ui_tester
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.res.ResourcesCompat
+import android.view.Gravity
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableBoolean
-import com.yourssu.yds_android.foundation.Text
+import com.yourssu.design.system.atom.BottomSheet.Companion.bottomSheet
+import com.yourssu.design.system.atom.Text.Companion.text
+import com.yourssu.design.system.foundation.Typo
 import com.yourssu.yds_ui_tester.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     var triggerTextStyle = ObservableBoolean(false)
+
+    private val list = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +25,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
             triggerTextStyle.set(!triggerTextStyle.get())
+            bottomSheet {
+                list.forEach {
+                    text {
+                        width = ViewGroup.LayoutParams.MATCH_PARENT
+                        gravity = Gravity.CENTER
+                        typo = Typo.Title2
+                        text = "$it"
+                    }
+                }
+            }.show()
         }
-
-        val textView = Text.createText(this, Text.YDSTextStyle.SUBTITLE1)
-        textView.text = "bbbbbbbb"
-        textView.setTextColor(ResourcesCompat.getColor(resources, R.color.aquaTagBG, theme))
-        binding.area.addView(textView)
     }
 }

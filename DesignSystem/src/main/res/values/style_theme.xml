@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 다크모드 미지원 서비스 용도 -->
+    <style name="Theme.Light.YourssuDesignSystem" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@drawable/pointBlue400</item>
+        <item name="colorPrimaryVariant">@android:color/transparent</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- 다크모드 지원 서비스 용도 -->
+    <style name="Theme.DayNight.YourssuDesignSystem" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@drawable/pointBlue400</item>
+        <item name="colorPrimaryVariant">@android:color/transparent</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
+    </style>
+</resources>
