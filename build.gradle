@@ -20,6 +20,8 @@ allprojects {
         google()
         jcenter()
     }
+
+    group = 'com.github.yourssu'
 }
 
 task clean(type: Delete) {
