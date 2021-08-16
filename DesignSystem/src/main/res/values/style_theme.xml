@@ -8,6 +8,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar">true</item>
+        <!-- Auto Filled Highlight color. -->
+        <item name="android:autofilledHighlight" tools:targetApi="26">@android:color/transparent</item>
     </style>
 
     <!-- 다크모드 지원 서비스 용도 -->
@@ -18,5 +20,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
+        <!-- Auto Filled Highlight color. -->
+        <item name="android:autofilledHighlight" tools:targetApi="26">@android:color/transparent</item>
     </style>
 </resources>
