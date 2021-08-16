@@ -6,12 +6,12 @@ import android.view.Gravity
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableBoolean
-import com.yourssu.design.system.atom.BottomSheet.Companion.bottomSheet
-import com.yourssu.design.system.atom.Text.Companion.text
 import com.yourssu.design.system.component.Toast
 import com.yourssu.design.system.component.Toast.Companion.shortToast
 import com.yourssu.design.system.component.Toast.Companion.toast
 import com.yourssu.design.system.foundation.Typo
+import com.yourssu.design.system.language.bottomSheet
+import com.yourssu.design.system.language.text
 import com.yourssu.yds_ui_tester.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
