@@ -28,6 +28,7 @@
                 android:orientation="vertical">
 
                 <FrameLayout
+                    android:id="@+id/aaged"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="30dp"
@@ -111,6 +112,7 @@
                     app:typo="@{activity.triggerTextStyle ? Typo.Title1 : Typo.Button1}" />
 
                 <TextView
+                    android:id="@+id/text44"
                     style="@style/Title1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

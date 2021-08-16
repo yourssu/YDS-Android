@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toastFrame"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+    <LinearLayout
+        android:id="@+id/toastArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/toast_background"
+        android:gravity="center">
+
+        <com.yourssu.design.system.atom.Text
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="left"
+            android:textColor="@color/textReversed"
+            app:typo="body2"
+            tools:text="줄 수가 두 줄 이상이 되는 토스트 메시지입니다. 좌측 정렬을 해주세요." />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/offset"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+</LinearLayout>

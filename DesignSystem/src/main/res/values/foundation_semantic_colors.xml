@@ -51,6 +51,9 @@
     <color name="inputFieldNormal">@drawable/white000</color>
     <color name="inputFieldElevated">@drawable/gray100</color>
 
+    <!-- Toast -->
+    <color name="toastBG">@drawable/gray700</color>
+
     <!-- Pressed -->
     <color name="pressed">@drawable/gray900A10</color>
 
