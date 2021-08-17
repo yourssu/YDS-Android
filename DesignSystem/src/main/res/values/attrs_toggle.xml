@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Toggle">
+        <attr name="toggleSelected" format="boolean" />
+        <attr name="toggleDisabled" format="boolean" />
+    </declare-styleable>
+</resources>
