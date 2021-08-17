@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.yourssu.yds_ui_tester.ToggleActivity" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Toggle"
+            app:typo="title1" />
+
+        <com.yourssu.design.system.atom.Toggle
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Data Binding"
+            app:typo="title1" />
+
+        <com.yourssu.design.system.atom.Toggle
+            android:id="@+id/toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            app:toggleDisabled="@{activity.isDisabled}"
+            app:toggleSelected="@{activity.isSelected}" />
+
+        <Button
+            android:id="@+id/button_change_selected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change toggle selected" />
+
+        <Button
+            android:id="@+id/button_change_disabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change toggle disabled" />
+
+    </LinearLayout>
+</layout>
