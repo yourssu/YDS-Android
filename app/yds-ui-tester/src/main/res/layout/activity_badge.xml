@@ -6,6 +6,7 @@
 
     <data>
 
+        <import type="com.yourssu.design.system.foundation.Icon" />
         <variable
             name="activity"
             type="com.yourssu.yds_ui_tester.BadgeActivity" />
@@ -21,7 +22,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             app:badgeText="모노 뱃지"
-            app:badgeTheme="mono" />
+            app:badgeColor="mono" />
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:badgeText="모노 뱃지"
+            app:badgeColor="emerald" />
 
         <com.yourssu.design.system.atom.Badge
             android:layout_width="wrap_content"
@@ -29,22 +37,24 @@
             android:layout_marginBottom="10dp"
             app:badgeIcon="ic_ground_line"
             app:badgeText="모노 뱃지"
-            app:badgeTheme="green" />
+            app:badgeColor="green" />
 
         <com.yourssu.design.system.atom.Badge
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             app:badgeIcon="ic_ground_line"
-            app:badgeText="테스트2"
-            app:badgeTheme="purple" />
+            app:badgeText="모노 뱃지"
+            app:badgeColor="purple" />
+
 
         <com.yourssu.design.system.atom.Badge
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            app:badgeText="모노 뱃지"
-            app:badgeTheme="emerald" />
+            app:badgeIcon="@{activity.iconData}"
+            app:badgeText="@{activity.textData}"
+            app:badgeColor="@{activity.colorData}" />
 
     </LinearLayout>
 

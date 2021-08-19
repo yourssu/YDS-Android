@@ -7,6 +7,7 @@ import com.yourssu.design.R
 object Icon {
     @Retention(AnnotationRetention.SOURCE)
     @IntDef(value = [
+        none,
         ic_adbadge_filled,
         ic_adbadge_line,
         ic_arrow_down_line,
@@ -88,6 +89,7 @@ object Icon {
     ])
     annotation class Iconography
 
+    const val none = -1
     const val ic_adbadge_filled = 0
     const val ic_adbadge_line = 1
     const val ic_arrow_down_line = 2

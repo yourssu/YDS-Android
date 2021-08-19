@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Badge">
-        <attr name="badgeTheme" format="enum">
+        <attr name="badgeColor" format="enum">
             <enum name="mono" value="0" />
             <enum name="green" value="1" />
             <enum name="emerald" value="2" />

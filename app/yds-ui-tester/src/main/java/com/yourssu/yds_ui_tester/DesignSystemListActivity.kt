@@ -44,6 +44,15 @@ class DesignSystemListActivity : AppCompatActivity() {
                         startActivity(Intent(this@DesignSystemListActivity, DividerActivity::class.java))
                     }
                 }
+                text {
+                    text = "Badge"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener {
+                        startActivity(Intent(this@DesignSystemListActivity, BadgeActivity::class.java))
+                    }
+                }
             })
     }
 }

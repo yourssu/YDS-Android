@@ -5,12 +5,16 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.IntDef
 import androidx.core.content.ContextCompat
 import com.yourssu.design.R
+import com.yourssu.design.databinding.LayoutBadgeBinding
+import com.yourssu.design.system.foundation.Icon
+import com.yourssu.design.undercarriage.size.dpToIntPx
 
 @SuppressLint("ViewConstructor")
 class Badge : LinearLayout {
@@ -30,14 +34,18 @@ class Badge : LinearLayout {
         initView(context, attrs)
     }
 
-    private lateinit var badgeFrame: LinearLayout
-    private lateinit var badgeIcon: IconView
-    private lateinit var badgeContent: Text
+    private val binding: LayoutBadgeBinding by lazy {
+        LayoutBadgeBinding.inflate(
+            LayoutInflater.from(
+                context
+            ), this, true
+        )
+    }
 
-    @BadgeTheme
-    private var theme: Int = MONO
-        set(theme) {
-            field = theme
+    @BadgeColor
+    private var color: Int = MONO
+        set(color) {
+            field = color
             setBadgeInfo()
             requestLayout()
         }
@@ -49,26 +57,33 @@ class Badge : LinearLayout {
             requestLayout()
         }
 
-    private var icon: Int = NONE_ICON
+    @Icon.Iconography
+    private var icon: Int = Icon.none
         set(icon) {
             field = icon
             setBadgeInfo()
             requestLayout()
         }
 
+    fun setBadgeColor(@BadgeColor value: Int) {
+        color = value
+    }
+
+    fun setBadgeText(value: String) {
+        text = value
+    }
+
+    fun setBadgeIcon(@Icon.Iconography value: Int) {
+        icon = value
+    }
+
     private fun initView(context: Context, attrs: AttributeSet?) {
-
-        View.inflate(context, R.layout.layout_badge, this)
-        badgeFrame = findViewById(R.id.badgeFrame)
-        badgeIcon = findViewById(R.id.badgeIcon)
-        badgeContent = findViewById(R.id.badgeContent)
-
         if (attrs != null) {
             val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.Badge)
 
-            theme = typedArray.getInteger(R.styleable.Badge_badgeTheme, MONO)
+            color = typedArray.getInteger(R.styleable.Badge_badgeColor, MONO)
             text = typedArray.getString(R.styleable.Badge_badgeText).toString()
-            icon = typedArray.getInteger(R.styleable.Badge_badgeIcon, NONE_ICON)
+            icon = typedArray.getInteger(R.styleable.Badge_badgeIcon, Icon.none)
 
             setBadgeInfo()
 
@@ -79,33 +94,28 @@ class Badge : LinearLayout {
     }
 
     private fun setBadgeInfo() {
-        val color = getBadgeColor(theme)
+        val color = getBadgeColor(color)
 
         val drawable =
             ContextCompat.getDrawable(context, R.drawable.badge_background) as GradientDrawable
         drawable.setColor(ContextCompat.getColor(context, color))
-        badgeFrame.background = drawable
+        binding.badgeFrame.background = drawable
 
-        badgeContent.text = text
+        binding.badgeContent.text = text
 
-        if (icon == NONE_ICON) {
-            badgeFrame.setPadding(dpToIntPx(12), 0, dpToIntPx(12), 0)
-            badgeIcon.visibility = View.GONE
+        if (icon == Icon.none) {
+            binding.badgeFrame.setPadding(context.dpToIntPx(12F), 0, context.dpToIntPx(12F), 0)
+            binding.badgeIcon.visibility = View.GONE
         } else {
-            badgeFrame.setPadding(dpToIntPx(8), 0, dpToIntPx(8), 0)
-            badgeIcon.visibility = View.VISIBLE
-            badgeIcon.setIconResource(icon)
+            binding.badgeFrame.setPadding(context.dpToIntPx(8F), 0, context.dpToIntPx(8F), 0)
+            binding.badgeIcon.visibility = View.VISIBLE
+            binding.badgeIcon.setIconResource(icon)
         }
-    }
-
-    private fun dpToIntPx(dp: Int): Int {
-        val scale = resources.displayMetrics.density
-        return (dp * scale + 0.5f).toInt()
     }
 
     @Retention(AnnotationRetention.SOURCE)
     @IntDef(value = [MONO, GREEN, EMERALD, AQUA, BLUE, INDIGO, VIOLET, PURPLE, PINK])
-    annotation class BadgeTheme
+    annotation class BadgeColor
 
     companion object {
         const val MONO: Int = 0
@@ -117,12 +127,10 @@ class Badge : LinearLayout {
         const val VIOLET: Int = 6
         const val PURPLE: Int = 7
         const val PINK: Int = 8
-
-        const val NONE_ICON: Int = -99999
     }
 
     @ColorRes
-    private fun getBadgeColor(theme: Int) = when (theme) {
+    private fun getBadgeColor(color: Int) = when (color) {
         MONO -> R.color.monoItemBG
         GREEN -> R.color.greenItemBG
         EMERALD -> R.color.emeraldItemBG
