@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BadgeActivity">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.yourssu.yds_ui_tester.BadgeActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:badgeText="모노 뱃지"
+            app:badgeTheme="mono" />
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:badgeIcon="ic_ground_line"
+            app:badgeText="모노 뱃지"
+            app:badgeTheme="green" />
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:badgeIcon="ic_ground_line"
+            app:badgeText="테스트2"
+            app:badgeTheme="purple" />
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:badgeText="모노 뱃지"
+            app:badgeTheme="emerald" />
+
+    </LinearLayout>
+
+</layout>
