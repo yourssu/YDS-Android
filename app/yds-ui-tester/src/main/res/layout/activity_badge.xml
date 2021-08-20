@@ -21,39 +21,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            app:badgeText="모노 뱃지"
+            android:text="모노 뱃지"
             app:badgeColor="mono" />
 
         <com.yourssu.design.system.atom.Badge
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            app:badgeText="모노 뱃지"
+            android:text="모노 뱃지"
             app:badgeColor="emerald" />
 
         <com.yourssu.design.system.atom.Badge
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:text="모노 뱃지"
             app:badgeIcon="ic_ground_line"
-            app:badgeText="모노 뱃지"
             app:badgeColor="green" />
 
         <com.yourssu.design.system.atom.Badge
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:text="모노 뱃지"
             app:badgeIcon="ic_ground_line"
-            app:badgeText="모노 뱃지"
             app:badgeColor="purple" />
-
 
         <com.yourssu.design.system.atom.Badge
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:text="@{activity.textData}"
             app:badgeIcon="@{activity.iconData}"
-            app:badgeText="@{activity.textData}"
             app:badgeColor="@{activity.colorData}" />
 
     </LinearLayout>

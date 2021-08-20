@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Badge">
+        <attr name="android:text" format="string" />
         <attr name="badgeColor" format="enum">
             <enum name="mono" value="0" />
             <enum name="green" value="1" />
@@ -12,7 +13,6 @@
             <enum name="purple" value="7" />
             <enum name="pink" value="8" />
         </attr>
-        <attr name="badgeText" format="string" />
         <attr name="badgeIcon" format="enum">
             <enum name="ic_adbadge_filled" value="0" />
             <enum name="ic_adbadge_line" value="1" />

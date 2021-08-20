@@ -42,17 +42,12 @@ class Badge : LinearLayout {
         )
     }
 
+    private var text: String = ""
+
     @BadgeColor
     private var color: Int = MONO
         set(color) {
             field = color
-            setBadgeInfo()
-            requestLayout()
-        }
-
-    private var text: String = "test"
-        set(text) {
-            field = text
             setBadgeInfo()
             requestLayout()
         }
@@ -65,12 +60,12 @@ class Badge : LinearLayout {
             requestLayout()
         }
 
-    fun setBadgeColor(@BadgeColor value: Int) {
-        color = value
+    fun setText(value: String) {
+        text = value
     }
 
-    fun setBadgeText(value: String) {
-        text = value
+    fun setBadgeColor(@BadgeColor value: Int) {
+        color = value
     }
 
     fun setBadgeIcon(@Icon.Iconography value: Int) {
@@ -81,8 +76,8 @@ class Badge : LinearLayout {
         if (attrs != null) {
             val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.Badge)
 
+            text = typedArray.getString(R.styleable.Badge_android_text).toString()
             color = typedArray.getInteger(R.styleable.Badge_badgeColor, MONO)
-            text = typedArray.getString(R.styleable.Badge_badgeText).toString()
             icon = typedArray.getInteger(R.styleable.Badge_badgeIcon, Icon.none)
 
             setBadgeInfo()
