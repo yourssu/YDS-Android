@@ -3,11 +3,12 @@ package com.yourssu.design.system.atom
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.widget.SwitchCompat
+import android.view.MotionEvent
+import android.widget.CompoundButton
 import com.yourssu.design.R
+import com.yourssu.design.undercarriage.size.dpToIntPx
 
-class Toggle : SwitchCompat {
+class Toggle : CompoundButton {
     constructor(context: Context) : super(context) {
         initView(context, null)
     }
@@ -27,9 +28,7 @@ class Toggle : SwitchCompat {
     var isDisabled: Boolean = false
         set(isDisabled) {
             field = isDisabled
-            isEnabled = !isDisabled
             setToggleInfo()
-            invalidate()
         }
 
     private fun initView(context: Context, attrs: AttributeSet?) {
@@ -51,10 +50,6 @@ class Toggle : SwitchCompat {
 
     override fun setSelected(selected: Boolean) {
         isChecked = selected
-    }
-
-    override fun setChecked(checked: Boolean) {
-        super.setChecked(checked)
         setToggleInfo()
     }
 
@@ -66,19 +61,40 @@ class Toggle : SwitchCompat {
         isSelected = selected
     }
 
-    private fun setToggleInfo() {
-        trackDrawable = if (isSelected && !isDisabled) {
-            AppCompatResources.getDrawable(context, R.drawable.toggle_track_selected)
-        } else {
-            AppCompatResources.getDrawable(context, R.drawable.toggle_track_unselected)
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if (event?.action == MotionEvent.ACTION_DOWN) {
+            if (!isDisabled && isEnabled) {
+                isSelected = !isSelected
+                setToggleInfo()
+            }
         }
 
-        thumbDrawable = if (isDisabled) {
-            AppCompatResources.getDrawable(context, R.drawable.toggle_thumb_disabled)
-        } else {
-            AppCompatResources.getDrawable(context, R.drawable.toggle_thumb_enabled)
-        }
-
-        background = null // Thumb 잔물결 효과 비활성화
+        return super.onTouchEvent(event)
     }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val width = context.dpToIntPx(WIDTH)
+        val height = context.dpToIntPx(HEIGHT)
+        setMeasuredDimension(width, height)
+    }
+
+    private fun setToggleInfo() {
+        if (isSelected && isDisabled) {
+            setButtonDrawable(R.drawable.toggle_selected_disabled)
+        } else if (isSelected && !isDisabled) {
+            setButtonDrawable(R.drawable.toggle_selected_enabled)
+        } else if (!isSelected && isDisabled) {
+            setButtonDrawable(R.drawable.toggle_unselected_disabled)
+        } else {
+            setButtonDrawable(R.drawable.toggle_unselected_enabled)
+        }
+    }
+
+    companion object {
+
+        private const val WIDTH = 51f
+        private const val HEIGHT = 31f
+    }
+
+
 }
