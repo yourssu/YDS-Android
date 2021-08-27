@@ -20,7 +20,7 @@ package com.yourssu.design.system
     var value: Int = defaultValue
         set(value) {
             field = typo
-            // customize view
+            // customize apply
         }
  * 위와 같은 형태로 제공한다
  */

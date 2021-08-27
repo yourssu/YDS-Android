@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CheckBoxActivity">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="3"
+        android:orientation="vertical"
+        android:rowCount="4">
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="true"
+            app:isSelected="true"
+            app:size="small" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="true"
+            app:isSelected="false"
+            app:size="small" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="false"
+            app:isSelected="true"
+            app:size="small" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="false"
+            app:isSelected="false"
+            app:size="small" />
+
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="true"
+            app:isSelected="true"
+            app:size="medium" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="true"
+            app:isSelected="false"
+            app:size="medium" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="false"
+            app:isSelected="true"
+            app:size="medium" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="false"
+            app:isSelected="false"
+            app:size="medium" />
+
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="true"
+            app:isSelected="true"
+            app:size="large" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="true"
+            app:isSelected="false"
+            app:size="large" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="false"
+            app:isSelected="true"
+            app:size="large" />
+
+        <com.yourssu.design.system.atom.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트"
+            app:isDisabled="false"
+            app:isSelected="false"
+            app:size="large" />
+
+    </GridLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <com.yourssu.design.system.atom.CheckBox-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="텍스트"-->
+<!--            app:isDisabled="false"-->
+<!--            app:isSelected="false"-->
+<!--            app:size="large" />-->
+
+<!--    </LinearLayout>-->
+</layout>
