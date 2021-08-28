@@ -2,6 +2,7 @@ package com.yourssu.design.system.atom
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
@@ -27,7 +28,6 @@ class CheckBox @JvmOverloads constructor(
         var isSelected = false
         var size = 0
 
-//        setButtonDrawable(R.drawable.selector_check_box)
         context.withStyledAttributes(attrs, R.styleable.CheckBox) {
             isDisabled = getBoolean(R.styleable.CheckBox_isDisabled, false)
             isSelected = getBoolean(R.styleable.CheckBox_isSelected, false)
@@ -91,9 +91,36 @@ class CheckBox @JvmOverloads constructor(
         fun apply()
     }
 
+    // 어쩔때 인터페이스? 추상클래스?
     interface AvailabilityState : State
-    interface SizeState : State
-    interface SelectivityState : State
+
+    abstract inner class SelectivityState : State {
+        fun changeDrawableColor(dr: Drawable?, colorString: String) {
+            if (dr != null) {
+                DrawableCompat.setTint(dr, Color.parseColor(colorString))
+            }
+            buttonDrawable = dr
+        }
+
+        fun changeTextColor(colorString: String) {
+            setTextColor(Color.parseColor(colorString))
+        }
+    }
+
+    interface SizeState : State {
+        override fun apply() {
+            changeTextSize()
+            changePadding()
+            changeImageSize()
+        }
+
+        fun changeImageSize()
+
+        fun changePadding()
+
+        fun changeTextSize()
+    }
+
 
     inner class Disabled : AvailabilityState {
         override fun apply() {
@@ -108,116 +135,82 @@ class CheckBox @JvmOverloads constructor(
         }
     }
 
-
-    inner class Selected : SelectivityState {
+    inner class Selected : SelectivityState() {
         override fun apply() {
             isChecked = true
             val disable = !isEnabled
-            buttonDrawable = if (disable) {
-                val dr = AppCompatResources.getDrawable(context, R.drawable.ic_checkcircle_filled)
-                if (dr != null) {
-                    DrawableCompat.setTint(dr, Color.parseColor("#B5B9BD"))
-                }
-                dr
+            val dr = AppCompatResources.getDrawable(context, R.drawable.ic_checkcircle_filled)
+
+            if (disable) {
+                // 값은 XML에 있다.
+                changeDrawableColor(dr, "#B5B9BD")
             } else {
-                val dr = AppCompatResources.getDrawable(context, R.drawable.ic_checkcircle_filled)
-                if (dr != null) {
-                    DrawableCompat.setTint(dr, Color.parseColor("#816DEC"))
-                    setTextColor(Color.parseColor("#816DEC"))
-                }
-                dr
+                changeDrawableColor(dr, "#816DEC")
+                changeTextColor("#816DEC")
             }
 
         }
     }
 
-    inner class NotSelected : SelectivityState {
+    inner class NotSelected : SelectivityState() {
         override fun apply() {
             isChecked = false
             val disable = !isEnabled
-            buttonDrawable = if (disable) {
-                val dr = AppCompatResources.getDrawable(context, R.drawable.ic_checkcircle_line)
-                if (dr != null) {
-                    DrawableCompat.setTint(dr, Color.parseColor("#B5B9BD"))
-                }
-                dr
+            val dr = AppCompatResources.getDrawable(context, R.drawable.ic_checkcircle_line)
+
+            if (disable) {
+                changeDrawableColor(dr, "#B5B9BD")
             } else {
-                val dr = AppCompatResources.getDrawable(context, R.drawable.ic_checkcircle_line)
-                if (dr != null) {
-                    DrawableCompat.setTint(dr, Color.parseColor("#505458"))
-                    setTextColor(Color.parseColor("#505458"))
-                }
-                dr
+                changeDrawableColor(dr, "#505458")
+                changeTextColor("#505458")
             }
         }
     }
 
+    // 구조 개편하기 생성자에 따라서 스테이트를 변경하는걸로?
     inner class Small : SizeState {
-        override fun apply() {
-            changeTextSize()
-            changePadding()
-            changeImageSize()
+        override fun changeImageSize() {
+            val dr = buttonDrawable
+            Log.d("KWK_TYPE",dr.toString())
+            dr?.setBounds(0,0,5,5)
+            Log.d("KWK_SMALL", dr?.bounds.toString())
         }
 
-        private fun changeImageSize() {
-//        val dr:Drawable? = ResourcesCompat.getDrawable(resources, R.drawable.ic_checkcircle_filled, null)
-//        dr.setBounds(0,0,)
-//        setButtonDrawable(R.drawable.selector_check_box)
-//            val dr: Drawable? = compoundDrawables[0]
-//            Log.d("KWK", dr.toString())
-//            dr?.setBounds(0, 0, context.dpToPx(13.33f).toInt(), context.dpToPx(13.33f).toInt())
-//            setCompoundDrawables(dr, null, null, null)
-        }
-
-        private fun changePadding() {
+        override fun changePadding() {
             setPadding(context.dpToPx(SMALL_PADDING).toInt(), 0, 0, 0)
         }
 
-        private fun changeTextSize() {
+        override fun changeTextSize() {
             textSize = context.dpToPx(SMALL_TEXT_SIZE)
         }
     }
 
     inner class Medium : SizeState {
-        override fun apply() {
-            changeTextSize()
-            changePadding()
-            changeImageSize()
+        override fun changeImageSize() {
+            val dr = buttonDrawable
+            Log.d("KWK_MEME", dr?.bounds.toString())
         }
 
-        private fun changeImageSize() {
-            // 어떤 종류의 반영이든지 그걸 한번에 처리해줘야할듯.
-//            val dr = AppCompatResources.getDrawable(context, R.drawable.ic_checkcircle_filled)
-//            dr?.toBitmap(1000, 1000)
-//            buttonDrawable = dr
-        }
-
-        private fun changePadding() {
+        override fun changePadding() {
             setPadding(context.dpToPx(MEDIUM_PADDING).toInt(), 0, 0, 0)
         }
 
-        private fun changeTextSize() {
+        override fun changeTextSize() {
+            // 텍스트 크기가 disabled일때 랑 enabled일때랑 다르다.
             textSize = context.dpToPx(MEDIUM_TEXT_SIZE)
         }
     }
 
     inner class Large : SizeState {
-        override fun apply() {
-            changeTextSize()
-            changePadding()
-            changeImageSize()
+        override fun changeImageSize() {
+
         }
 
-        private fun changeImageSize() {
-            val dr: Drawable? = compoundDrawables[0]
-            Log.d("KWK", dr.toString())
-        }
-
-        private fun changePadding() {
+        override fun changePadding() {
             setPadding(context.dpToPx(LARGE_PADDING).toInt(), 0, 0, 0)
         }
 
-        private fun changeTextSize() {
+        override fun changeTextSize() {
             textSize = context.dpToPx(LARGE_TEXT_SIZE)
         }
     }
