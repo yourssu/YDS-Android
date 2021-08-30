@@ -28,6 +28,7 @@ class CheckBox @JvmOverloads constructor(
             setAvailabilityState(field)
         }
 
+    // 이거 피그마따라서 isSeleted 하려고 했는데 Conflicting declarations:
     var is_Selected: Boolean = false
         set(bool) {
             field = bool
@@ -127,9 +128,11 @@ class CheckBox @JvmOverloads constructor(
         }
     }
 
+    // 최대한 메인 속성은 생성자로 넣어주는게 예쁜듯
     inner class Disabled : AvailabilityState(false)
     inner class Enabled : AvailabilityState(true)
 
+    //저는 이렇게 미리보기 이미지가 옆에 뜨는게 좋더라구요
     inner class Selected : SelectivityState(R.drawable.ic_checkcircle_filled) {
 
         override fun apply() {
@@ -145,7 +148,6 @@ class CheckBox @JvmOverloads constructor(
             changeTotalColor(R.color.buttonPoint)
         }
     }
-
     inner class NotSelected : SelectivityState(R.drawable.ic_checkcircle_line) {
         override fun apply() {
             isChecked = false
@@ -161,6 +163,7 @@ class CheckBox @JvmOverloads constructor(
         }
     }
 
+    // 최대한 메인 속성은 생성자로 넣어주는게 예쁜듯
     inner class Small : SizeState(SMALL_PADDING, SMALL_TEXT_SIZE, SMALL_IMAGE_RATIO)
     inner class Medium : SizeState(MEDIUM_PADDING, MEDIUM_TEXT_SIZE, MEDIUM_IMAGE_RATIO)
     inner class Large : SizeState(LARGE_PADDING, LARGE_TEXT_SIZE, LARGE_IMAGE_RATIO)
@@ -191,11 +194,12 @@ class CheckBox @JvmOverloads constructor(
             this
         }
 
-        fun ComponentGroup.checkBox(block: CheckBox.() -> Unit) = CheckBox(this.componentContext).run {
-            block.invoke(this)
-            this@checkBox.addComponent(this)
-            this
-        }
+        fun ComponentGroup.checkBox(block: CheckBox.() -> Unit) =
+            CheckBox(this.componentContext).run {
+                block.invoke(this)
+                this@checkBox.addComponent(this)
+                this
+            }
 
     }
 
@@ -229,6 +233,7 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun changeImageSize(image_ratio: Float) {
+        // 도저히 체크박스 크기 바꾸는 방법을 모르겠음.
         scaleX = image_ratio
         scaleY = image_ratio
     }
