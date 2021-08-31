@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ProfileImage">
+    <declare-styleable name="ProfileImageView">
         <attr name="profileSize" format="enum">
             <enum name="small" value="0" />
             <enum name="medium" value="1" />
             <enum name="large" value="2" />
             <enum name="extraLarge" value="3" />
+            <enum name="extraSmall" value="4" />
         </attr>
+        <attr name="highLight" format="boolean" />
     </declare-styleable>
 </resources>
