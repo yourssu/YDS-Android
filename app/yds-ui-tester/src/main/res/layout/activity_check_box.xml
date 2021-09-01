@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".CheckBoxActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
     <GridLayout
         android:layout_width="match_parent"
@@ -20,7 +16,7 @@
             android:id="@+id/test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            android:text="첫번째"
             app:isDisabled="true"
             app:isSelected="true"
             app:size="small" />
@@ -28,7 +24,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            android:text="두번째"
             app:isDisabled="true"
             app:isSelected="false"
             app:size="small" />
@@ -36,7 +32,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            android:text="세번째"
             app:isDisabled="false"
             app:isSelected="true"
             app:size="small" />
@@ -44,7 +40,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            android:text="네번째"
             app:isDisabled="false"
             app:isSelected="false"
             app:size="small" />
@@ -116,14 +112,5 @@
             app:size="large" />
     </GridLayout>
 
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-    </LinearLayout>
 
 </layout>
