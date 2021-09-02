@@ -4,9 +4,10 @@
         <attr name="isDisabled" format="boolean"/>
         <attr name="isSelected" format="boolean"/>
         <attr name="size" format="enum">
-            <enum name="small" value="0" />
-            <enum name="medium" value="1" />
-            <enum name="large" value="2" />
+            <enum name="small" value="1" />
+            <enum name="medium" value="2" />
+            <enum name="large" value="3" />
         </attr>
+        <attr name="label" format="string"/>
     </declare-styleable>
 </resources>

@@ -16,7 +16,7 @@
             android:id="@+id/test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="첫번째"
+            app:label="첫번째"
             app:isDisabled="true"
             app:isSelected="true"
             app:size="small" />
@@ -24,7 +24,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="두번째"
+            app:label="첫번째"
             app:isDisabled="true"
             app:isSelected="false"
             app:size="small" />
@@ -32,7 +32,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="세번째"
+            app:label="첫번째"
             app:isDisabled="false"
             app:isSelected="true"
             app:size="small" />
@@ -40,7 +40,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="네번째"
+            app:label="첫번째"
             app:isDisabled="false"
             app:isSelected="false"
             app:size="small" />
@@ -49,7 +49,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            app:label="첫번째"
             app:isDisabled="true"
             app:isSelected="true"
             app:size="medium" />
@@ -57,7 +57,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            app:label="첫번째"
             app:isDisabled="true"
             app:isSelected="false"
             app:size="medium" />
@@ -65,7 +65,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            app:label="첫번째"
             app:isDisabled="false"
             app:isSelected="true"
             app:size="medium" />
@@ -73,7 +73,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            app:label="첫번째"
             app:isDisabled="false"
             app:isSelected="false"
             app:size="medium" />
@@ -82,7 +82,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            app:label="첫번째"
             app:isDisabled="true"
             app:isSelected="true"
             app:size="large" />
@@ -90,7 +90,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            app:label="첫번째"
             app:isDisabled="true"
             app:isSelected="false"
             app:size="large" />
@@ -98,7 +98,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            app:label="첫번째"
             app:isDisabled="false"
             app:isSelected="true"
             app:size="large" />
@@ -106,7 +106,7 @@
         <com.yourssu.design.system.atom.CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트"
+            app:label="첫번째"
             app:isDisabled="false"
             app:isSelected="false"
             app:size="large" />

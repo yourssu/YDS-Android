@@ -1,13 +1,16 @@
 package com.yourssu.design.system.atom
 
 import android.content.Context
+import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.getStringOrThrow
 import androidx.core.content.withStyledAttributes
+import androidx.core.graphics.drawable.DrawableCompat
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutCheckBoxBinding
 import com.yourssu.design.system.foundation.Icon
@@ -22,7 +25,7 @@ class CheckBox @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding: LayoutCheckBoxBinding =
-        LayoutCheckBoxBinding.inflate(LayoutInflater.from(context), null, false)
+        LayoutCheckBoxBinding.inflate(LayoutInflater.from(context), this, true)
 
 
     private var isDisabled: Boolean = false
@@ -37,38 +40,39 @@ class CheckBox @JvmOverloads constructor(
             setSizeState(field)
         }
 
+    private var label: String = "텍스트"
+        set(value) {
+            field = value
+            setText(label)
+        }
+
     init {
-        Log.d("KWK", "생성됨")
-
-
         context.withStyledAttributes(attrs, R.styleable.CheckBox) {
             isDisabled = getBoolean(R.styleable.CheckBox_isDisabled, false)
             isSelected = getBoolean(R.styleable.CheckBox_isSelected, false)
             size = getInt(R.styleable.CheckBox_size, SIZE_SMALL)
+            label = getStringOrThrow(R.styleable.CheckBox_label)
         }
 
-        initStates(isDisabled, isSelected, size)
-        Log.d("ASD", binding.text.text.toString())
-        Log.d("ASD", binding.icon.icon.toString())
-
-        invalidate()
-        requestLayout()
+        initStates(isDisabled, isSelected, size, label)
     }
 
-    private fun initStates(isDisabled: Boolean, isSelected: Boolean, size: Int) {
-        Log.d("KWK", "상태 초기화")
+    private fun initStates(isDisabled: Boolean, isSelected: Boolean, size: Int, label: String) {
         setSizeState(size)
         setAvailabilityState(isDisabled)
         setSelectivityState(isSelected)
+        setText(label)
+    }
+
+    private fun setText(label: String) {
+        binding.text.text = label
     }
 
     private fun setAvailabilityState(disabled: Boolean) {
-        Log.d("KWK", "setAvailabilityState")
         isEnabled = !disabled
     }
 
     private fun setSelectivityState(selected: Boolean) {
-        Log.d("KWK", "setSelectivityState")
         isSelected = selected
         when (isSelected) {
             true -> {
@@ -93,27 +97,26 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun setSizeState(size: Int) {
-        Log.d("KWK", "setSizeState")
         when (size) {
             SIZE_SMALL -> {
                 changeTypo(Typo.Button4)
-                changeMarginLeft(4f)
-                changeImageSize(IconView.Small)
+                changeMarginLeft(MARGIN_SMALL)
+                changeImageSize(IconView.ExtraSmall)
             }
             SIZE_MEDIUM -> {
                 changeTypo(Typo.Button3)
-                changeMarginLeft(8f)
-                changeImageSize(IconView.Medium)
+                changeMarginLeft(MARGIN_MEDIUM)
+                changeImageSize(IconView.Small)
             }
             SIZE_LARGE -> {
                 changeTypo(Typo.Button3)
-                changeMarginLeft(8f)
-                changeImageSize(IconView.Large)
+                changeMarginLeft(MARGIN_LARGE)
+                changeImageSize(IconView.Medium)
             }
             else -> {
                 changeTypo(Typo.Button4)
-                changeMarginLeft(4f)
-                changeImageSize(IconView.Small)
+                changeMarginLeft(MARGIN_SMALL)
+                changeImageSize(IconView.ExtraSmall)
             }
         }
     }
@@ -145,9 +148,12 @@ class CheckBox @JvmOverloads constructor(
     }
 
     companion object {
-        private const val SIZE_SMALL = 0
-        private const val SIZE_MEDIUM = 1
-        private const val SIZE_LARGE = 2
+        private const val SIZE_SMALL = 1
+        private const val SIZE_MEDIUM = 2
+        private const val SIZE_LARGE = 3
+        private const val MARGIN_SMALL = 4f
+        private const val MARGIN_MEDIUM = 8f
+        private const val MARGIN_LARGE = 8f
     }
 
     private fun changeTotalColor(color_id: Int) {
@@ -160,7 +166,7 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun changeDrawableColor(colorId: Int) {
-        binding.icon.setBackgroundColor(ContextCompat.getColor(context, colorId))
+        binding.icon.setColorFilter(ContextCompat.getColor(context, colorId))
     }
 
     private fun changeTypo(typo: Int) {
@@ -181,7 +187,7 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun changeDrawable(value: Int) {
-        binding.icon.setIconResource(Icon.getIconDrawable(value))
+        binding.icon.setIconResource(value)
     }
 }
 
