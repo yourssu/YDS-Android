@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <GridLayout
             android:id="@+id/grid"
             android:layout_width="match_parent"
@@ -20,7 +19,6 @@
             android:rowCount="4">
 
             <com.yourssu.design.system.atom.CheckBox
-                android:id="@+id/test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="true"
@@ -119,6 +117,35 @@
                 app:size="large" />
         </GridLayout>
 
+        <com.yourssu.design.system.atom.CheckBox
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isDisabled="true"
+            app:isSelected="true"
+            app:label="첫번째"
+            app:size="large" />
+
+        <Button
+            android:id="@+id/button_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="enabled"
+            />
+
+        <Button
+            android:id="@+id/button_disabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="disabled"
+            />
+
+        <Button
+            android:id="@+id/button_generate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="generate"
+            />
 
     </LinearLayout>
 

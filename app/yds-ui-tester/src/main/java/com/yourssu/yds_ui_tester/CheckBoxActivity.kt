@@ -3,6 +3,7 @@ package com.yourssu.yds_ui_tester
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.yourssu.design.system.atom.CheckBox
@@ -16,11 +17,31 @@ class CheckBoxActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_check_box)
 
+        binding.buttonEnabled.setOnClickListener {
+            binding.test.apply {
+                isEnabled = true
+            }
+        }
+
+        binding.buttonDisabled.setOnClickListener {
+            binding.test.apply {
+                isEnabled = false
+            }
+        }
+
+        binding.buttonGenerate.setOnClickListener {
+            binding.linear.checkBox {
+                isEnabled = true
+                isSelected = false
+                size = 3
+                label = "두번째"
+            }
+        }
 
         binding.test.apply {
             isEnabled = false
             isSelected = false
-            size = 1
+            size = 3
             label = "드디어"
         }
 
