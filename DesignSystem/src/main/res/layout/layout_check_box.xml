@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -26,7 +27,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginLeft="4dp"
             app:typo="button0"
-            android:text="텍스트"/>
+            tools:text="텍스트"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

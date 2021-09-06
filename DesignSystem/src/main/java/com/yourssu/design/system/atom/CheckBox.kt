@@ -31,24 +31,26 @@ class CheckBox @JvmOverloads constructor(
             setSizeState()
         }
 
-    var label: String = "텍스트"
+    var label: String = ""
         set(value) {
             field = value
             changeText()
         }
 
+    var isDisabled: Boolean = false
+        set(value) {
+            field = value
+            setState()
+        }
+
+
     init {
         context.withStyledAttributes(attrs, R.styleable.CheckBox) {
-            isEnabled = !getBoolean(R.styleable.CheckBox_isDisabled, false)
+            isDisabled = getBoolean(R.styleable.CheckBox_isDisabled, false)
             isSelected = getBoolean(R.styleable.CheckBox_isSelected, false)
             size = getInt(R.styleable.CheckBox_size, SIZE_SMALL)
             label = getString(R.styleable.CheckBox_label).toString()
         }
-    }
-
-    override fun setEnabled(enabled: Boolean) {
-        super.setEnabled(enabled)
-        setState()
     }
 
     override fun setSelected(selected: Boolean) {
@@ -62,7 +64,7 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun setTotalColor() {
-        when (isEnabled) {
+        when (!isDisabled) {
             true ->
                 if (isSelected)
                     changeTotalColor(R.color.buttonPoint)
@@ -106,7 +108,7 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun toggle() {
-        if (isEnabled) {
+        if (!isDisabled) {
             isSelected = !isSelected
             setState()
         }

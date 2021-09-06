@@ -19,19 +19,19 @@ class CheckBoxActivity : AppCompatActivity() {
 
         binding.buttonEnabled.setOnClickListener {
             binding.test.apply {
-                isEnabled = true
+                isDisabled = false
             }
         }
 
         binding.buttonDisabled.setOnClickListener {
             binding.test.apply {
-                isEnabled = false
+                isDisabled = true
             }
         }
 
         binding.buttonGenerate.setOnClickListener {
             binding.linear.checkBox {
-                isEnabled = true
+                isDisabled = true
                 isSelected = false
                 size = 3
                 label = "두번째"
@@ -39,32 +39,32 @@ class CheckBoxActivity : AppCompatActivity() {
         }
 
         binding.test.apply {
-            isEnabled = false
+            isDisabled = false
             isSelected = false
             size = 3
             label = "드디어"
         }
 
         binding.linear.checkBox {
-            isEnabled = true
+            isDisabled = true
             isSelected = true
             size = 1
             label = "첫번째"
         }
         binding.linear.checkBox {
-            isEnabled = true
+            isDisabled = true
             isSelected = false
             size = 2
             label = "두번째"
         }
         binding.linear.checkBox {
-            isEnabled = false
+            isDisabled = false
             isSelected = true
             size = 3
             label = "세번째"
         }
         binding.linear.checkBox {
-            isEnabled = false
+            isDisabled = false
             isSelected = false
             size = 3
             label = "네번째"
