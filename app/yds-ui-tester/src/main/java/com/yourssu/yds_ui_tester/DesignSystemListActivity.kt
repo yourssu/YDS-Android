@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
-import com.yourssu.design.system.atom.Text.Companion.text
 import com.yourssu.design.system.foundation.Typo
+import com.yourssu.design.system.language.text
 import com.yourssu.design.system.language.verticalLayout
 
 class DesignSystemListActivity : AppCompatActivity() {

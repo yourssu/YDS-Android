@@ -114,22 +114,5 @@ class Divider : View {
             THICK -> R.color.borderThin
             else -> R.color.borderNormal
         }
-
-        fun Context.divider(block: Divider.() -> Unit) = Divider(this).run {
-            block.invoke(this)
-            this
-        }
-
-        fun ViewGroup.divider(block: Divider.() -> Unit) = Divider(this.context).run {
-            block.invoke(this)
-            this@divider.addView(this)
-            this
-        }
-
-        fun ComponentGroup.divider(block: Divider.() -> Unit) = Divider(this.componentContext).run {
-            block.invoke(this)
-            this@divider.addComponent(this)
-            this
-        }
     }
 }
