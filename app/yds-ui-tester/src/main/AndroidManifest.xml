@@ -8,8 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Light.YourssuDesignSystem" >
-        <activity android:name=".CheckBoxActivity" />
+        android:theme="@style/Theme.Light.YourssuDesignSystem">
         <activity android:name=".ToggleActivity"></activity>
         <activity android:name=".DividerActivity" />
         <activity android:name=".DesignSystemListActivity">
