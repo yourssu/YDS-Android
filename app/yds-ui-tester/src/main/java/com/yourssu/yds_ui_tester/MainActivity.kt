@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
             triggerTextStyle.set(!triggerTextStyle.get())
+        }
+
+        binding.button2.setOnClickListener {
             bottomSheet {
                 list.forEach {
                     text {

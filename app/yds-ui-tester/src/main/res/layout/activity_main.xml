@@ -51,12 +51,14 @@
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
+                        app:highLight="true"
                         app:profileSize="extraLarge" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
+                        app:highLight="@{activity.triggerTextStyle ? true : false}"
                         app:profileSize="large" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
@@ -164,6 +166,7 @@
                     android:text="Button" />
 
                 <Button
+                    android:id="@+id/button2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Button" />
