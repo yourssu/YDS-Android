@@ -42,6 +42,8 @@ class Badge : LinearLayout {
         )
     }
 
+    private var hasIcon: Boolean = true
+
     private var text: String = ""
 
     @BadgeColor
@@ -53,7 +55,7 @@ class Badge : LinearLayout {
         }
 
     @Icon.Iconography
-    private var icon: Int = Icon.none
+    private var icon: Int = Icon.ic_adbadge_filled
         set(icon) {
             field = icon
             setBadgeInfo()
@@ -69,6 +71,7 @@ class Badge : LinearLayout {
     }
 
     fun setBadgeIcon(@Icon.Iconography value: Int) {
+        hasIcon = true
         icon = value
     }
 
@@ -76,9 +79,11 @@ class Badge : LinearLayout {
         if (attrs != null) {
             val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.Badge)
 
+            hasIcon = typedArray.hasValue(R.styleable.Badge_badgeIcon)
+
             text = typedArray.getString(R.styleable.Badge_android_text).toString()
             color = typedArray.getInteger(R.styleable.Badge_badgeColor, MONO)
-            icon = typedArray.getInteger(R.styleable.Badge_badgeIcon, Icon.none)
+            icon = typedArray.getInteger(R.styleable.Badge_badgeIcon, Icon.ic_adbadge_filled)
 
             setBadgeInfo()
 
@@ -98,13 +103,13 @@ class Badge : LinearLayout {
 
         binding.badgeContent.text = text
 
-        if (icon == Icon.none) {
-            binding.badgeFrame.setPadding(context.dpToIntPx(12F), 0, context.dpToIntPx(12F), 0)
-            binding.badgeIcon.visibility = View.GONE
-        } else {
+        if (hasIcon) {
             binding.badgeFrame.setPadding(context.dpToIntPx(8F), 0, context.dpToIntPx(8F), 0)
             binding.badgeIcon.visibility = View.VISIBLE
             binding.badgeIcon.setIconResource(icon)
+        } else {
+            binding.badgeFrame.setPadding(context.dpToIntPx(12F), 0, context.dpToIntPx(12F), 0)
+            binding.badgeIcon.visibility = View.GONE
         }
     }
 

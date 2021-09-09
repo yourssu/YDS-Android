@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="모노 뱃지"
-            app:badgeIcon="ic_ground_line"
+            app:badgeIcon="ic_board_line"
             app:badgeColor="purple" />
 
         <com.yourssu.design.system.atom.Badge
