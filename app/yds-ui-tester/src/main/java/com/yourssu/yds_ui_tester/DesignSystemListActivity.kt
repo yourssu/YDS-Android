@@ -45,6 +45,15 @@ class DesignSystemListActivity : AppCompatActivity() {
                     }
                 }
                 text {
+                    text = "Badge"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener {
+                        startActivity(Intent(this@DesignSystemListActivity, BadgeActivity::class.java))
+                    }
+                }
+                text {
                     text = "Toggle"
                     typo = Typo.Title1
                     width = ViewGroup.LayoutParams.MATCH_PARENT

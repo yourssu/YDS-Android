@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.YourssuDesignSystem">
-        <activity android:name=".ToggleActivity"></activity>
+        <activity android:name=".BadgeActivity" />
+        <activity android:name=".ToggleActivity"/>
         <activity android:name=".DividerActivity" />
         <activity android:name=".DesignSystemListActivity">
             <intent-filter>
