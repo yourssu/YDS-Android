@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yourssu.yds_ui_tester">
+    package="com.yourssu.yds_ui_tester" >
 
     <application
         android:allowBackup="true"
@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.YourssuDesignSystem">
         <activity android:name=".BadgeActivity" />
+        <activity android:name=".ToggleActivity"/>
         <activity android:name=".DividerActivity" />
         <activity android:name=".DesignSystemListActivity">
             <intent-filter>
@@ -17,8 +18,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
