@@ -70,9 +70,9 @@ class Picker : FrameLayout {
 
     fun getTotalValue(): String {
         var totalValue = firstSelectedValue
-        if (firstSelectedValue != "") totalValue += " "
+        if (firstSelectedValue.isNotEmpty()) totalValue += " "
         totalValue += secondSelectedValue
-        if (secondSelectedValue != "") totalValue += " "
+        if (secondSelectedValue.isNotEmpty()) totalValue += " "
         totalValue += thirdSelectedValue
         return totalValue
     }
