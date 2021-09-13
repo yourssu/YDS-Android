@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BadgeActivity">
+
+    <data>
+
+        <import type="com.yourssu.design.system.foundation.Icon" />
+        <variable
+            name="activity"
+            type="com.yourssu.yds_ui_tester.BadgeActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="모노 뱃지"
+            app:badgeColor="mono" />
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="모노 뱃지"
+            app:badgeColor="emerald" />
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="모노 뱃지"
+            app:badgeIcon="ic_ground_line"
+            app:badgeColor="green" />
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="모노 뱃지"
+            app:badgeIcon="ic_board_line"
+            app:badgeColor="purple" />
+
+        <com.yourssu.design.system.atom.Badge
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@{activity.textData}"
+            app:badgeIcon="@{activity.iconData}"
+            app:badgeColor="@{activity.colorData}" />
+
+    </LinearLayout>
+
+</layout>

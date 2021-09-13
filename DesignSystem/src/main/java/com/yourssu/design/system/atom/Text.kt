@@ -50,23 +50,4 @@ class Text: AppCompatTextView {
         setPadding(0, lineSpacing.toInt() / 2, 0, lineSpacing.toInt() / 2)
         setLineSpacing(lineSpacing, 1f)
     }
-
-    companion object {
-        fun Context.text(block: Text.() -> Unit) = Text(this).run {
-            block.invoke(this)
-            this
-        }
-
-        fun ViewGroup.text(block: Text.() -> Unit) = Text(this.context).run {
-            block.invoke(this)
-            this@text.addView(this)
-            this
-        }
-
-        fun ComponentGroup.text(block: Text.() -> Unit) = Text(this.componentContext).run {
-            block.invoke(this)
-            this@text.addComponent(this)
-            this
-        }
-    }
 }

@@ -19,6 +19,27 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <com.yourssu.design.system.atom.Picker
+                android:id="@+id/picker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:firstRow="@{activity.listString2}"
+                app:secondRow="@{activity.listString}"
+                app:thirdRow="@{activity.listString}"
+                app:onValueChangeListener="@{activity.onValueChangeListener}"/>
+        </FrameLayout>
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:typo="body1"
+            android:textColor="@color/textPrimary"
+            android:text="12120491284" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -51,12 +72,14 @@
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
+                        app:highLight="true"
                         app:profileSize="extraLarge" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
+                        app:highLight="@{activity.triggerTextStyle ? true : false}"
                         app:profileSize="large" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
@@ -164,6 +187,7 @@
                     android:text="Button" />
 
                 <Button
+                    android:id="@+id/button2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Button" />

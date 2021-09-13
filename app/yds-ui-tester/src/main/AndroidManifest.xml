@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.YourssuDesignSystem">
         <activity android:name=".BadgeActivity" />
+
+        <activity android:name=".ToggleActivity"/>
         <activity android:name=".DividerActivity" />
         <activity android:name=".DesignSystemListActivity">
             <intent-filter>
