@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Badge">
+        <attr name="android:text" />
+        <attr name="badgeColor" format="enum">
+            <enum name="mono" value="0" />
+            <enum name="green" value="1" />
+            <enum name="emerald" value="2" />
+            <enum name="aqua" value="3" />
+            <enum name="blue" value="4" />
+            <enum name="indigo" value="5" />
+            <enum name="violet" value="6" />
+            <enum name="purple" value="7" />
+            <enum name="pink" value="8" />
+        </attr>
+        <attr name="badgeIcon" format="enum">
+            <enum name="ic_adbadge_filled" value="0" />
+            <enum name="ic_adbadge_line" value="1" />
+            <enum name="ic_arrow_down_line" value="2" />
+            <enum name="ic_arrow_left_line" value="3" />
+            <enum name="ic_arrow_right_line" value="4" />
+            <enum name="ic_arrow_up_line" value="5" />
+            <enum name="ic_bell_filled" value="6" />
+            <enum name="ic_bell_line" value="7" />
+            <enum name="ic_bellmute_line" value="8" />
+            <enum name="ic_board_filled" value="9" />
+            <enum name="ic_board_line" value="10" />
+            <enum name="ic_book_filled" value="11" />
+            <enum name="ic_book_line" value="12" />
+            <enum name="ic_calendar_filled" value="13" />
+            <enum name="ic_calendar_line" value="14" />
+            <enum name="ic_camera_filled" value="15" />
+            <enum name="ic_camera_line" value="16" />
+            <enum name="ic_cameracircle_line" value="17" />
+            <enum name="ic_check_line" value="18" />
+            <enum name="ic_checkcircle_filled" value="19" />
+            <enum name="ic_checkcircle_line" value="20" />
+            <enum name="ic_clip_line" value="21" />
+            <enum name="ic_comment_filled" value="22" />
+            <enum name="ic_comment_line" value="23" />
+            <enum name="ic_dotbadge_line" value="24" />
+            <enum name="ic_dots_horizontal_line" value="25" />
+            <enum name="ic_dots_vertical_line" value="26" />
+            <enum name="ic_food_filled" value="27" />
+            <enum name="ic_food_line" value="28" />
+            <enum name="ic_foodcalendar_filled" value="29" />
+            <enum name="ic_foodcalendar_line" value="30" />
+            <enum name="ic_ground_filled" value="31" />
+            <enum name="ic_ground_line" value="32" />
+            <enum name="ic_home_filled" value="33" />
+            <enum name="ic_home_line" value="34" />
+            <enum name="ic_list_line" value="35" />
+            <enum name="ic_lock_filled" value="36" />
+            <enum name="ic_lock_line" value="37" />
+            <enum name="ic_new_filled" value="38" />
+            <enum name="ic_new_line" value="39" />
+            <enum name="ic_notice_filled" value="40" />
+            <enum name="ic_notice_line" value="41" />
+            <enum name="ic_pen_filled" value="42" />
+            <enum name="ic_pen_line" value="43" />
+            <enum name="ic_person_filled" value="44" />
+            <enum name="ic_person_line" value="45" />
+            <enum name="ic_personcircle_line" value="46" />
+            <enum name="ic_picture_filled" value="47" />
+            <enum name="ic_picture_line" value="48" />
+            <enum name="ic_pin_filled" value="49" />
+            <enum name="ic_pin_line" value="50" />
+            <enum name="ic_playcircle_filled" value="51" />
+            <enum name="ic_playcircle_line" value="52" />
+            <enum name="ic_plus_line" value="53" />
+            <enum name="ic_rank_filled" value="54" />
+            <enum name="ic_rank_line" value="55" />
+            <enum name="ic_recomment_line" value="56" />
+            <enum name="ic_refresh_line" value="57" />
+            <enum name="ic_savecircle_filled" value="58" />
+            <enum name="ic_savecircle_line" value="59" />
+            <enum name="ic_schoolcalendar_filled" value="60" />
+            <enum name="ic_schoolcalendar_line" value="61" />
+            <enum name="ic_search_line" value="62" />
+            <enum name="ic_sharecircle_filled" value="63" />
+            <enum name="ic_sharecircle_line" value="64" />
+            <enum name="ic_star_filled" value="65" />
+            <enum name="ic_star_line" value="66" />
+            <enum name="ic_thumb_down_filled" value="67" />
+            <enum name="ic_thumb_down_line" value="68" />
+            <enum name="ic_thumb_up_filled" value="69" />
+            <enum name="ic_thumb_up_line" value="70" />
+            <enum name="ic_timecalendar_filled" value="71" />
+            <enum name="ic_timecalendar_line" value="72" />
+            <enum name="ic_trashcan_filled" value="73" />
+            <enum name="ic_trashcan_line" value="74" />
+            <enum name="ic_warningcircle_filled" value="75" />
+            <enum name="ic_warningcircle_line" value="76" />
+            <enum name="ic_x_line" value="77" />
+        </attr>
+    </declare-styleable>
+</resources>
