@@ -61,6 +61,7 @@ class CheckBox @JvmOverloads constructor(
     private fun setState() {
         setTotalColor()
         setDrawable()
+        setSizeState()
     }
 
     private fun setTotalColor() {

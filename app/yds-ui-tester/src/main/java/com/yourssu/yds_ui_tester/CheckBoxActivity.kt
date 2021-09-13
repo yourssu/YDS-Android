@@ -38,13 +38,6 @@ class CheckBoxActivity : AppCompatActivity() {
             }
         }
 
-        binding.test.apply {
-            isDisabled = false
-            isSelected = false
-            size = CheckBox.LARGE
-            label = "드디어"
-        }
-
         binding.linear.checkBox {
             isDisabled = true
             isSelected = true

@@ -124,7 +124,7 @@
             app:isDisabled="true"
             app:isSelected="true"
             app:label="첫번째"
-            app:size="large" />
+            app:size="small" />
 
         <Button
             android:id="@+id/button_enabled"
