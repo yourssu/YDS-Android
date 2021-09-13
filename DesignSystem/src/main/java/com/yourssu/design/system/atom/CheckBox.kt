@@ -25,7 +25,7 @@ class CheckBox @JvmOverloads constructor(
     private val binding: LayoutCheckBoxBinding =
         LayoutCheckBoxBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var size: Int = small
+    var size: Int = SMALL
         set(value) {
             field = value
             setSizeState()
@@ -48,7 +48,7 @@ class CheckBox @JvmOverloads constructor(
         context.withStyledAttributes(attrs, R.styleable.CheckBox) {
             isDisabled = getBoolean(R.styleable.CheckBox_isDisabled, false)
             isSelected = getBoolean(R.styleable.CheckBox_isSelected, false)
-            size = getInt(R.styleable.CheckBox_size, small)
+            size = getInt(R.styleable.CheckBox_size, SMALL)
             label = getString(R.styleable.CheckBox_label).toString()
         }
     }
@@ -64,14 +64,14 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun setTotalColor() {
-        when (!isDisabled) {
+        when (isDisabled) {
             true ->
+                changeTotalColor(R.color.buttonDisabled)
+            false ->
                 if (isSelected)
                     changeTotalColor(R.color.buttonPoint)
                 else
                     changeTotalColor(R.color.buttonNormal)
-            false ->
-                changeTotalColor(R.color.buttonDisabled)
         }
     }
 
@@ -84,9 +84,15 @@ class CheckBox @JvmOverloads constructor(
 
     private fun setSizeState() {
         when (size) {
-            small -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
-            medium -> changeTotalSize(Typo.Button3, MARGIN_MEDIUM, IconView.Small)
-            large -> changeTotalSize(Typo.Button3, MARGIN_LARGE, IconView.Medium)
+            SMALL -> {
+                if (isDisabled) {
+                    changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
+                } else {
+                    changeTotalSize(Typo.Button3, MARGIN_SMALL, IconView.ExtraSmall)
+                }
+            }
+            MEDIUM -> changeTotalSize(Typo.Button3, MARGIN_MEDIUM, IconView.Small)
+            LARGE -> changeTotalSize(Typo.Button3, MARGIN_LARGE, IconView.Medium)
             else -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
         }
     }
@@ -121,9 +127,9 @@ class CheckBox @JvmOverloads constructor(
     }
 
     companion object {
-        const val small = 1
-        const val medium = 2
-        const val large = 3
+        const val SMALL = 1
+        const val MEDIUM = 2
+        const val LARGE = 3
         private const val MARGIN_SMALL = 4f
         private const val MARGIN_MEDIUM = 8f
         private const val MARGIN_LARGE = 8f
