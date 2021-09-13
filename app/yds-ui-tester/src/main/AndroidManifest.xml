@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.YourssuDesignSystem">
-        <activity android:name=".DividerActivity" />
-        <activity android:name=".DesignSystemListActivity">
+        <activity android:name=".CheckBoxActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".DividerActivity" />
+        <activity android:name=".DesignSystemListActivity">
 
         </activity>
         <activity android:name=".MainActivity" />

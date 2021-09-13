@@ -25,7 +25,7 @@ class CheckBox @JvmOverloads constructor(
     private val binding: LayoutCheckBoxBinding =
         LayoutCheckBoxBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var size: Int = SIZE_SMALL
+    var size: Int = small
         set(value) {
             field = value
             setSizeState()
@@ -48,7 +48,7 @@ class CheckBox @JvmOverloads constructor(
         context.withStyledAttributes(attrs, R.styleable.CheckBox) {
             isDisabled = getBoolean(R.styleable.CheckBox_isDisabled, false)
             isSelected = getBoolean(R.styleable.CheckBox_isSelected, false)
-            size = getInt(R.styleable.CheckBox_size, SIZE_SMALL)
+            size = getInt(R.styleable.CheckBox_size, small)
             label = getString(R.styleable.CheckBox_label).toString()
         }
     }
@@ -84,9 +84,9 @@ class CheckBox @JvmOverloads constructor(
 
     private fun setSizeState() {
         when (size) {
-            SIZE_SMALL -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
-            SIZE_MEDIUM -> changeTotalSize(Typo.Button3, MARGIN_MEDIUM, IconView.Small)
-            SIZE_LARGE -> changeTotalSize(Typo.Button3, MARGIN_LARGE, IconView.Medium)
+            small -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
+            medium -> changeTotalSize(Typo.Button3, MARGIN_MEDIUM, IconView.Small)
+            large -> changeTotalSize(Typo.Button3, MARGIN_LARGE, IconView.Medium)
             else -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
         }
     }
@@ -121,9 +121,9 @@ class CheckBox @JvmOverloads constructor(
     }
 
     companion object {
-        private const val SIZE_SMALL = 1
-        private const val SIZE_MEDIUM = 2
-        private const val SIZE_LARGE = 3
+        const val small = 1
+        const val medium = 2
+        const val large = 3
         private const val MARGIN_SMALL = 4f
         private const val MARGIN_MEDIUM = 8f
         private const val MARGIN_LARGE = 8f
