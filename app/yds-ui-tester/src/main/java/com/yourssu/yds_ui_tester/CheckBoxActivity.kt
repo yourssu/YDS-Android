@@ -33,7 +33,7 @@ class CheckBoxActivity : AppCompatActivity() {
             binding.linear.checkBox {
                 isDisabled = true
                 isSelected = false
-                size = CheckBox.small
+                size = CheckBox.SMALL
                 label = "두번째"
             }
         }
@@ -41,14 +41,14 @@ class CheckBoxActivity : AppCompatActivity() {
         binding.test.apply {
             isDisabled = false
             isSelected = false
-            size = CheckBox.large
+            size = CheckBox.LARGE
             label = "드디어"
         }
 
         binding.linear.checkBox {
             isDisabled = true
             isSelected = true
-            size = CheckBox.small
+            size = CheckBox.LARGE
             label = "첫번째"
         }
         binding.linear.checkBox {
