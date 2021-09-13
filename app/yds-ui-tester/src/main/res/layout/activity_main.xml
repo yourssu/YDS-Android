@@ -10,6 +10,8 @@
         <variable
             name="activity"
             type="com.yourssu.yds_ui_tester.MainActivity" />
+
+        <import type="com.yourssu.design.system.atom.ProfileImageView" />
     </data>
 
     <LinearLayout
@@ -72,27 +74,27 @@
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:highLight="true"
-                        app:profileSize="extraLarge" />
+                        app:highLight="@{true}"
+                        app:size="@{ProfileImageView.ExtraLarge}" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
                         app:highLight="@{activity.triggerTextStyle ? true : false}"
-                        app:profileSize="large" />
+                        app:size="@{ProfileImageView.Large}" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:profileSize="medium" />
+                        app:size="@{ProfileImageView.Medium}" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:profileSize="small" />
+                        app:size="@{ProfileImageView.Small}" />
                 </LinearLayout>
 
                 <FrameLayout

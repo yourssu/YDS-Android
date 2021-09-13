@@ -7,28 +7,18 @@ import androidx.annotation.IntDef
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.withStyledAttributes
 import androidx.core.graphics.PathParser
+import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.system.rule.normal
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.design.undercarriage.size.dpToPx
 
 
-class ProfileImageView : AppCompatImageView {
-    constructor(context: Context) : super(context) {
-        initView(context, null)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        initView(context, attrs)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        initView(context, attrs)
-    }
+class ProfileImageView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+) : AppCompatImageView(context, attrs, defStyleAttr) {
 
     @ProfileSize
     var size: Int = Small
@@ -37,22 +27,11 @@ class ProfileImageView : AppCompatImageView {
             requestLayout()
         }
 
-    fun setProfileSize(@ProfileSize value: Int) {
-        size = value
-    }
-
     var highLight: Boolean = false
         set(value) {
             field = value
             invalidate()
         }
-
-    private fun initView(context: Context, attrs: AttributeSet?) {
-        context.withStyledAttributes(attrs, R.styleable.ProfileImageView) {
-            size = getInteger(R.styleable.ProfileImageView_profileSize, Small)
-            highLight = getBoolean(R.styleable.ProfileImageView_highLight, false)
-        }
-    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var width = widthMeasureSpec
@@ -152,6 +131,19 @@ class ProfileImageView : AppCompatImageView {
         private const val ExtraLargeSize = 96f
         private const val ExtraSmallSize = 32f
 
-        private const val ExtraMargin = 1f // stoke 가 path 를 기준으로 양쪽에 표시되기 때문에 짤린것처럼 보인다 이를 보안하기 위한 여분의 마진
+        private const val ExtraMargin =
+            1f // stoke 가 path 를 기준으로 양쪽에 표시되기 때문에 짤린것처럼 보인다 이를 보안하기 위한 여분의 마진
+
+        @JvmStatic
+        @BindingAdapter("size")
+        fun setProfileSize(profileImageView: ProfileImageView, @ProfileSize size: Int) {
+            profileImageView.size = size
+        }
+
+        @JvmStatic
+        @BindingAdapter("highLight")
+        fun setHighLight(profileImageView: ProfileImageView, boolean: Boolean) {
+            profileImageView.highLight = boolean
+        }
     }
 }
