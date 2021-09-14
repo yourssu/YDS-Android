@@ -38,9 +38,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:enabled="false"
-            app:toggleDisabled="@{activity.isDisabled}"
-            app:toggleSelected="@{activity.isSelected}" />
+            app:isSelected="@{activity.isSelected}"
+            app:isDisabled="@{activity.isDisabled}"
+            app:selectedListener="@{activity.selectedListener}" />
 
         <Button
             android:id="@+id/button_change_selected"
