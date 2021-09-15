@@ -7,7 +7,7 @@
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <GridLayout
@@ -19,6 +19,7 @@
             android:rowCount="4">
 
             <com.yourssu.design.system.atom.CheckBox
+                android:id="@+id/check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="true"
@@ -117,35 +118,31 @@
                 app:size="large" />
         </GridLayout>
 
-        <com.yourssu.design.system.atom.CheckBox
+        <LinearLayout
             android:id="@+id/test"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:isDisabled="true"
-            app:isSelected="true"
-            app:label="첫번째"
-            app:size="small" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/button_enabled"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="enabled"
-            />
+            <Button
+                android:id="@+id/button_enabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="enabled" />
 
-        <Button
-            android:id="@+id/button_disabled"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="disabled"
-            />
+            <Button
+                android:id="@+id/button_disabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="disabled" />
 
-        <Button
-            android:id="@+id/button_generate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="generate"
-            />
+            <Button
+                android:id="@+id/button_generate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="generate" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

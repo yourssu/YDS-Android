@@ -1,13 +1,17 @@
 package com.yourssu.design.system.atom
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
+import android.view.GestureDetector
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
+import androidx.core.view.GestureDetectorCompat
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutCheckBoxBinding
 import com.yourssu.design.system.foundation.Icon
@@ -112,6 +116,10 @@ class CheckBox @JvmOverloads constructor(
             }
             else -> false
         }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
     private fun toggle() {

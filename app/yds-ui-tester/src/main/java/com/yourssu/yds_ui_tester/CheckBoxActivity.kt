@@ -18,49 +18,24 @@ class CheckBoxActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_check_box)
 
         binding.buttonEnabled.setOnClickListener {
-            binding.test.apply {
+            binding.check.apply {
                 isDisabled = false
             }
         }
 
         binding.buttonDisabled.setOnClickListener {
-            binding.test.apply {
+            binding.check.apply {
                 isDisabled = true
             }
         }
 
         binding.buttonGenerate.setOnClickListener {
-            binding.linear.checkBox {
-                isDisabled = true
+            binding.test.checkBox {
+                isDisabled = false
                 isSelected = false
-                size = CheckBox.SMALL
-                label = "두번째"
+                size = CheckBox.LARGE
+                label = "텍스트"
             }
-        }
-
-        binding.linear.checkBox {
-            isDisabled = true
-            isSelected = true
-            size = CheckBox.LARGE
-            label = "첫번째"
-        }
-        binding.linear.checkBox {
-            isDisabled = true
-            isSelected = false
-            size = 2
-            label = "두번째"
-        }
-        binding.linear.checkBox {
-            isDisabled = false
-            isSelected = true
-            size = 3
-            label = "세번째"
-        }
-        binding.linear.checkBox {
-            isDisabled = false
-            isSelected = false
-            size = 3
-            label = "네번째"
         }
     }
 }
