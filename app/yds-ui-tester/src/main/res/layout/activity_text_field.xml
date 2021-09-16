@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.yourssu.design.system.atom.Divider" />
+
         <variable
             name="viewModel"
             type="com.yourssu.yds_ui_tester.TextFieldViewModel" />
@@ -39,7 +41,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thin" />
+                app:thickness="@{Divider.THIN}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,7 +69,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thick" />
+                app:thickness="@{Divider.THICK}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,7 +96,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thin" />
+                app:thickness="@{Divider.THIN}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -121,7 +123,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thin" />
+                app:thickness="@{Divider.THIN}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,7 +150,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thick" />
+                app:thickness="@{Divider.THICK}" />
 
             <com.yourssu.design.system.atom.SimpleTextField
                 android:id="@+id/give_me_focus"
@@ -164,7 +166,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thick" />
+                app:thickness="@{Divider.THICK}" />
 
             <com.yourssu.design.system.atom.SimpleTextField
                 android:layout_width="match_parent"
@@ -180,7 +182,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thin" />
+                app:thickness="@{Divider.THIN}" />
 
             <com.yourssu.design.system.atom.SimpleTextField
                 android:layout_width="match_parent"
@@ -196,7 +198,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thin" />
+                app:thickness="@{Divider.THIN}" />
 
             <com.yourssu.design.system.atom.SimpleTextField
                 android:layout_width="match_parent"
@@ -222,7 +224,7 @@
             <com.yourssu.design.system.atom.Divider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerThickness="thin" />
+                app:thickness="@{Divider.THIN}" />
 
         </LinearLayout>
 

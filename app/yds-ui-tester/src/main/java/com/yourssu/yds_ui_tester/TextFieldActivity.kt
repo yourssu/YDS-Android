@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import com.yourssu.design.system.atom.Toggle
 import com.yourssu.yds_ui_tester.databinding.ActivityTextFieldBinding
 
 class TextFieldActivity : AppCompatActivity() {
@@ -17,15 +18,21 @@ class TextFieldActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_text_field)
         val simpleTextField = binding.simpleTextField
-        binding.toggleIsDisabled.setOnCheckedChangeListener { _, isChecked ->
-            simpleTextField.isDisabled = isChecked
-        }
-        binding.toggleIsPositive.setOnCheckedChangeListener { _, isChecked ->
-            simpleTextField.isPositive = isChecked
-        }
-        binding.toggleIsNegative.setOnCheckedChangeListener { _, isChecked ->
-            simpleTextField.isNegative = isChecked
-        }
+        binding.toggleIsDisabled.setOnSelectedListener(object : Toggle.SelectedListener {
+            override fun onSelected(boolean: Boolean) {
+                simpleTextField.isDisabled = boolean
+            }
+        })
+        binding.toggleIsPositive.setOnSelectedListener(object : Toggle.SelectedListener {
+            override fun onSelected(boolean: Boolean) {
+                simpleTextField.isPositive = boolean
+            }
+        })
+        binding.toggleIsNegative.setOnSelectedListener(object : Toggle.SelectedListener {
+            override fun onSelected(boolean: Boolean) {
+                simpleTextField.isNegative = boolean
+            }
+        })
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 

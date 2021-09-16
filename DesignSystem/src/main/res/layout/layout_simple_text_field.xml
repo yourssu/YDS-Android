@@ -3,7 +3,11 @@
 
     <data>
 
+        <import type="com.yourssu.design.system.foundation.Icon" />
+
         <import type="android.view.View" />
+
+        <import type="com.yourssu.design.system.atom.IconView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -61,8 +65,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    app:iconResource="ic_x_line"
-                    app:iconViewSize="extraSmall" />
+                    app:icon="@{Icon.ic_x_line}"
+                    app:size="@{IconView.ExtraSmall}" />
 
             </LinearLayout>
 
