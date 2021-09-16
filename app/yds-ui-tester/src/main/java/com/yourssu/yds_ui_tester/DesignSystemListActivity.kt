@@ -62,6 +62,15 @@ class DesignSystemListActivity : AppCompatActivity() {
                         startActivity(Intent(this@DesignSystemListActivity, ToggleActivity::class.java))
                     }
                 }
+                text {
+                    text = "TextField"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener{
+                        startActivity(Intent(this@DesignSystemListActivity, TextFieldActivity::class.java))
+                    }
+                }
             })
     }
 }

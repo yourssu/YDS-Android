@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.yourssu.design.system.atom.Divider" />
+
+        <variable
+            name="viewModel"
+            type="com.yourssu.yds_ui_tester.TextFieldViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".TextFieldActivity">
+
+            <com.yourssu.design.system.atom.SimpleTextField
+                android:id="@+id/simple_text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:onTextChanged="@{viewModel.onPasswordChanged}"
+                app:fieldLabelText="@{`비밀번호`}"
+                app:helperLabelText="@{`숫자와 영문자 조합으로 8자 이상 입력해주세요.`}"
+                app:isNegative="@{viewModel.isNegative}"
+                app:isPositive="@{viewModel.isPositive}"
+                app:placeholderText="@{`비밀번호 입력`}">
+
+                <requestFocus />
+            </com.yourssu.design.system.atom.SimpleTextField>
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THIN}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <com.yourssu.design.system.atom.Text
+                    android:id="@+id/text_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/textSecondary"
+                    app:typo="body1" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> textInput.setText(simpleTextField.getText().toString())}"
+                    android:text="get text" />
+
+            </LinearLayout>
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THICK}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="isDisabled"
+                    android:textColor="@color/textSecondary"
+                    app:typo="subtitle2" />
+
+                <com.yourssu.design.system.atom.Toggle
+                    android:id="@+id/toggle_is_disabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THIN}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="isNegative"
+                    android:textColor="@color/textSecondary"
+                    app:typo="subtitle2" />
+
+                <com.yourssu.design.system.atom.Toggle
+                    android:id="@+id/toggle_is_negative"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THIN}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="isPositive"
+                    android:textColor="@color/textSecondary"
+                    app:typo="subtitle2" />
+
+                <com.yourssu.design.system.atom.Toggle
+                    android:id="@+id/toggle_is_positive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THICK}" />
+
+            <com.yourssu.design.system.atom.SimpleTextField
+                android:id="@+id/give_me_focus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:text="@{viewModel.focusTestText}"
+                app:fieldLabelText="@{@string/app_name}"
+                app:helperLabelText="@{@string/app_name}"
+                app:placeholderText="@{@string/app_name}" />
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THICK}" />
+
+            <com.yourssu.design.system.atom.SimpleTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:inputType="number|numberPassword"
+                android:onTextChanged="@{viewModel.helperLabelTextChanged}"
+                app:fieldLabelText="@{`field Label`}"
+                app:helperLabelText="@{viewModel.helperLabelText}"
+                app:placeholderText="@{`입력하면 helper label이 바뀝니다`}" />
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THIN}" />
+
+            <com.yourssu.design.system.atom.SimpleTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:inputType="textEmailAddress"
+                android:onTextChanged="@{viewModel.fieldLabelTextChanged}"
+                app:fieldLabelText="@{viewModel.fieldLabelText}"
+                app:helperLabelText="@{`helper Label`}"
+                app:placeholderText="@{`입력하면 field label이 바뀝니다`}" />
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THIN}" />
+
+            <com.yourssu.design.system.atom.SimpleTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:inputType="text"
+                android:onTextChanged="@{viewModel.placeholderTextChanged}"
+                app:fieldLabelText="@{`field Label`}"
+                app:helperLabelText="@{`helper Label`}"
+                app:placeholderText="@{`입력하면 아래 textField의 placeholder가 바뀝니다`}" />
+
+            <com.yourssu.design.system.atom.SimpleTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:inputType="text"
+                app:fieldLabelText="@{`field Label`}"
+                app:helperLabelText="@{`helper Label`}"
+                app:placeholderText="@{viewModel.placeholderText}" />
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THIN}" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
