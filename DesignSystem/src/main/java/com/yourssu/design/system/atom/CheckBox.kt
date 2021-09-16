@@ -1,23 +1,21 @@
 package com.yourssu.design.system.atom
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.PointF
 import android.util.AttributeSet
-import android.util.Log
-import android.view.GestureDetector
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
-import androidx.core.view.GestureDetectorCompat
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutCheckBoxBinding
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.ComponentGroup
 import com.yourssu.design.undercarriage.size.dpToPx
+import kotlin.math.abs
 
 
 class CheckBox @JvmOverloads constructor(
@@ -47,6 +45,7 @@ class CheckBox @JvmOverloads constructor(
             setState()
         }
 
+    private val touchPoint = PointF(0f, 0f)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.CheckBox) {
@@ -102,24 +101,25 @@ class CheckBox @JvmOverloads constructor(
         }
     }
 
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
         super.onTouchEvent(event)
 
-        return when (event.action) {
+        when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                true
+                if (!isDisabled) {
+                    touchPoint.set(event.x, event.y)
+                }
             }
             MotionEvent.ACTION_UP -> {
-                performClick()
-                true
+                if (abs(touchPoint.x - event.x) < width.toFloat()
+                    && abs(touchPoint.y - event.y) < height.toFloat()
+                ) {
+                    performClick()
+                }
             }
-            else -> false
         }
-    }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        return true
     }
 
     private fun toggle() {
