@@ -29,8 +29,8 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:direction="horizontal"
-            app:dividerThickness="thin" />
+            app:direction="@{Divider.HORIZONTAL}"
+            app:thickness="@{Divider.THIN}" />
 
         <com.yourssu.design.system.atom.Text
             android:layout_width="match_parent"
@@ -41,8 +41,8 @@
             android:id="@+id/data_binding_divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:direction="horizontal"
-            app:dividerThickness="thick" />
+            app:direction="@{Divider.HORIZONTAL}"
+            app:thickness="@{Divider.THICK}" />
 
         <com.yourssu.design.system.atom.Text
             android:layout_width="match_parent"
@@ -54,8 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            app:direction="vertical"
-            app:dividerThickness="thin" />
+            app:direction="@{Divider.VERTICAL}"
+            app:thickness="@{Divider.THIN}" />
 
         <com.yourssu.design.system.atom.Text
             android:layout_width="match_parent"
@@ -66,8 +66,8 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            app:direction="vertical"
-            app:dividerThickness="thick" />
+            app:direction="@{Divider.VERTICAL}"
+            app:thickness="@{Divider.THICK}" />
 
         <com.yourssu.design.system.atom.Text
             android:layout_width="match_parent"
@@ -78,8 +78,8 @@
         <com.yourssu.design.system.atom.Divider
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:direction="horizontal"
-            app:dividerThickness="@{activity.isThick ? Divider.THICK : Divider.THIN}" />
+            app:direction="@{Divider.HORIZONTAL}"
+            app:thickness="@{activity.isThick ? Divider.THICK : Divider.THIN}" />
 
         <Button
             android:id="@+id/button_change_thickness"

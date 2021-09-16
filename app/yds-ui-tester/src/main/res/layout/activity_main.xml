@@ -6,6 +6,7 @@
         <import type="android.view.View"/>
         <import type="com.yourssu.design.system.foundation.Typo"/>
         <import type="com.yourssu.design.system.foundation.Icon" />
+        <import type="com.yourssu.design.system.atom.IconView" />
 
         <variable
             name="activity"
@@ -114,15 +115,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/blueItemBG"
-                    app:iconViewSize="medium"
-                    app:iconResource="ic_arrow_right_line" />
+                    app:size="@{IconView.Medium}"
+                    app:icon="@{Icon.ic_arrow_right_line}" />
                 <com.yourssu.design.system.atom.IconView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/blueItemBG"
-                    app:iconViewSize="large"
+                    app:size="@{IconView.Large}"
                     android:tint="@color/aquaItemText"
-                    app:iconResource="@{activity.triggerTextStyle ? Icon.ic_adbadge_line : Icon.ic_bell_filled}" />
+                    app:icon="@{activity.triggerTextStyle ? Icon.ic_adbadge_line : Icon.ic_bell_filled}" />
 
                 <View
                     android:layout_width="48dp"

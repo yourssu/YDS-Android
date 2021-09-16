@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableBoolean
+import com.yourssu.design.system.atom.Toggle
 import com.yourssu.yds_ui_tester.databinding.ActivityToggleBinding
 
 class ToggleActivity : AppCompatActivity() {
@@ -11,6 +12,12 @@ class ToggleActivity : AppCompatActivity() {
 
     var isDisabled = ObservableBoolean(false)
     var isSelected = ObservableBoolean(false)
+
+    val selectedListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            isSelected.set(boolean)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
