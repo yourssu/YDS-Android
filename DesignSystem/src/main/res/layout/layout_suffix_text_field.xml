@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.yourssu.design.system.foundation.Icon" />
+
+        <import type="android.view.View" />
+
+        <import type="com.yourssu.design.system.atom.IconView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.yourssu.design.system.atom.Text
+            android:id="@+id/field_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textDisabled"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:typo="subtitle3"
+            tools:text="PlaceHolder" />
+
+        <LinearLayout
+            android:id="@+id/input_field"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/text_field_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/field_label">
+
+            <EditText
+                android:id="@+id/edittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/textSecondary"
+                android:textColorHint="@color/textDisabled"
+                android:textCursorDrawable="@drawable/text_field_cursor"
+                android:textSize="15dp"
+                tools:hint="플레이스 홀더" />
+
+            <com.yourssu.design.system.atom.Text
+                android:id="@+id/suffix_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/textTertiary"
+                app:typo="body1"
+                tools:text="\@soongsil.ac.kr" />
+
+        </LinearLayout>
+
+        <com.yourssu.design.system.atom.Text
+            android:id="@+id/helper_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/textDisabled"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_field"
+            app:typo="caption1"
+            tools:text="도움말 텍스트" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

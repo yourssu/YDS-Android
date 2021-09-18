@@ -10,16 +10,24 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
-import com.yourssu.design.databinding.LayoutSimpleTextFieldBinding
+import com.yourssu.design.databinding.LayoutSuffixTextFieldBinding
 
-class SimpleTextField @JvmOverloads constructor(
+class SuffixTextField @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : TextField(context, attrs, defStyleAttr) {
+    companion object {
+        @JvmStatic
+        @BindingAdapter("suffixLabelText")
+        fun setSuffixLabelText(suffixTextField: SuffixTextField, text: String) {
+            suffixTextField.suffixLabelText = text
+        }
+    }
 
-    private lateinit var binding: LayoutSimpleTextFieldBinding
+    private lateinit var binding: LayoutSuffixTextFieldBinding
 
     override var text: Editable
         get() {
@@ -69,8 +77,16 @@ class SimpleTextField @JvmOverloads constructor(
             return binding.edittext.imeOptions
         }
 
+    var suffixLabelText: CharSequence
+        get() {
+            return binding.suffixLabel.text
+        }
+        set(value) {
+            binding.suffixLabel.text = value
+        }
+
     override fun inflateLayout(context: Context) {
-        binding = LayoutSimpleTextFieldBinding.inflate(
+        binding = LayoutSuffixTextFieldBinding.inflate(
             LayoutInflater.from(context), this, true
         )
     }
@@ -147,24 +163,28 @@ class SimpleTextField @JvmOverloads constructor(
         setPlaceholderTextColor(R.color.textDisabled)
         setFieldLabelTextColor(R.color.textDisabled)
         setHelperLabelTextColor(R.color.textDisabled)
+        setSuffixLabelTextColor(R.color.textDisabled)
     }
 
     override fun setPositiveTextColor() {
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textTertiary)
+        setSuffixLabelTextColor(R.color.textTertiary)
     }
 
     override fun setNegativeTextColor() {
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textWarned)
+        setSuffixLabelTextColor(R.color.textTertiary)
     }
 
     override fun setDefaultTextColor() {
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textTertiary)
+        setSuffixLabelTextColor(R.color.textTertiary)
     }
 
     override fun setPlaceholderTextColor(color: Int) {
@@ -177,6 +197,10 @@ class SimpleTextField @JvmOverloads constructor(
 
     override fun setHelperLabelTextColor(color: Int) {
         binding.helperLabel.setTextColor(resources.getColor(color, null))
+    }
+
+    private fun setSuffixLabelTextColor(color: Int) {
+        binding.suffixLabel.setTextColor(resources.getColor(color, null))
     }
 
     override fun setBackground() {

@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.regex.Pattern
 
-class TextFieldViewModel : ViewModel() {
+class SuffixTextFieldViewModel: ViewModel() {
     companion object {
         private const val DEBOUNCE_TIME = 300L
         private const val PASSWORD_REGEX = "^(?=.*[A-Za-z])(?=.*\\d)[!-~₩]{8,100}\$"
@@ -25,6 +25,8 @@ class TextFieldViewModel : ViewModel() {
     val placeholderText: LiveData<String> = _placeholderText
     private val _focusTestText = MutableLiveData<String>()
     val focusTestText = _focusTestText
+    private val _suffixTestText = MutableLiveData("")
+    val suffixTestText = _suffixTestText
 
 
     private val handler = Handler()
@@ -58,6 +60,10 @@ class TextFieldViewModel : ViewModel() {
 
     fun fieldLabelTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         _fieldLabelText.value = s.toString()
+    }
+
+    fun suffixLabelTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        _suffixTestText.value = s.toString()
     }
 
     fun setFocusTestText(text: String) {
