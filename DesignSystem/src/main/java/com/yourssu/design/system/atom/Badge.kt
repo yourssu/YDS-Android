@@ -2,21 +2,19 @@ package com.yourssu.design.system.atom
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.ColorRes
-import androidx.annotation.IntDef
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutBadgeBinding
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.undercarriage.size.dpToIntPx
-import com.yourssu.design_model.ItemColor
+import com.yourssu.design.system.foundation.ItemColor
 
 @SuppressLint("ViewConstructor")
 class Badge : LinearLayout {

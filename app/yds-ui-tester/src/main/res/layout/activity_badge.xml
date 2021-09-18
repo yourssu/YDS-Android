@@ -7,7 +7,7 @@
     <data>
 
         <import type="com.yourssu.design.system.foundation.Icon" />
-        <import type="com.yourssu.design_model.ItemColor" />
+        <import type="com.yourssu.design.system.foundation.ItemColor" />
         <variable
             name="activity"
             type="com.yourssu.yds_ui_tester.BadgeActivity" />
