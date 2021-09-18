@@ -6,10 +6,13 @@
         <import type="android.view.View"/>
         <import type="com.yourssu.design.system.foundation.Typo"/>
         <import type="com.yourssu.design.system.foundation.Icon" />
+        <import type="com.yourssu.design.system.atom.IconView" />
 
         <variable
             name="activity"
             type="com.yourssu.yds_ui_tester.MainActivity" />
+
+        <import type="com.yourssu.design.system.atom.ProfileImageView" />
     </data>
 
     <LinearLayout
@@ -18,6 +21,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <com.yourssu.design.system.atom.Picker
+                android:id="@+id/picker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:firstRow="@{activity.listString2}"
+                app:secondRow="@{activity.listString}"
+                app:thirdRow="@{activity.listString}"
+                app:onValueChangeListener="@{activity.onValueChangeListener}"/>
+        </FrameLayout>
+
+        <com.yourssu.design.system.atom.Text
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:typo="body1"
+            android:textColor="@color/textPrimary"
+            android:text="12120491284" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -28,6 +52,7 @@
                 android:orientation="vertical">
 
                 <FrameLayout
+                    android:id="@+id/aaged"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="30dp"
@@ -50,25 +75,27 @@
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:profileSize="extraLarge" />
+                        app:highLight="@{true}"
+                        app:size="@{ProfileImageView.ExtraLarge}" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:profileSize="large" />
+                        app:highLight="@{activity.triggerTextStyle ? true : false}"
+                        app:size="@{ProfileImageView.Large}" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:profileSize="medium" />
+                        app:size="@{ProfileImageView.Medium}" />
                     <com.yourssu.design.system.atom.ProfileImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bunny"
-                        app:profileSize="small" />
+                        app:size="@{ProfileImageView.Small}" />
                 </LinearLayout>
 
                 <FrameLayout
@@ -88,15 +115,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/blueItemBG"
-                    app:iconViewSize="medium"
-                    app:iconResource="ic_arrow_right_line" />
+                    app:size="@{IconView.Medium}"
+                    app:icon="@{Icon.ic_arrow_right_line}" />
                 <com.yourssu.design.system.atom.IconView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/blueItemBG"
-                    app:iconViewSize="large"
+                    app:size="@{IconView.Large}"
                     android:tint="@color/aquaItemText"
-                    app:iconResource="@{activity.triggerTextStyle ? Icon.ic_adbadge_line : Icon.ic_bell_filled}" />
+                    app:icon="@{activity.triggerTextStyle ? Icon.ic_adbadge_line : Icon.ic_bell_filled}" />
 
                 <View
                     android:layout_width="48dp"
@@ -111,6 +138,7 @@
                     app:typo="@{activity.triggerTextStyle ? Typo.Title1 : Typo.Button1}" />
 
                 <TextView
+                    android:id="@+id/text44"
                     style="@style/Title1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -162,6 +190,7 @@
                     android:text="Button" />
 
                 <Button
+                    android:id="@+id/button2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Button" />

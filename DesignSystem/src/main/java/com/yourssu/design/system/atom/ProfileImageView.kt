@@ -5,29 +5,20 @@ import android.graphics.*
 import android.util.AttributeSet
 import androidx.annotation.IntDef
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.withStyledAttributes
 import androidx.core.graphics.PathParser
+import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.system.rule.normal
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.design.undercarriage.size.dpToPx
 
 
-class ProfileImageView : AppCompatImageView {
-    constructor(context: Context) : super(context) {
-        initView(context, null)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        initView(context, attrs)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        initView(context, attrs)
-    }
+class ProfileImageView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+) : AppCompatImageView(context, attrs, defStyleAttr) {
 
     @ProfileSize
     var size: Int = Small
@@ -36,36 +27,35 @@ class ProfileImageView : AppCompatImageView {
             requestLayout()
         }
 
-    fun setProfileSize(@ProfileSize value: Int) {
-        size = value
-    }
-
-    private fun initView(context: Context, attrs: AttributeSet?) {
-        if (attrs != null) {
-            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ProfileImage)
-
-            size = typedArray.getInteger(R.styleable.ProfileImage_profileSize, Small)
-
-            typedArray.recycle()
+    var highLight: Boolean = false
+        set(value) {
+            field = value
+            invalidate()
         }
-    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var width = widthMeasureSpec
         var height = heightMeasureSpec
         when (size) {
             Small -> {
-                width = context.dpToIntPx(SmallSize); height = context.dpToIntPx(SmallSize)
+                width = context.dpToIntPx(SmallSize)
+                height = context.dpToIntPx(SmallSize)
             }
             Medium -> {
-                width = context.dpToIntPx(MediumSize); height = context.dpToIntPx(MediumSize)
+                width = context.dpToIntPx(MediumSize)
+                height = context.dpToIntPx(MediumSize)
             }
             Large -> {
-                width = context.dpToIntPx(LargeSize); height = context.dpToIntPx(LargeSize)
+                width = context.dpToIntPx(LargeSize)
+                height = context.dpToIntPx(LargeSize)
             }
             ExtraLarge -> {
-                width = context.dpToIntPx(ExtraLargeSize); height =
-                    context.dpToIntPx(ExtraLargeSize)
+                width = context.dpToIntPx(ExtraLargeSize)
+                height = context.dpToIntPx(ExtraLargeSize)
+            }
+            ExtraSmall -> {
+                width = context.dpToIntPx(ExtraSmallSize)
+                height = context.dpToIntPx(ExtraSmallSize)
             }
         }
         setMeasuredDimension(width, height)
@@ -112,7 +102,12 @@ class ProfileImageView : AppCompatImageView {
     private fun getStrokePaint(): Paint {
         val strokePaint = Paint()
         return strokePaint.apply {
-            color = context.resources.getColor(R.color.borderNormal, context.theme)
+            color = context.resources.getColor(
+                if (highLight)
+                    R.color.borderNormal // TODO 하이라이트 기능이 들어가면 색상 변경
+                else
+                    R.color.borderNormal,
+                context.theme)
             style = Paint.Style.STROKE
             strokeWidth = context.dpToPx(normal * 2) // 지정된 stroke width 는 1dp 지만 바깥쪽만 표시되기 때문에 2배
             isAntiAlias = true
@@ -120,7 +115,7 @@ class ProfileImageView : AppCompatImageView {
     }
 
     @Retention(AnnotationRetention.SOURCE)
-    @IntDef(value = [Small, Medium, Large, ExtraLarge])
+    @IntDef(value = [Small, Medium, Large, ExtraLarge, ExtraSmall])
     annotation class ProfileSize
 
     companion object {
@@ -128,12 +123,27 @@ class ProfileImageView : AppCompatImageView {
         const val Medium = 1
         const val Large = 2
         const val ExtraLarge = 3
+        const val ExtraSmall = 4
 
         private const val SmallSize = 36f
         private const val MediumSize = 48f
         private const val LargeSize = 72f
         private const val ExtraLargeSize = 96f
+        private const val ExtraSmallSize = 32f
 
-        private const val ExtraMargin = 1f // stoke 가 path 를 기준으로 양쪽에 표시되기 때문에 짤린것처럼 보인다 이를 보안하기 위한 여분의 마진
+        private const val ExtraMargin =
+            1f // stoke 가 path 를 기준으로 양쪽에 표시되기 때문에 짤린것처럼 보인다 이를 보안하기 위한 여분의 마진
+
+        @JvmStatic
+        @BindingAdapter("size")
+        fun setProfileSize(profileImageView: ProfileImageView, @ProfileSize size: Int) {
+            profileImageView.size = size
+        }
+
+        @JvmStatic
+        @BindingAdapter("highLight")
+        fun setHighLight(profileImageView: ProfileImageView, boolean: Boolean) {
+            profileImageView.highLight = boolean
+        }
     }
 }

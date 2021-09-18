@@ -5,19 +5,19 @@ import android.util.AttributeSet
 import androidx.annotation.IntDef
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
+import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.undercarriage.size.dpToIntPx
 
-class IconView: AppCompatImageView {
-    constructor(context: Context) : super(context) {
-        initView(context, null)
-    }
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        initView(context, attrs)
-    }
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        initView(context, attrs)
+class IconView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+) : AppCompatImageView(context, attrs, defStyleAttr) {
+
+    init {
+        setIconResource()
     }
 
     @IconSize
@@ -42,33 +42,31 @@ class IconView: AppCompatImageView {
         icon = value
     }
 
-    private fun initView(context: Context, attrs: AttributeSet?) {
-        if (attrs != null) {
-            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.IconView)
-
-            size = typedArray.getInteger(R.styleable.IconView_iconViewSize, Medium)
-            icon = typedArray.getInteger(R.styleable.IconView_iconResource, Icon.ic_adbadge_filled)
-
-            setIconResource()
-
-            typedArray.recycle()
-        }
-    }
-
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var width = widthMeasureSpec
         var height = heightMeasureSpec
         when (size) {
-            ExtraSmall -> { width = context.dpToIntPx(ExtraSmallSize); height = context.dpToIntPx(ExtraSmallSize) }
-            Small -> { width = context.dpToIntPx(SmallSize); height = context.dpToIntPx(SmallSize) }
-            Medium -> { width = context.dpToIntPx(MediumSize); height = context.dpToIntPx(MediumSize) }
-            Large -> { width = context.dpToIntPx(LargeSize); height = context.dpToIntPx(LargeSize) }
+            ExtraSmall -> {
+                width = context.dpToIntPx(ExtraSmallSize); height =
+                    context.dpToIntPx(ExtraSmallSize)
+            }
+            Small -> {
+                width = context.dpToIntPx(SmallSize); height = context.dpToIntPx(SmallSize)
+            }
+            Medium -> {
+                width = context.dpToIntPx(MediumSize); height = context.dpToIntPx(MediumSize)
+            }
+            Large -> {
+                width = context.dpToIntPx(LargeSize); height = context.dpToIntPx(LargeSize)
+            }
         }
         setMeasuredDimension(width, height)
     }
 
     private fun setIconResource() {
-        setImageDrawable(ResourcesCompat.getDrawable(resources, Icon.getIconDrawable(icon), context.theme))
+        setImageDrawable(ResourcesCompat.getDrawable(resources,
+            Icon.getIconDrawable(icon),
+            context.theme))
     }
 
     @Retention(AnnotationRetention.SOURCE)
@@ -85,5 +83,17 @@ class IconView: AppCompatImageView {
         private const val SmallSize = 20f
         private const val MediumSize = 24f
         private const val LargeSize = 48f
+
+        @JvmStatic
+        @BindingAdapter("icon")
+        fun setIcon(iconView: IconView, @Icon.Iconography icon: Int) {
+            iconView.icon = icon
+        }
+
+        @JvmStatic
+        @BindingAdapter("size")
+        fun setSize(iconView: IconView, @IconSize size: Int) {
+            iconView.size = size
+        }
     }
 }

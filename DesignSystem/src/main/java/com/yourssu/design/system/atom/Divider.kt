@@ -1,35 +1,35 @@
 package com.yourssu.design.system.atom
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.drawable.ShapeDrawable
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
-import com.yourssu.design.system.language.ComponentGroup
 import com.yourssu.design.undercarriage.size.dpToIntPx
 
 class Divider : View {
     constructor(context: Context) : this(context, null)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        initView(context, attrs)
+        setDividerInfo()
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(context, attrs)
 
-    var direction: Int = HORIZONTAL
+    @Direction
+    private var direction: Int = HORIZONTAL
         set(direction) {
             field = direction
             setDividerInfo()
             requestLayout()
         }
 
-    var dividerThickness: Int = THIN
+    @Thickness
+    private var thickness: Int = THIN
         set(thickness) {
             field = thickness
             setDividerInfo()
@@ -44,27 +44,9 @@ class Divider : View {
 
     private var dividerDrawable: ShapeDrawable = ShapeDrawable()
 
-
-    private fun initView(context: Context, attrs: AttributeSet?) {
-        if (attrs != null) {
-            val attributes: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.Divider)
-            direction =
-                attributes.getInteger(R.styleable.Divider_direction, HORIZONTAL)
-
-            dividerThickness = attributes.getInteger(R.styleable.Divider_dividerThickness, THIN)
-
-            setDividerInfo()
-
-            attributes.recycle()
-        } else {
-            setDividerInfo()
-        }
-
-    }
-
     private fun setDividerInfo() {
-        val thickness = getThickness(dividerThickness)
-        val color = getDividerColor(dividerThickness)
+        val thickness = getThickness(thickness)
+        val color = getDividerColor(this.thickness)
 
         dividerThicknessInPx =
             context.dpToIntPx(resources.getDimensionPixelSize(thickness).toFloat())
@@ -94,6 +76,26 @@ class Divider : View {
         dividerDrawable.draw(canvas)
     }
 
+    @DimenRes
+    private fun getThickness(thickness: Int) = when (thickness) {
+        THIN -> R.dimen.thin
+        THICK -> R.dimen.thick
+        else -> R.dimen.thin
+    }
+
+    @ColorRes
+    private fun getDividerColor(thickness: Int) = when (thickness) {
+        THIN -> R.color.borderNormal
+        THICK -> R.color.borderThin
+        else -> R.color.borderNormal
+    }
+
+    @IntDef(value = [HORIZONTAL, VERTICAL])
+    annotation class Direction
+
+    @IntDef(value = [THIN, THICK])
+    annotation class Thickness
+
     companion object {
         const val HORIZONTAL = 0
         const val VERTICAL = 1
@@ -101,35 +103,16 @@ class Divider : View {
         const val THIN = 0
         const val THICK = 1
 
-        @DimenRes
-        private fun getThickness(thickness: Int) = when (thickness) {
-            THIN -> R.dimen.thin
-            THICK -> R.dimen.thick
-            else -> R.dimen.thin
+        @JvmStatic
+        @BindingAdapter("direction")
+        fun setDirection(divider: Divider, @Direction direction: Int) {
+            divider.direction = direction
         }
 
-        @ColorRes
-        private fun getDividerColor(thickness: Int) = when (thickness) {
-            THIN -> R.color.borderNormal
-            THICK -> R.color.borderThin
-            else -> R.color.borderNormal
-        }
-
-        fun Context.divider(block: Divider.() -> Unit) = Divider(this).run {
-            block.invoke(this)
-            this
-        }
-
-        fun ViewGroup.divider(block: Divider.() -> Unit) = Divider(this.context).run {
-            block.invoke(this)
-            this@divider.addView(this)
-            this
-        }
-
-        fun ComponentGroup.divider(block: Divider.() -> Unit) = Divider(this.componentContext).run {
-            block.invoke(this)
-            this@divider.addComponent(this)
-            this
+        @JvmStatic
+        @BindingAdapter("thickness")
+        fun setThickness(divider: Divider, @Thickness thickness: Int) {
+            divider.thickness = thickness
         }
     }
 }

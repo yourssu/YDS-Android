@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="51dp"
+    android:height="31dp"
+    android:viewportWidth="51"
+    android:viewportHeight="31">
+  <path
+      android:pathData="M15,0L36,0A15,15 0,0 1,51 15L51,16A15,15 0,0 1,36 31L15,31A15,15 0,0 1,0 16L0,15A15,15 0,0 1,15 0z"
+      android:fillColor="@color/buttonPoint"/>
+  <path
+      android:pathData="M35.5,2.17C38.1364,2.17 40.7136,2.9518 42.9057,4.4165C45.0979,5.8812 46.8064,7.9631 47.8153,10.3988C48.8242,12.8346 49.0882,15.5148 48.5739,18.1006C48.0595,20.6863 46.79,23.0615 44.9257,24.9257C43.0615,26.79 40.6863,28.0595 38.1006,28.5739C35.5148,29.0882 32.8346,28.8242 30.3988,27.8153C27.9631,26.8064 25.8812,25.0979 24.4165,22.9057C22.9518,20.7136 22.17,18.1364 22.17,15.5C22.17,11.9647 23.5744,8.5741 26.0743,6.0743C28.5741,3.5744 31.9647,2.17 35.5,2.17Z"
+      android:strokeWidth="0.34"
+      android:fillColor="@color/buttonReversed"
+      android:strokeColor="@color/borderNormal"/>
+</vector>
