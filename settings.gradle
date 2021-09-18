@@ -1,4 +1,3 @@
-include ':design-model'
 include ':DesignSystem'
 include ':app:yds-ui-tester'
 rootProject.name = "YDS-Android"
