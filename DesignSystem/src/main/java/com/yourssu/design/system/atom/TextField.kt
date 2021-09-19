@@ -194,6 +194,10 @@ abstract class TextField @JvmOverloads constructor(
     private fun setCurrentState() {
         setTextColor()
         setBackground()
+        changeEditTextEnabled()
+        if (isDisabled) {
+            setText("", TextView.BufferType.EDITABLE)
+        }
     }
 
     private fun setTextColor() {
@@ -212,6 +216,8 @@ abstract class TextField @JvmOverloads constructor(
             }
         }
     }
+
+    abstract fun changeEditTextEnabled()
 
     abstract fun setDisabledTextColor()
 

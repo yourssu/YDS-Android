@@ -159,6 +159,10 @@ class SuffixTextField @JvmOverloads constructor(
         binding.edittext.removeTextChangedListener(watcher)
     }
 
+    override fun changeEditTextEnabled() {
+        binding.edittext.isEnabled = !isDisabled
+    }
+
     override fun setDisabledTextColor() {
         setPlaceholderTextColor(R.color.textDisabled)
         setFieldLabelTextColor(R.color.textDisabled)
