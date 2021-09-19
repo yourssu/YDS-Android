@@ -80,6 +80,15 @@ class DesignSystemListActivity : AppCompatActivity() {
                         startActivity(Intent(this@DesignSystemListActivity, SuffixTextFieldActivity::class.java))
                     }
                 }
+                text {
+                    text = "PasswordTextField"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener{
+                        startActivity(Intent(this@DesignSystemListActivity, PasswordTextFieldActivity::class.java))
+                    }
+                }
             })
     }
 }

@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.YourssuDesignSystem">
+        <activity android:name=".PasswordTextFieldActivity" />
         <activity android:name=".SuffixTextFieldActivity" />
         <activity android:name=".SimpleTextFieldActivity" />
         <activity android:name=".BadgeActivity" />

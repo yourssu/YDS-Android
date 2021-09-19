@@ -163,9 +163,9 @@ abstract class TextField @JvmOverloads constructor(
         setCurrentState()
     }
 
-    abstract fun inflateLayout(context: Context)
+    internal abstract fun inflateLayout(context: Context)
 
-    abstract fun initAttributes(context: Context, attrs: AttributeSet?)
+    internal abstract fun initAttributes(context: Context, attrs: AttributeSet?)
 
     abstract fun extendSelection(index: Int)
 
