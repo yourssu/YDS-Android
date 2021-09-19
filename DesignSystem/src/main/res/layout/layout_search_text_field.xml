@@ -20,6 +20,7 @@
             android:id="@+id/input_field"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:paddingHorizontal="16dp"
             android:background="@drawable/text_field_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -32,7 +33,6 @@
                 android:id="@+id/search_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
                 app:icon="@{Icon.ic_search_line}"
                 app:size="@{IconView.Small}" />
 
@@ -52,21 +52,13 @@
                 android:textSize="15dp"
                 tools:hint="플레이스 홀더" />
 
-            <LinearLayout
+            <com.yourssu.design.system.atom.IconView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
                 android:onClick="@{() -> edittext.setText(``)}"
-                android:paddingHorizontal="16dp"
-                android:visibility="@{edittext.text.toString().empty ? View.GONE : View.VISIBLE}">
-
-                <com.yourssu.design.system.atom.IconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:icon="@{Icon.ic_x_line}"
-                    app:size="@{IconView.ExtraSmall}" />
-
-            </LinearLayout>
+                android:visibility="@{edittext.text.toString().empty ? View.GONE : View.VISIBLE}"
+                app:icon="@{Icon.ic_x_line}"
+                app:size="@{IconView.ExtraSmall}" />a
 
         </LinearLayout>
 

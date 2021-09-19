@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
+            android:paddingHorizontal="16dp"
             android:gravity="center_vertical"
             android:background="@drawable/text_field_background"
             android:orientation="horizontal"
@@ -43,7 +44,6 @@
                 android:id="@+id/edittext"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
                 android:layout_weight="1"
                 android:background="@null"
                 android:fontFamily="@font/spoqa_han_sans_neo_regular"
@@ -55,21 +55,13 @@
                 android:textSize="15dp"
                 tools:hint="플레이스 홀더" />
 
-            <LinearLayout
+            <com.yourssu.design.system.atom.IconView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
                 android:onClick="@{() -> edittext.setText(``)}"
-                android:paddingHorizontal="16dp"
-                android:visibility="@{edittext.text.toString().empty ? View.GONE : View.VISIBLE}">
-
-                <com.yourssu.design.system.atom.IconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:icon="@{Icon.ic_x_line}"
-                    app:size="@{IconView.ExtraSmall}" />
-
-            </LinearLayout>
+                android:visibility="@{edittext.text.toString().empty ? View.GONE : View.VISIBLE}"
+                app:icon="@{Icon.ic_x_line}"
+                app:size="@{IconView.ExtraSmall}" />
 
         </LinearLayout>
 
