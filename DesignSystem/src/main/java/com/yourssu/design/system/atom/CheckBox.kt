@@ -8,7 +8,7 @@ import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.withStyledAttributes
+import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutCheckBoxBinding
 import com.yourssu.design.system.foundation.Icon
@@ -45,21 +45,12 @@ class CheckBox @JvmOverloads constructor(
             setState()
         }
 
-    private val touchPoint = PointF(0f, 0f)
-
-    init {
-        context.withStyledAttributes(attrs, R.styleable.CheckBox) {
-            isDisabled = getBoolean(R.styleable.CheckBox_isDisabled, false)
-            isSelected = getBoolean(R.styleable.CheckBox_isSelected, false)
-            size = getInt(R.styleable.CheckBox_size, SMALL)
-            label = getString(R.styleable.CheckBox_label).toString()
-        }
-    }
-
     override fun setSelected(selected: Boolean) {
         super.setSelected(selected)
         setState()
     }
+
+    private val touchPoint = PointF(0f, 0f)
 
     private fun setState() {
         setTotalColor()
@@ -160,6 +151,30 @@ class CheckBox @JvmOverloads constructor(
                 this@checkBox.addComponent(this)
                 this
             }
+
+        @JvmStatic
+        @BindingAdapter("isDisabled")
+        fun setDisabled(checkBox: CheckBox, isDisabled: Boolean) {
+            checkBox.isDisabled = isDisabled
+        }
+
+        @JvmStatic
+        @BindingAdapter("isSelected")
+        fun settSelected(checkBox: CheckBox, isSelected: Boolean) {
+            checkBox.isSelected = isSelected
+        }
+
+        @JvmStatic
+        @BindingAdapter("label")
+        fun setText(checkBox: CheckBox, label: String) {
+            checkBox.label = label
+        }
+
+        @JvmStatic
+        @BindingAdapter("size")
+        fun setSize(checkBox: CheckBox, size: Int) {
+            checkBox.size = size
+        }
     }
 
     // change means will access to binding

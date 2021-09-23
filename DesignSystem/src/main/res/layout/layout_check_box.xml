@@ -19,8 +19,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:icon="@{Icon.ic_checkcircle_filled}"
-            app:size="@{IconView.Small}"/>
+            />
 
         <com.yourssu.design.system.atom.Text
             android:id="@+id/text"
