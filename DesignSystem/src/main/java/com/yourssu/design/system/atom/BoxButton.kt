@@ -231,14 +231,11 @@ class BoxButton : LinearLayout {
         )
         drawable.cornerRadius =
             context.dpToPx(if (rounding == 8 || rounding == 4) rounding.toFloat() else 4F)
-        if (type == LINE) {
-            drawable.setStroke(
-                context.dpToIntPx(1F),
-                ContextCompat.getColor(context, itemColor)
-            )
-        }
+        drawable.setStroke(
+            context.dpToIntPx(if (type == LINE) 1F else 0F),
+            ContextCompat.getColor(context, itemColor)
+        )
         binding.boxButtonFrame.background = drawable
-
     }
 
     private fun setSize() {
@@ -348,7 +345,7 @@ class BoxButton : LinearLayout {
                             bgColor = R.color.buttonPoint
                             setColorAndStroke()
                         }
-                        R.color.buttonWarned -> {
+                        R.color.buttonWarnedPressed -> {
                             bgColor = R.color.buttonWarned
                             setColorAndStroke()
                         }
