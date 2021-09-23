@@ -16,29 +16,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.yourssu.design.system.atom.Text
-            android:id="@+id/field_label"
+        <LinearLayout
+            android:id="@+id/field_label_area"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/textDisabled"
+            android:paddingBottom="8dp"
+            android:visibility="@{fieldLabel.text.length() == 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:typo="subtitle3"
-            tools:text="PlaceHolder" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.yourssu.design.system.atom.Text
+                android:id="@+id/field_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="@color/textDisabled"
+                app:typo="subtitle3"
+                tools:text="PlaceHolder" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/input_field"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="8dp"
             android:paddingHorizontal="16dp"
             android:gravity="center_vertical"
             android:background="@drawable/text_field_background"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/field_label">
+            app:layout_constraintTop_toBottomOf="@id/field_label_area">
 
             <EditText
                 android:id="@+id/edittext"
@@ -72,6 +81,7 @@
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/textDisabled"
+            android:visibility="@{helperLabel.text.length() == 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_field"
