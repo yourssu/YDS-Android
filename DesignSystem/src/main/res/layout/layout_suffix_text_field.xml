@@ -41,10 +41,10 @@
             android:id="@+id/input_field"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:paddingHorizontal="16dp"
-            android:gravity="center_vertical"
             android:background="@drawable/text_field_background"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/field_label_area">
@@ -64,13 +64,14 @@
                 android:textSize="15dp"
                 tools:hint="플레이스 홀더" />
 
-            <com.yourssu.design.system.atom.IconView
+            <com.yourssu.design.system.atom.Text
+                android:id="@+id/suffix_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> edittext.setText(``)}"
-                android:visibility="@{edittext.text.toString().empty ? View.GONE : View.VISIBLE}"
-                app:icon="@{Icon.ic_x_line}"
-                app:size="@{IconView.ExtraSmall}" />
+                android:maxLines="1"
+                android:textColor="@color/textTertiary"
+                app:typo="body1"
+                tools:text="\@soongsil.ac.kr" />
 
         </LinearLayout>
 

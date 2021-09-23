@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.yourssu.yds_ui_tester.TextFieldViewModel" />
+            type="com.yourssu.yds_ui_tester.SimpleTextFieldViewModel" />
     </data>
 
     <ScrollView
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".TextFieldActivity">
+            tools:context=".SimpleTextFieldActivity">
 
             <com.yourssu.design.system.atom.SimpleTextField
                 android:id="@+id/simple_text_field"

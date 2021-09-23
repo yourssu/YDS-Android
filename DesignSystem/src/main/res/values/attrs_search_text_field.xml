@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="SimpleTextField">
+    <declare-styleable name="SearchTextField">
         <attr name="android:text" />
         <attr name="android:hint" />
         <attr name="android:inputType" />
