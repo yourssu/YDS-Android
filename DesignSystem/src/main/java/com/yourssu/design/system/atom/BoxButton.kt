@@ -131,24 +131,6 @@ class BoxButton : LinearLayout {
         setText()
     }
 
-/*
-    private fun isValid(): Boolean {
-        when (type) {
-            FILLED -> if (size == Small) return false
-            TINTED -> if (size == ExtraLarge) return false
-            LINE -> if (size == ExtraLarge) return false
-        }
-
-        when (rounding) {
-            8 -> if (size == Medium || size == Small) return false
-            4 -> if (size == ExtraLarge) return false
-            else -> if (size == ExtraLarge) return false
-        }
-
-        return true
-    }
- */
-
     private fun setTheme() {
         setSize()
 
