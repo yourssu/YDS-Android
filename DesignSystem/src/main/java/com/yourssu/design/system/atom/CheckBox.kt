@@ -28,20 +28,20 @@ class CheckBox @JvmOverloads constructor(
         LayoutCheckBoxBinding.inflate(LayoutInflater.from(context), this, true)
 
     var size: Int = SMALL
-        set(value) {
-            field = value
+        set(size) {
+            field = size
             setSizeState()
         }
 
     var label: String = ""
-        set(value) {
-            field = value
+        set(label) {
+            field = label
             changeText()
         }
 
     var isDisabled: Boolean = false
-        set(value) {
-            field = value
+        set(isDisabled) {
+            field = isDisabled
             setState()
         }
 
@@ -160,7 +160,7 @@ class CheckBox @JvmOverloads constructor(
 
         @JvmStatic
         @BindingAdapter("isSelected")
-        fun settSelected(checkBox: CheckBox, isSelected: Boolean) {
+        fun setSelected(checkBox: CheckBox, isSelected: Boolean) {
             checkBox.isSelected = isSelected
         }
 
