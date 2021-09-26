@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomBar">
+        <attr name="selectedIndex" format="integer" />
+        <attr name="canChangeIndex" format="boolean" />
+    </declare-styleable>
+</resources>

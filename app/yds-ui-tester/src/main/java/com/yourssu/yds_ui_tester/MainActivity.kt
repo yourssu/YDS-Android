@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableBoolean
+import com.yourssu.design.system.atom.BottomBar
 import com.yourssu.design.system.atom.Picker
 import com.yourssu.design.system.component.Toast
 import com.yourssu.design.system.component.Toast.Companion.shortToast
@@ -24,6 +25,13 @@ class MainActivity : AppCompatActivity() {
     private val list = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28)
     val listString = listOf("00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55")
     val listString2 = listOf("오전", "오후")
+
+    val mainTabType = listOf(
+        BottomBar.BottomTabInfo(R.drawable.ic_home_line, R.drawable.ic_home_filled),
+        BottomBar.BottomTabInfo(R.drawable.ic_timecalendar_line, R.drawable.ic_timecalendar_filled),
+        BottomBar.BottomTabInfo(R.drawable.ic_rank_line, R.drawable.ic_rank_filled),
+        BottomBar.BottomTabInfo(R.drawable.ic_person_line, R.drawable.ic_person_filled)
+    )
 
     val onValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
