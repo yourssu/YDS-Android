@@ -3,5 +3,6 @@
     <declare-styleable name="BottomBar">
         <attr name="selectedIndex" format="integer" />
         <attr name="canChangeIndex" format="boolean" />
+        <attr name="isImpactFeedbackEnabled" format="boolean" />
     </declare-styleable>
 </resources>

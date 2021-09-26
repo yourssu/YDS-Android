@@ -12,6 +12,8 @@ import androidx.databinding.ObservableInt
 import com.yourssu.design.R
 import com.yourssu.design.databinding.ItemBottomTabBinding
 import com.yourssu.design.databinding.LayoutBottomBarBinding
+import com.yourssu.design.system.rule.Vibration
+import com.yourssu.design.system.rule.vibe
 import com.yourssu.design.undercarriage.animation.endListener
 import com.yourssu.design.undercarriage.animation.startAnim
 
@@ -38,6 +40,8 @@ class BottomBar @JvmOverloads constructor(
     private var bindingMap: MutableMap<Int, ItemBottomTabBinding> = mutableMapOf()
     var bottomTabType = ObservableInt(0)
 
+    private var isImpactFeedbackEnabled = true
+
     var tabClickListener: TabClickListener? = null
 
     init {
@@ -50,6 +54,7 @@ class BottomBar @JvmOverloads constructor(
         context.withStyledAttributes(attrs, R.styleable.BottomBar, defStyleAttr, defStyleRes) {
             bottomTabType.set(getInteger(R.styleable.BottomBar_selectedIndex, 0))
             isCanChangeTab = getBoolean(R.styleable.BottomBar_canChangeIndex, true)
+            isImpactFeedbackEnabled = getBoolean(R.styleable.BottomBar_isImpactFeedbackEnabled, true)
         }
     }
 
@@ -75,6 +80,7 @@ class BottomBar @JvmOverloads constructor(
             item.root.setOnClickListener {
                 tabClicked(index)
                 springAnimation(index)
+                touchVibrationFeedback()
             }
             item.root.setOnLongClickListener {
                 longTabClicked(index)
@@ -102,6 +108,12 @@ class BottomBar @JvmOverloads constructor(
         }
     }
 
+    private fun touchVibrationFeedback() {
+        if (isImpactFeedbackEnabled) {
+            context.vibe(Vibration.INTERACT)
+        }
+    }
+
     private fun longTabClicked(index: Int) {
         tabClickListener?.tabLongClicked(index)
     }
@@ -117,6 +129,12 @@ class BottomBar @JvmOverloads constructor(
         @BindingAdapter("setTabInfoList")
         fun setTabInfoList(bottomBar: BottomBar, list: List<BottomTabInfo>) {
             bottomBar.setTabList(list)
+        }
+
+        @JvmStatic
+        @BindingAdapter("isImpactFeedbackEnabled")
+        fun setIsImpactFeedbackEnabled(bottomBar: BottomBar, boolean: Boolean) {
+            bottomBar.isImpactFeedbackEnabled = boolean
         }
     }
 }
