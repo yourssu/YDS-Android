@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.yourssu.yds_ui_tester.PlainButtonActivity" />
+
+        <import type="com.yourssu.design.system.atom.PlainButton" />
+
+        <import type="com.yourssu.design.system.atom.Divider" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".PlainButtonActivity">
+
+                <FrameLayout
+                    android:id="@+id/frame_plain_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.yourssu.design.system.atom.PlainButton
+                        android:id="@+id/plain_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginVertical="16dp"
+                        android:text="@{`Hello PlainButton!`}" />
+
+                </FrameLayout>
+
+                <com.yourssu.design.system.atom.SimpleTextField
+                    android:id="@+id/text_field_button_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    app:fieldLabelText="@{`PlainButton 텍스트`}"
+                    app:layout_constraintTop_toBottomOf="@id/frame_plain_button" />
+
+                <Button
+                    android:id="@+id/button_set_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:onClick="@{() -> activity.setPlainButtonText()}"
+                    android:text="Sets Text"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_field_button_text" />
+
+                <com.yourssu.design.system.atom.Divider
+                    android:id="@+id/divider_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/button_set_text"
+                    app:thickness="@{Divider.THICK}" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:id="@+id/text_is_disabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:text="isDisabled"
+                    android:textColor="@color/textSecondary"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_first"
+                    app:typo="body1" />
+
+                <com.yourssu.design.system.atom.IconView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.yourssu.design.system.atom.Toggle
+                    android:id="@+id/toggle_is_disabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintLeft_toRightOf="@id/text_is_disabled"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_first" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:id="@+id/text_is_warned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:text="isWarned"
+                    android:textColor="@color/textSecondary"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_is_disabled"
+                    app:typo="body1" />
+
+                <com.yourssu.design.system.atom.Toggle
+                    android:id="@+id/toggle_is_warned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintLeft_toRightOf="@id/text_is_warned"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_is_disabled" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:id="@+id/text_is_pointed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:text="isPointed"
+                    android:textColor="@color/textSecondary"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_is_warned"
+                    app:typo="body1" />
+
+                <com.yourssu.design.system.atom.Toggle
+                    android:id="@+id/toggle_is_pointed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_is_warned" />
+
+                <com.yourssu.design.system.atom.Divider
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_is_pointed"
+                    app:thickness="@{Divider.THICK}" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:id="@+id/text_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="Size"
+                    app:layout_constraintTop_toBottomOf="@id/divider"
+                    app:typo="title1" />
+
+                <FrameLayout
+                    android:id="@+id/frame_picker_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_size">
+
+                    <com.yourssu.design.system.atom.Picker
+                        android:id="@+id/picker_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:firstRow="@{activity.sizeString}" />
+
+                </FrameLayout>
+
+                <com.yourssu.design.system.atom.Divider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@id/text_left_icon"
+                    app:thickness="@{Divider.THICK}" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:id="@+id/text_left_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:text="leftIcon"
+                    app:layout_constraintBottom_toTopOf="@id/frame_left_icon_picker"
+                    app:layout_constraintTop_toBottomOf="@id/frame_picker_size" />
+
+                <FrameLayout
+                    android:id="@+id/frame_left_icon_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_left_icon">
+
+                    <com.yourssu.design.system.atom.Picker
+                        android:id="@+id/picker_left_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:firstRow="@{activity.iconString}" />
+
+                </FrameLayout>
+
+                <com.yourssu.design.system.atom.Divider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@id/text_right_icon"
+                    app:thickness="@{Divider.THICK}" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:id="@+id/text_right_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:text="rightIcon"
+                    app:layout_constraintTop_toBottomOf="@id/frame_left_icon_picker" />
+
+                <FrameLayout
+                    android:id="@+id/frame_right_icon_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_right_icon">
+
+                    <com.yourssu.design.system.atom.Picker
+                        android:id="@+id/picker_right_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="true"
+                        app:firstRow="@{activity.iconString}" />
+
+                </FrameLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

@@ -98,6 +98,15 @@ class DesignSystemListActivity : AppCompatActivity() {
                         startActivity(Intent(this@DesignSystemListActivity, SearchTextFieldActivity::class.java))
                     }
                 }
+                text{
+                    text = "PlainButton"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener{
+                        startActivity(Intent(this@DesignSystemListActivity, PlainButtonActivity::class.java))
+                    }
+                }
             })
     }
 }
