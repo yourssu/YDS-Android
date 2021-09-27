@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:onClick="@{() -> activity.setPlainButtonText()}"
-                    android:text="Sets Text"
+                    android:text="Set Text"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_field_button_text" />
 
