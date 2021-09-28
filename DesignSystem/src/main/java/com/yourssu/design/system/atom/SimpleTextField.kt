@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutSimpleTextFieldBinding
+import com.yourssu.design.undercarriage.base.TextField
 
 class SimpleTextField @JvmOverloads constructor(
     context: Context,

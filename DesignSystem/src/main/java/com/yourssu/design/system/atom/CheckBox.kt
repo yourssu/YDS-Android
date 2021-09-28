@@ -127,24 +127,6 @@ class CheckBox @JvmOverloads constructor(
         private const val MARGIN_SMALL = 4f
         private const val MARGIN_MEDIUM = 8f
         private const val MARGIN_LARGE = 8f
-
-        fun Context.checkBox(block: CheckBox.() -> Unit) = CheckBox(this).run {
-            block.invoke(this)
-            this
-        }
-
-        fun ViewGroup.checkBox(block: CheckBox.() -> Unit) = CheckBox(this.context).run {
-            block.invoke(this)
-            this@checkBox.addView(this)
-            this
-        }
-
-        fun ComponentGroup.checkBox(block: CheckBox.() -> Unit) =
-            CheckBox(this.componentContext).run {
-                block.invoke(this)
-                this@checkBox.addComponent(this)
-                this
-            }
     }
 
     // change means will access to binding
