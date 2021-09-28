@@ -2,12 +2,8 @@ package com.yourssu.yds_ui_tester
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.yourssu.design.system.atom.CheckBox
-import com.yourssu.design.system.atom.CheckBox.Companion.checkBox
+import com.yourssu.design.system.language.checkBox
 import com.yourssu.yds_ui_tester.databinding.ActivityCheckBoxBinding
 
 class CheckBoxActivity : AppCompatActivity() {

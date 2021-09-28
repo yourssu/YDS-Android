@@ -1,4 +1,4 @@
-package com.yourssu.design.system.atom
+package com.yourssu.design.undercarriage.base
 
 import android.content.Context
 import android.text.Editable
