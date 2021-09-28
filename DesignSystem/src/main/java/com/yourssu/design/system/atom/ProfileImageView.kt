@@ -2,10 +2,11 @@ package com.yourssu.design.system.atom
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.util.AttributeSet
 import androidx.annotation.IntDef
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.content.withStyledAttributes
 import androidx.core.graphics.PathParser
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
@@ -144,6 +145,34 @@ class ProfileImageView @JvmOverloads constructor(
         @BindingAdapter("highLight")
         fun setHighLight(profileImageView: ProfileImageView, boolean: Boolean) {
             profileImageView.highLight = boolean
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:src")
+        fun setImageUri(view: ProfileImageView, imageUri: String?) {
+            if (imageUri == null) {
+                view.setImageURI(null)
+            } else {
+                view.setImageURI(Uri.parse(imageUri))
+            }
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:src")
+        fun setImageUri(view: ProfileImageView, imageUri: Uri?) {
+            view.setImageURI(imageUri)
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:src")
+        fun setImageDrawable(view: ProfileImageView, drawable: Drawable?) {
+            view.setImageDrawable(drawable)
+        }
+
+        @JvmStatic
+        @BindingAdapter("android:src")
+        fun setImageResource(imageView: ProfileImageView, resource: Int) {
+            imageView.setImageResource(resource)
         }
     }
 }

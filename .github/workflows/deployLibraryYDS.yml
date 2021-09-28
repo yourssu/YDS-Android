@@ -32,7 +32,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew --no-daemon :app:yds-ui-tester:assembleRelease
+        run: ./gradlew --no-daemon :app:storybook:assembleRelease
 
       - name: Create a GitHub release
         uses: actions/create-release@v1
@@ -43,4 +43,4 @@ jobs:
           release_name: Release ${{ steps.release_version.outputs.value }}
 
       - name: Upload to Slack
-        run: curl -F file=@"app/yds-ui-tester/build/outputs/apk/release/YDS-StoryBook-${{ steps.release_version.outputs.value }}-release.apk" -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었습니다 https://jitpack.io/#yourssu/YDS-Android/${{ steps.release_version.outputs.value }}" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
+        run: curl -F file=@"app/storybook/build/outputs/apk/release/YDS-StoryBook-${{ steps.release_version.outputs.value }}-release.apk" -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android/${{ steps.release_version.outputs.value }}" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
