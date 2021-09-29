@@ -8,18 +8,21 @@ import android.text.InputType
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
+import android.widget.EditText
 import android.widget.TextView
 import com.yourssu.design.R
-import com.yourssu.design.databinding.LayoutSimpleTextFieldBinding
+import com.yourssu.design.databinding.LayoutPasswordTextFieldBinding
+import com.yourssu.design.system.foundation.Icon
 
-class SimpleTextField @JvmOverloads constructor(
+class PasswordTextField @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : TextField(context, attrs, defStyleAttr) {
 
-    private lateinit var binding: LayoutSimpleTextFieldBinding
+    private lateinit var binding: LayoutPasswordTextFieldBinding
 
     override var text: Editable
         get() {
@@ -58,7 +61,7 @@ class SimpleTextField @JvmOverloads constructor(
             return binding.edittext.inputType
         }
         set(value) {
-            binding.edittext.inputType = value
+            Log.d(this.javaClass.simpleName, "The inputType can not be changed.")
         }
 
     override var imeOptions: Int
@@ -70,9 +73,10 @@ class SimpleTextField @JvmOverloads constructor(
         }
 
     override fun inflateLayout(context: Context) {
-        binding = LayoutSimpleTextFieldBinding.inflate(
+        binding = LayoutPasswordTextFieldBinding.inflate(
             LayoutInflater.from(context), this, true
         )
+        binding.onClickListener = getEyeIconClickListener()
     }
 
     @SuppressLint("CustomViewStyleable")
@@ -85,10 +89,6 @@ class SimpleTextField @JvmOverloads constructor(
                 (typedArray.getString(R.styleable.TextField_android_text) ?: "")
             )
             hint = typedArray.getString(R.styleable.TextField_android_hint) ?: ""
-            inputType = typedArray.getInt(
-                R.styleable.TextField_android_inputType,
-                InputType.TYPE_CLASS_TEXT
-            )
             imeOptions = typedArray.getInt(R.styleable.TextField_android_imeOptions, 0)
 
             typedArray.recycle()
@@ -189,6 +189,42 @@ class SimpleTextField @JvmOverloads constructor(
             isNegative -> binding.inputField.setBackgroundResource(R.drawable.text_field_negative_background)
             isPositive -> binding.inputField.setBackgroundResource(R.drawable.text_field_positive_background)
             else -> binding.inputField.setBackgroundResource(R.drawable.text_field_background)
+        }
+    }
+
+
+    internal interface EyeIconClickListener {
+        var isTextDisplayed: Boolean
+        fun onClick(iconView: IconView, editText: EditText)
+    }
+
+    private fun getEyeIconClickListener(): EyeIconClickListener = object : EyeIconClickListener {
+        override var isTextDisplayed: Boolean = false
+
+        override fun onClick(iconView: IconView, editText: EditText) {
+            val selectionStart = editText.selectionStart
+            val selectionEnd = editText.selectionEnd
+
+            isTextDisplayed = !isTextDisplayed
+            if (isTextDisplayed) {
+                displayText(iconView, editText)
+            } else {
+                hideText(iconView, editText)
+            }
+
+            editText.setSelection(selectionStart, selectionEnd)
+        }
+
+        private fun displayText(iconView: IconView, editText: EditText) {
+            iconView.icon = Icon.ic_bellmute_line
+            editText.inputType =
+                InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_CLASS_TEXT
+        }
+
+        private fun hideText(iconView: IconView, editText: EditText) {
+            iconView.icon = Icon.ic_bell_line
+            editText.inputType =
+                InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
         }
     }
 }
