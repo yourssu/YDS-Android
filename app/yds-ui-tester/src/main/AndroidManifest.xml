@@ -17,7 +17,6 @@
         <activity android:name=".BadgeActivity" />
         <activity android:name=".ToggleActivity"/>
         <activity android:name=".BoxButtonActivity" />
-        <activity android:name=".ToggleActivity" />
         <activity android:name=".DividerActivity" />
         <activity android:name=".DesignSystemListActivity">
             <intent-filter>
