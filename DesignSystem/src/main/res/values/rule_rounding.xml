@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="min">2dp</dimen>
-    <dimen name="normal">4dp</dimen>
-    <dimen name="full">8dp</dimen>
+    <dimen name="rounding_2">2dp</dimen>
+    <dimen name="rounding_4">4dp</dimen>
+    <dimen name="rounding_8">8dp</dimen>
+    <dimen name="rounding_16">16dp</dimen>
 </resources>
