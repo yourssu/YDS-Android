@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutSuffixTextFieldBinding
+import com.yourssu.design.undercarriage.base.TextField
 
 class SuffixTextField @JvmOverloads constructor(
     context: Context,

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BoxButtonActivity">
+
+    <data>
+
+        <import type="com.yourssu.design.system.foundation.Icon" />
+
+        <import type="com.yourssu.design.system.atom.BoxButton" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{false}"
+                app:isWarned="@{false}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{8}"
+                app:size="@{BoxButton.ExtraLarge}"
+                app:text="@{`SizeXL/Round8/Enabled`}"
+                app:type="@{BoxButton.FILLED}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{true}"
+                app:isWarned="@{false}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{8}"
+                app:size="@{BoxButton.ExtraLarge}"
+                app:text="@{`SizeXL/Round8/Disabled`}"
+                app:type="@{BoxButton.FILLED}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{false}"
+                app:isWarned="@{true}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{8}"
+                app:size="@{BoxButton.ExtraLarge}"
+                app:text="@{`SizeXL/Round8/Warned`}"
+                app:type="@{BoxButton.FILLED}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:isDisabled="@{false}"
+                app:isWarned="@{false}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{8}"
+                app:size="@{BoxButton.Large}"
+                app:text="@{`SizeL/Round8/Enabled`}"
+                app:type="@{BoxButton.TINTED}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{true}"
+                app:isWarned="@{false}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{8}"
+                app:size="@{BoxButton.Large}"
+                app:text="@{`SizeL/Round8/Disabled`}"
+                app:type="@{BoxButton.TINTED}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{false}"
+                app:isWarned="@{true}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{8}"
+                app:size="@{BoxButton.Large}"
+                app:text="@{`SizeL/Round8/Warned`}"
+                app:type="@{BoxButton.TINTED}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:isDisabled="@{false}"
+                app:isWarned="@{false}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{4}"
+                app:size="@{BoxButton.Medium}"
+                app:text="@{`SizeM/Round4/Enabled`}"
+                app:type="@{BoxButton.LINE}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{true}"
+                app:isWarned="@{false}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{4}"
+                app:size="@{BoxButton.Medium}"
+                app:text="@{`SizeM/Round4/Disabled`}"
+                app:type="@{BoxButton.LINE}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{false}"
+                app:isWarned="@{true}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{4}"
+                app:size="@{BoxButton.Medium}"
+                app:text="@{`SizeM/Round4/Warned`}"
+                app:type="@{BoxButton.LINE}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:isDisabled="@{false}"
+                app:isWarned="@{false}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{4}"
+                app:size="@{BoxButton.Small}"
+                app:text="@{`SizeS/Round4/Enabled`}"
+                app:type="@{BoxButton.LINE}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{true}"
+                app:isWarned="@{false}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{4}"
+                app:size="@{BoxButton.Small}"
+                app:text="@{`SizeS/Round4/Disabled`}"
+                app:type="@{BoxButton.LINE}" />
+
+            <com.yourssu.design.system.atom.BoxButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isDisabled="@{false}"
+                app:isWarned="@{true}"
+                app:leftIcon="@{Icon.ic_ground_filled}"
+                app:rounding="@{4}"
+                app:size="@{BoxButton.Small}"
+                app:text="@{`SizeS/Round4/Warned`}"
+                app:type="@{BoxButton.LINE}" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

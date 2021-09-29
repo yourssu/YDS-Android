@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutPasswordTextFieldBinding
 import com.yourssu.design.system.foundation.Icon
+import com.yourssu.design.undercarriage.base.TextField
 
 class PasswordTextField @JvmOverloads constructor(
     context: Context,
