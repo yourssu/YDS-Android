@@ -52,12 +52,4 @@ class BottomSheet constructor(context: Context): BaseFullDialog(context), Compon
             })
         })
     }
-
-    companion object {
-        fun Context.bottomSheet(block: BottomSheet.() -> Unit) = BottomSheet(this)
-            .run {
-                block.invoke(this)
-                this
-            }
-    }
 }
