@@ -511,7 +511,7 @@ class RawPicker @JvmOverloads constructor(
                     mTextPaint.color = mUnSelectedTextColor
                 }
             } else {
-                mTextPaint.color = ContextCompat.getColor(context, R.color.material_grey_300)
+                mTextPaint.color = ContextCompat.getColor(context, R.color.textPrimary)
             }
 
             canvas.save()

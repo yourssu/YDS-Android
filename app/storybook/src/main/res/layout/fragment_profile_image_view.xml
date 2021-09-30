@@ -3,6 +3,7 @@
 
     <data>
         <import type="com.yourssu.design.system.atom.ProfileImageView" />
+        <import type="com.yourssu.design.system.atom.BoxButton" />
         <variable
             name="viewModel"
             type="com.yourssu.storybook.atom.ProfileImageViewModel" />
@@ -47,35 +48,16 @@
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
 
-                <LinearLayout
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/imageSelect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> viewModel.imageButtonClick(0)}"
-                        android:text="bunny" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> viewModel.imageButtonClick(1)}"
-                        android:text="hox" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> viewModel.imageButtonClick(2)}"
-                        android:text="oldeng" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:onClick="@{() -> viewModel.imageButtonClick(3)}"
-                        android:text="wind" />
-                </LinearLayout>
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.imageText}"
+                    app:type="@{BoxButton.LINE}" />
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
@@ -84,39 +66,16 @@
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
 
-                <LinearLayout
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/sizeSelect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> viewModel.sizeButtonClick(ProfileImageView.ExtraSmall)}"
-                        android:text="ExtraSmall" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> viewModel.sizeButtonClick(ProfileImageView.Small)}"
-                        android:text="Small" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> viewModel.sizeButtonClick(ProfileImageView.Medium)}"
-                        android:text="Medium" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> viewModel.sizeButtonClick(ProfileImageView.Large)}"
-                        android:text="Large" />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> viewModel.sizeButtonClick(ProfileImageView.ExtraLarge)}"
-                        android:text="ExtraLarge" />
-                </LinearLayout>
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.sizeText}"
+                    app:type="@{BoxButton.LINE}" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

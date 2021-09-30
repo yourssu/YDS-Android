@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                         text = "$it"
                     }
                 }
-            }.show()
+            }
             binding.root
         }
         binding.aaged.setOnClickListener {

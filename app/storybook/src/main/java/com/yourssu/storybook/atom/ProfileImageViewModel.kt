@@ -7,7 +7,9 @@ import com.yourssu.storybook.R
 
 class ProfileImageViewModel: ViewModel() {
     val image: MutableLiveData<Int> = MutableLiveData(R.drawable.bunny)
+    val imageText: MutableLiveData<String> = MutableLiveData("bunny")
     val size: MutableLiveData<Int> = MutableLiveData(ProfileImageView.Small)
+    val sizeText: MutableLiveData<String> = MutableLiveData("ExtraSmall")
 
     fun imageButtonClick(value: Int) {
         when (value) {
