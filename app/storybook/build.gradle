@@ -1,11 +1,25 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
+
+def versionProperties = new Properties()
+versionProperties.load(new FileInputStream(file("../../version.properties")))
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+
+    // 당연하지만 배포용은 아니고 release 테스트용
+    signingConfigs {
+        release {
+            storeFile file("./ydsyourssu.jks")
+            storePassword "ydsyourssu"
+            keyAlias "yourssu"
+            keyPassword "ydsyourssu"
+        }
+    }
 
     defaultConfig {
         applicationId "com.yourssu.storybook"
@@ -15,12 +29,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", "YDS-StoryBook-" + versionProperties['versionName'])
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -30,6 +46,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -37,9 +56,12 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.activity:activity-ktx:1.3.1'
+    implementation 'androidx.fragment:fragment-ktx:1.3.6'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

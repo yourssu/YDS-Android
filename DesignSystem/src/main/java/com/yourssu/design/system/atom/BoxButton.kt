@@ -319,7 +319,6 @@ class BoxButton : LinearLayout {
                             setColorAndStroke()
                         }
                     }
-                    performClick()
                 }
                 MotionEvent.ACTION_UP -> {
                     when (bgColor) {
@@ -342,7 +341,7 @@ class BoxButton : LinearLayout {
                             setColorAndStroke()
                         }
                     }
-                    performClick()
+                    performClick() // 손을 떼는 순간만 인식해야함
                 }
             }
         }
