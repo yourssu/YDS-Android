@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.yourssu.design.system.atom.Divider" />
+
+        <variable
+            name="viewModel"
+            type="com.yourssu.yds_ui_tester.SearchTextFieldViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".SearchTextFieldActivity">
+
+            <com.yourssu.design.system.atom.SearchTextField
+                android:id="@+id/simple_text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:onTextChanged="@{viewModel.onTextChanged}"
+                app:placeholderText="@{`검색어 입력`}">
+
+                <requestFocus />
+            </com.yourssu.design.system.atom.SearchTextField>
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THIN}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <com.yourssu.design.system.atom.Text
+                    android:id="@+id/text_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/textSecondary"
+                    app:typo="body1" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> textInput.setText(simpleTextField.getText().toString())}"
+                    android:text="get text" />
+
+            </LinearLayout>
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THICK}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:orientation="horizontal">
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="isDisabled"
+                    android:textColor="@color/textSecondary"
+                    app:typo="subtitle2" />
+
+                <com.yourssu.design.system.atom.Toggle
+                    android:id="@+id/toggle_is_disabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THICK}" />
+
+            <com.yourssu.design.system.atom.SearchTextField
+                android:id="@+id/give_me_focus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:text="@{viewModel.focusTestText}"
+                app:placeholderText="@{@string/app_name}" />
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THICK}" />
+
+            <com.yourssu.design.system.atom.SearchTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:inputType="text"
+                android:onTextChanged="@{viewModel.placeholderTextChanged}"
+                app:placeholderText="@{`입력하면 아래 textField의 placeholder가 바뀝니다`}" />
+
+            <com.yourssu.design.system.atom.SearchTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:inputType="text"
+                app:placeholderText="@{viewModel.placeholderText}" />
+
+            <com.yourssu.design.system.atom.Divider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:thickness="@{Divider.THIN}" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

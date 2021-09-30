@@ -138,6 +138,18 @@ class Picker : FrameLayout {
         }
     }
 
+    fun setFirstRowPosition(position: Int) {
+        binding.firstRow.scrollTo(position)
+    }
+
+    fun setSecondRowPosition(position: Int) {
+        binding.secondRow.scrollTo(position)
+    }
+
+    fun setThirdRowPosition(position: Int) {
+        binding.thirdRow.scrollTo(position)
+    }
+
     private fun setPickerSetting(numberPicker: RawPicker, list: List<String>) {
         numberPicker.run {
             visibility = View.VISIBLE

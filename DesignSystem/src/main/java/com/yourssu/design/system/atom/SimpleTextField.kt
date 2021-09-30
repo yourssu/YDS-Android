@@ -1,147 +1,28 @@
 package com.yourssu.design.system.atom
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
+import android.text.Editable
+import android.text.InputType
+import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.databinding.BindingAdapter
+import android.widget.TextView
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutSimpleTextFieldBinding
-import android.text.*
-import android.widget.TextView
-import androidx.databinding.InverseBindingListener
-import androidx.databinding.adapters.ListenerUtil
-
+import com.yourssu.design.undercarriage.base.TextField
 
 class SimpleTextField @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
-    companion object {
-        @JvmStatic
-        @BindingAdapter("android:text")
-        fun setText(simpleTextField: SimpleTextField, text: String) {
-            simpleTextField.setText(text, TextView.BufferType.EDITABLE)
-        }
-
-        @JvmStatic
-        @BindingAdapter("isDisabled")
-        fun setIsDisabled(simpleTextField: SimpleTextField, isDisabled: Boolean) {
-            simpleTextField.isDisabled = isDisabled
-        }
-
-        @JvmStatic
-        @BindingAdapter("isNegative")
-        fun setIsNegative(simpleTextField: SimpleTextField, isNegative: Boolean) {
-            simpleTextField.isNegative = isNegative
-        }
-
-        @JvmStatic
-        @BindingAdapter("isPositive")
-        fun setIsPositive(simpleTextField: SimpleTextField, isPositive: Boolean) {
-            simpleTextField.isPositive = isPositive
-        }
-
-        @JvmStatic
-        @BindingAdapter("placeholderText")
-        fun setPlaceholderText(simpleTextField: SimpleTextField, placeholderText: String) {
-            simpleTextField.placeholderText = placeholderText
-        }
-
-        @JvmStatic
-        @BindingAdapter("fieldLabelText")
-        fun setFieldLabelText(simpleTextField: SimpleTextField, fieldLabelText: String) {
-            simpleTextField.fieldLabelText = fieldLabelText
-        }
-
-        @JvmStatic
-        @BindingAdapter("helperLabelText")
-        fun setHelperLabelText(simpleTextField: SimpleTextField, helperLabelText: String) {
-            simpleTextField.helperLabelText = helperLabelText
-        }
-
-        @JvmStatic
-        @BindingAdapter(
-            value = ["android:beforeTextChanged", "android:onTextChanged", "android:afterTextChanged", "android:textAttrChanged"],
-            requireAll = false
-        )
-        fun setTextWatcher(
-            simpleTextField: SimpleTextField,
-            before: BeforeTextChanged?,
-            on: OnTextChanged?,
-            after: AfterTextChanged?,
-            textAttrChanged: InverseBindingListener?
-        ) {
-            val newValue: TextWatcher? =
-                if (before == null && after == null && on == null && textAttrChanged == null) {
-                    null
-                } else {
-                    object : TextWatcher {
-                        override fun beforeTextChanged(
-                            s: CharSequence,
-                            start: Int,
-                            count: Int,
-                            after: Int
-                        ) {
-                            before?.beforeTextChanged(s, start, count, after)
-                        }
-
-                        override fun onTextChanged(
-                            s: CharSequence,
-                            start: Int,
-                            before: Int,
-                            count: Int
-                        ) {
-                            on?.onTextChanged(s, start, before, count)
-                            textAttrChanged?.onChange()
-                        }
-
-                        override fun afterTextChanged(s: Editable) {
-                            after?.afterTextChanged(s)
-                        }
-                    }
-                }
-            val oldValue = ListenerUtil.trackListener(
-                simpleTextField,
-                newValue,
-                R.id.textWatcher
-            )
-            oldValue?.let {
-                simpleTextField.removeTextChangedListener(it)
-            }
-            newValue?.let {
-                simpleTextField.addTextChangedListener(it)
-            }
-        }
-    }
+) : TextField(context, attrs, defStyleAttr) {
 
     private lateinit var binding: LayoutSimpleTextFieldBinding
 
-    init {
-        initView(context, attrs)
-    }
-
-    var isDisabled: Boolean = false
-        set(value) {
-            field = value
-            setCurrentState()
-        }
-
-    var isNegative: Boolean = false
-        set(value) {
-            field = value
-            setCurrentState()
-        }
-
-    var isPositive: Boolean = false
-        set(value) {
-            field = value
-            setCurrentState()
-        }
-
-    var text: Editable
+    override var text: Editable
         get() {
             return binding.edittext.text
         }
@@ -149,7 +30,7 @@ class SimpleTextField @JvmOverloads constructor(
             binding.edittext.text = value
         }
 
-    var placeholderText: CharSequence
+    override var placeholderText: CharSequence
         get() {
             return binding.edittext.hint
         }
@@ -157,15 +38,7 @@ class SimpleTextField @JvmOverloads constructor(
             binding.edittext.hint = value
         }
 
-    var hint: CharSequence
-        get() {
-            return placeholderText
-        }
-        set(value) {
-            placeholderText = value
-        }
-
-    var fieldLabelText: CharSequence
+    override var fieldLabelText: CharSequence
         get() {
             return binding.fieldLabel.text
         }
@@ -173,7 +46,7 @@ class SimpleTextField @JvmOverloads constructor(
             binding.fieldLabel.text = value
         }
 
-    var helperLabelText: CharSequence
+    override var helperLabelText: CharSequence
         get() {
             return binding.helperLabel.text
         }
@@ -181,7 +54,7 @@ class SimpleTextField @JvmOverloads constructor(
             binding.helperLabel.text = value
         }
 
-    var inputType: Int
+    override var inputType: Int
         get() {
             return binding.edittext.inputType
         }
@@ -189,7 +62,7 @@ class SimpleTextField @JvmOverloads constructor(
             binding.edittext.inputType = value
         }
 
-    var imeOptions: Int
+    override var imeOptions: Int
         set(value) {
             binding.edittext.imeOptions = value
         }
@@ -197,137 +70,126 @@ class SimpleTextField @JvmOverloads constructor(
             return binding.edittext.imeOptions
         }
 
-    private fun initView(context: Context, attrs: AttributeSet?) {
+    override fun inflateLayout(context: Context) {
         binding = LayoutSimpleTextFieldBinding.inflate(
             LayoutInflater.from(context), this, true
         )
+    }
 
+    @SuppressLint("CustomViewStyleable")
+    override fun initAttributes(context: Context, attrs: AttributeSet?) {
         if (attrs != null) {
             val typedArray: TypedArray =
-                context.obtainStyledAttributes(attrs, R.styleable.SimpleTextField)
+                context.obtainStyledAttributes(attrs, R.styleable.TextField)
 
             binding.edittext.setText(
-                (typedArray.getString(R.styleable.SimpleTextField_android_text) ?: "")
+                (typedArray.getString(R.styleable.TextField_android_text) ?: "")
             )
-            hint = typedArray.getString(R.styleable.SimpleTextField_android_hint) ?: ""
+            hint = typedArray.getString(R.styleable.TextField_android_hint) ?: ""
             inputType = typedArray.getInt(
-                R.styleable.SimpleTextField_android_inputType,
+                R.styleable.TextField_android_inputType,
                 InputType.TYPE_CLASS_TEXT
             )
-            imeOptions = typedArray.getInt(R.styleable.SimpleTextField_android_imeOptions, 0)
+            imeOptions = typedArray.getInt(R.styleable.TextField_android_imeOptions, 0)
 
             typedArray.recycle()
         }
     }
 
-    fun extendSelection(index: Int) {
+    override fun extendSelection(index: Int) {
         binding.edittext.extendSelection(index)
     }
 
-    fun getFreezesText(): Boolean {
+    override fun getFreezesText(): Boolean {
         return binding.edittext.freezesText
     }
 
-    fun selectAll() {
+    override fun selectAll() {
         binding.edittext.selectAll()
     }
 
-    fun setEllipsize(ellipsis: TextUtils.TruncateAt) {
+    override fun setEllipsize(ellipsis: TextUtils.TruncateAt) {
         binding.edittext.ellipsize = ellipsis
     }
 
-    fun setSelection(start: Int, stop: Int) {
+    override fun setSelection(start: Int, stop: Int) {
         binding.edittext.setSelection(start, stop)
     }
 
-    fun setSelection(index: Int) {
+    override fun setSelection(index: Int) {
         binding.edittext.setSelection(index)
     }
 
-    fun setText(text: CharSequence, type: TextView.BufferType) {
+    override fun setText(text: CharSequence, type: TextView.BufferType) {
         binding.edittext.setText(text, type)
     }
 
-    fun setText(resid: Int) {
+    override fun setText(resid: Int) {
         binding.edittext.setText(resid)
     }
 
-    fun setText(resid: Int, type: TextView.BufferType) {
+    override fun setText(resid: Int, type: TextView.BufferType) {
         binding.edittext.setText(resid, type)
     }
 
-    fun setText(text: CharArray, start: Int, len: Int) {
+    override fun setText(text: CharArray, start: Int, len: Int) {
         binding.edittext.setText(text, start, len)
     }
 
-    fun addTextChangedListener(watcher: TextWatcher) {
+    override fun addTextChangedListener(watcher: TextWatcher) {
         binding.edittext.addTextChangedListener(watcher)
     }
 
-    fun removeTextChangedListener(watcher: TextWatcher) {
+    override fun removeTextChangedListener(watcher: TextWatcher) {
         binding.edittext.removeTextChangedListener(watcher)
     }
 
-    private fun setCurrentState() {
-        setTextColor()
-        setBackground()
+    override fun changeEditTextEnabled() {
+        binding.edittext.isEnabled = !isDisabled
     }
 
-    private fun setTextColor() {
-        when {
-            isDisabled -> {
-                setPlaceholderTextColor(R.color.textDisabled)
-                setFieldLabelTextColor(R.color.textDisabled)
-                setHelperLabelColor(R.color.textDisabled)
-            }
-            isNegative -> {
-                setPlaceholderTextColor(R.color.textTertiary)
-                setFieldLabelTextColor(R.color.textSecondary)
-                setHelperLabelColor(R.color.textWarned)
-            }
-            isPositive -> {
-                setPlaceholderTextColor(R.color.textTertiary)
-                setFieldLabelTextColor(R.color.textSecondary)
-                setHelperLabelColor(R.color.textTertiary)
-            }
-            else -> {
-                setPlaceholderTextColor(R.color.textTertiary)
-                setFieldLabelTextColor(R.color.textSecondary)
-                setHelperLabelColor(R.color.textTertiary)
-            }
-        }
+    override fun setDisabledTextColor() {
+        setPlaceholderTextColor(R.color.textDisabled)
+        setFieldLabelTextColor(R.color.textDisabled)
+        setHelperLabelTextColor(R.color.textDisabled)
     }
 
-    private fun setPlaceholderTextColor(color: Int) {
+    override fun setPositiveTextColor() {
+        setPlaceholderTextColor(R.color.textTertiary)
+        setFieldLabelTextColor(R.color.textSecondary)
+        setHelperLabelTextColor(R.color.textTertiary)
+    }
+
+    override fun setNegativeTextColor() {
+        setPlaceholderTextColor(R.color.textTertiary)
+        setFieldLabelTextColor(R.color.textSecondary)
+        setHelperLabelTextColor(R.color.textWarned)
+    }
+
+    override fun setDefaultTextColor() {
+        setPlaceholderTextColor(R.color.textTertiary)
+        setFieldLabelTextColor(R.color.textSecondary)
+        setHelperLabelTextColor(R.color.textTertiary)
+    }
+
+    override fun setPlaceholderTextColor(color: Int) {
         binding.edittext.setHintTextColor(resources.getColor(color, null))
     }
 
-    private fun setFieldLabelTextColor(color: Int) {
+    override fun setFieldLabelTextColor(color: Int) {
         binding.fieldLabel.setTextColor(resources.getColor(color, null))
     }
 
-    private fun setHelperLabelColor(color: Int) {
+    override fun setHelperLabelTextColor(color: Int) {
         binding.helperLabel.setTextColor(resources.getColor(color, null))
     }
 
-    private fun setBackground() {
+    override fun setBackground() {
         when {
             isDisabled -> binding.inputField.setBackgroundResource(R.drawable.text_field_background)
             isNegative -> binding.inputField.setBackgroundResource(R.drawable.text_field_negative_background)
             isPositive -> binding.inputField.setBackgroundResource(R.drawable.text_field_positive_background)
             else -> binding.inputField.setBackgroundResource(R.drawable.text_field_background)
         }
-    }
-
-    interface AfterTextChanged {
-        fun afterTextChanged(s: Editable?)
-    }
-
-    interface BeforeTextChanged {
-        fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
-    }
-
-    interface OnTextChanged {
-        fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
     }
 }

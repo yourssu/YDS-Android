@@ -42,21 +42,14 @@ class Badge : LinearLayout {
         )
     }
 
-    private var hasIcon: Boolean = false
+    var text: String = ""
         set(value) {
             field = value
             setBadgeInfo()
             requestLayout()
         }
 
-    private var text: String = ""
-        set(value) {
-            field = value
-            setBadgeInfo()
-            requestLayout()
-        }
-
-    private var color: ItemColor = ItemColor.Mono
+    var color: ItemColor = ItemColor.Mono
         set(color) {
             field = color
             setBadgeInfo()
@@ -64,17 +57,12 @@ class Badge : LinearLayout {
         }
 
     @Icon.Iconography
-    private var icon: Int = Icon.ic_adbadge_filled
+    var icon: Int? = null
         set(icon) {
             field = icon
             setBadgeInfo()
             requestLayout()
         }
-
-    fun setBadgeIcon(@Icon.Iconography value: Int) {
-        hasIcon = true
-        icon = value
-    }
 
     private fun setBadgeInfo() {
         val color = getBadgeColor(color)
@@ -86,11 +74,11 @@ class Badge : LinearLayout {
 
         binding.badgeContent.text = text
 
-        if (hasIcon) {
+        icon?.let {
             binding.badgeFrame.setPadding(context.dpToIntPx(8F), 0, context.dpToIntPx(8F), 0)
             binding.badgeIcon.visibility = View.VISIBLE
-            binding.badgeIcon.setIconResource(icon)
-        } else {
+            binding.badgeIcon.setIconResource(it)
+        } ?: run {
             binding.badgeFrame.setPadding(context.dpToIntPx(12F), 0, context.dpToIntPx(12F), 0)
             binding.badgeIcon.visibility = View.GONE
         }
@@ -107,12 +95,7 @@ class Badge : LinearLayout {
         @JvmStatic
         @BindingAdapter("icon")
         fun setIcon(badge: Badge, @Icon.Iconography icon: Int?) {
-            if (icon == null) {
-                badge.hasIcon = false
-            } else {
-                badge.hasIcon = true
-                badge.icon = icon
-            }
+            badge.icon = icon
         }
 
         @JvmStatic

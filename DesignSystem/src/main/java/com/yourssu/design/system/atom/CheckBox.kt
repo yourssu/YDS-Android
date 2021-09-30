@@ -1,19 +1,21 @@
 package com.yourssu.design.system.atom
 
 import android.content.Context
+import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.withStyledAttributes
+import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutCheckBoxBinding
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.ComponentGroup
 import com.yourssu.design.undercarriage.size.dpToPx
+import kotlin.math.abs
 
 
 class CheckBox @JvmOverloads constructor(
@@ -25,53 +27,46 @@ class CheckBox @JvmOverloads constructor(
     private val binding: LayoutCheckBoxBinding =
         LayoutCheckBoxBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var size: Int = SIZE_SMALL
-        set(value) {
-            field = value
+    var size: Int = SMALL
+        set(size) {
+            field = size
             setSizeState()
         }
 
     var label: String = ""
-        set(value) {
-            field = value
+        set(label) {
+            field = label
             changeText()
         }
 
     var isDisabled: Boolean = false
-        set(value) {
-            field = value
+        set(isDisabled) {
+            field = isDisabled
             setState()
         }
-
-
-    init {
-        context.withStyledAttributes(attrs, R.styleable.CheckBox) {
-            isDisabled = getBoolean(R.styleable.CheckBox_isDisabled, false)
-            isSelected = getBoolean(R.styleable.CheckBox_isSelected, false)
-            size = getInt(R.styleable.CheckBox_size, SIZE_SMALL)
-            label = getString(R.styleable.CheckBox_label).toString()
-        }
-    }
 
     override fun setSelected(selected: Boolean) {
         super.setSelected(selected)
         setState()
     }
 
+    private val touchPoint = PointF(0f, 0f)
+
     private fun setState() {
         setTotalColor()
         setDrawable()
+        setSizeState()
     }
 
     private fun setTotalColor() {
-        when (!isDisabled) {
+        when (isDisabled) {
             true ->
+                changeTotalColor(R.color.buttonDisabled)
+            false ->
                 if (isSelected)
                     changeTotalColor(R.color.buttonPoint)
                 else
                     changeTotalColor(R.color.buttonNormal)
-            false ->
-                changeTotalColor(R.color.buttonDisabled)
         }
     }
 
@@ -84,27 +79,38 @@ class CheckBox @JvmOverloads constructor(
 
     private fun setSizeState() {
         when (size) {
-            SIZE_SMALL -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
-            SIZE_MEDIUM -> changeTotalSize(Typo.Button3, MARGIN_MEDIUM, IconView.Small)
-            SIZE_LARGE -> changeTotalSize(Typo.Button3, MARGIN_LARGE, IconView.Medium)
+            SMALL -> {
+                if (isDisabled) {
+                    changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
+                } else {
+                    changeTotalSize(Typo.Button3, MARGIN_SMALL, IconView.ExtraSmall)
+                }
+            }
+            MEDIUM -> changeTotalSize(Typo.Button3, MARGIN_MEDIUM, IconView.Small)
+            LARGE -> changeTotalSize(Typo.Button3, MARGIN_LARGE, IconView.Medium)
             else -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
         }
     }
 
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
         super.onTouchEvent(event)
 
-        return when (event.action) {
+        when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                true
+                if (!isDisabled) {
+                    touchPoint.set(event.x, event.y)
+                }
             }
             MotionEvent.ACTION_UP -> {
-                performClick()
-                true
+                if (abs(touchPoint.x - event.x) < width.toFloat()
+                    && abs(touchPoint.y - event.y) < height.toFloat()
+                ) {
+                    performClick()
+                }
             }
-            else -> false
         }
+
+        return true
     }
 
     private fun toggle() {
@@ -121,30 +127,36 @@ class CheckBox @JvmOverloads constructor(
     }
 
     companion object {
-        private const val SIZE_SMALL = 1
-        private const val SIZE_MEDIUM = 2
-        private const val SIZE_LARGE = 3
+        const val SMALL = 1
+        const val MEDIUM = 2
+        const val LARGE = 3
         private const val MARGIN_SMALL = 4f
         private const val MARGIN_MEDIUM = 8f
         private const val MARGIN_LARGE = 8f
 
-        fun Context.checkBox(block: CheckBox.() -> Unit) = CheckBox(this).run {
-            block.invoke(this)
-            this
+        @JvmStatic
+        @BindingAdapter("isDisabled")
+        fun setDisabled(checkBox: CheckBox, isDisabled: Boolean) {
+            checkBox.isDisabled = isDisabled
         }
 
-        fun ViewGroup.checkBox(block: CheckBox.() -> Unit) = CheckBox(this.context).run {
-            block.invoke(this)
-            this@checkBox.addView(this)
-            this
+        @JvmStatic
+        @BindingAdapter("isSelected")
+        fun setSelected(checkBox: CheckBox, isSelected: Boolean) {
+            checkBox.isSelected = isSelected
         }
 
-        fun ComponentGroup.checkBox(block: CheckBox.() -> Unit) =
-            CheckBox(this.componentContext).run {
-                block.invoke(this)
-                this@checkBox.addComponent(this)
-                this
-            }
+        @JvmStatic
+        @BindingAdapter("label")
+        fun setText(checkBox: CheckBox, label: String) {
+            checkBox.label = label
+        }
+
+        @JvmStatic
+        @BindingAdapter("size")
+        fun setSize(checkBox: CheckBox, size: Int) {
+            checkBox.size = size
+        }
     }
 
     // change means will access to binding

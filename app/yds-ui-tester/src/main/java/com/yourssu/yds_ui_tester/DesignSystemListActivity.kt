@@ -45,15 +45,6 @@ class DesignSystemListActivity : AppCompatActivity() {
                     }
                 }
                 text {
-                    text = "Badge"
-                    typo = Typo.Title1
-                    width = ViewGroup.LayoutParams.MATCH_PARENT
-                    gravity = Gravity.CENTER
-                    setOnClickListener {
-                        startActivity(Intent(this@DesignSystemListActivity, BadgeActivity::class.java))
-                    }
-                }
-                text {
                     text = "Toggle"
                     typo = Typo.Title1
                     width = ViewGroup.LayoutParams.MATCH_PARENT
@@ -63,12 +54,57 @@ class DesignSystemListActivity : AppCompatActivity() {
                     }
                 }
                 text {
-                    text = "TextField"
+                    text = "SimpleTextField"
                     typo = Typo.Title1
                     width = ViewGroup.LayoutParams.MATCH_PARENT
                     gravity = Gravity.CENTER
                     setOnClickListener{
-                        startActivity(Intent(this@DesignSystemListActivity, TextFieldActivity::class.java))
+                        startActivity(Intent(this@DesignSystemListActivity, SimpleTextFieldActivity::class.java))
+                    }
+                }
+                text {
+                    text = "SuffixTextField"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener{
+                        startActivity(Intent(this@DesignSystemListActivity, SuffixTextFieldActivity::class.java))
+                    }
+                }
+                text {
+                    text = "PasswordTextField"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener{
+                        startActivity(Intent(this@DesignSystemListActivity, PasswordTextFieldActivity::class.java))
+                    }
+                }
+                text {
+                    text = "SearchTextField"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener{
+                        startActivity(Intent(this@DesignSystemListActivity, SearchTextFieldActivity::class.java))
+                    }
+                }
+                text{
+                    text = "PlainButton"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener{
+                        startActivity(Intent(this@DesignSystemListActivity, PlainButtonActivity::class.java))
+                    }
+                }
+                text {
+                    text = "BoxButton"
+                    typo = Typo.Title1
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    gravity = Gravity.CENTER
+                    setOnClickListener {
+                        startActivity(Intent(this@DesignSystemListActivity, BoxButtonActivity::class.java))
                     }
                 }
             })

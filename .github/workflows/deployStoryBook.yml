@@ -27,6 +27,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew --no-daemon :app:yds-ui-tester:assembleDebug
+        run: ./gradlew --no-daemon :app:storybook:assembleDebug
       - name: Upload to Slack
-        run: curl -F file=@"app/yds-ui-tester/build/outputs/apk/debug/YDS-StoryBook-${{ steps.release_version.outputs.value }}-debug.apk" -F "initial_comment=개발중인 YDS StoryBook의 새 버전이 나왔습니다!!" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
+        run: curl -F file=@"app/storybook/build/outputs/apk/debug/YDS-StoryBook-${{ steps.release_version.outputs.value }}-debug.apk" -F "initial_comment=개발중인 YDS StoryBook이 나왔슈~" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
