@@ -11,6 +11,16 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    // 당연하지만 배포용은 아니고 release 테스트용
+    signingConfigs {
+        release {
+            storeFile file("./ydsyourssu.jks")
+            storePassword "ydsyourssu"
+            keyAlias "yourssu"
+            keyPassword "ydsyourssu"
+        }
+    }
+
     defaultConfig {
         applicationId "com.yourssu.storybook"
         minSdkVersion 23
@@ -26,6 +36,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
