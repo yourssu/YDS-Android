@@ -8,6 +8,8 @@ import android.widget.FrameLayout
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.databinding.LayoutPickerBinding
 import com.yourssu.design.undercarriage.custom.RawPicker
+import java.lang.Exception
+import java.lang.IndexOutOfBoundsException
 
 class Picker : FrameLayout {
     constructor(context: Context) : super(context) {
@@ -166,6 +168,10 @@ class Picker : FrameLayout {
                     return try {
                         list[position]
                     } catch (e: ArrayIndexOutOfBoundsException) {
+                        ""
+                    } catch (e: IndexOutOfBoundsException) {
+                        ""
+                    } catch (e: Exception) {
                         ""
                     }
                 }

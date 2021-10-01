@@ -9,9 +9,12 @@ import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.storybook.DetailActivity.Companion.navigateToDetail
+import com.yourssu.storybook.atom.BadgeFragment
 import com.yourssu.storybook.atom.ProfileImageViewFragment
+import com.yourssu.storybook.atom.TextFragment
+import com.yourssu.storybook.transform.ActivityAnimType
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     /** 추가시 여기에만 선언하면 됨 */
     private val foundationList = listOf<Pair<String, Class<*>>>(
@@ -19,15 +22,13 @@ class MainActivity : AppCompatActivity() {
         "Typography" to Fragment::class.java
     )
     private val atomList = listOf<Pair<String, Class<*>>> (
-        "Text" to Fragment::class.java,
+        "Text" to TextFragment::class.java,
         "Toggle" to Fragment::class.java,
         "ProfileImageView" to ProfileImageViewFragment::class.java,
-        "Badge" to Fragment::class.java,
+        "Badge" to BadgeFragment::class.java,
         "BoxButton" to Fragment::class.java,
-        "BottomSheet" to Fragment::class.java,
         "Divider" to Fragment::class.java,
         "IconView" to Fragment::class.java,
-        "Picker" to Fragment::class.java,
         "PlainButton" to Fragment::class.java,
         "Checkbox" to Fragment::class.java,
         "SimpleTextField" to Fragment::class.java,
@@ -44,6 +45,8 @@ class MainActivity : AppCompatActivity() {
     )
     /** 추가시 여기에만 선언하면 됨 */
 
+    override var animationType: ActivityAnimType = ActivityAnimType.STAY
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                     text {
                         text = "StoryBook"
                         typo = Typo.Title2
-                        textColor(R.color.textPrimary)
+
                         setOnClickListener {
                             toast(this.text.toString())
                         }
@@ -74,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                         text {
                             text = "1. Foundation"
                             typo = Typo.SubTitle3
-                            textColor(R.color.textPrimary)
+
                             backgroundColor(R.color.dimNormal)
                             setLayout(
                                 width = MATCH_PARENT,
@@ -87,7 +90,6 @@ class MainActivity : AppCompatActivity() {
                             text {
                                 text = foundation.first
                                 typo = Typo.Body1
-                                textColor(R.color.textPrimary)
                                 setOnClickListener {
                                     navigateToDetail(foundation.first, foundation.second)
                                 }
@@ -105,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                         text {
                             text = "2. Atom"
                             typo = Typo.SubTitle3
-                            textColor(R.color.textPrimary)
+
                             backgroundColor(R.color.dimNormal)
                             setLayout(
                                 width = MATCH_PARENT,
@@ -121,7 +123,7 @@ class MainActivity : AppCompatActivity() {
                                 setOnClickListener {
                                     navigateToDetail(atom.first, atom.second)
                                 }
-                                textColor(R.color.textPrimary)
+
                                 setLayout(
                                     width = MATCH_PARENT,
                                     leftPaddingPx = context.dpToIntPx(16f),
@@ -136,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                         text {
                             text = "3. Component"
                             typo = Typo.SubTitle3
-                            textColor(R.color.textPrimary)
+
                             backgroundColor(R.color.dimNormal)
                             setLayout(
                                 width = MATCH_PARENT,
@@ -149,7 +151,7 @@ class MainActivity : AppCompatActivity() {
                             text {
                                 text = component.first
                                 typo = Typo.Body1
-                                textColor(R.color.textPrimary)
+
                                 setOnClickListener {
                                     navigateToDetail(component.first, component.second)
                                 }

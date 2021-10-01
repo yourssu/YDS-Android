@@ -7,8 +7,9 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.yourssu.storybook.databinding.ActivityDetailBinding
+import com.yourssu.storybook.transform.ActivityAnimType
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : BaseActivity() {
     companion object {
         private const val DetailPageName = "DetailPageName"
         private const val DetailFragmentClass = "DetailFragmentClass"
@@ -22,6 +23,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     lateinit var binding: ActivityDetailBinding
+    override var animationType: ActivityAnimType = ActivityAnimType.SLIDE
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
