@@ -194,6 +194,7 @@ abstract class TextField @JvmOverloads constructor(
     private fun setCurrentState() {
         setTextColor()
         setBackground()
+        setAnimation()
         changeEditTextEnabled()
         if (isDisabled) {
             setText("", TextView.BufferType.EDITABLE)
@@ -216,6 +217,16 @@ abstract class TextField @JvmOverloads constructor(
             }
         }
     }
+
+    private fun setAnimation() {
+        when {
+            isNegative -> {
+                negativeMotion()
+            }
+        }
+    }
+
+    abstract fun negativeMotion()
 
     abstract fun changeEditTextEnabled()
 

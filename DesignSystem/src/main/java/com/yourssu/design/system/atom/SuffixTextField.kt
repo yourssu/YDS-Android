@@ -13,6 +13,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutSuffixTextFieldBinding
+import com.yourssu.design.system.rule.Vibration
+import com.yourssu.design.system.rule.vibe
+import com.yourssu.design.undercarriage.animation.startAnim
 import com.yourssu.design.undercarriage.base.TextField
 
 class SuffixTextField @JvmOverloads constructor(
@@ -158,6 +161,11 @@ class SuffixTextField @JvmOverloads constructor(
 
     override fun removeTextChangedListener(watcher: TextWatcher) {
         binding.edittext.removeTextChangedListener(watcher)
+    }
+
+    override fun negativeMotion() {
+        binding.root.startAnim(R.anim.textfield_error_motion)
+        context.vibe(Vibration.WARNING)
     }
 
     override fun changeEditTextEnabled() {
