@@ -21,10 +21,6 @@ class Text: AppCompatTextView {
         initView(context, attrs)
     }
 
-    init {
-        this.setTextColor(context.getColor(R.color.textPrimary))
-    }
-
     @Typography
     var typo: Int = Typo.Title1
         set(@Typography typo) {
