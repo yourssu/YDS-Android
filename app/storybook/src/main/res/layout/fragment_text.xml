@@ -21,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/borderThick">
+            android:onClick="@{() -> viewModel.changeBackground()}"
+            android:background="@{viewModel.componentBackgroundColor}">
 
             <com.yourssu.design.system.atom.Text
                 android:layout_width="wrap_content"
@@ -45,7 +46,8 @@
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
                     android:text="Text"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
@@ -60,7 +62,8 @@
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
                     android:text="Typo"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>

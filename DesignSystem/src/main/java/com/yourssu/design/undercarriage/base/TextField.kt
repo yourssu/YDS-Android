@@ -125,6 +125,7 @@ abstract class TextField @JvmOverloads constructor(
             setCurrentState()
         }
 
+    private var preIsNegative = false // 이전 상태 저장용
     var isNegative: Boolean = false
         set(value) {
             field = value
@@ -199,6 +200,7 @@ abstract class TextField @JvmOverloads constructor(
         if (isDisabled) {
             setText("", TextView.BufferType.EDITABLE)
         }
+        savePreState()
     }
 
     private fun setTextColor() {
@@ -220,10 +222,22 @@ abstract class TextField @JvmOverloads constructor(
 
     private fun setAnimation() {
         when {
+            isDisabled -> {
+
+            }
             isNegative -> {
-                negativeMotion()
+                if (!preIsNegative) {
+                    negativeMotion()
+                }
+            }
+            isPositive -> {
+
             }
         }
+    }
+
+    private fun savePreState() {
+        preIsNegative = isNegative
     }
 
     abstract fun negativeMotion()

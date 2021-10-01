@@ -10,6 +10,7 @@ import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.storybook.DetailActivity.Companion.navigateToDetail
 import com.yourssu.storybook.atom.BadgeFragment
+import com.yourssu.storybook.atom.BoxButtonFragment
 import com.yourssu.storybook.atom.ProfileImageViewFragment
 import com.yourssu.storybook.atom.TextFragment
 import com.yourssu.storybook.transform.ActivityAnimType
@@ -19,13 +20,13 @@ class MainActivity : BaseActivity() {
     /** 추가시 여기에만 선언하면 됨 */
     private val foundationList = listOf<Pair<String, Class<*>>>(
         "SemanticColor" to Fragment::class.java,
-        "Typography" to Fragment::class.java
+        "Vibration" to Fragment::class.java
     )
     private val atomList = listOf<Pair<String, Class<*>>> (
         "Text" to TextFragment::class.java,
         "ProfileImageView" to ProfileImageViewFragment::class.java,
         "Badge" to BadgeFragment::class.java,
-        "BoxButton" to Fragment::class.java,
+        "BoxButton" to BoxButtonFragment::class.java,
         "Divider" to Fragment::class.java,
         "IconView" to Fragment::class.java,
         "PlainButton" to Fragment::class.java,

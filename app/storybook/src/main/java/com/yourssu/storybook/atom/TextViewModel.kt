@@ -1,11 +1,11 @@
 package com.yourssu.storybook.atom
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.undercarriage.base.TextField
+import com.yourssu.storybook.BaseViewModel
 
-class TextViewModel: ViewModel() {
+class TextViewModel: BaseViewModel() {
     val textString = MutableLiveData<String>("Text")
 
     val typo: MutableLiveData<Int> = MutableLiveData(Typo.Title1)

@@ -394,5 +394,11 @@ class BoxButton : LinearLayout {
         fun setText(boxButton: BoxButton, text: String) {
             boxButton.text = text
         }
+
+        @JvmStatic
+        @BindingAdapter("android:text")
+        fun setText2(boxButton: BoxButton, text: String) {
+            boxButton.text = text
+        }
     }
 }

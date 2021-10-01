@@ -1,13 +1,13 @@
 package com.yourssu.storybook.atom
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.yourssu.design.system.atom.Toggle
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.ItemColor
 import com.yourssu.design.undercarriage.base.TextField
+import com.yourssu.storybook.BaseViewModel
 
-class BadgeViewModel: ViewModel() {
+class BadgeViewModel: BaseViewModel() {
     val textString = MutableLiveData<String>("badge")
     val color: MutableLiveData<ItemColor> = MutableLiveData(ItemColor.Mono)
     val colorText: MutableLiveData<String> = MutableLiveData("Mono")

@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.yourssu.design.system.atom.Badge" />
+        <import type="com.yourssu.design.system.foundation.Icon" />
         <import type="com.yourssu.design.system.atom.BoxButton" />
         <variable
             name="viewModel"
-            type="com.yourssu.storybook.atom.BadgeViewModel" />
+            type="com.yourssu.storybook.atom.BoxButtonViewModel" />
     </data>
 
     <LinearLayout
@@ -24,13 +24,16 @@
             android:onClick="@{() -> viewModel.changeBackground()}"
             android:background="@{viewModel.componentBackgroundColor}">
 
-            <com.yourssu.design.system.atom.Badge
+            <com.yourssu.design.system.atom.BoxButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@{viewModel.textString}"
-                app:color="@{viewModel.color}"
-                app:icon="@{viewModel.iconVisibility ? viewModel.icon : null}"
+                app:rounding="@{viewModel.rounding}"
+                app:isWarned="@{viewModel.isWarned}"
+                app:isDisabled="@{viewModel.isDisable}"
+                app:size="@{viewModel.size}"
+                app:text="@{viewModel.textString}"
+                app:type="@{viewModel.type}"
                  />
         </FrameLayout>
 
@@ -58,26 +61,64 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="badge"
+                    android:text="boxButton"
                     android:onTextChanged="@{viewModel.onTextChangedListener}"/>
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
-                    android:text="Color"
+                    android:text="Rounding"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
 
                 <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/colorSelect"
+                    android:id="@+id/roundingSelect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     app:rounding="@{8}"
                     app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.colorText}"
+                    app:text="@{viewModel.roundingText}"
+                    app:type="@{BoxButton.LINE}" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="Size"
+                    android:textColor="@color/textPrimary"
+                    app:typo="subtitle2"/>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/sizeSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.sizeText}"
+                    app:type="@{BoxButton.LINE}" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="Type"
+                    android:textColor="@color/textPrimary"
+                    app:typo="subtitle2"/>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/typeSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.typeText}"
                     app:type="@{BoxButton.LINE}" />
 
                 <LinearLayout
@@ -86,29 +127,34 @@
                     android:gravity="center_vertical">
                     <com.yourssu.design.system.atom.Text
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Icon"
+                        android:text="isWarn"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                     <com.yourssu.design.system.atom.Toggle
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.iconVisibility}"
-                        app:selectedListener="@{viewModel.iconSelectListener}"/>
+                        app:isSelected="@{viewModel.isWarned}"
+                        app:selectedListener="@{viewModel.warnSelectListener}"/>
                 </LinearLayout>
-
-                <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/iconSelect"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:rounding="@{8}"
-                    app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.iconText}"
-                    app:type="@{BoxButton.LINE}" />
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="isDisable"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.isDisable}"
+                        app:selectedListener="@{viewModel.disableSelectListener}"/>
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

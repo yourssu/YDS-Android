@@ -148,6 +148,10 @@ class SimpleTextField @JvmOverloads constructor(
     }
 
     override fun negativeMotion() {
+        if (!isNegative) {
+            isNegative = true
+            return
+        }
         binding.root.startAnim(R.anim.textfield_error_motion)
         context.vibe(Vibration.WARNING)
     }
