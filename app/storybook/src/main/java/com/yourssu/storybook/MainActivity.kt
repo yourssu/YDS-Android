@@ -23,7 +23,6 @@ class MainActivity : BaseActivity() {
     )
     private val atomList = listOf<Pair<String, Class<*>>> (
         "Text" to TextFragment::class.java,
-        "Toggle" to Fragment::class.java,
         "ProfileImageView" to ProfileImageViewFragment::class.java,
         "Badge" to BadgeFragment::class.java,
         "BoxButton" to Fragment::class.java,
