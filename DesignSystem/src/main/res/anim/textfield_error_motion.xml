@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@anim/cubic_bezier_interpolator">
+    <translate
+        android:fromXDelta="0"
+        android:toXDelta="-3%"
+        android:duration="25"
+        />
+    <translate
+        android:fromXDelta="-3%"
+        android:toXDelta="0"
+        android:duration="25"
+        android:startOffset="25"
+        />
+</set>
