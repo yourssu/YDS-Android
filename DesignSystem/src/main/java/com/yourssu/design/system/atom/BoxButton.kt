@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -49,74 +50,50 @@ class BoxButton : LinearLayout {
         set(type) {
             field = type
             setBoxButtonInfo()
-            requestLayout()
         }
 
-    var size: Int = 0
+    var size: Int = ExtraLarge
         set(size) {
             field = size
             setBoxButtonInfo()
-            requestLayout()
         }
 
     var rounding: Int = 4
         set(rounding) {
             field = rounding
             setBoxButtonInfo()
-            requestLayout()
         }
 
     var isDisabled: Boolean = false
         set(isDisabled) {
             field = isDisabled
             setBoxButtonInfo()
-            requestLayout()
         }
 
     var isWarned: Boolean = false
         set(isWarned) {
             field = isWarned
             setBoxButtonInfo()
-            requestLayout()
         }
 
     var text: String = ""
         set(text) {
             field = text
             setBoxButtonInfo()
-            requestLayout()
         }
 
     @Icon.Iconography
-    var leftIcon: Int = 0
+    var leftIcon: Int? = null
         set(leftIcon) {
             field = leftIcon
-            hasLeftIcon = true
             setBoxButtonInfo()
-            requestLayout()
         }
 
     @Icon.Iconography
-    var rightIcon: Int = 0
+    var rightIcon: Int? = null
         set(rightIcon) {
             field = rightIcon
-            hasRightIcon = true
             setBoxButtonInfo()
-            requestLayout()
-        }
-
-    private var hasLeftIcon: Boolean = false
-        set(hasLeftIcon) {
-            field = hasLeftIcon
-            setBoxButtonInfo()
-            requestLayout()
-        }
-
-    private var hasRightIcon: Boolean = false
-        set(hasRightIcon) {
-            field = hasRightIcon
-            setBoxButtonInfo()
-            requestLayout()
         }
 
     @ColorRes
@@ -129,6 +106,8 @@ class BoxButton : LinearLayout {
         setTheme()
         setIcon()
         setText()
+        requestLayout()
+        invalidate()
     }
 
     private fun setTheme() {
@@ -145,6 +124,7 @@ class BoxButton : LinearLayout {
                 setLineTheme()
             }
         }
+        setColorAndStroke()
     }
 
     private fun setFilledTheme() {
@@ -155,14 +135,13 @@ class BoxButton : LinearLayout {
             }
             isWarned -> {
                 itemColor = R.color.buttonReversed
-                bgColor = R.color.buttonWarned
+                bgColor = if (isPressed) R.color.buttonWarnedPressed else R.color.buttonWarned
             }
             else -> {
                 itemColor = R.color.buttonReversed
-                bgColor = R.color.buttonPoint
+                bgColor = if (isPressed) R.color.buttonPointPressed else R.color.buttonPoint
             }
         }
-        setColorAndStroke()
     }
 
     private fun setTintedTheme() {
@@ -172,35 +151,38 @@ class BoxButton : LinearLayout {
                 bgColor = R.color.buttonDisabledBG
             }
             isWarned -> {
-                itemColor = R.color.buttonWarned
+                itemColor = if (isPressed) R.color.buttonWarnedPressed else R.color.buttonWarned
                 bgColor = R.color.buttonWarnedBG
             }
             else -> {
-                itemColor = R.color.buttonPoint
+                itemColor = if (isPressed) R.color.buttonPointPressed else R.color.buttonPoint
                 bgColor = R.color.buttonPointBG
             }
         }
-        setColorAndStroke()
     }
 
     private fun setLineTheme() {
-        when {
+        itemColor = when {
             isDisabled -> {
-                itemColor = R.color.buttonDisabled
+                R.color.buttonDisabled
             }
             isWarned -> {
-                itemColor = R.color.buttonWarned
+                if (isPressed) R.color.buttonWarnedPressed else R.color.buttonWarned
             }
             else -> {
-                itemColor = R.color.buttonPoint
+                if (isPressed) R.color.buttonPointPressed else R.color.buttonPoint
             }
         }
-        setColorAndStroke()
     }
 
     private fun setColorAndStroke() {
-        val drawable =
-            ContextCompat.getDrawable(context, R.drawable.box_button_background) as GradientDrawable
+        val drawable = if (rounding == 8) {
+            ContextCompat.getDrawable(context,
+                R.drawable.box_button_background_8) as GradientDrawable
+        } else {
+            ContextCompat.getDrawable(context,
+                R.drawable.box_button_background_4) as GradientDrawable
+        }
 
         binding.text.setTextColor(ContextCompat.getColor(context, itemColor))
         binding.leftIcon.setColorFilter(ContextCompat.getColor(context, itemColor))
@@ -211,8 +193,6 @@ class BoxButton : LinearLayout {
                 bgColor
             )
         )
-        drawable.cornerRadius =
-            context.dpToPx(if (rounding == 8 || rounding == 4) rounding.toFloat() else 4F)
         drawable.setStroke(
             context.dpToIntPx(if (type == LINE) 1F else 0F),
             ContextCompat.getColor(context, itemColor)
@@ -274,15 +254,19 @@ class BoxButton : LinearLayout {
 
     private fun setIcon() {
         when {
-            hasLeftIcon -> {
-                binding.leftIcon.setIconResource(leftIcon)
-                binding.leftIcon.visibility = View.VISIBLE
-                binding.rightIcon.visibility = View.GONE
+            (leftIcon != null) -> {
+                leftIcon?.let {
+                    binding.leftIcon.setIconResource(it)
+                    binding.leftIcon.visibility = View.VISIBLE
+                    binding.rightIcon.visibility = View.GONE
+                }
             }
-            hasRightIcon -> {
-                binding.rightIcon.setIconResource(rightIcon)
-                binding.rightIcon.visibility = View.VISIBLE
-                binding.leftIcon.visibility = View.GONE
+            (rightIcon != null) -> {
+                rightIcon?.let {
+                    binding.rightIcon.setIconResource(it)
+                    binding.rightIcon.visibility = View.VISIBLE
+                    binding.leftIcon.visibility = View.GONE
+                }
             }
             else -> {
                 binding.leftIcon.visibility = View.GONE
@@ -299,48 +283,12 @@ class BoxButton : LinearLayout {
         if (event != null) {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    when (bgColor) {
-                        R.color.buttonPoint -> {
-                            bgColor = R.color.buttonPointPressed
-                            setColorAndStroke()
-                        }
-                        R.color.buttonWarned -> {
-                            bgColor = R.color.buttonWarnedPressed
-                            setColorAndStroke()
-                        }
-                    }
-                    when (itemColor) {
-                        R.color.buttonPoint -> {
-                            itemColor = R.color.buttonPointPressed
-                            setColorAndStroke()
-                        }
-                        R.color.buttonWarned -> {
-                            itemColor = R.color.buttonWarnedPressed
-                            setColorAndStroke()
-                        }
-                    }
+                    isPressed = true
+                    setBoxButtonInfo()
                 }
                 MotionEvent.ACTION_UP -> {
-                    when (bgColor) {
-                        R.color.buttonPointPressed -> {
-                            bgColor = R.color.buttonPoint
-                            setColorAndStroke()
-                        }
-                        R.color.buttonWarnedPressed -> {
-                            bgColor = R.color.buttonWarned
-                            setColorAndStroke()
-                        }
-                    }
-                    when (itemColor) {
-                        R.color.buttonPointPressed -> {
-                            itemColor = R.color.buttonPoint
-                            setColorAndStroke()
-                        }
-                        R.color.buttonWarnedPressed -> {
-                            itemColor = R.color.buttonWarned
-                            setColorAndStroke()
-                        }
-                    }
+                    isPressed = false
+                    setBoxButtonInfo()
                     performClick() // 손을 떼는 순간만 인식해야함
                 }
             }
