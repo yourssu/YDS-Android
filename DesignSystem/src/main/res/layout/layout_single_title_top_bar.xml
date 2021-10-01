@@ -25,31 +25,30 @@
             app:typo="title2"
             tools:text="타이틀" />
 
-        <com.yourssu.design.system.atom.PlainButton
+        <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/first_button"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             app:layout_constraintRight_toLeftOf="@id/second_button"
-            app:leftIcon="@{Icon.ic_ground_line}"
-            app:size="@{PlainButton.LARGE}"/>
+            app:icon="@{Icon.ic_ground_line}"
+            />
 
-        <com.yourssu.design.system.atom.PlainButton
+        <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/second_button"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             app:layout_constraintRight_toLeftOf="@id/third_button"
-            app:leftIcon="@{Icon.ic_ground_line}"
-            app:size="@{PlainButton.LARGE}" />
+            app:icon="@{Icon.ic_ground_line}"
+            />
 
-        <com.yourssu.design.system.atom.PlainButton
+        <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/third_button"
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_marginRight="4dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:leftIcon="@{Icon.ic_ground_line}"
-            app:size="@{PlainButton.LARGE}" />
+            app:icon="@{Icon.ic_ground_line}" />
 
 
 
