@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.yourssu.design.system.atom.Checkbox
 import com.yourssu.design.system.component.Toast.Companion.toast
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
@@ -27,7 +28,7 @@ class MainActivity : BaseActivity() {
         "Divider" to DividerFragment::class.java,
         "IconView" to IconViewFragment::class.java,
         "PlainButton" to PlainButtonFragment::class.java,
-        "Checkbox" to Fragment::class.java,
+        "Checkbox" to CheckboxFragment::class.java,
         "SimpleTextField" to Fragment::class.java,
         "SuffixTextField" to Fragment::class.java,
         "PasswordTextField" to Fragment::class.java,
