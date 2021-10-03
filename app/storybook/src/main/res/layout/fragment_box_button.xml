@@ -34,6 +34,8 @@
                 app:size="@{viewModel.size}"
                 app:text="@{viewModel.textString}"
                 app:type="@{viewModel.type}"
+                app:leftIcon="@{viewModel.leftIconVisibility ? viewModel.leftIcon : null}"
+                app:rightIcon="@{viewModel.rightIconVisibility ? viewModel.rightIcon : null}"
                  />
         </FrameLayout>
 
@@ -155,6 +157,64 @@
                         app:isSelected="@{viewModel.isDisable}"
                         app:selectedListener="@{viewModel.disableSelectListener}"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="LeftIcon"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.leftIconVisibility}"
+                        app:selectedListener="@{viewModel.leftIconSelectListener}"/>
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/leftIconSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.leftIconText}"
+                    app:type="@{BoxButton.LINE}" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="RightIcon"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.rightIconVisibility}"
+                        app:selectedListener="@{viewModel.rightIconSelectListener}"/>
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/rightIconSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.rightIconText}"
+                    app:type="@{BoxButton.LINE}" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

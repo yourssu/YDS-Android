@@ -9,10 +9,7 @@ import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.storybook.DetailActivity.Companion.navigateToDetail
-import com.yourssu.storybook.atom.BadgeFragment
-import com.yourssu.storybook.atom.BoxButtonFragment
-import com.yourssu.storybook.atom.ProfileImageViewFragment
-import com.yourssu.storybook.atom.TextFragment
+import com.yourssu.storybook.atom.*
 import com.yourssu.storybook.transform.ActivityAnimType
 
 class MainActivity : BaseActivity() {
@@ -27,7 +24,7 @@ class MainActivity : BaseActivity() {
         "ProfileImageView" to ProfileImageViewFragment::class.java,
         "Badge" to BadgeFragment::class.java,
         "BoxButton" to BoxButtonFragment::class.java,
-        "Divider" to Fragment::class.java,
+        "Divider" to DividerFragment::class.java,
         "IconView" to Fragment::class.java,
         "PlainButton" to Fragment::class.java,
         "Checkbox" to Fragment::class.java,

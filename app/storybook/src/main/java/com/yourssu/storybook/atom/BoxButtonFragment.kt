@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.yourssu.design.system.atom.BoxButton
 import com.yourssu.design.system.atom.Picker
+import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
@@ -41,6 +42,7 @@ class BoxButtonFragment : Fragment() {
     private val roundingList = listOf("4", "8")
     private val sizeList = listOf("ExtraLarge", "Large", "Medium", "Small")
     private val typeList = listOf("FILLED", "TINTED", "LINE")
+    private val iconList = Icon.getList().map { Icon.getName(it) }
 
     private val onRoundingValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
@@ -88,6 +90,30 @@ class BoxButtonFragment : Fragment() {
         }
     }
 
+    private val onLeftIconValueChangeListener = object : Picker.OnValueChangeListener {
+        override fun onValueChange(
+            firstValue: String,
+            secondValue: String,
+            thirdValue: String,
+            totalValue: String,
+        ) {
+            viewModel.leftIconText.value = firstValue
+            viewModel.leftIcon.value = Icon.getValueByName(firstValue)
+        }
+    }
+
+    private val onRightIconValueChangeListener = object : Picker.OnValueChangeListener {
+        override fun onValueChange(
+            firstValue: String,
+            secondValue: String,
+            thirdValue: String,
+            totalValue: String,
+        ) {
+            viewModel.rightIconText.value = firstValue
+            viewModel.rightIcon.value = Icon.getValueByName(firstValue)
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     private fun initView() {
         binding.roundingSelect.setOnClickListener {
@@ -132,6 +158,36 @@ class BoxButtonFragment : Fragment() {
                     setFirstRow(typeList)
                     setFirstRowPosition(typeList.indexOf(viewModel.typeText.value))
                     this.onValueChangeListener = onTypeValueChangeListener
+                }
+            }
+        }
+        binding.leftIconSelect.setOnClickListener {
+            bottomSheet {
+                text {
+                    text = "leftIcon"
+                    typo = Typo.SubTitle2
+
+                    setLayout(leftMarginPx = context.dpToIntPx(16f))
+                }
+                picker {
+                    setFirstRow(iconList)
+                    setFirstRowPosition(iconList.indexOf(viewModel.leftIconText.value))
+                    this.onValueChangeListener = onLeftIconValueChangeListener
+                }
+            }
+        }
+        binding.rightIconSelect.setOnClickListener {
+            bottomSheet {
+                text {
+                    text = "rightIcon"
+                    typo = Typo.SubTitle2
+
+                    setLayout(leftMarginPx = context.dpToIntPx(16f))
+                }
+                picker {
+                    setFirstRow(iconList)
+                    setFirstRowPosition(iconList.indexOf(viewModel.rightIconText.value))
+                    this.onValueChangeListener = onRightIconValueChangeListener
                 }
             }
         }

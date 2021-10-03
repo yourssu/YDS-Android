@@ -7,22 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.yourssu.design.system.atom.Divider
 import com.yourssu.design.system.atom.Picker
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.ItemColor
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
-import com.yourssu.storybook.databinding.FragmentBadgeBinding
+import com.yourssu.storybook.databinding.FragmentDividerBinding
 
-class BadgeFragment : Fragment() {
+class DividerFragment : Fragment() {
 
-    lateinit var binding: FragmentBadgeBinding
-    private val viewModel: BadgeViewModel by viewModels()
+    lateinit var binding: FragmentDividerBinding
+    private val viewModel: DividerViewModel by viewModels()
 
     companion object {
         @JvmStatic
-        fun newInstance() = BadgeFragment()
+        fun newInstance() = DividerFragment()
     }
 
     override fun onCreateView(
@@ -30,7 +31,7 @@ class BadgeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentBadgeBinding.inflate(inflater, container, false)
+        binding = FragmentDividerBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -39,61 +40,69 @@ class BadgeFragment : Fragment() {
         return binding.root
     }
 
-    private val colorList = ItemColor.values().map { it.toString() }
-    private val iconList = Icon.getList().map { Icon.getName(it) }
+    private val directionList = listOf("HORIZONTAL", "VERTICAL")
+    private val thicknessList = listOf("THIN", "THICK")
 
-    private val onColorValueChangeListener = object : Picker.OnValueChangeListener {
+    private val onDirectionValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
             secondValue: String,
             thirdValue: String,
             totalValue: String,
         ) {
-            viewModel.colorText.value = firstValue
-            viewModel.color.value = ItemColor.valueOf(firstValue)
+            viewModel.directionText.value = firstValue
+            viewModel.direction.value = when (firstValue) {
+                "HORIZONTAL" -> Divider.HORIZONTAL
+                "VERTICAL" -> Divider.VERTICAL
+                else -> Divider.HORIZONTAL
+            }
         }
     }
-    private val onIconValueChangeListener = object : Picker.OnValueChangeListener {
+    private val onThicknessValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
             secondValue: String,
             thirdValue: String,
             totalValue: String,
         ) {
-            viewModel.iconText.value = firstValue
-            viewModel.icon.value = Icon.getValueByName(firstValue)
+            viewModel.thicknessText.value = firstValue
+            viewModel.thickness.value =  when (firstValue) {
+                "THIN" -> Divider.THIN
+                "THICK" -> Divider.THICK
+                else -> Divider.THIN
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun initView() {
-        binding.colorSelect.setOnClickListener {
+        binding.directionSelect.setOnClickListener {
             bottomSheet {
                 text {
-                    text = "color"
+                    text = "direction"
                     typo = Typo.SubTitle2
 
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
                 }
                 picker {
-                    setFirstRow(colorList)
-                    setFirstRowPosition(colorList.indexOf(viewModel.colorText.value))
-                    this.onValueChangeListener = onColorValueChangeListener
+                    setFirstRow(directionList)
+                    setFirstRowPosition(directionList.indexOf(viewModel.directionText.value))
+                    this.onValueChangeListener = onDirectionValueChangeListener
                 }
             }
         }
-        binding.iconSelect.setOnClickListener {
+        binding.thicknessSelect.setOnClickListener {
             bottomSheet {
                 text {
-                    text = "icon"
+                    text = "thickness"
                     typo = Typo.SubTitle2
 
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
                 }
                 picker {
-                    setFirstRow(iconList)
-                    setFirstRowPosition(iconList.indexOf(viewModel.iconText.value))
-                    this.onValueChangeListener = onIconValueChangeListener
+                    setFirstRow(thicknessList)
+                    setFirstRowPosition(thicknessList.indexOf(viewModel.thicknessText.value))
+                    this.onValueChangeListener = onThicknessValueChangeListener
                 }
             }
         }
