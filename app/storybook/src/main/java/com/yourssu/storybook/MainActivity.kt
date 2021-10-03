@@ -29,6 +29,7 @@ class MainActivity : BaseActivity() {
         "IconView" to IconViewFragment::class.java,
         "PlainButton" to PlainButtonFragment::class.java,
         "Checkbox" to CheckboxFragment::class.java,
+        "Toggle" to ToggleFragment::class.java,
         "SimpleTextField" to Fragment::class.java,
         "SuffixTextField" to Fragment::class.java,
         "PasswordTextField" to Fragment::class.java,
