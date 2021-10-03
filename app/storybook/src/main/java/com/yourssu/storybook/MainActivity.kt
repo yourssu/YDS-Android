@@ -25,7 +25,7 @@ class MainActivity : BaseActivity() {
         "Badge" to BadgeFragment::class.java,
         "BoxButton" to BoxButtonFragment::class.java,
         "Divider" to DividerFragment::class.java,
-        "IconView" to Fragment::class.java,
+        "IconView" to IconViewFragment::class.java,
         "PlainButton" to Fragment::class.java,
         "Checkbox" to Fragment::class.java,
         "SimpleTextField" to Fragment::class.java,

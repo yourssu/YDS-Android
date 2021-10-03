@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.yourssu.design.system.atom.BoxButton" />
+        <variable
+            name="viewModel"
+            type="com.yourssu.storybook.atom.IconViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".atom.ProfileImageViewFragment">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="@{() -> viewModel.changeBackground()}"
+            android:background="@{viewModel.componentBackgroundColor}">
+
+            <com.yourssu.design.system.atom.IconView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:icon="@{viewModel.icon}"
+                app:size="@{viewModel.size}"
+                 />
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="vertical">
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="Icon"
+                    android:textColor="@color/textPrimary"
+                    app:typo="subtitle2"/>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/iconSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.iconText}"
+                    app:type="@{BoxButton.LINE}" />
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="Size"
+                    android:textColor="@color/textPrimary"
+                    app:typo="subtitle2"/>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/sizeSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.sizeText}"
+                    app:type="@{BoxButton.LINE}" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
