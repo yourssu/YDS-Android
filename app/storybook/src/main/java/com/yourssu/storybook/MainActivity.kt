@@ -11,6 +11,8 @@ import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.storybook.DetailActivity.Companion.navigateToDetail
 import com.yourssu.storybook.atom.*
+import com.yourssu.storybook.component.BottomBarFragment
+import com.yourssu.storybook.component.ToastFragment
 import com.yourssu.storybook.transform.ActivityAnimType
 
 class MainActivity : BaseActivity() {
@@ -36,11 +38,11 @@ class MainActivity : BaseActivity() {
         "SearchTextField" to Fragment::class.java
     )
     private val componentList = listOf<Pair<String, Class<*>>>(
-        "Toast" to Fragment::class.java,
+        "Toast" to ToastFragment::class.java,
         "TopBar" to Fragment::class.java,
         "SingleTitleTopBar" to Fragment::class.java,
         "DoubleTitleTopBar" to Fragment::class.java,
-        "BottomBar" to Fragment::class.java
+        "BottomBar" to BottomBarFragment::class.java
     )
     /** 추가시 여기에만 선언하면 됨 */
 
