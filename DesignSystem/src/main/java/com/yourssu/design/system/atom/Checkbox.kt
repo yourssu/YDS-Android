@@ -7,10 +7,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
-=======
-import androidx.core.content.withStyledAttributes
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutCheckBoxBinding
@@ -30,13 +26,8 @@ class Checkbox @JvmOverloads constructor(
         LayoutCheckBoxBinding.inflate(LayoutInflater.from(context), this, true)
 
     var size: Int = SMALL
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
         set(size) {
             field = size
-=======
-        set(value) {
-            field = value
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
             setSizeState()
         }
 
@@ -52,19 +43,6 @@ class Checkbox @JvmOverloads constructor(
             setState()
         }
 
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
-=======
-
-    init {
-        context.withStyledAttributes(attrs, R.styleable.Checkbox) {
-            isDisabled = getBoolean(R.styleable.Checkbox_isDisabled, false)
-            isSelected = getBoolean(R.styleable.Checkbox_isSelected, false)
-            size = getInt(R.styleable.Checkbox_size, SMALL)
-            label = getString(R.styleable.Checkbox_label).toString()
-        }
-        setState()
-    }
-
     interface SelectedListener {
         fun onSelected(boolean: Boolean)
     }
@@ -75,7 +53,6 @@ class Checkbox @JvmOverloads constructor(
         selectedListener = listener
     }
 
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
     override fun setSelected(selected: Boolean) {
         super.setSelected(selected)
         selectedListener?.onSelected(selected)
@@ -111,7 +88,6 @@ class Checkbox @JvmOverloads constructor(
 
     private fun setSizeState() {
         when (size) {
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
             SMALL -> {
                 if (isDisabled) {
                     changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
@@ -119,9 +95,6 @@ class Checkbox @JvmOverloads constructor(
                     changeTotalSize(Typo.Button3, MARGIN_SMALL, IconView.ExtraSmall)
                 }
             }
-=======
-            SMALL -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
             MEDIUM -> changeTotalSize(Typo.Button3, MARGIN_MEDIUM, IconView.Small)
             LARGE -> changeTotalSize(Typo.Button3, MARGIN_LARGE, IconView.Medium)
             else -> changeTotalSize(Typo.Button4, MARGIN_SMALL, IconView.ExtraSmall)
@@ -133,7 +106,6 @@ class Checkbox @JvmOverloads constructor(
 
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
                 if (!isDisabled) {
                     touchPoint.set(event.x, event.y)
                 }
@@ -144,12 +116,6 @@ class Checkbox @JvmOverloads constructor(
                 ) {
                     performClick()
                 }
-=======
-
-            }
-            MotionEvent.ACTION_UP -> {
-                performClick()
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
             }
         }
 
@@ -173,62 +139,38 @@ class Checkbox @JvmOverloads constructor(
         const val SMALL = 1
         const val MEDIUM = 2
         const val LARGE = 3
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
-=======
-
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
         private const val MARGIN_SMALL = 4f
         private const val MARGIN_MEDIUM = 8f
         private const val MARGIN_LARGE = 8f
 
         @JvmStatic
         @BindingAdapter("isDisabled")
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
-        fun setDisabled(checkBox: CheckBox, isDisabled: Boolean) {
+        fun setDisabled(checkBox: Checkbox, isDisabled: Boolean) {
             checkBox.isDisabled = isDisabled
-=======
-        fun setIsDisabled(checkbox: Checkbox, isDisabled: Boolean) {
-            checkbox.isDisabled = isDisabled
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
         }
 
         @JvmStatic
         @BindingAdapter("isSelected")
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
-        fun setSelected(checkBox: CheckBox, isSelected: Boolean) {
+        fun setSelected(checkBox: Checkbox, isSelected: Boolean) {
             checkBox.isSelected = isSelected
-=======
-        fun setIsSelected(checkbox: Checkbox, isSelected: Boolean) {
-            checkbox.isSelected = isSelected
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
         }
 
         @JvmStatic
         @BindingAdapter("label")
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
-        fun setText(checkBox: CheckBox, label: String) {
+        fun setText(checkBox: Checkbox, label: String) {
             checkBox.label = label
-=======
-        fun setLabel(checkbox: Checkbox, label: String) {
-            checkbox.label = label
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
         }
 
         @JvmStatic
         @BindingAdapter("size")
-<<<<<<< HEAD:DesignSystem/src/main/java/com/yourssu/design/system/atom/CheckBox.kt
-        fun setSize(checkBox: CheckBox, size: Int) {
+        fun setSize(checkBox: Checkbox, size: Int) {
             checkBox.size = size
-=======
-        fun setSize(checkbox: Checkbox, size: Int) {
-            checkbox.size = size
         }
 
         @JvmStatic
         @BindingAdapter("selectedListener")
         fun setSelectedListener(checkbox: Checkbox, listener: SelectedListener) {
             checkbox.setOnSelectedListener(listener)
->>>>>>> [StoryBook] Checkbox Page 구현 및 일부 수정:DesignSystem/src/main/java/com/yourssu/design/system/atom/Checkbox.kt
         }
     }
 
