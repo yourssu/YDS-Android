@@ -26,7 +26,7 @@ class MainActivity : BaseActivity() {
         "BoxButton" to BoxButtonFragment::class.java,
         "Divider" to DividerFragment::class.java,
         "IconView" to IconViewFragment::class.java,
-        "PlainButton" to Fragment::class.java,
+        "PlainButton" to PlainButtonFragment::class.java,
         "Checkbox" to Fragment::class.java,
         "SimpleTextField" to Fragment::class.java,
         "SuffixTextField" to Fragment::class.java,
