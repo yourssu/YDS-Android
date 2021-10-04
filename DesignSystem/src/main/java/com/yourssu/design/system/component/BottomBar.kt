@@ -1,4 +1,4 @@
-package com.yourssu.design.system.atom
+package com.yourssu.design.system.component
 
 import android.content.Context
 import android.util.AttributeSet

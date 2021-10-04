@@ -1,11 +1,11 @@
 package com.yourssu.storybook.atom
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.yourssu.design.system.atom.ProfileImageView
+import com.yourssu.storybook.BaseViewModel
 import com.yourssu.storybook.R
 
-class ProfileImageViewModel: ViewModel() {
+class ProfileImageViewModel: BaseViewModel() {
     val image: MutableLiveData<Int> = MutableLiveData(R.drawable.bunny)
     val imageText: MutableLiveData<String> = MutableLiveData("bunny")
     val size: MutableLiveData<Int> = MutableLiveData(ProfileImageView.Small)

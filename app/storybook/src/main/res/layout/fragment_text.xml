@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.yourssu.design.system.atom.ProfileImageView" />
+        <import type="com.yourssu.design.system.atom.Text" />
         <import type="com.yourssu.design.system.atom.BoxButton" />
         <variable
             name="viewModel"
-            type="com.yourssu.storybook.atom.ProfileImageViewModel" />
+            type="com.yourssu.storybook.atom.TextViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -23,12 +24,13 @@
             android:onClick="@{() -> viewModel.changeBackground()}"
             android:background="@{viewModel.componentBackgroundColor}">
 
-            <com.yourssu.design.system.atom.ProfileImageView
+            <com.yourssu.design.system.atom.Text
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@{viewModel.image}"
-                app:size="@{viewModel.size}"/>
+                android:text="@{viewModel.textString}"
+                app:typo="@{viewModel.typo}"
+                 />
         </FrameLayout>
 
         <ScrollView
@@ -46,38 +48,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
-                    android:text="Image"
+                    android:text="Text"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
 
-                <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/imageSelect"
+                <com.yourssu.design.system.atom.SimpleTextField
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    app:rounding="@{8}"
-                    app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.imageText}"
-                    app:type="@{BoxButton.LINE}" />
+                    android:text="textField"
+                    android:onTextChanged="@{viewModel.onTextChangedListener}"/>
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
-                    android:text="Size"
+                    android:text="Typo"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
 
                 <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/sizeSelect"
+                    android:id="@+id/typoSelect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     app:rounding="@{8}"
                     app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.sizeText}"
+                    app:text="@{viewModel.typoText}"
                     app:type="@{BoxButton.LINE}" />
             </LinearLayout>
         </ScrollView>

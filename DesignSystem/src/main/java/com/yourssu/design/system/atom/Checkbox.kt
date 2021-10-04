@@ -5,7 +5,6 @@ import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -13,12 +12,11 @@ import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutCheckBoxBinding
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.Typo
-import com.yourssu.design.system.language.ComponentGroup
 import com.yourssu.design.undercarriage.size.dpToPx
 import kotlin.math.abs
 
 
-class CheckBox @JvmOverloads constructor(
+class Checkbox @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -45,8 +43,19 @@ class CheckBox @JvmOverloads constructor(
             setState()
         }
 
+    interface SelectedListener {
+        fun onSelected(boolean: Boolean)
+    }
+
+    private var selectedListener: SelectedListener? = null
+
+    fun setOnSelectedListener(listener: SelectedListener) {
+        selectedListener = listener
+    }
+
     override fun setSelected(selected: Boolean) {
         super.setSelected(selected)
+        selectedListener?.onSelected(selected)
         setState()
     }
 
@@ -136,26 +145,32 @@ class CheckBox @JvmOverloads constructor(
 
         @JvmStatic
         @BindingAdapter("isDisabled")
-        fun setDisabled(checkBox: CheckBox, isDisabled: Boolean) {
+        fun setDisabled(checkBox: Checkbox, isDisabled: Boolean) {
             checkBox.isDisabled = isDisabled
         }
 
         @JvmStatic
         @BindingAdapter("isSelected")
-        fun setSelected(checkBox: CheckBox, isSelected: Boolean) {
+        fun setSelected(checkBox: Checkbox, isSelected: Boolean) {
             checkBox.isSelected = isSelected
         }
 
         @JvmStatic
         @BindingAdapter("label")
-        fun setText(checkBox: CheckBox, label: String) {
+        fun setText(checkBox: Checkbox, label: String) {
             checkBox.label = label
         }
 
         @JvmStatic
         @BindingAdapter("size")
-        fun setSize(checkBox: CheckBox, size: Int) {
+        fun setSize(checkBox: Checkbox, size: Int) {
             checkBox.size = size
+        }
+
+        @JvmStatic
+        @BindingAdapter("selectedListener")
+        fun setSelectedListener(checkbox: Checkbox, listener: SelectedListener) {
+            checkbox.setOnSelectedListener(listener)
         }
     }
 

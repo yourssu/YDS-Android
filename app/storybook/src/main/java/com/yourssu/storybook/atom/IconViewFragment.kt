@@ -7,21 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.yourssu.design.system.atom.IconView
 import com.yourssu.design.system.atom.Picker
-import com.yourssu.design.system.atom.ProfileImageView
+import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
-import com.yourssu.storybook.databinding.FragmentProfileImageViewBinding
+import com.yourssu.storybook.databinding.FragmentIconViewBinding
 
-class ProfileImageViewFragment : Fragment() {
+class IconViewFragment : Fragment() {
 
-    lateinit var binding: FragmentProfileImageViewBinding
-    private val viewModel: ProfileImageViewModel by viewModels()
+    lateinit var binding: FragmentIconViewBinding
+    private val viewModel: IconViewModel by viewModels()
 
     companion object {
         @JvmStatic
-        fun newInstance() = ProfileImageViewFragment()
+        fun newInstance() = IconViewFragment()
     }
 
     override fun onCreateView(
@@ -29,7 +30,7 @@ class ProfileImageViewFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentProfileImageViewBinding.inflate(inflater, container, false)
+        binding = FragmentIconViewBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -38,25 +39,21 @@ class ProfileImageViewFragment : Fragment() {
         return binding.root
     }
 
-    private val imageList = listOf("bunny", "hox", "oldeng", "wind")
-    private val sizeList = listOf("ExtraSmall", "Small", "Medium", "Large", "ExtraLarge")
+    private val iconList = Icon.getList().map { Icon.getName(it) }
+    private val sizeList = listOf("ExtraSmall", "Small", "Medium", "Large")
 
-    private val onImageValueChangeListener = object : Picker.OnValueChangeListener {
+    private val onIconValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
             secondValue: String,
             thirdValue: String,
             totalValue: String,
         ) {
-            viewModel.imageText.value = firstValue
-            when (firstValue) {
-                imageList[0] -> viewModel.imageButtonClick(0)
-                imageList[1] -> viewModel.imageButtonClick(1)
-                imageList[2] -> viewModel.imageButtonClick(2)
-                imageList[3] -> viewModel.imageButtonClick(3)
-            }
+            viewModel.iconText.value = firstValue
+            viewModel.icon.value = Icon.getValueByName(firstValue)
         }
     }
+
     private val onSizeValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
@@ -65,30 +62,30 @@ class ProfileImageViewFragment : Fragment() {
             totalValue: String,
         ) {
             viewModel.sizeText.value = firstValue
-            when (firstValue) {
-                sizeList[0] -> viewModel.sizeButtonClick(ProfileImageView.ExtraSmall)
-                sizeList[1] -> viewModel.sizeButtonClick(ProfileImageView.Small)
-                sizeList[2] -> viewModel.sizeButtonClick(ProfileImageView.Medium)
-                sizeList[3] -> viewModel.sizeButtonClick(ProfileImageView.Large)
-                sizeList[4] -> viewModel.sizeButtonClick(ProfileImageView.ExtraLarge)
+            viewModel.size.value =  when (firstValue) {
+                "ExtraSmall" -> IconView.ExtraSmall
+                "Small" -> IconView.Small
+                "Medium" -> IconView.Medium
+                "Large" -> IconView.Large
+                else -> IconView.ExtraSmall
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun initView() {
-        binding.imageSelect.setOnClickListener {
+        binding.iconSelect.setOnClickListener {
             bottomSheet {
                 text {
-                    text = "image"
+                    text = "icon"
                     typo = Typo.SubTitle2
 
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
                 }
                 picker {
-                    setFirstRow(imageList)
-                    setFirstRowPosition(imageList.indexOf(viewModel.imageText.value))
-                    this.onValueChangeListener = onImageValueChangeListener
+                    setFirstRow(iconList)
+                    setFirstRowPosition(iconList.indexOf(viewModel.iconText.value))
+                    this.onValueChangeListener = onIconValueChangeListener
                 }
             }
         }
