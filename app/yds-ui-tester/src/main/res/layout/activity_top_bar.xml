@@ -7,11 +7,22 @@
         android:layout_height="match_parent">
 
         <com.yourssu.design.system.component.SingleTitleTopBar
+            android:id="@+id/single_title_top_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@{`타이틀`}" />
+
+        <com.yourssu.design.system.component.DoubleTitleTopBar
+            android:id="@+id/double_title_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:subtitle="@{`타이틀`}"
+            app:title="@{`타이틀`}" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -42,6 +42,7 @@ class DoubleTitleTopBar @JvmOverloads constructor(
             doubleTitleTopBar.title = title
         }
 
+        @JvmStatic
         @BindingAdapter("subtitle")
         fun setSubTitle(doubleTitleTopBar: DoubleTitleTopBar, subtitle: String) {
             doubleTitleTopBar.subtitle = subtitle

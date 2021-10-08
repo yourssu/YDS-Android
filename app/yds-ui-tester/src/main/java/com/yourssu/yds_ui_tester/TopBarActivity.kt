@@ -11,9 +11,6 @@ class TopBarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(
-            this,
-            R.layout.activity_top_bar
-        )
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_top_bar)
     }
 }
