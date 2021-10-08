@@ -81,4 +81,52 @@ object Typo {
         Caption2 -> R.dimen.caption2_line_height
         else -> R.dimen.title1_line_height
     }
+
+    fun getList(): List<Int> {
+        return listOf(
+            Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption1, Caption2
+        )
+    }
+
+    fun getName(@Typography value: Int): String {
+        return when (value) {
+            Title1 -> "Title1"
+            Title2 -> "Title2"
+            Title3 -> "Title3"
+            SubTitle1 -> "SubTitle1"
+            SubTitle2 -> "SubTitle2"
+            SubTitle3 -> "SubTitle3"
+            Body1 -> "Body1"
+            Body2 -> "Body2"
+            Button0 -> "Button0"
+            Button1 -> "Button1"
+            Button2 -> "Button2"
+            Button3 -> "Button3"
+            Button4 -> "Button4"
+            Caption1 -> "Caption1"
+            Caption2 -> "Caption2"
+            else -> "Title1"
+        }
+    }
+
+    fun getValueByName(value: String): Int {
+        return when (value) {
+            "Title1" -> Title1
+            "Title2" -> Title2
+            "Title3" -> Title3
+            "SubTitle1" -> SubTitle1
+            "SubTitle2" -> SubTitle2
+            "SubTitle3" -> SubTitle3
+            "Body1" -> Body1
+            "Body2" -> Body2
+            "Button0" -> Button0
+            "Button1" -> Button1
+            "Button2" -> Button2
+            "Button3" -> Button3
+            "Button4" -> Button4
+            "Caption1" -> Caption1
+            "Caption2" -> Caption2
+            else -> Title1
+        }
+    }
 }

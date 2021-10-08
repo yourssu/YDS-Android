@@ -6,7 +6,7 @@
 
     <data>
 
-        <import type="com.yourssu.design.system.atom.CheckBox" />
+        <import type="com.yourssu.design.system.atom.Checkbox" />
     </data>
 
     <LinearLayout
@@ -23,104 +23,104 @@
             android:orientation="vertical"
             android:rowCount="4">
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:id="@+id/check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{true}"
                 app:isSelected="@{true}"
                 app:label="@{`첫번째`}"
-                app:size="@{CheckBox.SMALL}" />
+                app:size="@{Checkbox.SMALL}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{true}"
                 app:isSelected="@{false}"
                 app:label="@{`첫번째`}"
-                app:size="@{CheckBox.SMALL}" />
+                app:size="@{Checkbox.SMALL}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{false}"
                 app:isSelected="@{true}"
                 app:label="@{`첫번째`}"
-                app:size="@{CheckBox.SMALL}" />
+                app:size="@{Checkbox.SMALL}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{false}"
                 app:isSelected="@{false}"
                 app:label="@{`첫번째`}"
-                app:size="@{CheckBox.SMALL}" />
+                app:size="@{Checkbox.SMALL}" />
 
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{true}"
                 app:isSelected="@{true}"
                 app:label="@{`두번째`}"
-                app:size="@{CheckBox.MEDIUM}" />
+                app:size="@{Checkbox.MEDIUM}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{true}"
                 app:isSelected="@{false}"
                 app:label="@{`두번째`}"
-                app:size="@{CheckBox.MEDIUM}" />
+                app:size="@{Checkbox.MEDIUM}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{false}"
                 app:isSelected="@{true}"
                 app:label="@{`두번째`}"
-                app:size="@{CheckBox.MEDIUM}" />
+                app:size="@{Checkbox.MEDIUM}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{false}"
                 app:isSelected="@{false}"
                 app:label="@{`두번째`}"
-                app:size="@{CheckBox.MEDIUM}" />
+                app:size="@{Checkbox.MEDIUM}" />
 
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{true}"
                 app:isSelected="@{true}"
                 app:label="@{`세번째`}"
-                app:size="@{CheckBox.LARGE}" />
+                app:size="@{Checkbox.LARGE}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{true}"
                 app:isSelected="@{false}"
                 app:label="@{`세번째`}"
-                app:size="@{CheckBox.LARGE}" />
+                app:size="@{Checkbox.LARGE}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{false}"
                 app:isSelected="@{true}"
                 app:label="@{`세번째`}"
-                app:size="@{CheckBox.LARGE}" />
+                app:size="@{Checkbox.LARGE}" />
 
-            <com.yourssu.design.system.atom.CheckBox
+            <com.yourssu.design.system.atom.Checkbox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isDisabled="@{false}"
                 app:isSelected="@{false}"
                 app:label="@{`세번째`}"
-                app:size="@{CheckBox.LARGE}" />
+                app:size="@{Checkbox.LARGE}" />
         </GridLayout>
 
         <LinearLayout

@@ -147,9 +147,9 @@ class PasswordTextField @JvmOverloads constructor(
         binding.edittext.removeTextChangedListener(watcher)
     }
 
-    override fun negativeMotion() {
+    override fun shake() {
         binding.root.startAnim(R.anim.textfield_error_motion)
-        context.vibe(Vibration.WARNING)
+        context.vibe(Vibration.FAILURE)
     }
 
     override fun changeEditTextEnabled() {

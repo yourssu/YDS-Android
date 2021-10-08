@@ -251,4 +251,255 @@ object Icon {
             else -> R.drawable.ic_adbadge_filled
         }
     }
+
+    fun getName(@Iconography value: Int): String {
+        return when (value) {
+            ic_adbadge_filled -> "ic_adbadge_filled"
+            ic_adbadge_line -> "ic_adbadge_line"
+            ic_arrow_down_line -> "ic_arrow_down_line"
+            ic_arrow_left_line -> "ic_arrow_left_line"
+            ic_arrow_right_line -> "ic_arrow_right_line"
+            ic_arrow_up_line -> "ic_arrow_up_line"
+            ic_bell_filled -> "ic_bell_filled"
+            ic_bell_line -> "ic_bell_line"
+            ic_bellmute_line -> "ic_bellmute_line"
+            ic_board_filled -> "ic_board_filled"
+            ic_board_line -> "ic_board_line"
+            ic_book_filled -> "ic_book_filled"
+            ic_book_line -> "ic_book_line"
+            ic_calendar_filled -> "ic_calendar_filled"
+            ic_calendar_line -> "ic_calendar_line"
+            ic_camera_filled -> "ic_camera_filled"
+            ic_camera_line -> "ic_camera_line"
+            ic_cameracircle_line -> "ic_cameracircle_line"
+            ic_check_line -> "ic_check_line"
+            ic_checkcircle_filled -> "ic_checkcircle_filled"
+            ic_checkcircle_line -> "ic_checkcircle_line"
+            ic_clip_line -> "ic_clip_line"
+            ic_comment_filled -> "ic_comment_filled"
+            ic_comment_line -> "ic_comment_line"
+            ic_dotbadge_line -> "ic_dotbadge_line"
+            ic_dots_horizontal_line -> "ic_dots_horizontal_line"
+            ic_dots_vertical_line -> "ic_dots_vertical_line"
+            ic_food_filled -> "ic_food_filled"
+            ic_food_line -> "ic_food_line"
+            ic_foodcalendar_filled -> "ic_foodcalendar_filled"
+            ic_foodcalendar_line -> "ic_foodcalendar_line"
+            ic_ground_filled -> "ic_ground_filled"
+            ic_ground_line -> "ic_ground_line"
+            ic_home_filled -> "ic_home_filled"
+            ic_home_line -> "ic_home_line"
+            ic_list_line -> "ic_list_line"
+            ic_lock_filled -> "ic_lock_filled"
+            ic_lock_line -> "ic_lock_line"
+            ic_new_filled -> "ic_new_filled"
+            ic_new_line -> "ic_new_line"
+            ic_notice_filled -> "ic_notice_filled"
+            ic_notice_line -> "ic_notice_line"
+            ic_pen_filled -> "ic_pen_filled"
+            ic_pen_line -> "ic_pen_line"
+            ic_person_filled -> "ic_person_filled"
+            ic_person_line -> "ic_person_line"
+            ic_personcircle_line -> "ic_personcircle_line"
+            ic_picture_filled -> "ic_picture_filled"
+            ic_picture_line -> "ic_picture_line"
+            ic_pin_filled -> "ic_pin_filled"
+            ic_pin_line -> "ic_pin_line"
+            ic_playcircle_filled -> "ic_playcircle_filled"
+            ic_playcircle_line -> "ic_playcircle_line"
+            ic_plus_line -> "ic_plus_line"
+            ic_rank_filled -> "ic_rank_filled"
+            ic_rank_line -> "ic_rank_line"
+            ic_recomment_line -> "ic_recomment_line"
+            ic_refresh_line -> "ic_refresh_line"
+            ic_savecircle_filled -> "ic_savecircle_filled"
+            ic_savecircle_line -> "ic_savecircle_line"
+            ic_schoolcalendar_filled -> "ic_schoolcalendar_filled"
+            ic_schoolcalendar_line -> "ic_schoolcalendar_line"
+            ic_search_line -> "ic_search_line"
+            ic_sharecircle_filled -> "ic_sharecircle_filled"
+            ic_sharecircle_line -> "ic_sharecircle_line"
+            ic_star_filled -> "ic_star_filled"
+            ic_star_line -> "ic_star_line"
+            ic_thumb_down_filled -> "ic_thumb_down_filled"
+            ic_thumb_down_line -> "ic_thumb_down_line"
+            ic_thumb_up_filled -> "ic_thumb_up_filled"
+            ic_thumb_up_line -> "ic_thumb_up_line"
+            ic_timecalendar_filled -> "ic_timecalendar_filled"
+            ic_timecalendar_line -> "ic_timecalendar_line"
+            ic_trashcan_filled -> "ic_trashcan_filled"
+            ic_trashcan_line -> "ic_trashcan_line"
+            ic_warningcircle_filled -> "ic_warningcircle_filled"
+            ic_warningcircle_line -> "ic_warningcircle_line"
+            ic_x_line -> "ic_x_line"
+            else -> "ic_adbadge_filled"
+        }
+    }
+
+    fun getValueByName(value: String): Int {
+        return when (value) {
+            "ic_adbadge_filled" -> ic_adbadge_filled
+            "ic_adbadge_line" -> ic_adbadge_line
+            "ic_arrow_down_line" -> ic_arrow_down_line
+            "ic_arrow_left_line" -> ic_arrow_left_line
+            "ic_arrow_right_line" -> ic_arrow_right_line
+            "ic_arrow_up_line" -> ic_arrow_up_line
+            "ic_bell_filled" -> ic_bell_filled
+            "ic_bell_line" -> ic_bell_line
+            "ic_bellmute_line" -> ic_bellmute_line
+            "ic_board_filled" -> ic_board_filled
+            "ic_board_line" -> ic_board_line
+            "ic_book_filled" -> ic_book_filled
+            "ic_book_line" -> ic_book_line
+            "ic_calendar_filled" -> ic_calendar_filled
+            "ic_calendar_line" -> ic_calendar_line
+            "ic_camera_filled" -> ic_camera_filled
+            "ic_camera_line" -> ic_camera_line
+            "ic_cameracircle_line" -> ic_cameracircle_line
+            "ic_check_line" -> ic_check_line
+            "ic_checkcircle_filled" -> ic_checkcircle_filled
+            "ic_checkcircle_line" -> ic_checkcircle_line
+            "ic_clip_line" -> ic_clip_line
+            "ic_comment_filled" -> ic_comment_filled
+            "ic_comment_line" -> ic_comment_line
+            "ic_dotbadge_line" -> ic_dotbadge_line
+            "ic_dots_horizontal_line" -> ic_dots_horizontal_line
+            "ic_dots_vertical_line" -> ic_dots_vertical_line
+            "ic_food_filled" -> ic_food_filled
+            "ic_food_line" -> ic_food_line
+            "ic_foodcalendar_filled" -> ic_foodcalendar_filled
+            "ic_foodcalendar_line" -> ic_foodcalendar_line
+            "ic_ground_filled" -> ic_ground_filled
+            "ic_ground_line" -> ic_ground_line
+            "ic_home_filled" -> ic_home_filled
+            "ic_home_line" -> ic_home_line
+            "ic_list_line" -> ic_list_line
+            "ic_lock_filled" -> ic_lock_filled
+            "ic_lock_line" -> ic_lock_line
+            "ic_new_filled" -> ic_new_filled
+            "ic_new_line" -> ic_new_line
+            "ic_notice_filled" -> ic_notice_filled
+            "ic_notice_line" -> ic_notice_line
+            "ic_pen_filled" -> ic_pen_filled
+            "ic_pen_line" -> ic_pen_line
+            "ic_person_filled" -> ic_person_filled
+            "ic_person_line" -> ic_person_line
+            "ic_personcircle_line" -> ic_personcircle_line
+            "ic_picture_filled" -> ic_picture_filled
+            "ic_picture_line" -> ic_picture_line
+            "ic_pin_filled" -> ic_pin_filled
+            "ic_pin_line" -> ic_pin_line
+            "ic_playcircle_filled" -> ic_playcircle_filled
+            "ic_playcircle_line" -> ic_playcircle_line
+            "ic_plus_line" -> ic_plus_line
+            "ic_rank_filled" -> ic_rank_filled
+            "ic_rank_line" -> ic_rank_line
+            "ic_recomment_line" -> ic_recomment_line
+            "ic_refresh_line" -> ic_refresh_line
+            "ic_savecircle_filled" -> ic_savecircle_filled
+            "ic_savecircle_line" -> ic_savecircle_line
+            "ic_schoolcalendar_filled" -> ic_schoolcalendar_filled
+            "ic_schoolcalendar_line" -> ic_schoolcalendar_line
+            "ic_search_line" -> ic_search_line
+            "ic_sharecircle_filled" -> ic_sharecircle_filled
+            "ic_sharecircle_line" -> ic_sharecircle_line
+            "ic_star_filled" -> ic_star_filled
+            "ic_star_line" -> ic_star_line
+            "ic_thumb_down_filled" -> ic_thumb_down_filled
+            "ic_thumb_down_line" -> ic_thumb_down_line
+            "ic_thumb_up_filled" -> ic_thumb_up_filled
+            "ic_thumb_up_line" -> ic_thumb_up_line
+            "ic_timecalendar_filled" -> ic_timecalendar_filled
+            "ic_timecalendar_line" -> ic_timecalendar_line
+            "ic_trashcan_filled" -> ic_trashcan_filled
+            "ic_trashcan_line" -> ic_trashcan_line
+            "ic_warningcircle_filled" -> ic_warningcircle_filled
+            "ic_warningcircle_line" -> ic_warningcircle_line
+            "ic_x_line" -> ic_x_line
+            else -> ic_adbadge_filled
+        }
+    }
+
+    fun getList(): List<Int> {
+        return listOf(
+            ic_adbadge_filled,
+            ic_adbadge_line,
+            ic_arrow_down_line,
+            ic_arrow_left_line,
+            ic_arrow_right_line,
+            ic_arrow_up_line,
+            ic_bell_filled,
+            ic_bell_line,
+            ic_bellmute_line,
+            ic_board_filled,
+            ic_board_line,
+            ic_book_filled,
+            ic_book_line,
+            ic_calendar_filled,
+            ic_calendar_line,
+            ic_camera_filled,
+            ic_camera_line,
+            ic_cameracircle_line,
+            ic_check_line,
+            ic_checkcircle_filled,
+            ic_checkcircle_line,
+            ic_clip_line,
+            ic_comment_filled,
+            ic_comment_line,
+            ic_dotbadge_line,
+            ic_dots_horizontal_line,
+            ic_dots_vertical_line,
+            ic_food_filled,
+            ic_food_line,
+            ic_foodcalendar_filled,
+            ic_foodcalendar_line,
+            ic_ground_filled,
+            ic_ground_line,
+            ic_home_filled,
+            ic_home_line,
+            ic_list_line,
+            ic_lock_filled,
+            ic_lock_line,
+            ic_new_filled,
+            ic_new_line,
+            ic_notice_filled,
+            ic_notice_line,
+            ic_pen_filled,
+            ic_pen_line,
+            ic_person_filled,
+            ic_person_line,
+            ic_personcircle_line,
+            ic_picture_filled,
+            ic_picture_line,
+            ic_pin_filled,
+            ic_pin_line,
+            ic_playcircle_filled,
+            ic_playcircle_line,
+            ic_plus_line,
+            ic_rank_filled,
+            ic_rank_line,
+            ic_recomment_line,
+            ic_refresh_line,
+            ic_savecircle_filled,
+            ic_savecircle_line,
+            ic_schoolcalendar_filled,
+            ic_schoolcalendar_line,
+            ic_search_line,
+            ic_sharecircle_filled,
+            ic_sharecircle_line,
+            ic_star_filled,
+            ic_star_line,
+            ic_thumb_down_filled,
+            ic_thumb_down_line,
+            ic_thumb_up_filled,
+            ic_thumb_up_line,
+            ic_timecalendar_filled,
+            ic_timecalendar_line,
+            ic_trashcan_filled,
+            ic_trashcan_line,
+            ic_warningcircle_filled,
+            ic_warningcircle_line,
+            ic_x_line
+        )
+    }
 }

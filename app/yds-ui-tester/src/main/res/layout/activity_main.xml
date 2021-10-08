@@ -22,7 +22,7 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <com.yourssu.design.system.atom.BottomBar
+        <com.yourssu.design.system.component.BottomBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setTabInfoList="@{activity.mainTabType}"/>
