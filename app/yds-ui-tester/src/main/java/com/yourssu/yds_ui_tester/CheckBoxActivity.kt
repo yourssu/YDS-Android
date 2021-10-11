@@ -3,6 +3,7 @@ package com.yourssu.yds_ui_tester
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.yourssu.design.system.atom.Checkbox
 import com.yourssu.design.system.language.checkbox
 import com.yourssu.yds_ui_tester.databinding.ActivityCheckBoxBinding
 
@@ -29,7 +30,7 @@ class CheckBoxActivity : AppCompatActivity() {
             binding.test.checkbox {
                 isDisabled = false
                 isSelected = false
-                size = CheckBox.LARGE
+                size = Checkbox.LARGE
                 label = "텍스트"
             }
         }

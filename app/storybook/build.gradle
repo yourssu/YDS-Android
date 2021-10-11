@@ -39,6 +39,24 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    flavorDimensions "apk_type"
+
+    productFlavors {
+        dev {
+            dimension "apk_type"
+            applicationIdSuffix ".dev"
+
+            buildConfigField 'boolean', 'DEV', 'true'
+        }
+
+        production {
+            dimension "apk_type"
+
+            buildConfigField 'boolean', 'DEV', 'false'
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
