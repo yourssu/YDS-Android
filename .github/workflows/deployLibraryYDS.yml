@@ -27,6 +27,9 @@ jobs:
       - name: Setting env
         run: |
           echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+          echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -43,4 +46,4 @@ jobs:
           release_name: Release ${{ steps.release_version.outputs.value }}
 
       - name: Upload to Slack
-        run: curl -F file=@"app/storybook/build/outputs/apk/production/release/YDS-StoryBook-${{ steps.release_version.outputs.value }}-production-release.apk" -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android/${{ steps.release_version.outputs.value }}" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
+        run: curl -F file=@"app/storybook/build/outputs/apk/production/release/YDS-StoryBook-${{ steps.release_version.outputs.value }}($BUILD_NUMBER)-production-release.apk" -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android/${{ steps.release_version.outputs.value }}" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
