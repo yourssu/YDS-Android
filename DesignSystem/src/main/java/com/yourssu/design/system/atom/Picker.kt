@@ -1,5 +1,6 @@
 package com.yourssu.design.system.atom
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ class Picker : FrameLayout {
         setSecondRow(listOf())
         setThirdRow(listOf())
         setValueChangeListener()
+        setEmptyAreaTouchListener()
     }
 
     interface OnValueChangeListener {
@@ -197,6 +199,38 @@ class Picker : FrameLayout {
                     return 0
                 }
             })
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setEmptyAreaTouchListener() {
+        binding.leftArea.setOnTouchListener { _, event ->
+            when {
+                firstRowList.isNotEmpty() -> {
+                    binding.firstRow.onTouchEvent(event)
+                }
+                secondRowList.isNotEmpty() -> {
+                    binding.secondRow.onTouchEvent(event)
+                }
+                thirdRowList.isNotEmpty() -> {
+                    binding.thirdRow.onTouchEvent(event)
+                }
+            }
+            true
+        }
+        binding.rightArea.setOnTouchListener { _, event ->
+            when {
+                thirdRowList.isNotEmpty() -> {
+                    binding.thirdRow.onTouchEvent(event)
+                }
+                secondRowList.isNotEmpty() -> {
+                    binding.secondRow.onTouchEvent(event)
+                }
+                firstRowList.isNotEmpty() -> {
+                    binding.firstRow.onTouchEvent(event)
+                }
+            }
+            true
         }
     }
 

@@ -16,6 +16,12 @@
             android:orientation="horizontal"
             android:gravity="center">
 
+            <View
+                android:id="@+id/leftArea"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
             <com.yourssu.design.undercarriage.custom.RawPicker
                 android:id="@+id/firstRow"
                 android:layout_width="wrap_content"
@@ -30,6 +36,12 @@
                 android:id="@+id/thirdRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/rightArea"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
