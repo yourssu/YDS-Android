@@ -1,5 +1,6 @@
 package com.yourssu.storybook.atom
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.yourssu.design.system.atom.BoxButton
 import com.yourssu.design.system.atom.Toggle
@@ -7,7 +8,7 @@ import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
 
-class BoxButtonViewModel: BaseViewModel() {
+class BoxButtonViewModel(application: Application): BaseViewModel(application) {
     val textString = MutableLiveData<String>("boxButton")
     val rounding: MutableLiveData<Int> = MutableLiveData(4)
     val roundingText: MutableLiveData<String> = MutableLiveData("4")

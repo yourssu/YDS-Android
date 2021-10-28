@@ -32,6 +32,25 @@
                 app:isDisabled="@{viewModel.isDisable}"
                 app:selectedListener="@{viewModel.selectedStateListener}"
                  />
+
+            <!-- 안내 텍스트 -->
+            <com.yourssu.design.system.atom.Text
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/textPrimary"
+                android:layout_gravity="bottom|right"
+                android:text="Click Background to change Color"
+                app:typo="subtitle2" />
+            <com.yourssu.design.system.atom.Text
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@drawable/white000"
+                android:alpha=".5"
+                android:layout_gravity="bottom|right"
+                android:text="Click Background to change Color"
+                app:typo="subtitle2" />
         </FrameLayout>
 
         <ScrollView

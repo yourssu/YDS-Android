@@ -1,16 +1,26 @@
 package com.yourssu.storybook
 
+import android.annotation.SuppressLint
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 
-abstract class BaseViewModel: ViewModel() {
-    val componentBackgroundColor = MutableLiveData(R.color.borderThick)
+@SuppressLint("ResourceType")
+abstract class BaseViewModel(application: Application): AndroidViewModel(application) {
+
+    val componentBackgroundColor = MutableLiveData(application.getColor(R.drawable.gray500))
 
     fun changeBackground() {
-        if (componentBackgroundColor.value == R.color.borderThick) {
-            componentBackgroundColor.value = R.color.dimThick
-        } else {
-            componentBackgroundColor.value = R.color.borderThick
+        when (componentBackgroundColor.value) {
+            getApplication<Application>().getColor(R.drawable.gray500) -> {
+                componentBackgroundColor.value = getApplication<Application>().getColor(R.drawable.white000)
+            }
+            getApplication<Application>().getColor(R.drawable.white000) -> {
+                componentBackgroundColor.value = getApplication<Application>().getColor(R.drawable.black000)
+            }
+            getApplication<Application>().getColor(R.drawable.black000) -> {
+                componentBackgroundColor.value = getApplication<Application>().getColor(R.drawable.gray500)
+            }
         }
     }
 }

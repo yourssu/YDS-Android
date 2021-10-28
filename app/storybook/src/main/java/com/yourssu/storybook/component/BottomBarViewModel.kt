@@ -1,10 +1,11 @@
 package com.yourssu.storybook.component
 
+import android.app.Application
 import com.yourssu.design.system.component.BottomBar
 import com.yourssu.storybook.BaseViewModel
 import com.yourssu.storybook.R
 
-class BottomBarViewModel: BaseViewModel() {
+class BottomBarViewModel(application: Application): BaseViewModel(application) {
     val bottomType = listOf<BottomBar.BottomTabInfo>(
         BottomBar.BottomTabInfo(R.drawable.ic_home_line, R.drawable.ic_home_filled),
         BottomBar.BottomTabInfo(R.drawable.ic_board_line, R.drawable.ic_board_filled),

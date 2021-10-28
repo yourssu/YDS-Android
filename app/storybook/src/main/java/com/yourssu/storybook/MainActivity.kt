@@ -32,10 +32,10 @@ class MainActivity : BaseActivity() {
         "PlainButton" to PlainButtonFragment::class.java,
         "Checkbox" to CheckboxFragment::class.java,
         "Toggle" to ToggleFragment::class.java,
-        "SimpleTextField" to Fragment::class.java,
-        "SuffixTextField" to Fragment::class.java,
-        "PasswordTextField" to Fragment::class.java,
-        "SearchTextField" to Fragment::class.java
+        "SimpleTextField" to SimpleTextFieldFragment::class.java,
+        "SuffixTextField" to SuffixTextFieldFragment::class.java,
+        "PasswordTextField" to PasswordTextFieldFragment::class.java,
+        "SearchTextField" to SearchTextFieldFragment::class.java
     )
     private val componentList = listOf<Pair<String, Class<*>>>(
         "Toast" to ToastFragment::class.java,

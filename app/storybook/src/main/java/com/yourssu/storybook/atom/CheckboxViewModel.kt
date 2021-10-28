@@ -1,12 +1,13 @@
 package com.yourssu.storybook.atom
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.yourssu.design.system.atom.Checkbox
 import com.yourssu.design.system.atom.Toggle
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
 
-class CheckboxViewModel: BaseViewModel() {
+class CheckboxViewModel(application: Application): BaseViewModel(application) {
     val textString = MutableLiveData<String>("Checkbox")
     val size: MutableLiveData<Int> = MutableLiveData(Checkbox.SMALL)
     val sizeText: MutableLiveData<String> = MutableLiveData("SMALL")

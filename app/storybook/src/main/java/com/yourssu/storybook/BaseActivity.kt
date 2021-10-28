@@ -1,6 +1,7 @@
 package com.yourssu.storybook
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.yourssu.storybook.transform.ActivityAnimType
@@ -10,6 +11,7 @@ abstract class BaseActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         overridePendingTransition(animationType.startInAnim, animationType.startOutAnim)
     }
 

@@ -1,5 +1,6 @@
 package com.yourssu.storybook.atom
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.yourssu.design.system.atom.BoxButton
 import com.yourssu.design.system.atom.PlainButton
@@ -8,7 +9,7 @@ import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
 
-class PlainButtonViewModel: BaseViewModel() {
+class PlainButtonViewModel(application: Application): BaseViewModel(application) {
     val textString = MutableLiveData<String>("plainButton")
     val size: MutableLiveData<Int> = MutableLiveData(PlainButton.SMALL)
     val sizeText: MutableLiveData<String> = MutableLiveData("SMALL")
