@@ -42,7 +42,6 @@
             android:layout_width="48dp"
             android:layout_height="56dp"
             android:layout_marginLeft="16dp"
-            app:icon="@{Icon.ic_ground_line}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/second_button" />
 
@@ -50,7 +49,6 @@
             android:id="@+id/second_button"
             android:layout_width="48dp"
             android:layout_height="56dp"
-            app:icon="@{Icon.ic_ground_line}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/third_button" />
 
@@ -59,7 +57,6 @@
             android:layout_width="48dp"
             android:layout_height="56dp"
             android:layout_marginRight="4dp"
-            app:icon="@{Icon.ic_ground_line}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 

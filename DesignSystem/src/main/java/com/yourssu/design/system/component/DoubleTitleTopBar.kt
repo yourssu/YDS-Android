@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.databinding.LayoutDoubleTitleTopBarBinding
+import com.yourssu.design.system.atom.Badge
+import com.yourssu.design.system.foundation.Icon
 
 class DoubleTitleTopBar @JvmOverloads constructor(
     context: Context,
@@ -18,22 +20,35 @@ class DoubleTitleTopBar @JvmOverloads constructor(
     var title: String = ""
         set(title) {
             field = title
-            setTitleText()
+            binding.title.text = title
         }
 
     var subtitle: String = ""
         set(subtitle) {
             field = subtitle
-            setSubTitleText()
+            binding.subTitle.text = subtitle
         }
 
-    private fun setTitleText() {
-        binding.title.text = title
-    }
+    @Icon.Iconography
+    var firstIcon: Int? = null
+        set(icon) {
+            field = icon
+            binding.firstButton.icon = icon
+        }
 
-    private fun setSubTitleText() {
-        binding.subTitle.text = subtitle
-    }
+    @Icon.Iconography
+    var secondIcon: Int? = null
+        set(icon) {
+            field = icon
+            binding.secondButton.icon = icon
+        }
+
+    @Icon.Iconography
+    var thirdIcon: Int? = null
+        set(icon) {
+            field = icon
+            binding.thirdButton.icon = icon
+        }
 
     companion object {
         @JvmStatic
@@ -46,6 +61,24 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         @BindingAdapter("subtitle")
         fun setSubTitle(doubleTitleTopBar: DoubleTitleTopBar, subtitle: String) {
             doubleTitleTopBar.subtitle = subtitle
+        }
+
+        @JvmStatic
+        @BindingAdapter("firstIcon")
+        fun setFirstIcon(doubleTitleTopBar: DoubleTitleTopBar, @Icon.Iconography icon: Int?) {
+            doubleTitleTopBar.firstIcon = icon
+        }
+
+        @JvmStatic
+        @BindingAdapter("secondIcon")
+        fun setSecondIcon(doubleTitleTopBar: DoubleTitleTopBar, @Icon.Iconography icon: Int?) {
+            doubleTitleTopBar.secondIcon = icon
+        }
+
+        @JvmStatic
+        @BindingAdapter("thirdIcon")
+        fun setThirdIcon(doubleTitleTopBar: DoubleTitleTopBar, @Icon.Iconography icon: Int?) {
+            doubleTitleTopBar.thirdIcon = icon
         }
     }
 }
