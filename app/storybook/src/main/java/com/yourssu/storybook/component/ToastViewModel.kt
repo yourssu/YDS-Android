@@ -1,11 +1,12 @@
 package com.yourssu.storybook.component
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.yourssu.design.system.atom.Toggle
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
 
-class ToastViewModel: BaseViewModel() {
+class ToastViewModel(application: Application): BaseViewModel(application) {
     val textString = MutableLiveData<String>("toast")
     val isLongTime: MutableLiveData<Boolean> = MutableLiveData(false)
 

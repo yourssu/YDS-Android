@@ -8,7 +8,7 @@
         <import type="com.yourssu.design.system.atom.BoxButton" />
         <variable
             name="viewModel"
-            type="com.yourssu.storybook.atom.CheckboxViewModel" />
+            type="com.yourssu.storybook.atom.SimpleTextFieldViewModel" />
     </data>
 
     <LinearLayout
@@ -24,15 +24,16 @@
             android:onClick="@{() -> viewModel.changeBackground()}"
             android:background="@{viewModel.componentBackgroundColor}">
 
-            <com.yourssu.design.system.atom.Checkbox
+            <com.yourssu.design.system.atom.SimpleTextField
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:label="@{viewModel.textString}"
-                app:size="@{viewModel.size}"
-                app:isSelected="@{viewModel.isSelect}"
+                app:fieldLabelText="@{viewModel.fieldLabelTextString}"
+                app:helperLabelText="@{viewModel.helperLabelTextString}"
+                app:placeholderText="@{viewModel.placeholderTextString}"
+                app:isPositive="@{viewModel.isPositive}"
+                app:isNegative="@{viewModel.isNegative}"
                 app:isDisabled="@{viewModel.isDisable}"
-                app:selectedListener="@{viewModel.selectedStateListener}"
                  />
 
             <!-- 안내 텍스트 -->
@@ -70,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
-                    android:text="Label"
+                    android:text="fieldLabelText"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
 
@@ -79,27 +80,40 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Checkbox"
-                    android:onTextChanged="@{viewModel.onTextChangedListener}"/>
+                    android:text="fieldLabelText"
+                    android:onTextChanged="@{viewModel.onFieldLabelTextChangedListener}"/>
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
-                    android:text="Size"
+                    android:text="helperLabelText"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
 
-                <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/sizeSelect"
+                <com.yourssu.design.system.atom.SimpleTextField
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    app:rounding="@{8}"
-                    app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.sizeText}"
-                    app:type="@{BoxButton.LINE}" />
+                    android:text="helperLabelText"
+                    android:onTextChanged="@{viewModel.onHelperLabelTextChangedListener}"/>
+
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="placeholderText"
+                    android:textColor="@color/textPrimary"
+                    app:typo="subtitle2"/>
+
+                <com.yourssu.design.system.atom.SimpleTextField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="placeholderText"
+                    android:onTextChanged="@{viewModel.onPlaceholderTextChangedListener}"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -109,14 +123,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="isSelect"
+                        android:text="isPositive"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                     <com.yourssu.design.system.atom.Toggle
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.isSelect}"
-                        app:selectedListener="@{viewModel.selectSelectListener}"/>
+                        app:isSelected="@{viewModel.isPositive}"
+                        app:selectedListener="@{viewModel.positiveSelectListener}"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="isNegative"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.isNegative}"
+                        app:selectedListener="@{viewModel.negativeSelectListener}"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
