@@ -29,6 +29,24 @@ class DoubleTitleTopBar @JvmOverloads constructor(
             binding.subTitle.text = subtitle
         }
 
+    var firstButtonListener: OnClickListener? = null
+        set(clickListener) {
+            field = clickListener
+            binding.firstButton.setOnClickListener(firstButtonListener)
+        }
+
+    var secondButtonListener: OnClickListener? = null
+        set(clickListener) {
+            field = clickListener
+            binding.secondButton.setOnClickListener(secondButtonListener)
+        }
+
+    var thirdButtonListener: OnClickListener? = null
+        set(clickListener) {
+            field = clickListener
+            binding.thirdButton.setOnClickListener(thirdButtonListener)
+        }
+
     @Icon.Iconography
     var firstIcon: Int? = null
         set(icon) {
@@ -80,5 +98,33 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         fun setThirdIcon(doubleTitleTopBar: DoubleTitleTopBar, @Icon.Iconography icon: Int?) {
             doubleTitleTopBar.thirdIcon = icon
         }
+
+        @JvmStatic
+        @BindingAdapter("firstButtonClickListener")
+        fun setFirstButtonClickListener(
+            doubleTitleTopBar: DoubleTitleTopBar,
+            onClickListener:OnClickListener
+        ) {
+            doubleTitleTopBar.firstButtonListener = onClickListener
+        }
+
+        @JvmStatic
+        @BindingAdapter("secondButtonClickListener")
+        fun setSecondButtonClickListener(
+            doubleTitleTopBar: DoubleTitleTopBar,
+            onClickListener:OnClickListener
+        ) {
+            doubleTitleTopBar.secondButtonListener = onClickListener
+        }
+
+        @JvmStatic
+        @BindingAdapter("thirdButtonClickListener")
+        fun setThirdButtonClickListener(
+            doubleTitleTopBar: DoubleTitleTopBar,
+            onClickListener:OnClickListener
+        ) {
+            doubleTitleTopBar.thirdButtonListener = onClickListener
+        }
+
     }
 }
