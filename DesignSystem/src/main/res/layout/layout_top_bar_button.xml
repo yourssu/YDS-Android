@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:size="@{IconView.Medium}"
-            tools:icon="@{Icon.ic_ground_line}" />
+             />
 
         <com.yourssu.design.system.atom.Text
             android:id="@+id/topBarButtonText"

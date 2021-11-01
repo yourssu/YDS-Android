@@ -2,6 +2,7 @@ package com.yourssu.yds_ui_tester
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.CheckBox
 import androidx.databinding.DataBindingUtil
 import com.yourssu.design.system.atom.Checkbox
 import com.yourssu.design.system.language.checkbox
