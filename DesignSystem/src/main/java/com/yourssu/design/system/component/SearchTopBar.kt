@@ -153,46 +153,7 @@ class SearchTopBar @JvmOverloads constructor(
             after: SearchTextField.AfterTextChanged?,
             textAttrChanged: InverseBindingListener?
         ) {
-            val newValue: TextWatcher? =
-                if (before == null && after == null && on == null && textAttrChanged == null) {
-                    null
-                } else {
-                    object : TextWatcher {
-                        override fun beforeTextChanged(
-                            s: CharSequence,
-                            start: Int,
-                            count: Int,
-                            after: Int
-                        ) {
-                            before?.beforeTextChanged(s, start, count, after)
-                        }
-
-                        override fun onTextChanged(
-                            s: CharSequence,
-                            start: Int,
-                            before: Int,
-                            count: Int
-                        ) {
-                            on?.onTextChanged(s, start, before, count)
-                            textAttrChanged?.onChange()
-                        }
-
-                        override fun afterTextChanged(s: Editable) {
-                            after?.afterTextChanged(s)
-                        }
-                    }
-                }
-            val oldValue = ListenerUtil.trackListener(
-                searchTopBar.binding.searchTextField,
-                newValue,
-                R.id.textWatcher
-            )
-            oldValue?.let {
-                searchTopBar.binding.searchTextField.removeTextChangedListener(it)
-            }
-            newValue?.let {
-                searchTopBar.binding.searchTextField.addTextChangedListener(it)
-            }
+            SearchTextField.setTextWatcher(searchTopBar.binding.searchTextField, before, on, after, textAttrChanged)
         }
 
         @JvmStatic
