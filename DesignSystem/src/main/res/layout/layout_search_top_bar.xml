@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.yourssu.design.system.foundation.Icon" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/white000"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="16dp">
+
+        <com.yourssu.design.system.atom.TopBarButton
+            android:id="@+id/leftArrowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:icon="@{Icon.ic_arrow_left_line}" />
+
+        <com.yourssu.design.system.atom.SearchTextField
+            android:id="@+id/searchTextField"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</layout>

@@ -25,6 +25,15 @@ abstract class TextField @JvmOverloads constructor(
         }
 
         @JvmStatic
+        @BindingAdapter("android:onEditorAction")
+        fun setOnEditorActionListener(
+            textField: TextField,
+            onEditorActionListener: TextView.OnEditorActionListener
+        ) {
+            textField.setOnEditorActionListener(onEditorActionListener)
+        }
+
+        @JvmStatic
         @BindingAdapter("isDisabled")
         fun setIsDisabled(textField: TextField, isDisabled: Boolean) {
             textField.isDisabled = isDisabled
@@ -166,6 +175,8 @@ abstract class TextField @JvmOverloads constructor(
     internal abstract fun inflateLayout(context: Context)
 
     internal abstract fun initAttributes(context: Context, attrs: AttributeSet?)
+
+    abstract fun setOnEditorActionListener(onEditorActionListener: TextView.OnEditorActionListener)
 
     abstract fun extendSelection(index: Int)
 

@@ -30,6 +30,15 @@ class SearchTextField @JvmOverloads constructor(
         }
 
         @JvmStatic
+        @BindingAdapter("android:onEditorAction")
+        fun setOnEditorActionListener(
+            searchTextField: SearchTextField,
+            onEditorActionListener: TextView.OnEditorActionListener
+        ) {
+            searchTextField.binding.edittext.setOnEditorActionListener(onEditorActionListener)
+        }
+
+        @JvmStatic
         @BindingAdapter("isDisabled")
         fun setIsDisabled(searchTextField: SearchTextField, isDisabled: Boolean) {
             searchTextField.isDisabled = isDisabled

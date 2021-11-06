@@ -115,6 +115,10 @@ class SuffixTextField @JvmOverloads constructor(
         }
     }
 
+    override fun setOnEditorActionListener(onEditorActionListener: TextView.OnEditorActionListener) {
+        binding.edittext.setOnEditorActionListener(onEditorActionListener)
+    }
+
     override fun extendSelection(index: Int) {
         binding.edittext.extendSelection(index)
     }
