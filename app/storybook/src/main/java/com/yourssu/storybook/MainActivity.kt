@@ -13,6 +13,7 @@ import com.yourssu.storybook.DetailActivity.Companion.navigateToDetail
 import com.yourssu.storybook.atom.*
 import com.yourssu.storybook.component.BottomBarFragment
 import com.yourssu.storybook.component.ToastFragment
+import com.yourssu.storybook.component.TopBarFragment
 import com.yourssu.storybook.transform.ActivityAnimType
 
 class MainActivity : BaseActivity() {
@@ -39,10 +40,10 @@ class MainActivity : BaseActivity() {
     )
     private val componentList = listOf<Pair<String, Class<*>>>(
         "Toast" to ToastFragment::class.java,
-        "TopBar" to Fragment::class.java,
+        "TopBar" to TopBarFragment::class.java,
         "SingleTitleTopBar" to Fragment::class.java,
         "DoubleTitleTopBar" to Fragment::class.java,
-        "BottomBar" to BottomBarFragment::class.java
+        "BottomBar" to BottomBarFragment::class.java,
     )
     /** 추가시 여기에만 선언하면 됨 */
 

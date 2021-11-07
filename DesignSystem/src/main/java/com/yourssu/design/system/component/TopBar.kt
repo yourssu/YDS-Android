@@ -22,62 +22,58 @@ class TopBar @JvmOverloads constructor(
             setTitleText()
         }
 
-    var startIconButtonClickListener: OnClickListener? = null
+    var startButtonClickListener: OnClickListener? = null
         set(value) {
-            binding.startIconButton.setOnClickListener(value)
+            binding.startButton.setOnClickListener(value)
         }
 
-    var startTextButtonClickListener: OnClickListener? = null
+    var endFirstButtonClickListener: OnClickListener? = null
         set(value) {
-            binding.startTextButton.setOnClickListener(value)
+            binding.endFirstButton.setOnClickListener(value)
         }
 
-    var endFirstIconButtonClickListener: OnClickListener? = null
+    var endSecondButtonClickListener: OnClickListener? = null
         set(value) {
-            binding.endFirstIconButton.setOnClickListener(value)
-        }
-
-    var endSecondIconButtonClickListener: OnClickListener? = null
-        set(value) {
-            binding.endSecondIconButton.setOnClickListener(value)
-        }
-
-    var endTextButtonClickListener: OnClickListener? = null
-        set(value) {
-            binding.endTextButton.setOnClickListener(value)
+            binding.endSecondButton.setOnClickListener(value)
         }
 
     var startText: String = ""
         set(value) {
             field = value
-            binding.startTextButton.text = value
+            binding.startButton.text = value
         }
 
     @Icon.Iconography
     var startIcon: Int? = null
         set(icon) {
             field = icon
-            binding.startIconButton.icon = icon
+            binding.startButton.icon = icon
         }
 
-    var endText: String = ""
+    var endFirstText: String = ""
         set(value) {
             field = value
-            binding.endTextButton.text = value
+            binding.endFirstButton.text = value
+        }
+
+    var endSecondText: String = ""
+        set(value) {
+            field = value
+            binding.endSecondButton.text = value
         }
 
     @Icon.Iconography
     var endFirstIcon: Int? = null
         set(icon) {
             field = icon
-            binding.endFirstIconButton.icon = icon
+            binding.endFirstButton.icon = icon
         }
 
     @Icon.Iconography
     var endSecondIcon: Int? = null
         set(icon) {
             field = icon
-            binding.endSecondIconButton.icon = icon
+            binding.endSecondButton.icon = icon
         }
 
     private fun setTitleText() {
@@ -98,9 +94,15 @@ class TopBar @JvmOverloads constructor(
         }
 
         @JvmStatic
-        @BindingAdapter("endText")
-        fun setEndText(topBar: TopBar, endText: String) {
-            topBar.endText = endText
+        @BindingAdapter("endFirstText")
+        fun setEndFirstText(topBar: TopBar, endFirstText: String) {
+            topBar.endFirstText = endFirstText
+        }
+
+        @JvmStatic
+        @BindingAdapter("endSecondText")
+        fun setEndSecondText(topBar: TopBar, endSecondText: String) {
+            topBar.endSecondText = endSecondText
         }
 
         @JvmStatic
@@ -124,31 +126,19 @@ class TopBar @JvmOverloads constructor(
         @JvmStatic
         @BindingAdapter("onStartIconClick")
         fun setStartIconClickListener(topBar: TopBar, onClickListener:OnClickListener) {
-            topBar.startIconButtonClickListener = onClickListener
+            topBar.startButtonClickListener = onClickListener
         }
 
         @JvmStatic
-        @BindingAdapter("onStartTextClick")
-        fun setStartTextClickListener(topBar: TopBar, startTextClickListener: OnClickListener) {
-            topBar.startTextButtonClickListener = startTextClickListener
-        }
-
-        @JvmStatic
-        @BindingAdapter("onEndTextClick")
-        fun setOnEndTextClickListener(topBar: TopBar, endTextClickListener: OnClickListener) {
-            topBar.endTextButtonClickListener = endTextClickListener
-        }
-
-        @JvmStatic
-        @BindingAdapter("onEndFirstIconClick")
-        fun setOnEndFirstIconClickListener(topBar: TopBar, endFirstIconClickListener: OnClickListener) {
-            topBar.endFirstIconButtonClickListener = endFirstIconClickListener
+        @BindingAdapter("onEndFirstClick")
+        fun setOnEndFirstClickListener(topBar: TopBar, endFirstClickListener: OnClickListener) {
+            topBar.endFirstButtonClickListener = endFirstClickListener
         }
 
         @JvmStatic
         @BindingAdapter("onEndSecondIconClick")
-        fun setOnEndSecondIconClickListener(topBar: TopBar, endSecondIconClickListener: OnClickListener) {
-            topBar.endSecondIconButtonClickListener = endSecondIconClickListener
+        fun setOnEndSecondClickListener(topBar: TopBar, endSecondClickListener: OnClickListener) {
+            topBar.endSecondButtonClickListener = endSecondClickListener
         }
     }
 }

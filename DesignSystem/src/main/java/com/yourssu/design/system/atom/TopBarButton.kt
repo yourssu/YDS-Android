@@ -54,6 +54,8 @@ class TopBarButton : LinearLayout {
             if (value != null) {
                 hasIcon = true
                 binding.topBarButtonIcon.icon = value
+            } else {
+                hasIcon = false
             }
             setTopBarButtonInfo()
             requestLayout()
