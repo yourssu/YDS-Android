@@ -84,12 +84,12 @@ class PlainButton @JvmOverloads constructor(
 
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
-                if (!isDisabled) {
-                    setButtonColorPressed()
-                }
+                isPressed = true
+                setButtonInfo()
             }
 
             MotionEvent.ACTION_UP -> {
+                isPressed = false
                 setButtonInfo()
             }
         }
@@ -98,7 +98,10 @@ class PlainButton @JvmOverloads constructor(
     }
 
     private fun setButtonInfo() {
-        setButtonColor()
+        if (isPressed)
+            setButtonColorPressed()
+        else
+            setButtonColor()
 
         when (size) {
             LARGE -> {
@@ -158,6 +161,7 @@ class PlainButton @JvmOverloads constructor(
 
     private fun setButtonColorPressed() {
         when {
+            isDisabled -> setAtomTint(context.getColor(R.color.buttonDisabled))
             isWarned -> setAtomTint(context.getColor(R.color.buttonWarnedPressed))
             isPointed -> setAtomTint(context.getColor(R.color.buttonPointPressed))
             else -> setAtomTint(context.getColor(R.color.buttonNormalPressed))

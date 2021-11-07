@@ -2,9 +2,10 @@ package com.yourssu.yds_ui_tester
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.CheckBox
 import androidx.databinding.DataBindingUtil
-import com.yourssu.design.system.atom.CheckBox
-import com.yourssu.design.system.language.checkBox
+import com.yourssu.design.system.atom.Checkbox
+import com.yourssu.design.system.language.checkbox
 import com.yourssu.yds_ui_tester.databinding.ActivityCheckBoxBinding
 
 class CheckBoxActivity : AppCompatActivity() {
@@ -27,10 +28,10 @@ class CheckBoxActivity : AppCompatActivity() {
         }
 
         binding.buttonGenerate.setOnClickListener {
-            binding.test.checkBox {
+            binding.test.checkbox {
                 isDisabled = false
                 isSelected = false
-                size = CheckBox.LARGE
+                size = Checkbox.LARGE
                 label = "텍스트"
             }
         }

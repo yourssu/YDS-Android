@@ -11,23 +11,52 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    // 당연하지만 배포용은 아니고 release 테스트용
+    signingConfigs {
+        release {
+            storeFile file("./ydsyourssu.jks")
+            storePassword (System.getenv("STORE_PASSWORD"))
+            keyAlias (System.getenv("KEY_ALIAS"))
+            keyPassword (System.getenv("KEY_PASSWORD"))
+        }
+    }
+
     defaultConfig {
         applicationId "com.yourssu.storybook"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode (System.getenv("BUILD_NUMBER") as Integer ?: 10000) // 로컬에서 10000 번으로 빌드됨
+        versionName versionProperties['versionName']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        setProperty("archivesBaseName", "YDS-StoryBook-" + versionProperties['versionName'])
+        setProperty("archivesBaseName", "YDS-StoryBook-" + versionProperties['versionName'] + "(" + versionCode + ")")
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
+    flavorDimensions "apk_type"
+
+    productFlavors {
+        dev {
+            dimension "apk_type"
+            applicationIdSuffix ".dev"
+
+            buildConfigField 'boolean', 'DEV', 'true'
+        }
+
+        production {
+            dimension "apk_type"
+
+            buildConfigField 'boolean', 'DEV', 'false'
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

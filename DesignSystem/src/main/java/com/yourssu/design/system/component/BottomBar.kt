@@ -1,4 +1,4 @@
-package com.yourssu.design.system.atom
+package com.yourssu.design.system.component
 
 import android.content.Context
 import android.util.AttributeSet
@@ -14,7 +14,6 @@ import com.yourssu.design.databinding.ItemBottomTabBinding
 import com.yourssu.design.databinding.LayoutBottomBarBinding
 import com.yourssu.design.system.rule.Vibration
 import com.yourssu.design.system.rule.vibe
-import com.yourssu.design.undercarriage.animation.endListener
 import com.yourssu.design.undercarriage.animation.startAnim
 
 class BottomBar @JvmOverloads constructor(
@@ -102,9 +101,7 @@ class BottomBar @JvmOverloads constructor(
 
     fun springAnimation(index: Int) {
         bindingMap[index]?.icon?.run {
-            startAnim(R.anim.scale_normal_to_large, endListener {
-                startAnim(R.anim.scale_large_to_normal)
-            })
+            startAnim(R.anim.bottomtab_spring_motion)
         }
     }
 

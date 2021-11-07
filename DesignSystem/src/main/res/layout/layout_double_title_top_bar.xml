@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.yourssu.design.system.foundation.Icon" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <com.yourssu.design.system.atom.Text
+            android:id="@+id/sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintBottom_toTopOf="@id/title"
+            app:layout_constraintRight_toLeftOf="@id/first_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:typo="body2"
+            tools:text="서브타이틀" />
+
+        <com.yourssu.design.system.atom.Text
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/first_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:typo="title2"
+            tools:text="타이틀" />
+
+        <com.yourssu.design.system.atom.TopBarButton
+            android:id="@+id/first_button"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/second_button" />
+
+        <com.yourssu.design.system.atom.TopBarButton
+            android:id="@+id/second_button"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/third_button" />
+
+        <com.yourssu.design.system.atom.TopBarButton
+            android:id="@+id/third_button"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
+            android:layout_marginRight="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

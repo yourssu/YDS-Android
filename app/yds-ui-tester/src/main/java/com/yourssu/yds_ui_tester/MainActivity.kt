@@ -7,7 +7,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableBoolean
-import com.yourssu.design.system.atom.BottomBar
+import com.yourssu.design.system.component.BottomBar
 import com.yourssu.design.system.atom.Picker
 import com.yourssu.design.system.component.Toast
 import com.yourssu.design.system.component.Toast.Companion.shortToast

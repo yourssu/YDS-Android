@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.yourssu.design.system.foundation.Typo" />
+
+        <import type="android.view.View" />
+
+        <import type="com.yourssu.design.system.foundation.Icon" />
+
+        <import type="com.yourssu.design.system.atom.IconView" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
+
+        <com.yourssu.design.system.atom.IconView
+            android:id="@+id/topBarButtonIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:size="@{IconView.Medium}"
+             />
+
+        <com.yourssu.design.system.atom.Text
+            android:id="@+id/topBarButtonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:typo="@{Typo.Button0}"
+            tools:text="닫기" />
+
+    </LinearLayout>
+</layout>

@@ -12,7 +12,6 @@ import com.yourssu.design.system.atom.ProfileImageView
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
-import com.yourssu.storybook.R
 import com.yourssu.storybook.databinding.FragmentProfileImageViewBinding
 
 class ProfileImageViewFragment : Fragment() {
@@ -83,7 +82,7 @@ class ProfileImageViewFragment : Fragment() {
                 text {
                     text = "image"
                     typo = Typo.SubTitle2
-                    textColor(R.color.textPrimary)
+
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
                 }
                 picker {
@@ -98,7 +97,7 @@ class ProfileImageViewFragment : Fragment() {
                 text {
                     text = "size"
                     typo = Typo.SubTitle2
-                    textColor(R.color.textPrimary)
+
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
                 }
                 picker {

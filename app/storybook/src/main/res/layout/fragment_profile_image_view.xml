@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/borderThick">
+            android:onClick="@{() -> viewModel.changeBackground()}"
+            android:background="@{viewModel.componentBackgroundColor}">
 
             <com.yourssu.design.system.atom.ProfileImageView
                 android:layout_width="wrap_content"
@@ -28,6 +29,25 @@
                 android:layout_gravity="center"
                 android:src="@{viewModel.image}"
                 app:size="@{viewModel.size}"/>
+
+            <!-- 안내 텍스트 -->
+            <com.yourssu.design.system.atom.Text
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/textPrimary"
+                android:layout_gravity="bottom|right"
+                android:text="Click Background to change Color"
+                app:typo="subtitle2" />
+            <com.yourssu.design.system.atom.Text
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@drawable/white000"
+                android:alpha=".5"
+                android:layout_gravity="bottom|right"
+                android:text="Click Background to change Color"
+                app:typo="subtitle2" />
         </FrameLayout>
 
         <ScrollView
@@ -43,7 +63,8 @@
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
                     android:text="Image"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>
@@ -61,7 +82,8 @@
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
                     android:text="Size"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2"/>

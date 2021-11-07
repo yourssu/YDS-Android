@@ -1,5 +1,6 @@
 package com.yourssu.design.system.atom
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import android.widget.FrameLayout
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.databinding.LayoutPickerBinding
 import com.yourssu.design.undercarriage.custom.RawPicker
+import java.lang.Exception
+import java.lang.IndexOutOfBoundsException
 
 class Picker : FrameLayout {
     constructor(context: Context) : super(context) {
@@ -39,6 +42,7 @@ class Picker : FrameLayout {
         setSecondRow(listOf())
         setThirdRow(listOf())
         setValueChangeListener()
+        setEmptyAreaTouchListener()
     }
 
     interface OnValueChangeListener {
@@ -167,6 +171,10 @@ class Picker : FrameLayout {
                         list[position]
                     } catch (e: ArrayIndexOutOfBoundsException) {
                         ""
+                    } catch (e: IndexOutOfBoundsException) {
+                        ""
+                    } catch (e: Exception) {
+                        ""
                     }
                 }
 
@@ -191,6 +199,38 @@ class Picker : FrameLayout {
                     return 0
                 }
             })
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setEmptyAreaTouchListener() {
+        binding.leftArea.setOnTouchListener { _, event ->
+            when {
+                firstRowList.isNotEmpty() -> {
+                    binding.firstRow.onTouchEvent(event)
+                }
+                secondRowList.isNotEmpty() -> {
+                    binding.secondRow.onTouchEvent(event)
+                }
+                thirdRowList.isNotEmpty() -> {
+                    binding.thirdRow.onTouchEvent(event)
+                }
+            }
+            true
+        }
+        binding.rightArea.setOnTouchListener { _, event ->
+            when {
+                thirdRowList.isNotEmpty() -> {
+                    binding.thirdRow.onTouchEvent(event)
+                }
+                secondRowList.isNotEmpty() -> {
+                    binding.secondRow.onTouchEvent(event)
+                }
+                firstRowList.isNotEmpty() -> {
+                    binding.firstRow.onTouchEvent(event)
+                }
+            }
+            true
         }
     }
 

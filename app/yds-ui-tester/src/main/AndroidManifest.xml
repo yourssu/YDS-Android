@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.YourssuDesignSystem">
+        <activity android:name=".TopBarActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".PlainButtonActivity" />
         <activity android:name=".SearchTextFieldActivity" />
         <activity android:name=".PasswordTextFieldActivity" />
@@ -19,11 +26,7 @@
         <activity android:name=".BoxButtonActivity" />
         <activity android:name=".DividerActivity" />
         <activity android:name=".DesignSystemListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
     </application>

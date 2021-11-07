@@ -217,6 +217,8 @@ abstract class TextField @JvmOverloads constructor(
         }
     }
 
+    abstract fun shake()
+
     abstract fun changeEditTextEnabled()
 
     abstract fun setDisabledTextColor()

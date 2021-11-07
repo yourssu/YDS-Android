@@ -93,6 +93,12 @@ class Badge : LinearLayout {
         }
 
         @JvmStatic
+        @BindingAdapter("android:text")
+        fun setText2(badge: Badge, text: String) {
+            badge.text = text
+        }
+
+        @JvmStatic
         @BindingAdapter("icon")
         fun setIcon(badge: Badge, @Icon.Iconography icon: Int?) {
             badge.icon = icon

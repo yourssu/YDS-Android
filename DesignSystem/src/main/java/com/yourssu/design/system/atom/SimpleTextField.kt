@@ -12,6 +12,9 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutSimpleTextFieldBinding
+import com.yourssu.design.system.rule.Vibration
+import com.yourssu.design.system.rule.vibe
+import com.yourssu.design.undercarriage.animation.startAnim
 import com.yourssu.design.undercarriage.base.TextField
 
 class SimpleTextField @JvmOverloads constructor(
@@ -142,6 +145,11 @@ class SimpleTextField @JvmOverloads constructor(
 
     override fun removeTextChangedListener(watcher: TextWatcher) {
         binding.edittext.removeTextChangedListener(watcher)
+    }
+
+    override fun shake() {
+        binding.root.startAnim(R.anim.textfield_error_motion)
+        context.vibe(Vibration.FAILURE)
     }
 
     override fun changeEditTextEnabled() {
