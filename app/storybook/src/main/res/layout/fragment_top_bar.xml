@@ -200,7 +200,7 @@
                     android:layout_marginBottom="8dp"
                     android:imeOptions="actionDone"
                     android:onTextChanged="@{viewModel.onEndFirstTextChangedListener}"
-                    android:text="닫기" />
+                    android:text="알림" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -258,7 +258,7 @@
                     android:layout_marginBottom="8dp"
                     android:imeOptions="actionDone"
                     android:onTextChanged="@{viewModel.onEndSecondTextChangedListener}"
-                    android:text="닫기" />
+                    android:text="검색" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

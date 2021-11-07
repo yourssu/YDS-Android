@@ -14,16 +14,17 @@ class TopBarViewModel(application: Application) : BaseViewModel(application) {
     val startIconText: MutableLiveData<String> = MutableLiveData("ic_arrow_left_line")
     val startIconVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
 
-    val startText: MutableLiveData<String> = MutableLiveData("열기")
+    val startText: MutableLiveData<String> = MutableLiveData("닫기")
     val startTextVisibility: MutableLiveData<Boolean> = MutableLiveData(false)
-    var tempStartText: String? = null
+    var tempStartText: String = "닫기"
 
     val endFirstIcon: MutableLiveData<Int?> = MutableLiveData(Icon.ic_search_line)
     val endFirstIconText: MutableLiveData<String> = MutableLiveData("ic_search_line")
     val endFirstIconVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
 
-    val endFirstText: MutableLiveData<String> = MutableLiveData("닫기")
+    val endFirstText: MutableLiveData<String> = MutableLiveData("알림")
     val endFirstTextVisibility: MutableLiveData<Boolean> = MutableLiveData(false)
+    var tempEndFirstText = "알림"
 
     val endSecondIcon: MutableLiveData<Int?> = MutableLiveData(Icon.ic_bell_line)
     val endSecondIconText: MutableLiveData<String> = MutableLiveData("ic_bell_line")
@@ -31,6 +32,7 @@ class TopBarViewModel(application: Application) : BaseViewModel(application) {
 
     val endSecondText: MutableLiveData<String> = MutableLiveData("검색")
     val endSecondTextVisibility: MutableLiveData<Boolean> = MutableLiveData(false)
+    var tempEndSecondText = "검색"
 
     val onTitleTextChangedListener = object : TextField.OnTextChanged {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -40,19 +42,28 @@ class TopBarViewModel(application: Application) : BaseViewModel(application) {
 
     val onStartTextChangedListener = object : TextField.OnTextChanged {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            s?.toString()?.let { startText.value = it }
+            s?.toString()?.let {
+                startText.value = it
+                tempStartText = it
+            }
         }
     }
 
     val onEndFirstTextChangedListener = object : TextField.OnTextChanged {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            s?.toString()?.let { endFirstText.value = it }
+            s?.toString()?.let {
+                endFirstText.value = it
+                tempEndFirstText = it
+            }
         }
     }
 
     val onEndSecondTextChangedListener = object : TextField.OnTextChanged {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            s?.toString()?.let { endSecondText.value = it }
+            s?.toString()?.let {
+                endSecondText.value = it
+                tempEndSecondText = it
+            }
         }
     }
 
@@ -72,6 +83,7 @@ class TopBarViewModel(application: Application) : BaseViewModel(application) {
             startTextVisibility.value = boolean
             if (boolean) {
                 startIcon.value = null
+                startText.value = tempStartText
             }
         }
     }
@@ -92,6 +104,7 @@ class TopBarViewModel(application: Application) : BaseViewModel(application) {
             endFirstTextVisibility.value = boolean
             if (boolean) {
                 endFirstIcon.value = null
+                endFirstText.value = tempEndFirstText
             }
         }
     }
@@ -112,6 +125,7 @@ class TopBarViewModel(application: Application) : BaseViewModel(application) {
             endSecondTextVisibility.value = boolean
             if (boolean) {
                 endSecondIcon.value = null
+                endSecondText.value = tempEndSecondText
             }
         }
     }
