@@ -17,6 +17,8 @@ class SearchTopBarViewModel(application: Application): BaseViewModel(application
     val eventFlow: SharedFlow<Event> = _eventFlow
     private val _textInSearchTopBar = MutableLiveData("")
     val textInSearchTopBar: LiveData<String> = _textInSearchTopBar
+    private val _placeholderText = MutableLiveData("")
+    val placeholderText: LiveData<String> = _placeholderText
     val initText = "initText"
     private val _isDisable = MutableLiveData(false)
     val isDisable: LiveData<Boolean> = _isDisable
@@ -28,6 +30,10 @@ class SearchTopBarViewModel(application: Application): BaseViewModel(application
 
     fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         _textInSearchTopBar.value = s.toString()
+    }
+
+    fun onPlaceholderTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        _placeholderText.value = s.toString()
     }
 
     fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {

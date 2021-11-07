@@ -35,7 +35,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:onLeftArrowButtonClick="@{() -> viewModel.onLeftArrowButtonClicked()}"
-                app:placeholderText="@{`placeholder text`}" />
+                app:placeholderText="@{viewModel.placeholderText}" />
 
             <!-- 안내 텍스트 -->
             <com.yourssu.design.system.atom.Text
@@ -70,7 +70,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="40dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -110,6 +111,14 @@
                         android:layout_height="wrap_content"
                         app:selectedListener="@{viewModel.enableSelectListener}" />
                 </LinearLayout>
+
+                <com.yourssu.design.system.atom.SimpleTextField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onTextChanged="@{viewModel.onPlaceholderTextChanged}"
+                    app:fieldLabelText="@{`Placeholder Text`}" />
 
             </LinearLayout>
         </ScrollView>
