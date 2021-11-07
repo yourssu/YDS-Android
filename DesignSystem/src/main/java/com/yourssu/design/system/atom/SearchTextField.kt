@@ -228,6 +228,10 @@ class SearchTextField @JvmOverloads constructor(
         binding.edittext.removeTextChangedListener(watcher)
     }
 
+    private fun setEditTextTextColor(color: Int) {
+        binding.edittext.setTextColor(resources.getColor(color, null))
+    }
+
     private fun setPlaceholderTextColor(color: Int) {
         binding.edittext.setHintTextColor(resources.getColor(color, null))
     }
@@ -240,9 +244,6 @@ class SearchTextField @JvmOverloads constructor(
         setIconColor()
         setTextColor()
         binding.edittext.isEnabled = !isDisabled
-        if (isDisabled) {
-            setText("", TextView.BufferType.EDITABLE)
-        }
     }
 
     private fun setIconColor() {
@@ -259,9 +260,11 @@ class SearchTextField @JvmOverloads constructor(
     private fun setTextColor() {
         when {
             isDisabled -> {
+                setEditTextTextColor(R.color.textDisabled)
                 setPlaceholderTextColor(R.color.textDisabled)
             }
             else -> {
+                setEditTextTextColor(R.color.textSecondary)
                 setPlaceholderTextColor(R.color.textTertiary)
             }
         }

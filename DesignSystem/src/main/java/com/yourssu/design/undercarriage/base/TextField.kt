@@ -206,9 +206,6 @@ abstract class TextField @JvmOverloads constructor(
         setTextColor()
         setBackground()
         changeEditTextEnabled()
-        if (isDisabled) {
-            setText("", TextView.BufferType.EDITABLE)
-        }
     }
 
     private fun setTextColor() {
@@ -239,6 +236,8 @@ abstract class TextField @JvmOverloads constructor(
     abstract fun setNegativeTextColor()
 
     abstract fun setDefaultTextColor()
+
+    abstract fun setEditTextTextColor(color: Int)
 
     abstract fun setPlaceholderTextColor(color: Int)
 
