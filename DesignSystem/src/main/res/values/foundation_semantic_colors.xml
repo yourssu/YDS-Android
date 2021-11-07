@@ -14,8 +14,8 @@
     <color name="bgElevatedReversed">@drawable/realBlack</color>
 
     <!-- Text -->
-    <color name="textPrimary">@drawable/gray900</color>
-    <color name="textSecondary">@drawable/gray800</color>
+    <color name="textPrimary">@drawable/black000</color>
+    <color name="textSecondary">@drawable/gray900</color>
     <color name="textTertiary">@drawable/gray600</color>
     <color name="textDisabled">@drawable/gray500</color>
     <color name="textReversed">@drawable/white000</color>
@@ -29,7 +29,7 @@
 
     <!-- Border -->
     <color name="borderThin">@drawable/gray100</color>
-    <color name="borderNormal">@drawable/gray400</color>
+    <color name="borderNormal">@drawable/black000A10</color>
     <color name="borderThick">@drawable/gray500</color>
 
     <!-- Button -->
@@ -59,7 +59,7 @@
     <color name="toastBG">@drawable/gray700</color>
 
     <!-- Pressed -->
-    <color name="pressed">@drawable/gray900A10</color>
+    <color name="pressed">@drawable/black000A10</color>
 
     <!-- Shadow -->
     <color name="shadowThin">@drawable/gray400</color>
