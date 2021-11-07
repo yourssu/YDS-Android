@@ -7,6 +7,7 @@
     <!-- Background -->
     <color name="bgNormal">@drawable/white000</color>
     <color name="bgElevated">@drawable/white000</color>
+    <color name="bgRecomment">@drawable/gray050</color>
     <color name="bgSelected">@drawable/gray100</color>
     <color name="bgPressed">@drawable/gray100</color>
 
@@ -33,6 +34,7 @@
     <color name="buttonNormal">@drawable/gray700</color>
     <color name="buttonNormalPressed">@drawable/gray600</color>
     <color name="buttonBG">@drawable/gray200</color>
+    <color name="buttonEmojiBG">@drawable/gray100</color>
     <color name="buttonReversed">@drawable/white000</color>
     <color name="buttonDisabled">@drawable/gray500</color>
     <color name="buttonDisabledBG">@drawable/gray200</color>
