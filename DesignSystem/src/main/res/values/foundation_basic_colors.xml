@@ -39,6 +39,7 @@
     <!-- White & Black -->
     <drawable name="white000">#FFFFFF</drawable>
     <drawable name="black000">#111111</drawable>
+    <drawable name="realBlack">#000000</drawable>
 
     <!-- Gray -->
     <drawable name="gray050">#F8F9FA</drawable>

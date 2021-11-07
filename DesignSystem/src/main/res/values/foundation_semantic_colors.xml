@@ -10,6 +10,8 @@
     <color name="bgRecomment">@drawable/gray050</color>
     <color name="bgSelected">@drawable/gray100</color>
     <color name="bgPressed">@drawable/gray100</color>
+    <color name="bgNormalReversed">@drawable/realBlack</color>
+    <color name="bgElevatedReversed">@drawable/realBlack</color>
 
     <!-- Text -->
     <color name="textPrimary">@drawable/gray900</color>
