@@ -42,13 +42,13 @@
         <item name="android:textSize">15dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
     </style>
-    <dimen name="body1_line_height">24dp</dimen>
+    <dimen name="body1_line_height">22.5dp</dimen>
 
     <style name="Text.Body2">
         <item name="android:textSize">14dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
     </style>
-    <dimen name="body2_line_height">22.4dp</dimen>
+    <dimen name="body2_line_height">21dp</dimen>
 
     <style name="Text.Button0">
         <item name="android:textSize">16dp</item>
