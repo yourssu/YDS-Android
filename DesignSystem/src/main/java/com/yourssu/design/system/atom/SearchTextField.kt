@@ -159,6 +159,17 @@ class SearchTextField @JvmOverloads constructor(
         binding = LayoutSearchTextFieldBinding.inflate(
             LayoutInflater.from(context), this, true
         )
+        binding.edittext.setOnFocusChangeListener { v, hasFocus ->
+            binding.btn.visibility = if (hasFocus) {
+                if (binding.edittext.text.isNotEmpty()) {
+                    VISIBLE
+                } else {
+                    GONE
+                }
+            } else {
+                GONE
+            }
+        }
     }
 
     @SuppressLint("CustomViewStyleable")
