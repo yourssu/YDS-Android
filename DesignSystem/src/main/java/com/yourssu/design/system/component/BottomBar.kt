@@ -33,7 +33,10 @@ class BottomBar @JvmOverloads constructor(
         fun tabLongClicked(itemIndex: Int)
     }
 
-    lateinit var binding: LayoutBottomBarBinding
+    private val binding: LayoutBottomBarBinding by lazy {
+        LayoutBottomBarBinding.inflate(LayoutInflater.from(context), this, true)
+    }
+
     private var isCanChangeTab = true
     private var tabList = listOf<BottomTabInfo>()
     private var bindingMap: MutableMap<Int, ItemBottomTabBinding> = mutableMapOf()
@@ -48,7 +51,6 @@ class BottomBar @JvmOverloads constructor(
     }
 
     private fun initialize(attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
-        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.layout_bottom_bar, this, true)
 
         context.withStyledAttributes(attrs, R.styleable.BottomBar, defStyleAttr, defStyleRes) {
             bottomTabType.set(getInteger(R.styleable.BottomBar_selectedIndex, 0))
@@ -66,7 +68,7 @@ class BottomBar @JvmOverloads constructor(
     private fun updateTabStatus() {
         binding.tabArea.removeAllViews()
         tabList.forEachIndexed { index, bottomTabInfo ->
-            val item: ItemBottomTabBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_bottom_tab, this, false)
+            val item: ItemBottomTabBinding = ItemBottomTabBinding.inflate(LayoutInflater.from(context), this, false)
 
             bindingMap[index] = item
 
