@@ -43,7 +43,7 @@ class MainActivity : BaseActivity() {
         "TopBar" to TopBarFragment::class.java,
         "SingleTitleTopBar" to Fragment::class.java,
         "DoubleTitleTopBar" to Fragment::class.java,
-        "BottomBar" to BottomBarFragment::class.java,
+        "BottomBar" to BottomBarFragment::class.java
     )
     /** 추가시 여기에만 선언하면 됨 */
 

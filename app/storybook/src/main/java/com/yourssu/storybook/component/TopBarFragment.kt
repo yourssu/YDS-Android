@@ -45,7 +45,17 @@ class TopBarFragment : Fragment() {
         }
     }
 
-
+    private val onEndSecondIconValueChangeListener = object : Picker.OnValueChangeListener {
+        override fun onValueChange(
+            firstValue: String,
+            secondValue: String,
+            thirdValue: String,
+            totalValue: String,
+        ) {
+            viewModel.endSecondIconText.value = firstValue
+            viewModel.endSecondIcon.value = Icon.getValueByName(firstValue)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,6 +98,22 @@ class TopBarFragment : Fragment() {
                     setFirstRow(iconList)
                     setFirstRowPosition(iconList.indexOf(viewModel.startIconText.value))
                     this.onValueChangeListener = onEndFirstIconValueChangeListener
+                }
+            }
+        }
+
+        binding.endSecondIconSelect.setOnClickListener {
+            bottomSheet {
+                text {
+                    text = "endSecondIcon"
+                    typo = Typo.SubTitle2
+
+                    setLayout(leftMarginPx = context.dpToIntPx(16f))
+                }
+                picker {
+                    setFirstRow(iconList)
+                    setFirstRowPosition(iconList.indexOf(viewModel.startIconText.value))
+                    this.onValueChangeListener = onEndSecondIconValueChangeListener
                 }
             }
         }
