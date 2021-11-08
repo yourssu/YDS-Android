@@ -2,11 +2,12 @@ package com.yourssu.design.system.component
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.databinding.LayoutDoubleTitleTopBarBinding
-import com.yourssu.design.system.atom.Badge
 import com.yourssu.design.system.foundation.Icon
 
 class DoubleTitleTopBar @JvmOverloads constructor(
@@ -14,6 +15,7 @@ class DoubleTitleTopBar @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
+
     private val binding: LayoutDoubleTitleTopBarBinding =
         LayoutDoubleTitleTopBarBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -68,7 +70,33 @@ class DoubleTitleTopBar @JvmOverloads constructor(
             binding.thirdButton.icon = icon
         }
 
+    var firstButtonVisibility: Int = GONE
+        set(value) {
+            field = value
+            binding.firstButton.visibility = value
+            requestLayout()
+        }
+
+    var secondButtonVisibility: Int = GONE
+        set(value) {
+            field = value
+            binding.secondButton.visibility = value
+            requestLayout()
+        }
+
+    var thirdButtonVisibility: Int = GONE
+        set(value) {
+            field = value
+            binding.thirdButton.visibility = value
+            requestLayout()
+        }
+
     companion object {
+        const val VISIBLE = View.VISIBLE
+        const val INVISIBLE = View.VISIBLE
+        const val GONE = View.GONE
+
+
         @JvmStatic
         @BindingAdapter("title")
         fun setTitle(doubleTitleTopBar: DoubleTitleTopBar, title: String) {
@@ -100,10 +128,28 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         }
 
         @JvmStatic
+        @BindingAdapter("firstButtonVisibility")
+        fun setFirstButtonVisibility(doubleTitleTopBar: DoubleTitleTopBar, state: Int) {
+            doubleTitleTopBar.firstButtonVisibility = state
+        }
+
+        @JvmStatic
+        @BindingAdapter("secondButtonVisibility")
+        fun setSecondButtonVisibility(doubleTitleTopBar: DoubleTitleTopBar, state: Int) {
+            doubleTitleTopBar.secondButtonVisibility = state
+        }
+
+        @JvmStatic
+        @BindingAdapter("thirdButtonVisibility")
+        fun setThirdButtonVisibility(doubleTitleTopBar: DoubleTitleTopBar, state: Int) {
+            doubleTitleTopBar.thirdButtonVisibility = state
+        }
+
+        @JvmStatic
         @BindingAdapter("firstButtonClickListener")
         fun setFirstButtonClickListener(
             doubleTitleTopBar: DoubleTitleTopBar,
-            onClickListener:OnClickListener
+            onClickListener: OnClickListener
         ) {
             doubleTitleTopBar.firstButtonListener = onClickListener
         }
@@ -112,7 +158,7 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         @BindingAdapter("secondButtonClickListener")
         fun setSecondButtonClickListener(
             doubleTitleTopBar: DoubleTitleTopBar,
-            onClickListener:OnClickListener
+            onClickListener: OnClickListener
         ) {
             doubleTitleTopBar.secondButtonListener = onClickListener
         }
@@ -121,7 +167,7 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         @BindingAdapter("thirdButtonClickListener")
         fun setThirdButtonClickListener(
             doubleTitleTopBar: DoubleTitleTopBar,
-            onClickListener:OnClickListener
+            onClickListener: OnClickListener
         ) {
             doubleTitleTopBar.thirdButtonListener = onClickListener
         }

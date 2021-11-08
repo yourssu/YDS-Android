@@ -5,6 +5,7 @@
     <data>
 
         <import type="com.yourssu.design.system.foundation.Icon" />
+        <import type="com.yourssu.design.system.component.DoubleTitleTopBar" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:firstIcon="@{Icon.ic_bell_filled}"
+            app:firstButtonVisibility="@{DoubleTitleTopBar.GONE}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/single_title_top_bar"
             app:secondIcon="@{Icon.ic_ground_line}"
