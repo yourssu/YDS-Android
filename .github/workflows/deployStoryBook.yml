@@ -42,8 +42,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.release_version.outputs.value }}-beta-$BUILD_NUMBER
-          release_name: Release ${{ steps.release_version.outputs.value }}-beta-$BUILD_NUMBER
+          tag_name: ${{ steps.release_version.outputs.value }}-beta-${{ BUILD_NUMBER }}
+          release_name: Release ${{ steps.release_version.outputs.value }}-beta-${{ BUILD_NUMBER }}
 
       - name: Upload to Slack
         run: curl -F file=@"app/storybook/build/outputs/apk/dev/release/YDS-StoryBook-${{ steps.release_version.outputs.value }}($BUILD_NUMBER)-dev-release.apk" -F "initial_comment=개발중인 YDS StoryBook이 나왔슈~" -F "channels=${{ secrets.SLACK_CHANNEL_ID_ANDROID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
