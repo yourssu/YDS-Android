@@ -30,6 +30,15 @@ class SearchTextField @JvmOverloads constructor(
         }
 
         @JvmStatic
+        @BindingAdapter("android:onEditorAction")
+        fun setOnEditorActionListener(
+            searchTextField: SearchTextField,
+            onEditorActionListener: TextView.OnEditorActionListener
+        ) {
+            searchTextField.binding.edittext.setOnEditorActionListener(onEditorActionListener)
+        }
+
+        @JvmStatic
         @BindingAdapter("isDisabled")
         fun setIsDisabled(searchTextField: SearchTextField, isDisabled: Boolean) {
             searchTextField.isDisabled = isDisabled
@@ -150,6 +159,17 @@ class SearchTextField @JvmOverloads constructor(
         binding = LayoutSearchTextFieldBinding.inflate(
             LayoutInflater.from(context), this, true
         )
+        binding.edittext.setOnFocusChangeListener { v, hasFocus ->
+            binding.btn.visibility = if (hasFocus) {
+                if (binding.edittext.text.isNotEmpty()) {
+                    VISIBLE
+                } else {
+                    GONE
+                }
+            } else {
+                GONE
+            }
+        }
     }
 
     @SuppressLint("CustomViewStyleable")
@@ -219,6 +239,10 @@ class SearchTextField @JvmOverloads constructor(
         binding.edittext.removeTextChangedListener(watcher)
     }
 
+    private fun setEditTextTextColor(color: Int) {
+        binding.edittext.setTextColor(resources.getColor(color, null))
+    }
+
     private fun setPlaceholderTextColor(color: Int) {
         binding.edittext.setHintTextColor(resources.getColor(color, null))
     }
@@ -231,9 +255,6 @@ class SearchTextField @JvmOverloads constructor(
         setIconColor()
         setTextColor()
         binding.edittext.isEnabled = !isDisabled
-        if (isDisabled) {
-            setText("", TextView.BufferType.EDITABLE)
-        }
     }
 
     private fun setIconColor() {
@@ -250,9 +271,11 @@ class SearchTextField @JvmOverloads constructor(
     private fun setTextColor() {
         when {
             isDisabled -> {
+                setEditTextTextColor(R.color.textDisabled)
                 setPlaceholderTextColor(R.color.textDisabled)
             }
             else -> {
+                setEditTextTextColor(R.color.textSecondary)
                 setPlaceholderTextColor(R.color.textTertiary)
             }
         }
