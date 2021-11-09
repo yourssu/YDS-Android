@@ -53,12 +53,13 @@
                 tools:hint="플레이스 홀더" />
 
             <com.yourssu.design.system.atom.IconView
+                android:id="@+id/btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> edittext.setText(``)}"
-                android:visibility="@{edittext.text.toString().empty ? View.GONE : View.VISIBLE}"
+                android:visibility="@{edittext.text.toString().empty || !edittext.hasFocus() ? View.GONE : View.VISIBLE}"
                 app:icon="@{Icon.ic_x_line}"
-                app:size="@{IconView.ExtraSmall}" />a
+                app:size="@{IconView.ExtraSmall}" />
 
         </LinearLayout>
 

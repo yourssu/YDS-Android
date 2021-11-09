@@ -7,12 +7,15 @@
     <!-- Background -->
     <color name="bgNormal">@drawable/white000</color>
     <color name="bgElevated">@drawable/white000</color>
+    <color name="bgRecomment">@drawable/gray050</color>
     <color name="bgSelected">@drawable/gray100</color>
     <color name="bgPressed">@drawable/gray100</color>
+    <color name="bgNormalReversed">@drawable/realBlack</color>
+    <color name="bgElevatedReversed">@drawable/realBlack</color>
 
     <!-- Text -->
-    <color name="textPrimary">@drawable/gray900</color>
-    <color name="textSecondary">@drawable/gray800</color>
+    <color name="textPrimary">@drawable/black000</color>
+    <color name="textSecondary">@drawable/gray900</color>
     <color name="textTertiary">@drawable/gray600</color>
     <color name="textDisabled">@drawable/gray500</color>
     <color name="textReversed">@drawable/white000</color>
@@ -26,13 +29,14 @@
 
     <!-- Border -->
     <color name="borderThin">@drawable/gray100</color>
-    <color name="borderNormal">@drawable/gray400</color>
+    <color name="borderNormal">@drawable/black000A10</color>
     <color name="borderThick">@drawable/gray500</color>
 
     <!-- Button -->
     <color name="buttonNormal">@drawable/gray700</color>
     <color name="buttonNormalPressed">@drawable/gray600</color>
     <color name="buttonBG">@drawable/gray200</color>
+    <color name="buttonEmojiBG">@drawable/gray100</color>
     <color name="buttonReversed">@drawable/white000</color>
     <color name="buttonDisabled">@drawable/gray500</color>
     <color name="buttonDisabledBG">@drawable/gray200</color>
@@ -55,7 +59,7 @@
     <color name="toastBG">@drawable/gray700</color>
 
     <!-- Pressed -->
-    <color name="pressed">@drawable/gray900A10</color>
+    <color name="pressed">@drawable/black000A10</color>
 
     <!-- Shadow -->
     <color name="shadowThin">@drawable/gray400</color>

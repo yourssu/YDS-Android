@@ -25,6 +25,15 @@ abstract class TextField @JvmOverloads constructor(
         }
 
         @JvmStatic
+        @BindingAdapter("android:onEditorAction")
+        fun setOnEditorActionListener(
+            textField: TextField,
+            onEditorActionListener: TextView.OnEditorActionListener
+        ) {
+            textField.setOnEditorActionListener(onEditorActionListener)
+        }
+
+        @JvmStatic
         @BindingAdapter("isDisabled")
         fun setIsDisabled(textField: TextField, isDisabled: Boolean) {
             textField.isDisabled = isDisabled
@@ -167,6 +176,8 @@ abstract class TextField @JvmOverloads constructor(
 
     internal abstract fun initAttributes(context: Context, attrs: AttributeSet?)
 
+    abstract fun setOnEditorActionListener(onEditorActionListener: TextView.OnEditorActionListener)
+
     abstract fun extendSelection(index: Int)
 
     abstract fun getFreezesText(): Boolean
@@ -195,9 +206,6 @@ abstract class TextField @JvmOverloads constructor(
         setTextColor()
         setBackground()
         changeEditTextEnabled()
-        if (isDisabled) {
-            setText("", TextView.BufferType.EDITABLE)
-        }
     }
 
     private fun setTextColor() {
@@ -228,6 +236,8 @@ abstract class TextField @JvmOverloads constructor(
     abstract fun setNegativeTextColor()
 
     abstract fun setDefaultTextColor()
+
+    abstract fun setEditTextTextColor(color: Int)
 
     abstract fun setPlaceholderTextColor(color: Int)
 

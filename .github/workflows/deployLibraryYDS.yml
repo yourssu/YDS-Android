@@ -46,4 +46,4 @@ jobs:
           release_name: Release ${{ steps.release_version.outputs.value }}
 
       - name: Upload to Slack
-        run: curl -F file=@"app/storybook/build/outputs/bundle/productionRelease/YDS-StoryBook-${{ steps.release_version.outputs.value }}($BUILD_NUMBER)-production-release.aab" -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android/${{ steps.release_version.outputs.value }}    aab 파일은 스토어에 업로드 해유~" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
+        run: curl -F file=@"app/storybook/build/outputs/bundle/productionRelease/YDS-StoryBook-${{ steps.release_version.outputs.value }}($BUILD_NUMBER)-production-release.aab" -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android    aab 파일은 스토어에 업로드 해유~" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload

@@ -115,6 +115,10 @@ class SuffixTextField @JvmOverloads constructor(
         }
     }
 
+    override fun setOnEditorActionListener(onEditorActionListener: TextView.OnEditorActionListener) {
+        binding.edittext.setOnEditorActionListener(onEditorActionListener)
+    }
+
     override fun extendSelection(index: Int) {
         binding.edittext.extendSelection(index)
     }
@@ -173,6 +177,7 @@ class SuffixTextField @JvmOverloads constructor(
     }
 
     override fun setDisabledTextColor() {
+        setEditTextTextColor(R.color.textDisabled)
         setPlaceholderTextColor(R.color.textDisabled)
         setFieldLabelTextColor(R.color.textDisabled)
         setHelperLabelTextColor(R.color.textDisabled)
@@ -180,6 +185,7 @@ class SuffixTextField @JvmOverloads constructor(
     }
 
     override fun setPositiveTextColor() {
+        setEditTextTextColor(R.color.textSecondary)
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textTertiary)
@@ -187,6 +193,7 @@ class SuffixTextField @JvmOverloads constructor(
     }
 
     override fun setNegativeTextColor() {
+        setEditTextTextColor(R.color.textSecondary)
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textWarned)
@@ -194,10 +201,15 @@ class SuffixTextField @JvmOverloads constructor(
     }
 
     override fun setDefaultTextColor() {
+        setEditTextTextColor(R.color.textSecondary)
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textTertiary)
         setSuffixLabelTextColor(R.color.textTertiary)
+    }
+
+    override fun setEditTextTextColor(color: Int) {
+        binding.edittext.setTextColor(resources.getColor(color, null))
     }
 
     override fun setPlaceholderTextColor(color: Int) {
