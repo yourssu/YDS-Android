@@ -39,23 +39,23 @@
 
         <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/first_button"
-            android:layout_width="48dp"
-            android:layout_height="56dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/second_button" />
 
         <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/second_button"
-            android:layout_width="48dp"
-            android:layout_height="56dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/third_button" />
 
         <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/third_button"
-            android:layout_width="48dp"
-            android:layout_height="56dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginRight="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

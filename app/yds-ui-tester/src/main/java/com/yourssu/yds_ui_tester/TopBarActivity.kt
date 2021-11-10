@@ -14,8 +14,8 @@ class TopBarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_top_bar)
-        binding.doubleTitleTopBar.firstButtonListener = View.OnClickListener {
-            Toast.makeText(it.context, "firstButtonClick!", Toast.LENGTH_SHORT).show()
-        }
+//        binding.doubleTitleTopBar.firstButtonListener = View.OnClickListener {
+//            Toast.makeText(it.context, "firstButtonClick!", Toast.LENGTH_SHORT).show()
+//        }
     }
 }

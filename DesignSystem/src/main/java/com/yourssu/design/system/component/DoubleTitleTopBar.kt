@@ -70,33 +70,25 @@ class DoubleTitleTopBar @JvmOverloads constructor(
             binding.thirdButton.icon = icon
         }
 
-    var firstButtonVisibility: Int = GONE
+    var firstText: String = ""
         set(value) {
             field = value
-            binding.firstButton.visibility = value
-            requestLayout()
+            binding.firstButton.text = value
         }
 
-    var secondButtonVisibility: Int = GONE
+    var secondText: String = ""
         set(value) {
             field = value
-            binding.secondButton.visibility = value
-            requestLayout()
+            binding.secondButton.text = value
         }
 
-    var thirdButtonVisibility: Int = GONE
+    var thirdText: String = ""
         set(value) {
             field = value
-            binding.thirdButton.visibility = value
-            requestLayout()
+            binding.thirdButton.text = value
         }
 
     companion object {
-        const val VISIBLE = View.VISIBLE
-        const val INVISIBLE = View.VISIBLE
-        const val GONE = View.GONE
-
-
         @JvmStatic
         @BindingAdapter("title")
         fun setTitle(doubleTitleTopBar: DoubleTitleTopBar, title: String) {
@@ -128,22 +120,23 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         }
 
         @JvmStatic
-        @BindingAdapter("firstButtonVisibility")
-        fun setFirstButtonVisibility(doubleTitleTopBar: DoubleTitleTopBar, state: Int) {
-            doubleTitleTopBar.firstButtonVisibility = state
+        @BindingAdapter("firstText")
+        fun setFirstText(doubleTitleTopBar: DoubleTitleTopBar, value: String) {
+            doubleTitleTopBar.firstText = value
         }
 
         @JvmStatic
-        @BindingAdapter("secondButtonVisibility")
-        fun setSecondButtonVisibility(doubleTitleTopBar: DoubleTitleTopBar, state: Int) {
-            doubleTitleTopBar.secondButtonVisibility = state
+        @BindingAdapter("secondText")
+        fun setSecondText(doubleTitleTopBar: DoubleTitleTopBar, value: String) {
+            doubleTitleTopBar.secondText = value
         }
 
         @JvmStatic
-        @BindingAdapter("thirdButtonVisibility")
-        fun setThirdButtonVisibility(doubleTitleTopBar: DoubleTitleTopBar, state: Int) {
-            doubleTitleTopBar.thirdButtonVisibility = state
+        @BindingAdapter("thirdText")
+        fun setThirdText(doubleTitleTopBar: DoubleTitleTopBar, value: String) {
+            doubleTitleTopBar.thirdText = value
         }
+
 
         @JvmStatic
         @BindingAdapter("firstButtonClickListener")
