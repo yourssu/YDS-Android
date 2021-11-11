@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.yourssu.design.system.atom.BoxButton"/>
+
+        <import type="com.yourssu.design.system.atom.BoxButton" />
+
         <variable
             name="viewModel"
             type="com.yourssu.storybook.component.SingleTitleTopBarViewModel" />
@@ -19,44 +21,22 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@{viewModel.componentBackgroundColor}"
-            android:onClick="@{() -> viewModel.changeBackground()}">
+            android:layout_weight="1">
 
-            <com.yourssu.design.system.component.TopBar
+            <com.yourssu.design.system.component.SingleTitleTopBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                app:firstIcon="@{viewModel.firstIcon}"
+                app:firstText="@{viewModel.firstText}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:title="@{viewModel.titleLiveData}"
-                app:startIcon="@{viewModel.startIcon}"
-                app:startText="@{viewModel.startText}"
-                app:endFirstIcon="@{viewModel.endFirstIcon}"
-                app:endFirstText="@{viewModel.endFirstText}"
-                app:endSecondIcon="@{viewModel.endSecondIcon}"
-                app:endSecondText="@{viewModel.endSecondText}"/>
-
-            <!-- 안내 텍스트 -->
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="8dp"
-                android:text="Click Background to change Color"
-                android:textColor="@color/textPrimary"
-                app:typo="subtitle2" />
-
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="8dp"
-                android:alpha=".5"
-                android:text="Click Background to change Color"
-                android:textColor="@drawable/white000"
-                app:typo="subtitle2" />
+                app:secondIcon="@{viewModel.secondIcon}"
+                app:secondText="@{viewModel.secondText}"
+                app:thirdIcon="@{viewModel.thirdIcon}"
+                app:thirdText="@{viewModel.thirdText}"
+                app:title="@{viewModel.title}" />
         </FrameLayout>
 
         <ScrollView
@@ -64,12 +44,14 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <!--                타이틀-->
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
@@ -86,54 +68,51 @@
                     android:imeOptions="actionDone"
                     android:onTextChanged="@{viewModel.onTitleTextChangedListener}"
                     android:text="Title" />
+                <!--                타이틀-->
 
+                <!--            first icon-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical">
+
                     <com.yourssu.design.system.atom.Text
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="StartIcon"
+                        android:gravity="center_vertical"
+                        android:text="firstIcon"
                         android:textColor="@color/textPrimary"
-                        app:typo="subtitle2"/>
-                    <com.yourssu.design.system.atom.Toggle
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.startIconVisibility}"
-                        app:selectedListener="@{viewModel.startIconSelectListener}"/>
+                        app:typo="subtitle2" />
                 </LinearLayout>
 
                 <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/start_icon_select"
+                    android:id="@+id/first_icon_select"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     app:rounding="@{8}"
                     app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.startIconText}"
+                    app:text="@{viewModel.firstIconText}"
                     app:type="@{BoxButton.LINE}" />
+                <!--            first icon-->
 
+                <!--                first text-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
                     <com.yourssu.design.system.atom.Text
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="StartText"
+                        android:gravity="center_vertical"
+                        android:text="firstText"
                         android:textColor="@color/textPrimary"
-                        app:typo="subtitle2"/>
-                    <com.yourssu.design.system.atom.Toggle
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.startTextVisibility}"
-                        app:selectedListener="@{viewModel.startTextSelectListener}"/>
+                        app:typo="subtitle2" />
                 </LinearLayout>
 
                 <com.yourssu.design.system.atom.SimpleTextField
@@ -141,56 +120,56 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:onTextChanged="@{viewModel.onStartTextChangedListener}"
-                    android:text="닫기" />
+                    android:onTextChanged="@{viewModel.firstTextChangedListener}" />
+                <!--                first text-->
 
+
+                <!--            second icon-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical">
+
                     <com.yourssu.design.system.atom.Text
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndFirstIcon"
+                        android:gravity="center_vertical"
+                        android:text="secondIcon"
                         android:textColor="@color/textPrimary"
-                        app:typo="subtitle2"/>
-                    <com.yourssu.design.system.atom.Toggle
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.endFirstIconVisibility}"
-                        app:selectedListener="@{viewModel.endFirstIconSelectListener}"/>
+                        app:typo="subtitle2" />
                 </LinearLayout>
 
                 <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/end_first_icon_select"
+                    android:id="@+id/second_icon_select"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     app:rounding="@{8}"
                     app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.endFirstIconText}"
+                    app:text="@{viewModel.secondIconText}"
                     app:type="@{BoxButton.LINE}" />
+                <!--            second icon-->
 
+
+                <!--                second text-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
                     <com.yourssu.design.system.atom.Text
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndFirstText"
+                        android:gravity="center_vertical"
+                        android:text="secondText"
                         android:textColor="@color/textPrimary"
-                        app:typo="subtitle2"/>
-                    <com.yourssu.design.system.atom.Toggle
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.endFirstTextVisibility}"
-                        app:selectedListener="@{viewModel.endFirstTextSelectListener}"/>
+                        app:typo="subtitle2" />
+
+
                 </LinearLayout>
 
                 <com.yourssu.design.system.atom.SimpleTextField
@@ -198,67 +177,70 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:imeOptions="actionDone"
-                    android:onTextChanged="@{viewModel.onEndFirstTextChangedListener}"
-                    android:text="알림" />
+                    android:onTextChanged="@{viewModel.secondTextChangedListener}" />
 
+                <!--                second text-->
+
+
+                <!--            third icon-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical">
+
                     <com.yourssu.design.system.atom.Text
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndSecondIcon"
+                        android:gravity="center_vertical"
+                        android:text="thirdIcon"
                         android:textColor="@color/textPrimary"
-                        app:typo="subtitle2"/>
-                    <com.yourssu.design.system.atom.Toggle
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.endSecondIconVisibility}"
-                        app:selectedListener="@{viewModel.endSecondIconSelectListener}"/>
+                        app:typo="subtitle2" />
+
+
                 </LinearLayout>
 
                 <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/end_second_icon_select"
+                    android:id="@+id/third_icon_select"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     app:rounding="@{8}"
                     app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.endSecondIconText}"
+                    app:text="@{viewModel.thirdIconText}"
                     app:type="@{BoxButton.LINE}" />
+                <!--            third icon-->
 
+
+                <!--                third text-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
                     <com.yourssu.design.system.atom.Text
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndSecondText"
+                        android:gravity="center_vertical"
+                        android:text="thirdText"
                         android:textColor="@color/textPrimary"
-                        app:typo="subtitle2"/>
-                    <com.yourssu.design.system.atom.Toggle
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.endSecondTextVisibility}"
-                        app:selectedListener="@{viewModel.endSecondTextSelectListener}"/>
+                        app:typo="subtitle2" />
+
+
                 </LinearLayout>
+
 
                 <com.yourssu.design.system.atom.SimpleTextField
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:imeOptions="actionDone"
-                    android:onTextChanged="@{viewModel.onEndSecondTextChangedListener}"
-                    android:text="검색" />
+                    android:onTextChanged="@{viewModel.thirdTextChangedListener}" />
+                <!--                third text-->
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

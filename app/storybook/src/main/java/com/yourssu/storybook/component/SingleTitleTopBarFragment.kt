@@ -15,46 +15,67 @@ import com.yourssu.design.system.language.setLayout
 import com.yourssu.design.system.language.text
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.storybook.databinding.FragmentSingleTitleTopBarBinding
-import com.yourssu.storybook.databinding.FragmentTopBarBinding
 
 class SingleTitleTopBarFragment : Fragment() {
     private lateinit var binding: FragmentSingleTitleTopBarBinding
-    private val viewModel: TopBarViewModel by viewModels()
-    private val iconList = Icon.getList().map { Icon.getName(it) }
+    private val viewModel: SingleTitleTopBarViewModel by viewModels()
+    private val iconList = Icon.getList().map { Icon.getName(it) }.toMutableList()
 
-    private val onStartIconValueChangeListener = object : Picker.OnValueChangeListener {
+    init {
+        iconList.add(0, "null")
+    }
+
+    private val onFirstIconValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
             secondValue: String,
             thirdValue: String,
             totalValue: String,
         ) {
-            viewModel.startIconText.value = firstValue
-            viewModel.startIcon.value = Icon.getValueByName(firstValue)
+            if (firstValue == "null") {
+                viewModel.firstIconText.value = firstValue
+                viewModel.firstIcon.value = null
+            }
+            else {
+                viewModel.firstIconText.value = firstValue
+                viewModel.firstIcon.value = Icon.getValueByName(firstValue)
+            }
         }
     }
 
-    private val onEndFirstIconValueChangeListener = object : Picker.OnValueChangeListener {
+    private val onSecondIconValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
             secondValue: String,
             thirdValue: String,
             totalValue: String,
         ) {
-            viewModel.endFirstIconText.value = firstValue
-            viewModel.endFirstIcon.value = Icon.getValueByName(firstValue)
+            if (firstValue == "null") {
+                viewModel.secondIconText.value = firstValue
+                viewModel.secondIcon.value = null
+            }
+            else {
+                viewModel.secondIconText.value = firstValue
+                viewModel.secondIcon.value = Icon.getValueByName(firstValue)
+            }
         }
     }
 
-    private val onEndSecondIconValueChangeListener = object : Picker.OnValueChangeListener {
+    private val onThirdIconValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
             secondValue: String,
             thirdValue: String,
             totalValue: String,
         ) {
-            viewModel.endSecondIconText.value = firstValue
-            viewModel.endSecondIcon.value = Icon.getValueByName(firstValue)
+            if (firstValue == "null") {
+                viewModel.thirdIconText.value = firstValue
+                viewModel.thirdIcon.value = null
+            }
+            else {
+                viewModel.thirdIconText.value = firstValue
+                viewModel.thirdIcon.value = Icon.getValueByName(firstValue)
+            }
         }
     }
 
@@ -63,7 +84,7 @@ class SingleTitleTopBarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentSingleTitleTopBarBinding.inflate(inflater,  container, false)
+        binding = FragmentSingleTitleTopBarBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         initView()
@@ -71,50 +92,50 @@ class SingleTitleTopBarFragment : Fragment() {
     }
 
     private fun initView() {
-        binding.startIconSelect.setOnClickListener {
+        binding.firstIconSelect.setOnClickListener {
             bottomSheet {
                 text {
-                    text = "startIcon"
+                    text = "First Icon"
                     typo = Typo.SubTitle2
 
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
                 }
                 picker {
                     setFirstRow(iconList)
-                    setFirstRowPosition(iconList.indexOf(viewModel.startIconText.value))
-                    this.onValueChangeListener = onStartIconValueChangeListener
+                    setFirstRowPosition(iconList.indexOf(viewModel.firstIconText.value))
+                    this.onValueChangeListener = onFirstIconValueChangeListener
                 }
             }
         }
 
-        binding.endFirstIconSelect.setOnClickListener {
+        binding.secondIconSelect.setOnClickListener {
             bottomSheet {
                 text {
-                    text = "endFirstIcon"
+                    text = "Second Icon"
                     typo = Typo.SubTitle2
 
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
                 }
                 picker {
                     setFirstRow(iconList)
-                    setFirstRowPosition(iconList.indexOf(viewModel.startIconText.value))
-                    this.onValueChangeListener = onEndFirstIconValueChangeListener
+                    setFirstRowPosition(iconList.indexOf(viewModel.secondIconText.value))
+                    this.onValueChangeListener = onSecondIconValueChangeListener
                 }
             }
         }
 
-        binding.endSecondIconSelect.setOnClickListener {
+        binding.thirdIconSelect.setOnClickListener {
             bottomSheet {
                 text {
-                    text = "endSecondIcon"
+                    text = "Third Icon"
                     typo = Typo.SubTitle2
 
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
                 }
                 picker {
                     setFirstRow(iconList)
-                    setFirstRowPosition(iconList.indexOf(viewModel.startIconText.value))
-                    this.onValueChangeListener = onEndSecondIconValueChangeListener
+                    setFirstRowPosition(iconList.indexOf(viewModel.thirdIconText.value))
+                    this.onValueChangeListener = onThirdIconValueChangeListener
                 }
             }
         }
