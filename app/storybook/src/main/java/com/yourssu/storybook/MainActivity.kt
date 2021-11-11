@@ -9,10 +9,7 @@ import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.storybook.DetailActivity.Companion.navigateToDetail
 import com.yourssu.storybook.atom.*
-import com.yourssu.storybook.component.BottomBarFragment
-import com.yourssu.storybook.component.SearchTopBarFragment
-import com.yourssu.storybook.component.ToastFragment
-import com.yourssu.storybook.component.TopBarFragment
+import com.yourssu.storybook.component.*
 import com.yourssu.storybook.transform.ActivityAnimType
 
 class MainActivity : BaseActivity() {
@@ -41,7 +38,7 @@ class MainActivity : BaseActivity() {
         "Toast" to ToastFragment::class.java,
         "TopBar" to TopBarFragment::class.java,
         "SingleTitleTopBar" to Fragment::class.java,
-        "DoubleTitleTopBar" to Fragment::class.java,
+        "DoubleTitleTopBar" to DoubleTitleTopBarFragment::class.java,
         "SearchTopBar" to SearchTopBarFragment::class.java,
         "BottomBar" to BottomBarFragment::class.java
     )
