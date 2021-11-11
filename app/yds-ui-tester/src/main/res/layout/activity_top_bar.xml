@@ -14,12 +14,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.yourssu.design.system.component.SingleTitleTopBar
-            android:id="@+id/single_title_top_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="@{`타이틀`}" />
-
         <com.yourssu.design.system.component.DoubleTitleTopBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,8 +26,8 @@
         <com.yourssu.design.system.component.DoubleTitleTopBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:firstIcon="@{Icon.ic_bell_filled}"
-            app:secondIcon="@{Icon.ic_arrow_left_line}"
+            app:secondIcon="@{Icon.ic_bell_filled}"
+            app:thirdIcon="@{Icon.ic_arrow_left_line}"
             app:subtitle="@{`서브 타이틀`}"
             app:title="@{`타이틀`}" />
 
@@ -67,16 +61,16 @@
         <com.yourssu.design.system.component.DoubleTitleTopBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:firstText="@{`버튼`}"
-            app:subtitle="@{`서브 타이틀`}"
             app:secondText="@{`버튼`}"
+            app:subtitle="@{`서브 타이틀`}"
+            app:thirdText="@{`버튼`}"
             app:title="@{`타이틀`}" />
 
         <com.yourssu.design.system.component.DoubleTitleTopBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:subtitle="@{`서브 타이틀`}"
-            app:firstText="@{`버튼`}"
+            app:thirdText="@{`버튼`}"
             app:title="@{`타이틀`}" />
 
         <com.yourssu.design.system.component.DoubleTitleTopBar
@@ -84,5 +78,34 @@
             android:layout_height="wrap_content"
             app:subtitle="@{`서브 타이틀`}"
             app:title="@{`타이틀`}" />
+
+        <com.yourssu.design.system.component.TopBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{`제목`}"
+            app:startIcon="@{Icon.ic_bell_filled}"
+            app:startText="@{`텍스트`}"
+            app:endFirstIcon="@{Icon.ic_bell_filled}"
+            app:endFirstText="@{`텍스트`}"
+            app:endSecondIcon="@{Icon.ic_bell_filled}"
+            app:endSecondText="@{`텍스트`}"/>
+
+        <com.yourssu.design.system.component.TopBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{`제목`}"
+            app:startIcon="@{Icon.ic_bell_filled}"
+            app:startText="@{`텍스트`}"
+            app:endSecondIcon="@{Icon.ic_bell_filled}"
+            app:endSecondText="@{`텍스트`}"/>
+
     </LinearLayout>
 </layout>
