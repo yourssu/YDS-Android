@@ -22,7 +22,7 @@ class DoubleTitleTopBarFragment : Fragment() {
     private val iconList = Icon.getList().map { Icon.getName(it) }.toMutableList()
 
     init {
-        iconList.add(0, "null")
+        iconList.add(0, "No Icon")
     }
 
     private val onFirstIconValueChangeListener = object : Picker.OnValueChangeListener {
@@ -32,7 +32,7 @@ class DoubleTitleTopBarFragment : Fragment() {
             thirdValue: String,
             totalValue: String,
         ) {
-            if (firstValue == "null") {
+            if (firstValue == "No Icon") {
                 viewModel.firstIconText.value = firstValue
                 viewModel.firstIcon.value = null
             }
@@ -50,7 +50,7 @@ class DoubleTitleTopBarFragment : Fragment() {
             thirdValue: String,
             totalValue: String,
         ) {
-            if (firstValue == "null") {
+            if (firstValue == "No Icon") {
                 viewModel.secondIconText.value = firstValue
                 viewModel.secondIcon.value = null
             }
@@ -68,7 +68,7 @@ class DoubleTitleTopBarFragment : Fragment() {
             thirdValue: String,
             totalValue: String,
         ) {
-            if (firstValue == "null") {
+            if (firstValue == "No Icon") {
                 viewModel.thirdIconText.value = firstValue
                 viewModel.thirdIcon.value = null
             }
