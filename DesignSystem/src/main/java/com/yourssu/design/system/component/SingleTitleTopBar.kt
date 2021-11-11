@@ -3,6 +3,7 @@ package com.yourssu.design.system.component
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.databinding.LayoutSingleTitleTopBarBinding
@@ -38,6 +39,27 @@ class SingleTitleTopBar @JvmOverloads constructor(
         set(clickListener) {
             field = clickListener
             binding.thirdButton.setOnClickListener(thirdButtonListener)
+        }
+
+    var firstButtonVisibility: Int = VISIBLE
+        set(value) {
+            field = value
+            binding.firstButton.visibility = value
+            requestLayout()
+        }
+
+    var secondButtonVisibility: Int = VISIBLE
+        set(value) {
+            field = value
+            binding.secondButton.visibility = value
+            requestLayout()
+        }
+
+    var thirdButtonVisibility: Int = VISIBLE
+        set(value) {
+            field = value
+            binding.thirdButton.visibility = value
+            requestLayout()
         }
 
     @Icon.Iconography
@@ -80,6 +102,10 @@ class SingleTitleTopBar @JvmOverloads constructor(
         }
 
     companion object {
+        const val VISIBLE = View.VISIBLE
+        const val INVISIBLE = View.VISIBLE
+        const val GONE = View.GONE
+
         @JvmStatic
         @BindingAdapter("title")
         fun setTitle(singleTitleTopBar: SingleTitleTopBar, title: String) {
@@ -120,6 +146,24 @@ class SingleTitleTopBar @JvmOverloads constructor(
         @BindingAdapter("thirdText")
         fun setThirdText(singleTitleTopBar: SingleTitleTopBar, value: String) {
             singleTitleTopBar.thirdText = value
+        }
+
+        @JvmStatic
+        @BindingAdapter("firstButtonVisibility")
+        fun setFirstButtonVisibility(singleTitleTopBar: SingleTitleTopBar, state: Int) {
+            singleTitleTopBar.firstButtonVisibility = state
+        }
+
+        @JvmStatic
+        @BindingAdapter("secondButtonVisibility")
+        fun setSecondButtonVisibility(singleTitleTopBar: SingleTitleTopBar, state: Int) {
+            singleTitleTopBar.secondButtonVisibility = state
+        }
+
+        @JvmStatic
+        @BindingAdapter("thirdButtonVisibility")
+        fun setThirdButtonVisibility(singleTitleTopBar: SingleTitleTopBar, state: Int) {
+            singleTitleTopBar.thirdButtonVisibility = state
         }
 
 
