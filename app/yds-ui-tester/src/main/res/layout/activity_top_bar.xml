@@ -23,8 +23,8 @@
         <com.yourssu.design.system.component.SingleTitleTopBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:firstIcon="@{Icon.ic_bell_filled}"
-            app:secondIcon="@{Icon.ic_arrow_left_line}"
+            app:secondIcon="@{Icon.ic_bell_filled}"
+            app:thirdIcon="@{Icon.ic_arrow_left_line}"
             app:title="@{`타이틀`}" />
 
         <com.yourssu.design.system.component.SingleTitleTopBar
@@ -54,14 +54,14 @@
         <com.yourssu.design.system.component.SingleTitleTopBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:firstText="@{`버튼`}"
             app:secondText="@{`버튼`}"
+            app:thirdText="@{`버튼`}"
             app:title="@{`타이틀`}" />
 
         <com.yourssu.design.system.component.SingleTitleTopBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:firstText="@{`버튼`}"
+            app:thirdText="@{`버튼`}"
             app:title="@{`타이틀`}" />
 
         <com.yourssu.design.system.component.SingleTitleTopBar
