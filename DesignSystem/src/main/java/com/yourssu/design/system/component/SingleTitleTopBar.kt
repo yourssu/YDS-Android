@@ -17,6 +17,12 @@ class SingleTitleTopBar @JvmOverloads constructor(
     private val binding: LayoutSingleTitleTopBarBinding =
         LayoutSingleTitleTopBarBinding.inflate(LayoutInflater.from(context), this, true)
 
+    init {
+        binding.firstButton.visibility = GONE
+        binding.secondButton.visibility = GONE
+        binding.thirdButton.visibility = GONE
+    }
+
     var title: String = ""
         set(title) {
             field = title
@@ -41,31 +47,33 @@ class SingleTitleTopBar @JvmOverloads constructor(
             binding.thirdButton.setOnClickListener(thirdButtonListener)
         }
 
-    var firstButtonVisibility: Int = VISIBLE
+    var firstButtonVisibility: Int = GONE
         set(value) {
             field = value
             binding.firstButton.visibility = value
-            requestLayout()
         }
 
-    var secondButtonVisibility: Int = VISIBLE
+    var secondButtonVisibility: Int = GONE
         set(value) {
             field = value
             binding.secondButton.visibility = value
-            requestLayout()
         }
 
-    var thirdButtonVisibility: Int = VISIBLE
+    var thirdButtonVisibility: Int = GONE
         set(value) {
             field = value
             binding.thirdButton.visibility = value
-            requestLayout()
         }
 
     @Icon.Iconography
     var firstIcon: Int? = null
         set(icon) {
             field = icon
+            firstButtonVisibility = if (firstText == "" && firstIcon == null) {
+                GONE
+            } else {
+                VISIBLE
+            }
             binding.firstButton.icon = icon
         }
 
@@ -73,6 +81,11 @@ class SingleTitleTopBar @JvmOverloads constructor(
     var secondIcon: Int? = null
         set(icon) {
             field = icon
+            secondButtonVisibility = if (secondText == "" && secondIcon == null) {
+                GONE
+            } else {
+                VISIBLE
+            }
             binding.secondButton.icon = icon
         }
 
@@ -80,24 +93,45 @@ class SingleTitleTopBar @JvmOverloads constructor(
     var thirdIcon: Int? = null
         set(icon) {
             field = icon
+            thirdButtonVisibility = if (thirdText == "" && thirdIcon == null) {
+                GONE
+            } else {
+                VISIBLE
+            }
             binding.thirdButton.icon = icon
         }
 
     var firstText: String = ""
         set(value) {
             field = value
+            firstButtonVisibility = if (firstText == "" && firstIcon == null) {
+                GONE
+            } else {
+                VISIBLE
+
+            }
             binding.firstButton.text = value
         }
 
     var secondText: String = ""
         set(value) {
             field = value
+            secondButtonVisibility = if (secondText == "" && secondIcon == null) {
+                GONE
+            } else {
+                VISIBLE
+            }
             binding.secondButton.text = value
         }
 
     var thirdText: String = ""
         set(value) {
             field = value
+            thirdButtonVisibility = if (thirdText == "" && thirdIcon == null) {
+                GONE
+            } else {
+                VISIBLE
+            }
             binding.thirdButton.text = value
         }
 
@@ -111,7 +145,7 @@ class SingleTitleTopBar @JvmOverloads constructor(
         fun setTitle(singleTitleTopBar: SingleTitleTopBar, title: String) {
             singleTitleTopBar.title = title
         }
-        
+
         @JvmStatic
         @BindingAdapter("firstIcon")
         fun setFirstIcon(singleTitleTopBar: SingleTitleTopBar, @Icon.Iconography icon: Int?) {
