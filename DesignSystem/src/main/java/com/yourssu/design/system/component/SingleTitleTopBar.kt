@@ -136,10 +136,6 @@ class SingleTitleTopBar @JvmOverloads constructor(
         }
 
     companion object {
-        const val VISIBLE = View.VISIBLE
-        const val INVISIBLE = View.VISIBLE
-        const val GONE = View.GONE
-
         @JvmStatic
         @BindingAdapter("title")
         fun setTitle(singleTitleTopBar: SingleTitleTopBar, title: String) {
