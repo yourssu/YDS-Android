@@ -144,6 +144,29 @@
                     android:onTextChanged="@{viewModel.firstTextChangedListener}" />
                 <!--                first text-->
 
+                <!--                first toggle-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="first icon is null"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.firstIconIsNull}"
+                        app:selectedListener="@{viewModel.firstIconSelectListener}" />
+                </LinearLayout>
+                <!--                first toggle-->
+
 
                 <!--            second icon-->
                 <LinearLayout
@@ -203,6 +226,29 @@
                 <!--                second text-->
 
 
+                <!--                second toggle-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="second icon is null"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.secondIconIsNull}"
+                        app:selectedListener="@{viewModel.secondIconSelectListener}" />
+                </LinearLayout>
+                <!--                second toggle-->
+
                 <!--            third icon-->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -261,6 +307,29 @@
                     android:layout_marginBottom="8dp"
                     android:onTextChanged="@{viewModel.thirdTextChangedListener}" />
                 <!--                third text-->
+
+                <!--                third toggle-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="third icon is null"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.thirdIconIsNull}"
+                        app:selectedListener="@{viewModel.thirdIconSelectListener}" />
+                </LinearLayout>
+                <!--                third toggle-->
 
             </LinearLayout>
         </ScrollView>

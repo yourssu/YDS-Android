@@ -2,6 +2,7 @@ package com.yourssu.storybook.component
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.yourssu.design.system.atom.Toggle
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
@@ -13,14 +14,17 @@ class DoubleTitleTopBarViewModel(application: Application) : BaseViewModel(appli
     val firstIconText = MutableLiveData("ic_arrow_left_line")
     val firstIcon: MutableLiveData<Int?> = MutableLiveData(Icon.ic_arrow_left_line)
     val firstText = MutableLiveData("")
+    var firstIconIsNull = MutableLiveData(false)
 
     val secondIconText = MutableLiveData("ic_arrow_left_line")
     val secondIcon: MutableLiveData<Int?> = MutableLiveData(Icon.ic_arrow_left_line)
     val secondText = MutableLiveData("")
+    var secondIconIsNull = MutableLiveData(false)
 
     val thirdIconText = MutableLiveData("ic_arrow_left_line")
     val thirdIcon: MutableLiveData<Int?> = MutableLiveData(Icon.ic_arrow_left_line)
     val thirdText = MutableLiveData("")
+    var thirdIconIsNull = MutableLiveData(false)
 
     val onTitleTextChangedListener = object : TextField.OnTextChanged {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -54,6 +58,36 @@ class DoubleTitleTopBarViewModel(application: Application) : BaseViewModel(appli
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             s?.toString()?.let {
                 thirdText.value = it
+            }
+        }
+    }
+
+    val firstIconSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            firstIconIsNull.value = boolean
+            if (firstIconIsNull.value == true) {
+                firstIconText.value = ""
+                firstIcon.value = null
+            }
+        }
+    }
+
+    val secondIconSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            secondIconIsNull.value = boolean
+            if (secondIconIsNull.value == true) {
+                secondIconText.value = ""
+                secondIcon.value = null
+            }
+        }
+    }
+
+    val thirdIconSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            thirdIconIsNull.value = boolean
+            if (thirdIconIsNull.value == true) {
+                thirdIconText.value = ""
+                thirdIcon.value = null
             }
         }
     }
