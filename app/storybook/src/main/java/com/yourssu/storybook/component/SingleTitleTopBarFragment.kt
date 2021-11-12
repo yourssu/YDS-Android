@@ -19,11 +19,7 @@ import com.yourssu.storybook.databinding.FragmentSingleTitleTopBarBinding
 class SingleTitleTopBarFragment : Fragment() {
     private lateinit var binding: FragmentSingleTitleTopBarBinding
     private val viewModel: SingleTitleTopBarViewModel by viewModels()
-    private val iconList = Icon.getList().map { Icon.getName(it) }.toMutableList()
-
-    init {
-        iconList.add(0, "No Icon")
-    }
+    private val iconList = Icon.getList().map { Icon.getName(it) }
 
     private val onFirstIconValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
@@ -32,14 +28,8 @@ class SingleTitleTopBarFragment : Fragment() {
             thirdValue: String,
             totalValue: String,
         ) {
-            if (firstValue == "No Icon") {
-                viewModel.firstIconText.value = firstValue
-                viewModel.firstIcon.value = null
-            }
-            else {
-                viewModel.firstIconText.value = firstValue
-                viewModel.firstIcon.value = Icon.getValueByName(firstValue)
-            }
+            viewModel.firstIconText.value = firstValue
+            viewModel.firstIcon.value = Icon.getValueByName(firstValue)
         }
     }
 
@@ -50,14 +40,8 @@ class SingleTitleTopBarFragment : Fragment() {
             thirdValue: String,
             totalValue: String,
         ) {
-            if (firstValue == "No Icon") {
-                viewModel.secondIconText.value = firstValue
-                viewModel.secondIcon.value = null
-            }
-            else {
-                viewModel.secondIconText.value = firstValue
-                viewModel.secondIcon.value = Icon.getValueByName(firstValue)
-            }
+            viewModel.secondIconText.value = firstValue
+            viewModel.secondIcon.value = Icon.getValueByName(firstValue)
         }
     }
 
@@ -68,14 +52,8 @@ class SingleTitleTopBarFragment : Fragment() {
             thirdValue: String,
             totalValue: String,
         ) {
-            if (firstValue == "No Icon") {
-                viewModel.thirdIconText.value = firstValue
-                viewModel.thirdIcon.value = null
-            }
-            else {
-                viewModel.thirdIconText.value = firstValue
-                viewModel.thirdIcon.value = Icon.getValueByName(firstValue)
-            }
+            viewModel.thirdIconText.value = firstValue
+            viewModel.thirdIcon.value = Icon.getValueByName(firstValue)
         }
     }
 
