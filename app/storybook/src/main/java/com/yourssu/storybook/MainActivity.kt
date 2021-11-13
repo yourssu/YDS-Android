@@ -38,7 +38,7 @@ class MainActivity : BaseActivity() {
         "Toast" to ToastFragment::class.java,
         "TopBar" to TopBarFragment::class.java,
         "SingleTitleTopBar" to SingleTitleTopBarFragment::class.java,
-        "DoubleTitleTopBar" to Fragment::class.java,
+        "DoubleTitleTopBar" to DoubleTitleTopBarFragment::class.java,
         "SearchTopBar" to SearchTopBarFragment::class.java,
         "BottomBar" to BottomBarFragment::class.java
     )
