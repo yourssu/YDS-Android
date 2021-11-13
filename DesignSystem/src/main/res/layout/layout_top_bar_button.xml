@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:typo="@{Typo.Button0}"
-            />
+            tools:text="닫기" />
 
     </LinearLayout>
 </layout>

@@ -1,10 +1,10 @@
 package com.yourssu.storybook.component
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.yourssu.design.system.atom.Picker
 import com.yourssu.design.system.foundation.Icon
@@ -14,13 +14,12 @@ import com.yourssu.design.system.language.picker
 import com.yourssu.design.system.language.setLayout
 import com.yourssu.design.system.language.text
 import com.yourssu.design.undercarriage.size.dpToIntPx
-import com.yourssu.storybook.databinding.FragmentDoubleTitleTopBarBinding
+import com.yourssu.storybook.databinding.FragmentSingleTitleTopBarBinding
 
-class DoubleTitleTopBarFragment : Fragment() {
-    private lateinit var binding: FragmentDoubleTitleTopBarBinding
-    private val viewModel: DoubleTitleTopBarViewModel by viewModels()
+class SingleTitleTopBarFragment : Fragment() {
+    private lateinit var binding: FragmentSingleTitleTopBarBinding
+    private val viewModel: SingleTitleTopBarViewModel by viewModels()
     private val iconList = Icon.getList().map { Icon.getName(it) }
-
 
     private val onFirstIconValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
@@ -63,7 +62,7 @@ class DoubleTitleTopBarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentDoubleTitleTopBarBinding.inflate(inflater, container, false)
+        binding = FragmentSingleTitleTopBarBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         initView()

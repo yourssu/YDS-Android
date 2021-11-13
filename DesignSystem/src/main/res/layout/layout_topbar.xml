@@ -35,7 +35,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:typo="subtitle2" />
 
-
         <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/end_first_button"
             android:layout_width="wrap_content"
