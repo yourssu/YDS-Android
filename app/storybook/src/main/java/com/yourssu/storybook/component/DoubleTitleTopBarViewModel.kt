@@ -7,8 +7,9 @@ import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
 
-class SingleTitleTopBarViewModel(application: Application) : BaseViewModel(application) {
+class DoubleTitleTopBarViewModel(application: Application) : BaseViewModel(application) {
     val title = MutableLiveData("Title")
+    val subTitle = MutableLiveData("SubTitle")
 
     val firstText = MutableLiveData("닫기")
 
@@ -32,6 +33,12 @@ class SingleTitleTopBarViewModel(application: Application) : BaseViewModel(appli
     val onTitleTextChangedListener = object : TextField.OnTextChanged {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             s?.toString()?.let { title.value = it }
+        }
+    }
+
+    val onSubTitleTextChangedListener = object : TextField.OnTextChanged {
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            s?.toString()?.let { subTitle.value = it }
         }
     }
 

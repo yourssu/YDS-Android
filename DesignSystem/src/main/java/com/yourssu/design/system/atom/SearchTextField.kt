@@ -107,6 +107,19 @@ class SearchTextField @JvmOverloads constructor(
 
     init {
         initView(context, attrs)
+        addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                setIconColor()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
     }
 
     var isDisabled: Boolean = false
@@ -262,8 +275,11 @@ class SearchTextField @JvmOverloads constructor(
             isDisabled -> {
                 setSearchIconColor(R.color.textDisabled)
             }
-            else -> {
+            binding.edittext.text.isEmpty() -> {
                 setSearchIconColor(R.color.textTertiary)
+            }
+            else -> {
+                setSearchIconColor(R.color.textSecondary)
             }
         }
     }

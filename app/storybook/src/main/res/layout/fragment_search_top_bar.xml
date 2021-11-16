@@ -27,8 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:onEditorAction="@{viewModel.onEditorAction}"
-                android:onTextChanged="@{viewModel.onTextChanged}"
+                android:onEditorAction="@{viewModel::onEditorAction}"
+                android:onTextChanged="@{viewModel::onTextChanged}"
                 android:text="@{viewModel.initText}"
                 app:isDisabled="@{viewModel.isDisable}"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:onTextChanged="@{viewModel.onPlaceholderTextChanged}"
+                    android:onTextChanged="@{viewModel::onPlaceholderTextChanged}"
                     app:fieldLabelText="@{`Placeholder Text`}" />
 
             </LinearLayout>

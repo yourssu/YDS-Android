@@ -41,7 +41,6 @@ class TopBarButton : LinearLayout {
     var text = ""
         set(value) {
             field = value
-            hasIcon = text == ""
             binding.topBarButtonText.text = text
             setTopBarButtonInfo()
             requestLayout()
@@ -75,8 +74,8 @@ class TopBarButton : LinearLayout {
     }
 
     private fun setButtonVisibility() {
+        binding.topBarButtonText.isVisible = !hasIcon && text.isNotEmpty()
         binding.topBarButtonIcon.isVisible = hasIcon
-        binding.topBarButtonText.isVisible = !hasIcon
     }
 
     private fun setButtonColor() {

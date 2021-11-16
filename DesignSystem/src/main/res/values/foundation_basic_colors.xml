@@ -6,6 +6,8 @@
      사용자가 컬러로 사용할 수 없도록 drawable 로 만들고
      color 정의에선 reference type 으로 강제 한다
      다크모드도 잘 동작한다 -->
+
+<!-- com.yourssu.design.system.foundation.BasicColors 같이 업데이트 하기 -->
 <resources>
 
     <!-- Logo -->
