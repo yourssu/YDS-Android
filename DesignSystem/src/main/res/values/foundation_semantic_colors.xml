@@ -2,6 +2,8 @@
 <!-- 실제로 개발자들이 쓰게 되는 semantic color
      color 사용시 basic color 에 직접 접근하는것을 막기 위해서 basic color 는 drawable 로 선언되어 있다
      때문에 reference type 으로 강제해야 한다 -->
+
+<!-- com.yourssu.design.system.foundation.SemanticColors 같이 업데이트 하기 -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ReferenceType">
 
     <!-- Background -->

@@ -12,7 +12,7 @@ import com.yourssu.design.system.foundation.Icon
 class DoubleTitleTopBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
     private val binding: LayoutDoubleTitleTopBarBinding =
         LayoutDoubleTitleTopBarBinding.inflate(LayoutInflater.from(context), this, true)
@@ -68,6 +68,24 @@ class DoubleTitleTopBar @JvmOverloads constructor(
             binding.thirdButton.icon = icon
         }
 
+    var firstText: String = ""
+        set(value) {
+            field = value
+            binding.firstButton.text = value
+        }
+
+    var secondText: String = ""
+        set(value) {
+            field = value
+            binding.secondButton.text = value
+        }
+
+    var thirdText: String = ""
+        set(value) {
+            field = value
+            binding.thirdButton.text = value
+        }
+
     companion object {
         @JvmStatic
         @BindingAdapter("title")
@@ -100,10 +118,28 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         }
 
         @JvmStatic
+        @BindingAdapter("firstText")
+        fun setFirstText(singleTitleTopBar: SingleTitleTopBar, value: String) {
+            singleTitleTopBar.firstText = value
+        }
+
+        @JvmStatic
+        @BindingAdapter("secondText")
+        fun setSecondText(singleTitleTopBar: SingleTitleTopBar, value: String) {
+            singleTitleTopBar.secondText = value
+        }
+
+        @JvmStatic
+        @BindingAdapter("thirdText")
+        fun setThirdText(singleTitleTopBar: SingleTitleTopBar, value: String) {
+            singleTitleTopBar.thirdText = value
+        }
+
+        @JvmStatic
         @BindingAdapter("firstButtonClickListener")
         fun setFirstButtonClickListener(
             doubleTitleTopBar: DoubleTitleTopBar,
-            onClickListener:OnClickListener
+            onClickListener: OnClickListener,
         ) {
             doubleTitleTopBar.firstButtonListener = onClickListener
         }
@@ -112,7 +148,7 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         @BindingAdapter("secondButtonClickListener")
         fun setSecondButtonClickListener(
             doubleTitleTopBar: DoubleTitleTopBar,
-            onClickListener:OnClickListener
+            onClickListener: OnClickListener,
         ) {
             doubleTitleTopBar.secondButtonListener = onClickListener
         }
@@ -121,7 +157,7 @@ class DoubleTitleTopBar @JvmOverloads constructor(
         @BindingAdapter("thirdButtonClickListener")
         fun setThirdButtonClickListener(
             doubleTitleTopBar: DoubleTitleTopBar,
-            onClickListener:OnClickListener
+            onClickListener: OnClickListener,
         ) {
             doubleTitleTopBar.thirdButtonListener = onClickListener
         }

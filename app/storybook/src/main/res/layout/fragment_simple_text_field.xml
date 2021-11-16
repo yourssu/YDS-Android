@@ -25,9 +25,10 @@
             android:background="@{viewModel.componentBackgroundColor}">
 
             <com.yourssu.design.system.atom.SimpleTextField
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
                 app:fieldLabelText="@{viewModel.fieldLabelTextString}"
                 app:helperLabelText="@{viewModel.helperLabelTextString}"
                 app:placeholderText="@{viewModel.placeholderTextString}"

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.yourssu.storybook.databinding.ActivityDetailBinding
@@ -36,8 +37,9 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun setPageName() {
-        val name = intent.getStringExtra(DetailPageName)
-        binding.pageName.text = name
+        intent.getStringExtra(DetailPageName)?.let {
+            binding.topBar.title = it
+        }
     }
 
     private fun setFragment() {
@@ -49,7 +51,7 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun setBackButton() {
-        binding.backButton.setOnClickListener {
+        binding.topBar.startButtonClickListener = View.OnClickListener {
             finish()
         }
     }

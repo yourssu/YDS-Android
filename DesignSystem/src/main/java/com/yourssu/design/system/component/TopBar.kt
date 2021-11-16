@@ -125,7 +125,7 @@ class TopBar @JvmOverloads constructor(
 
         @JvmStatic
         @BindingAdapter("onStartIconClick")
-        fun setStartIconClickListener(topBar: TopBar, onClickListener:OnClickListener) {
+        fun setStartIconClickListener(topBar: TopBar, onClickListener: OnClickListener) {
             topBar.startButtonClickListener = onClickListener
         }
 
