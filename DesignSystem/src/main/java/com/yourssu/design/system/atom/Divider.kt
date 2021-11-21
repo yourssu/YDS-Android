@@ -42,7 +42,10 @@ class Divider : View {
 
         setBackgroundColor(context.getColor(color))
 
-        dividerThicknessInPx = context.dpToIntPx(thickness)
+        dividerThicknessInPx = if (this.thickness == THIN)
+            1 // THIN 일 경우만 예외적으로 1px 사용해야함
+        else
+            context.dpToIntPx(thickness)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -55,9 +58,9 @@ class Divider : View {
     }
 
     private fun getThickness(thickness: Int) = when (thickness) {
-        THIN -> 0.34f
+        THIN -> 1f
         THICK -> 8f
-        else -> 0.34f
+        else -> 1f
     }
 
     @ColorRes
