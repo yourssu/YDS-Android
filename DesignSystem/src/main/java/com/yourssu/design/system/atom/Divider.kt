@@ -1,12 +1,9 @@
 package com.yourssu.design.system.atom
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.drawable.ShapeDrawable
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.*
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
 import com.yourssu.design.undercarriage.size.dpToIntPx
@@ -36,51 +33,31 @@ class Divider : View {
             requestLayout()
         }
 
-    @ColorInt
-    private var dividerColor: Int = ContextCompat.getColor(context, R.color.borderNormal)
-
     @Px
     private var dividerThicknessInPx: Int = 0
-
-    private var dividerDrawable: ShapeDrawable = ShapeDrawable()
 
     private fun setDividerInfo() {
         val thickness = getThickness(thickness)
         val color = getDividerColor(this.thickness)
 
-        dividerThicknessInPx =
-            context.dpToIntPx(resources.getDimensionPixelSize(thickness).toFloat())
-        dividerColor = context.getColor(color)
+        setBackgroundColor(context.getColor(color))
+
+        dividerThicknessInPx = context.dpToIntPx(thickness)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = MeasureSpec.getSize(widthMeasureSpec)
-        val height = MeasureSpec.getSize(heightMeasureSpec)
 
         if (direction == HORIZONTAL) {
-            setMeasuredDimension(width, dividerThicknessInPx)
+            setMeasuredDimension(widthMeasureSpec, dividerThicknessInPx)
         } else {
-            setMeasuredDimension(dividerThicknessInPx, height)
+            setMeasuredDimension(dividerThicknessInPx, heightMeasureSpec)
         }
     }
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
-        if (direction == HORIZONTAL) {
-            dividerDrawable.setBounds(0, 0, width, dividerThicknessInPx)
-        } else {
-            dividerDrawable.setBounds(0, 0, dividerThicknessInPx, height)
-        }
-        dividerDrawable.paint.color = dividerColor
-        dividerDrawable.draw(canvas)
-    }
-
-    @DimenRes
     private fun getThickness(thickness: Int) = when (thickness) {
-        THIN -> R.dimen.thin
-        THICK -> R.dimen.thick
-        else -> R.dimen.thin
+        THIN -> 0.34f
+        THICK -> 8f
+        else -> 0.34f
     }
 
     @ColorRes
