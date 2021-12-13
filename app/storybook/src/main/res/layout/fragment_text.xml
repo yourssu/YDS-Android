@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="textField"
+                    android:text="Text"
                     android:onTextChanged="@{viewModel.onTextChangedListener}"/>
 
                 <com.yourssu.design.system.atom.Text
