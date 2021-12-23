@@ -20,7 +20,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <com.yourssu.design.system.atom.IconView
                 android:id="@+id/plainButtonLeftIcon"
