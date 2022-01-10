@@ -8,7 +8,7 @@ import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.foundation.Typography
 import com.yourssu.design.undercarriage.size.getDimenFloat
 
-class Text: AppCompatTextView {
+open class Text: AppCompatTextView {
     constructor(context: Context) : super(context) {
         initView(context, null)
     }
