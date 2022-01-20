@@ -1,27 +1,29 @@
 package com.yourssu.design.system.atom
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.util.Log
-import android.view.LayoutInflater
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.yourssu.design.R
-import com.yourssu.design.databinding.LayoutEditTextBinding
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.foundation.Typography
-import com.yourssu.design.system.foundation.semanticColors
 import com.yourssu.design.undercarriage.size.getDimenFloat
 
 class EditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
+) : AppCompatEditText(context, attrs, defStyleAttr) {
 
-    private val binding: LayoutEditTextBinding =
-        LayoutEditTextBinding.inflate(LayoutInflater.from(context), this, true)
+    init {
+        setTextColor(ContextCompat.getColor(context, R.color.textPrimary))
+        setBackgroundColor(Color.TRANSPARENT)
+        setHintTextColor(ContextCompat.getColor(context, R.color.textTertiary))
+        isFocusableInTouchMode = true
+    }
 
     private var text: String = ""
         set(text) {
@@ -49,29 +51,26 @@ class EditText @JvmOverloads constructor(
         }
 
     private fun changeHint() {
-        binding.editText.hint = this.hint
+        setHint(hint)
     }
 
     private fun setTextInfo() {
-        // 폰트 적용
-        binding.editText.apply {
-            setTextAppearance(Typo.getStyle(typo))
+        setTextAppearance(Typo.getStyle(typo))
 
-            // 폰트의 커스텀 padding 제거
-            includeFontPadding = false
+        // 폰트의 커스텀 padding 제거
+        includeFontPadding = false
 
-            // 폰트가 가지고 있는 lineHeight 값 추출
-            val fontLineHeight = paint.getFontMetrics(paint.fontMetrics)
+        // 폰트가 가지고 있는 lineHeight 값 추출
+        val fontLineHeight = paint.getFontMetrics(paint.fontMetrics)
 
-            // 디자이너가 요청한 lineHeight 값
-            val figmaLineHeight = context.getDimenFloat(Typo.getLineHeight(typo))
+        // 디자이너가 요청한 lineHeight 값
+        val figmaLineHeight = context.getDimenFloat(Typo.getLineHeight(typo))
 
-            // 줄 간 간격인 lineSpacing 이자 (topPadding, bottomPadding) 의 합
-            val lineSpacing = figmaLineHeight - fontLineHeight
+        // 줄 간 간격인 lineSpacing 이자 (topPadding, bottomPadding) 의 합
+        val lineSpacing = figmaLineHeight - fontLineHeight
 
-            setPadding(0, lineSpacing.toInt() / 2, 0, lineSpacing.toInt() / 2)
-            setLineSpacing(lineSpacing, 1f)
-        }
+        setPadding(0, lineSpacing.toInt() / 2, 0, lineSpacing.toInt() / 2)
+        setLineSpacing(lineSpacing, 1f)
     }
 
     private fun changeEditTextType() {
@@ -90,7 +89,7 @@ class EditText @JvmOverloads constructor(
     }
 
     private fun changeText() {
-        binding.editText.setText(text)
+        setText(text)
         requestLayout()
         invalidate()
     }
