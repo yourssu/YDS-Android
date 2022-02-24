@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">YDS-UI-Tester</string>
+    <string name="edit_text_title">제목을 입력해주세요.</string>
+    <string name="edit_text_content">내용을 입력해주세요.</string>
 </resources>

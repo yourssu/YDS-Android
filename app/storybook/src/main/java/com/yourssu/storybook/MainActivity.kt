@@ -10,14 +10,18 @@ import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.storybook.DetailActivity.Companion.navigateToDetail
 import com.yourssu.storybook.atom.*
 import com.yourssu.storybook.component.*
+import com.yourssu.storybook.foundation.BaseColorFragment
+import com.yourssu.storybook.foundation.SemanticColorFragment
+import com.yourssu.storybook.foundation.VibrationFragment
 import com.yourssu.storybook.transform.ActivityAnimType
 
 class MainActivity : BaseActivity() {
 
     /** 추가시 여기에만 선언하면 됨 */
     private val foundationList = listOf<Pair<String, Class<*>>>(
-        "SemanticColor" to Fragment::class.java,
-        "Vibration" to Fragment::class.java
+        "BasicColor" to BaseColorFragment::class.java,
+        "SemanticColor" to SemanticColorFragment::class.java,
+        "Vibration" to VibrationFragment::class.java
     )
     private val atomList = listOf<Pair<String, Class<*>>> (
         "Text" to TextFragment::class.java,
@@ -37,7 +41,7 @@ class MainActivity : BaseActivity() {
     private val componentList = listOf<Pair<String, Class<*>>>(
         "Toast" to ToastFragment::class.java,
         "TopBar" to TopBarFragment::class.java,
-        "SingleTitleTopBar" to Fragment::class.java,
+        "SingleTitleTopBar" to SingleTitleTopBarFragment::class.java,
         "DoubleTitleTopBar" to DoubleTitleTopBarFragment::class.java,
         "SearchTopBar" to SearchTopBarFragment::class.java,
         "BottomBar" to BottomBarFragment::class.java

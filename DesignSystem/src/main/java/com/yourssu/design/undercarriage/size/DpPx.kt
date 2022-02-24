@@ -3,6 +3,7 @@ package com.yourssu.design.undercarriage.size
 import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.DimenRes
+import kotlin.math.roundToInt
 
 infix fun Context.dpToPx(dp: Float): Float {
     val displayMetrics = this.resources.displayMetrics
@@ -11,7 +12,7 @@ infix fun Context.dpToPx(dp: Float): Float {
 
 infix fun Context.dpToIntPx(dp: Float): Int {
     val displayMetrics = this.resources.displayMetrics
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, displayMetrics).toInt()
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, displayMetrics).roundToInt()
 }
 
 infix fun Context.getDimenFloat(@DimenRes dimenRes: Int): Float = this.resources.getDimension(dimenRes)

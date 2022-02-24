@@ -20,7 +20,7 @@
             android:id="@+id/input_field"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:paddingHorizontal="16dp"
+            android:paddingStart="16dp"
             android:background="@drawable/text_field_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -52,14 +52,24 @@
                 android:textSize="15dp"
                 tools:hint="플레이스 홀더" />
 
-            <com.yourssu.design.system.atom.IconView
-                android:id="@+id/btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:layout_width="36dp"
+                android:layout_height="48dp"
+                android:gravity="center"
                 android:onClick="@{() -> edittext.setText(``)}"
-                android:visibility="@{edittext.text.toString().empty || !edittext.hasFocus() ? View.GONE : View.VISIBLE}"
-                app:icon="@{Icon.ic_x_line}"
-                app:size="@{IconView.ExtraSmall}" />
+                android:visibility="@{edittext.text.toString().empty || !edittext.hasFocus() ? View.GONE : View.VISIBLE}">
+
+                <com.yourssu.design.system.atom.IconView
+                    android:id="@+id/btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="@{() -> edittext.setText(``)}"
+                    android:visibility="@{edittext.text.toString().empty || !edittext.hasFocus() ? View.GONE : View.VISIBLE}"
+                    app:icon="@{Icon.ic_x_line}"
+                    app:size="@{IconView.ExtraSmall}" />
+            </LinearLayout>
 
         </LinearLayout>
 

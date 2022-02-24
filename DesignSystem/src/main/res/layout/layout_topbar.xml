@@ -21,20 +21,21 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:icon="@{Icon.ic_arrow_left_line}" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.yourssu.design.system.atom.Text
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textPrimary"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constrainedWidth="true"
             app:layout_constraintTop_toTopOf="parent"
             app:typo="subtitle2" />
-
 
         <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/end_first_button"

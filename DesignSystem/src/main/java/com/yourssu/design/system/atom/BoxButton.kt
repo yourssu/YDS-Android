@@ -240,7 +240,7 @@ class BoxButton : LinearLayout {
             Small -> {
                 layoutParams.height = context.dpToIntPx(32F)
                 binding.text.typo = Typo.Button4
-                binding.leftIcon.size = IconView.Small
+                binding.leftIcon.size = IconView.ExtraSmall
                 binding.boxButtonFrame.setPadding(
                     context.dpToIntPx(12F),
                     0,
