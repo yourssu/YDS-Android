@@ -21,14 +21,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="8dp"
-            android:textColor="@color/textPrimary"
             android:maxLines="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonPanel"
+            android:textColor="@color/textPrimary"
             app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPanel"
+            app:layout_constraintStart_toStartOf="parent"
             app:typo="title2"
-            tools:text="타이틀"/>
+            tools:text="타이틀" />
 
         <LinearLayout
             android:id="@+id/buttonPanel"
@@ -40,17 +40,17 @@
 
             <com.yourssu.design.system.atom.TopBarButton
                 android:id="@+id/first_button"
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="match_parent" />
 
             <com.yourssu.design.system.atom.TopBarButton
                 android:id="@+id/second_button"
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="match_parent" />
 
             <com.yourssu.design.system.atom.TopBarButton
                 android:id="@+id/third_button"
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="match_parent" />
 
         </LinearLayout>
