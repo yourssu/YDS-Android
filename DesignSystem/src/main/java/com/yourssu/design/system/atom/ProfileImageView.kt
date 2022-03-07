@@ -126,11 +126,11 @@ class ProfileImageView @JvmOverloads constructor(
         const val ExtraLarge = 3
         const val ExtraSmall = 4
 
-        private const val SmallSize = 36f
+        private const val SmallSize = 32f
         private const val MediumSize = 48f
         private const val LargeSize = 72f
         private const val ExtraLargeSize = 96f
-        private const val ExtraSmallSize = 32f
+        private const val ExtraSmallSize = 24f
 
         private const val ExtraMargin =
             1f // stoke 가 path 를 기준으로 양쪽에 표시되기 때문에 짤린것처럼 보인다 이를 보안하기 위한 여분의 마진

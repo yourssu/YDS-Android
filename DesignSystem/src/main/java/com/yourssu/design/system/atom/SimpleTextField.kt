@@ -77,6 +77,17 @@ class SimpleTextField @JvmOverloads constructor(
         binding = LayoutSimpleTextFieldBinding.inflate(
             LayoutInflater.from(context), this, true
         )
+        binding.edittext.setOnFocusChangeListener { v, hasFocus ->
+            binding.btn.visibility = if (hasFocus) {
+                if (binding.edittext.text.isNotEmpty()) {
+                    VISIBLE
+                } else {
+                    GONE
+                }
+            } else {
+                GONE
+            }
+        }
     }
 
     @SuppressLint("CustomViewStyleable")
@@ -97,6 +108,10 @@ class SimpleTextField @JvmOverloads constructor(
 
             typedArray.recycle()
         }
+    }
+
+    override fun setOnEditorActionListener(onEditorActionListener: TextView.OnEditorActionListener) {
+        binding.edittext.setOnEditorActionListener(onEditorActionListener)
     }
 
     override fun extendSelection(index: Int) {
@@ -157,27 +172,35 @@ class SimpleTextField @JvmOverloads constructor(
     }
 
     override fun setDisabledTextColor() {
+        setEditTextTextColor(R.color.textDisabled)
         setPlaceholderTextColor(R.color.textDisabled)
         setFieldLabelTextColor(R.color.textDisabled)
         setHelperLabelTextColor(R.color.textDisabled)
     }
 
     override fun setPositiveTextColor() {
+        setEditTextTextColor(R.color.textSecondary)
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textTertiary)
     }
 
     override fun setNegativeTextColor() {
+        setEditTextTextColor(R.color.textSecondary)
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textWarned)
     }
 
     override fun setDefaultTextColor() {
+        setEditTextTextColor(R.color.textSecondary)
         setPlaceholderTextColor(R.color.textTertiary)
         setFieldLabelTextColor(R.color.textSecondary)
         setHelperLabelTextColor(R.color.textTertiary)
+    }
+
+    override fun setEditTextTextColor(color: Int) {
+        binding.edittext.setTextColor(resources.getColor(color, null))
     }
 
     override fun setPlaceholderTextColor(color: Int) {

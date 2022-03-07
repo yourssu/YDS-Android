@@ -11,6 +11,7 @@ import com.yourssu.design.system.foundation.Typo.Button1
 import com.yourssu.design.system.foundation.Typo.Button2
 import com.yourssu.design.system.foundation.Typo.Button3
 import com.yourssu.design.system.foundation.Typo.Button4
+import com.yourssu.design.system.foundation.Typo.Caption0
 import com.yourssu.design.system.foundation.Typo.Caption1
 import com.yourssu.design.system.foundation.Typo.Caption2
 import com.yourssu.design.system.foundation.Typo.SubTitle1
@@ -22,7 +23,7 @@ import com.yourssu.design.system.foundation.Typo.Title3
 
 
 @Retention(AnnotationRetention.SOURCE)
-@IntDef(value = [Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption1, Caption2])
+@IntDef(value = [Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption0, Caption1, Caption2])
 annotation class Typography
 
 object Typo {
@@ -39,8 +40,9 @@ object Typo {
     const val Button2 = 32
     const val Button3 = 33
     const val Button4 = 34
-    const val Caption1 = 40
-    const val Caption2 = 41
+    const val Caption0 = 40
+    const val Caption1 = 41
+    const val Caption2 = 42
 
     @StyleRes
     fun getStyle(@Typography typo: Int): Int = when (typo) {
@@ -57,6 +59,7 @@ object Typo {
         Button2 -> R.style.Text_Button2
         Button3 -> R.style.Text_Button3
         Button4 -> R.style.Text_Button4
+        Caption0 -> R.style.Text_Caption0
         Caption1 -> R.style.Text_Caption1
         Caption2 -> R.style.Text_Caption2
         else -> R.style.Text_Title1
@@ -77,6 +80,7 @@ object Typo {
         Button2 -> R.dimen.button2_line_height
         Button3 -> R.dimen.button3_line_height
         Button4 -> R.dimen.button4_line_height
+        Caption0 -> R.dimen.caption0_line_height
         Caption1 -> R.dimen.caption1_line_height
         Caption2 -> R.dimen.caption2_line_height
         else -> R.dimen.title1_line_height
@@ -84,7 +88,7 @@ object Typo {
 
     fun getList(): List<Int> {
         return listOf(
-            Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption1, Caption2
+            Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption0, Caption1, Caption2
         )
     }
 
@@ -103,6 +107,7 @@ object Typo {
             Button2 -> "Button2"
             Button3 -> "Button3"
             Button4 -> "Button4"
+            Caption0 -> "Caption0"
             Caption1 -> "Caption1"
             Caption2 -> "Caption2"
             else -> "Title1"
@@ -124,6 +129,7 @@ object Typo {
             "Button2" -> Button2
             "Button3" -> Button3
             "Button4" -> Button4
+            "Caption0" -> Caption0
             "Caption1" -> Caption1
             "Caption2" -> Caption2
             else -> Title1

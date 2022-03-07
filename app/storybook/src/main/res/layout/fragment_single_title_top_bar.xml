@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.yourssu.design.system.atom.BoxButton" />
+
+        <variable
+            name="viewModel"
+            type="com.yourssu.storybook.component.SingleTitleTopBarViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".atom.ProfileImageViewFragment">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@{viewModel.componentBackgroundColor}"
+            android:onClick="@{() -> viewModel.changeBackground()}">
+
+            <com.yourssu.design.system.component.SingleTitleTopBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:firstIcon="@{viewModel.firstIconVisibility ? viewModel.firstIcon : null}"
+                app:firstText="@{viewModel.firstText}"
+                app:secondIcon="@{viewModel.secondIconVisibility ? viewModel.secondIcon : null}"
+                app:secondText="@{viewModel.secondText}"
+                app:thirdIcon="@{viewModel.thirdIconVisibility ? viewModel.thirdIcon : null}"
+                app:thirdText="@{viewModel.thirdText}"
+                app:title="@{viewModel.title}" />
+
+            <!-- 안내 텍스트 -->
+            <com.yourssu.design.system.atom.Text
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="8dp"
+                android:text="Click Background to change Color"
+                android:textColor="@color/textPrimary"
+                app:typo="subtitle2" />
+
+            <com.yourssu.design.system.atom.Text
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="8dp"
+                android:alpha=".5"
+                android:text="Click Background to change Color"
+                android:textColor="@drawable/white000"
+                app:typo="subtitle2" />
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- 타이틀-->
+                <com.yourssu.design.system.atom.Text
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="Title"
+                    android:textColor="@color/textPrimary"
+                    app:typo="subtitle2" />
+
+                <com.yourssu.design.system.atom.SimpleTextField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:imeOptions="actionDone"
+                    android:onTextChanged="@{viewModel.onTitleTextChangedListener}"
+                    android:text="Title" />
+
+                <!-- first icon-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="firstIcon"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.firstIconVisibility}"
+                        app:selectedListener="@{viewModel.firstIconSelectListener}"/>
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/first_icon_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.firstIconText}"
+                    app:type="@{BoxButton.LINE}" />
+
+                <!-- first text-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="firstText"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.SimpleTextField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="닫기"
+                    android:onTextChanged="@{viewModel.firstTextChangedListener}" />
+
+
+                <!-- second icon-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="secondIcon"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.secondIconVisibility}"
+                        app:selectedListener="@{viewModel.secondIconSelectListener}"/>
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/second_icon_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.secondIconText}"
+                    app:type="@{BoxButton.LINE}" />
+
+                <!-- second text-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="secondText"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.SimpleTextField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="알림"
+                    android:onTextChanged="@{viewModel.secondTextChangedListener}" />
+
+                <!-- third icon-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="thirdIcon"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.thirdIconVisibility}"
+                        app:selectedListener="@{viewModel.thirdIconSelectListener}"/>
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.BoxButton
+                    android:id="@+id/third_icon_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:rounding="@{8}"
+                    app:size="@{BoxButton.ExtraLarge}"
+                    app:text="@{viewModel.thirdIconText}"
+                    app:type="@{BoxButton.LINE}" />
+
+                <!-- third text-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="thirdText"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.SimpleTextField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="검색"
+                    android:onTextChanged="@{viewModel.thirdTextChangedListener}" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

@@ -1,26 +1,27 @@
 package com.yourssu.storybook
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.yourssu.design.system.atom.Checkbox
 import com.yourssu.design.system.component.Toast.Companion.toast
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.storybook.DetailActivity.Companion.navigateToDetail
 import com.yourssu.storybook.atom.*
-import com.yourssu.storybook.component.BottomBarFragment
-import com.yourssu.storybook.component.ToastFragment
+import com.yourssu.storybook.component.*
+import com.yourssu.storybook.foundation.BaseColorFragment
+import com.yourssu.storybook.foundation.SemanticColorFragment
+import com.yourssu.storybook.foundation.VibrationFragment
 import com.yourssu.storybook.transform.ActivityAnimType
 
 class MainActivity : BaseActivity() {
 
     /** 추가시 여기에만 선언하면 됨 */
     private val foundationList = listOf<Pair<String, Class<*>>>(
-        "SemanticColor" to Fragment::class.java,
-        "Vibration" to Fragment::class.java
+        "BasicColor" to BaseColorFragment::class.java,
+        "SemanticColor" to SemanticColorFragment::class.java,
+        "Vibration" to VibrationFragment::class.java
     )
     private val atomList = listOf<Pair<String, Class<*>>> (
         "Text" to TextFragment::class.java,
@@ -39,9 +40,10 @@ class MainActivity : BaseActivity() {
     )
     private val componentList = listOf<Pair<String, Class<*>>>(
         "Toast" to ToastFragment::class.java,
-        "TopBar" to Fragment::class.java,
-        "SingleTitleTopBar" to Fragment::class.java,
-        "DoubleTitleTopBar" to Fragment::class.java,
+        "TopBar" to TopBarFragment::class.java,
+        "SingleTitleTopBar" to SingleTitleTopBarFragment::class.java,
+        "DoubleTitleTopBar" to DoubleTitleTopBarFragment::class.java,
+        "SearchTopBar" to SearchTopBarFragment::class.java,
         "BottomBar" to BottomBarFragment::class.java
     )
     /** 추가시 여기에만 선언하면 됨 */

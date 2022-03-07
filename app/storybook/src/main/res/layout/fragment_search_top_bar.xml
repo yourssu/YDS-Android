@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.yourssu.storybook.component.SearchTopBarViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".atom.ProfileImageViewFragment">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@{viewModel.componentBackgroundColor}"
+            android:onClick="@{() -> viewModel.changeBackground()}">
+
+            <com.yourssu.design.system.component.SearchTopBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onEditorAction="@{viewModel::onEditorAction}"
+                android:onTextChanged="@{viewModel::onTextChanged}"
+                android:text="@{viewModel.initText}"
+                app:isDisabled="@{viewModel.isDisable}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:onLeftArrowButtonClick="@{() -> viewModel.onLeftArrowButtonClicked()}"
+                app:placeholderText="@{viewModel.placeholderText}" />
+
+            <!-- 안내 텍스트 -->
+            <com.yourssu.design.system.atom.Text
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/textPrimary"
+                android:layout_gravity="bottom|right"
+                android:text="Click Background to change Color"
+                app:typo="subtitle2" />
+            <com.yourssu.design.system.atom.Text
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@drawable/white000"
+                android:alpha=".5"
+                android:layout_gravity="bottom|right"
+                android:text="Click Background to change Color"
+                app:typo="subtitle2" />
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="input: "
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@{viewModel.textInSearchTopBar}"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="isDisable"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:selectedListener="@{viewModel.enableSelectListener}" />
+                </LinearLayout>
+
+                <com.yourssu.design.system.atom.SimpleTextField
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:onTextChanged="@{viewModel::onPlaceholderTextChanged}"
+                    app:fieldLabelText="@{`Placeholder Text`}" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
