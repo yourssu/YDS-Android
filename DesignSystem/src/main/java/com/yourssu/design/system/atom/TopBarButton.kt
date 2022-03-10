@@ -109,7 +109,6 @@ class TopBarButton : LinearLayout {
 
             MotionEvent.ACTION_UP -> {
                 setTopBarButtonInfo()
-                performClick()
             }
         }
         return true
