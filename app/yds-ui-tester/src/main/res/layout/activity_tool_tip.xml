@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.yourssu.yds_ui_tester.ToolTipViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black000"
+                tools:context=".ToolTipActivity">
+
+                <Button
+                    android:id="@+id/testBt"
+                    android:layout_width="600px"
+                    android:layout_height="600px"
+                    android:layout_marginLeft="0px"
+                    android:layout_marginTop="500px"
+                    android:text="눌러보세요" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

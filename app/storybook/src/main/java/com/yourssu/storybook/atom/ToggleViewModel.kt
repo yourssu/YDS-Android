@@ -37,4 +37,5 @@ class ToggleViewModel(application: Application): BaseViewModel(application) {
             s?.toString()?.let { textString.value = it }
         }
     }
+
 }
