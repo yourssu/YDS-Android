@@ -9,33 +9,197 @@
     </data>
 
     <RelativeLayout
-        android:id="@+id/rootLayout"
+        android:id="@+id/testBig"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/layout"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/black000"
-                tools:context=".ToolTipActivity">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/testBt"
-                    android:layout_width="600px"
-                    android:layout_height="600px"
-                    android:layout_marginLeft="0px"
-                    android:layout_marginTop="500px"
-                    android:text="눌러보세요" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <Button
+                        android:id="@+id/testBt1"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt1"
+                        android:onClick="onClick"/>
+
+                    <Button
+                        android:id="@+id/testBt2"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt2"
+                        android:onClick="onClick"/>
+
+                    <Button
+                        android:id="@+id/testBt3"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt3"
+                        android:onClick="onClick"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="0위,1아래,2오른,3왼 중 희망 입력"
+                            android:layout_weight="1"/>
+                        <Spinner
+                            android:id="@+id/hopePositionSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="툴팁의 내용을 입력하세요"
+                            android:layout_weight="1"/>
+                        <EditText
+                            android:id="@+id/tootipText"
+                            android:layout_width="0dp"
+                            android:minLines="2"
+                            android:maxLines="2"
+                            android:maxLength="34"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="isNormal 체크하세요."
+                            android:layout_weight="1"/>
+                        <com.yourssu.design.system.atom.Toggle
+                            android:id="@+id/toggle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/testBt4"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt4"
+                        android:onClick="onClick"/>
+
+                    <Button
+                        android:id="@+id/testBt5"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt5"
+                        android:onClick="onClick"/>
+
+                    <Button
+                        android:id="@+id/testBt6"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt6"
+                        android:onClick="onClick"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/testBt7"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt7"
+                        android:onClick="onClick"/>
+
+                    <Button
+                        android:id="@+id/testBt8"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt8"
+                        android:onClick="onClick"/>
+
+                    <Button
+                        android:id="@+id/testBt9"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt9"
+                        android:onClick="onClick"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/testBt10"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt10"
+                        android:onClick="onClick"/>
+
+                    <Button
+                        android:id="@+id/testBt11"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt11"
+                        android:onClick="onClick"/>
+
+                    <Button
+                        android:id="@+id/testBt12"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:text="testBt12"
+                        android:onClick="onClick"/>
+                </LinearLayout>
+            </LinearLayout>
 
 
-            </RelativeLayout>
         </LinearLayout>
+
     </RelativeLayout>
 </layout>
