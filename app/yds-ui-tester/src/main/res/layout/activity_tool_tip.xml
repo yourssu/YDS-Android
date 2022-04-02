@@ -34,81 +34,95 @@
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt1"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt1" />
 
-                    <Button
-                        android:id="@+id/testBt2"
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="300px"
-                        android:layout_weight="1"
-                        android:text="testBt2"
-                        android:onClick="onClick"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <Button
+                            android:id="@+id/testBt2"
+                            android:layout_width="0dp"
+                            android:layout_height="300px"
+                            android:layout_weight="1"
+                            android:onClick="onClick"
+                            android:text="testBt2" />
+                    </LinearLayout>
+
 
                     <Button
                         android:id="@+id/testBt3"
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt3"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt3" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="0위,1아래,2오른,3왼 중 희망 입력"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="0위,1아래,2오른,3왼 중 희망 입력" />
+
                         <Spinner
                             android:id="@+id/hopePositionSpinner"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            />
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="툴팁의 내용을 입력하세요"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="툴팁의 내용을 입력하세요" />
+
                         <EditText
                             android:id="@+id/tootipText"
                             android:layout_width="0dp"
-                            android:minLines="2"
-                            android:maxLines="2"
-                            android:maxLength="34"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:maxLength="35"
+                            android:maxLines="2"
+                            android:minLines="2" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="isNormal 체크하세요."
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="isNormal 체크하세요." />
+
                         <com.yourssu.design.system.atom.Toggle
                             android:id="@+id/toggle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            />
+                            android:layout_weight="1" />
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -119,24 +133,24 @@
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt4"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt4" />
 
                     <Button
                         android:id="@+id/testBt5"
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt5"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt5" />
 
                     <Button
                         android:id="@+id/testBt6"
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt6"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt6" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -148,24 +162,24 @@
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt7"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt7" />
 
                     <Button
                         android:id="@+id/testBt8"
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt8"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt8" />
 
                     <Button
                         android:id="@+id/testBt9"
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt9"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt9" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -177,24 +191,24 @@
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt10"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt10" />
 
                     <Button
                         android:id="@+id/testBt11"
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt11"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt11" />
 
                     <Button
                         android:id="@+id/testBt12"
                         android:layout_width="0dp"
                         android:layout_height="300px"
                         android:layout_weight="1"
-                        android:text="testBt12"
-                        android:onClick="onClick"/>
+                        android:onClick="onClick"
+                        android:text="testBt12" />
                 </LinearLayout>
             </LinearLayout>
 

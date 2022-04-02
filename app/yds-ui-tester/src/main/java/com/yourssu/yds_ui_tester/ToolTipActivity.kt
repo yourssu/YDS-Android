@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.yourssu.design.system.atom.ToolTip
 import com.yourssu.yds_ui_tester.databinding.ActivityToolTipBinding
+import kotlinx.coroutines.GlobalScope
 
 
 class ToolTipActivity : AppCompatActivity() {
@@ -65,8 +66,10 @@ class ToolTipActivity : AppCompatActivity() {
         }
     }
 
+
+
     fun onClick(view: View){
-        toolTip = ToolTip.Builder(
+        toolTip = ToolTip.Companion.TooltipBuilder().build(
             this,
             windowManager, //툴팁을 띄울 뷰그룹. 맨외곽에서 match_parent로 구성된 뷰그룹이면 됨.
             layoutInflater, //이게 있어야 함.
@@ -74,7 +77,7 @@ class ToolTipActivity : AppCompatActivity() {
             binding.toggle.isSelected,  //툴팁 색상정보
             binding.tootipText.text.toString(),
             hopeReferencePositionNum  //희망 위치
-        ).build()
+        )
 
         toolTip!!.show()  //띄우기
     }
