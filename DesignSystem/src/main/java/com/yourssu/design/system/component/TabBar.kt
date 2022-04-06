@@ -4,13 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.LinearLayout
 import androidx.annotation.IntDef
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutTabBarBinding
+import com.yourssu.design.system.language.WRAP_CONTENT
 import com.yourssu.design.system.language.backgroundColor
 import com.yourssu.design.undercarriage.size.dpToIntPx
 
@@ -59,18 +62,9 @@ class TabBar : ConstraintLayout {
     }
 
     private fun setTabBarInfo() {
-        binding.tabLayout.background
         if (tabMode == MODE_SCROLLABLE) {
-            binding.tabLayout.updatePadding(
-                left = context.dpToIntPx(16f),
-                right = context.dpToIntPx(16f)
-            )
             binding.tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         } else {
-            binding.tabLayout.updatePadding(
-                left = context.dpToIntPx(0f),
-                right = context.dpToIntPx(0f)
-            )
             binding.tabLayout.tabMode = TabLayout.MODE_FIXED
         }
 
@@ -93,18 +87,52 @@ class TabBar : ConstraintLayout {
 
     fun addTab(tab: TabLayout.Tab) {
         binding.tabLayout.addTab(tab)
+        if (tabMode == MODE_SCROLLABLE) {
+            updatePaddingForScrollable()
+        } else {
+            updatePaddingForFixed()
+        }
+    }
+
+    private fun updatePaddingForFixed() {
+        val slidingTabStrip = binding.tabLayout.getChildAt(0) as LinearLayout
+        for (index in 0 until slidingTabStrip.childCount) {
+            slidingTabStrip.getChildAt(index).apply {
+                updateLayoutParams {
+                    width = WRAP_CONTENT
+                }
+                updatePadding(
+                    0, 0, 0, 0
+                )
+            }
+        }
     }
 
     fun addTab(tab: TabLayout.Tab, setSelected: Boolean) {
         binding.tabLayout.addTab(tab, setSelected)
+        if (tabMode == MODE_SCROLLABLE) {
+            updatePaddingForScrollable()
+        } else {
+            updatePaddingForFixed()
+        }
     }
 
     fun addTab(tab: TabLayout.Tab, position: Int) {
         binding.tabLayout.addTab(tab, position)
+        if (tabMode == MODE_SCROLLABLE) {
+            updatePaddingForScrollable()
+        } else {
+            updatePaddingForFixed()
+        }
     }
 
     fun addTab(tab: TabLayout.Tab, position: Int, setSelected: Boolean) {
         binding.tabLayout.addTab(tab, position, setSelected)
+        if (tabMode == MODE_SCROLLABLE) {
+            updatePaddingForScrollable()
+        } else {
+            updatePaddingForFixed()
+        }
     }
 
     fun clearOnTabSelectedListeners() {
@@ -123,6 +151,42 @@ class TabBar : ConstraintLayout {
         return binding.tabLayout.tabCount
     }
 
+    private fun updatePaddingForScrollable() {
+        val slidingTabStrip = binding.tabLayout.getChildAt(0) as LinearLayout
+        for (index in 0 until slidingTabStrip.childCount) {
+            if (index == 0) {
+                slidingTabStrip.getChildAt(index).apply {
+                    updateLayoutParams {
+                        width = context.dpToIntPx(104f)
+                    }
+                    updatePadding(
+                        left = context.dpToIntPx(16f)
+                    )
+                }
+
+            } else if (index == slidingTabStrip.childCount - 1) {
+                slidingTabStrip.getChildAt(index).apply {
+                    updateLayoutParams {
+                        width = context.dpToIntPx(104f)
+                    }
+                    updatePadding(
+                        right = context.dpToIntPx(16f)
+                    )
+                }
+
+            } else {
+                slidingTabStrip.getChildAt(index).apply {
+                    updateLayoutParams {
+                        width = WRAP_CONTENT
+                    }
+                    updatePadding(
+                        0, 0, 0, 0
+                    )
+                }
+            }
+        }
+    }
+
     fun getTabGravity(): Int {
         return binding.tabLayout.tabGravity
     }
@@ -137,18 +201,30 @@ class TabBar : ConstraintLayout {
 
     fun removeTab(tab: TabLayout.Tab) {
         binding.tabLayout.removeTab(tab)
+        if (tabMode == MODE_SCROLLABLE) {
+            updatePaddingForScrollable()
+        } else {
+            updatePaddingForFixed()
+        }
     }
 
     fun removeTabAt(position: Int) {
         binding.tabLayout.removeTabAt(position)
+        if (tabMode == MODE_SCROLLABLE) {
+            updatePaddingForScrollable()
+        } else {
+            updatePaddingForFixed()
+        }
     }
 
     fun selectTab(tab: TabLayout.Tab) {
+        tab.select()
         binding.tabLayout.selectTab(tab)
     }
 
     fun selectTab(tab: TabLayout.Tab, updateIndicator: Boolean) {
-        binding.tabLayout.selectTab(tab, updateIndicator)
+        if (updateIndicator) tab.select()
+        binding.tabLayout.selectTab(tab)
     }
 
     fun setScrollPosition(
