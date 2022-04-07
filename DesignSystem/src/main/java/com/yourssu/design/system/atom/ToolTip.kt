@@ -5,11 +5,12 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.os.Handler
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
+import android.view.animation.*
 
-import android.view.animation.AlphaAnimation
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
@@ -19,6 +20,7 @@ import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutTooltipBinding
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.design.undercarriage.size.dpToPx
+import kotlin.math.abs
 
 
 class ToolTip private constructor(
@@ -42,7 +44,7 @@ class ToolTip private constructor(
     private var mHeightPixels = 0 //화면 정보를 얻음
     private val d = windowManager.defaultDisplay as Display
     private val metrics = DisplayMetrics()
-
+    private var animDuration=0L
     //리스너 만들어 줘야함.
 
     private var Length: Float? = null
@@ -141,6 +143,7 @@ class ToolTip private constructor(
         popup.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // make outside area touchable
     }
 
+
     private fun inflateLayout(context: Context, referenceView: View) {
 
         binding = LayoutTooltipBinding.inflate(layoutInflater)
@@ -155,15 +158,43 @@ class ToolTip private constructor(
             popup.dismiss()
         }
 
-        popup.setOnDismissListener {
-            val animation = AlphaAnimation(1.0f, 0.0f)
-            animation.duration = 2500
-            binding.relativeLayout.startAnimation(animation)
-            binding.relativeLayout.isClickable = false
-            Log.d("kmj", "팝업꺼짐1")
-            //뭔가 해야함.
-            Log.d("kmj", "팝업꺼짐2")
-        }
+
+        var isRemove = false
+        popup.setTouchInterceptor(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                Log.d("kmj", "터치호출:" + event?.action)
+                if (!isRemove) {
+                    when (event?.action) {
+                        MotionEvent.ACTION_DOWN -> {
+                            Log.d("kmj", "터치호출 다운")
+                        }
+                        MotionEvent.ACTION_UP -> {
+                            isRemove=true
+                            Log.d("kmj", "터치호출 업")
+                            val animation = AlphaAnimation(1.0f, 0.0f)
+                            animation.duration = 2500
+                            binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
+                            val handler = Handler()
+                            handler.postDelayed({
+                                popup.dismiss()
+                            }, 2450)
+                        }
+                        MotionEvent.ACTION_OUTSIDE -> {
+                            isRemove=true
+                            val animation = AlphaAnimation(1.0f, 0.0f)
+                            animation.duration = 2500
+                            binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
+                            val handler = Handler()
+                            handler.postDelayed({
+                                popup.dismiss()
+                            }, 2450)
+                        }
+                    }
+                }
+
+                return true
+            }
+        })
     }
 
 
@@ -179,7 +210,7 @@ class ToolTip private constructor(
         if (resourceId > 0) {
             statusBarHeight = context.resources.getDimensionPixelSize(resourceId)
         }
-        Log.d("kmj", "상태바 높이:" + statusBarHeight)
+
     }
 
     //텍스트 길이에 따른 알맞은 백그라운드를 선택. 그리고 가로 길이 저장.
@@ -190,18 +221,21 @@ class ToolTip private constructor(
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(ShortTooltip)
             }
+            animDuration=1500L
         } else if (text.length in 15..24) {
             Length = ToolTip.MediumTooltip
             binding.textBox.setBackgroundResource(R.drawable.tooltip_medium_background)
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(MediumTooltip)
             }
+            animDuration=2500L
         } else if (text.length in 25..35) { //25~35자까지. 넘어가면 어차피 안나옴. maxLength=35 로 설정했음.
             Length = ToolTip.LongTooltip
             binding.textBox.setBackgroundResource(R.drawable.tooltip_long_background)
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(LongTooltip)
             }
+            animDuration=3000L
         }
     }
 
@@ -350,10 +384,7 @@ class ToolTip private constructor(
                             )
                             popupX =
                                 mWidthPixels - context.dpToPx(Length!!)
-                            Log.d(
-                                "kmj",
-                                "위에 있다  화면너비:" + mWidthPixels + "툴팁너비:" + context.dpToPx(Length!!)
-                            )
+
                             popUpY =
                                 referenceViewLocation[1] - context.dpToPx(49f) - statusBarHeight
 
@@ -551,8 +582,9 @@ class ToolTip private constructor(
                 popupX.toInt(),
                 popUpY.toInt() + statusBarHeight
             )
-
-            Log.d("kmj","한번 보자"+context.dpToIntPx(320f))
+            val animation = AlphaAnimation(0.0f, 1.0f)
+            animation.duration = animDuration
+            binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
             isShowOnce = true //이미 한번 띄웠음을 의미함.
         }
     }
@@ -604,4 +636,6 @@ class ToolTip private constructor(
     }
 
 }
+
+
 
