@@ -134,11 +134,11 @@ class BoxButton : LinearLayout {
                 bgColor = R.color.buttonDisabledBG
             }
             isWarned -> {
-                itemColor = R.color.buttonReversed
+                itemColor = R.color.buttonBright
                 bgColor = if (isPressed) R.color.buttonWarnedPressed else R.color.buttonWarned
             }
             else -> {
-                itemColor = R.color.buttonReversed
+                itemColor = R.color.buttonBright
                 bgColor = if (isPressed) R.color.buttonPointPressed else R.color.buttonPoint
             }
         }

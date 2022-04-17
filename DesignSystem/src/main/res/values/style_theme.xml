@@ -3,7 +3,7 @@
     <!-- 다크모드 미지원 서비스 용도 -->
     <style name="Theme.Light.YourssuDesignSystem" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@drawable/pointBlue400</item>
+        <item name="colorPrimary">@drawable/pointColor400</item>
         <item name="colorPrimaryVariant">@android:color/transparent</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -15,7 +15,7 @@
     <!-- 다크모드 지원 서비스 용도 -->
     <style name="Theme.DayNight.YourssuDesignSystem" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@drawable/pointBlue400</item>
+        <item name="colorPrimary">@drawable/pointColor400</item>
         <item name="colorPrimaryVariant">@android:color/transparent</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>

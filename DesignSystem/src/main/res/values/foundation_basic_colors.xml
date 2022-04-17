@@ -14,17 +14,17 @@
     <drawable name="logoBlue">#1653DB</drawable>
     <drawable name="logoYellow">#FFC441</drawable>
 
-    <!-- PointBlue -->
-    <drawable name="pointBlue050">#E1F2FE</drawable>
-    <drawable name="pointBlue100">#B6DDFE</drawable>
-    <drawable name="pointBlue200">#86C8FE</drawable>
-    <drawable name="pointBlue300">#4EB2FE</drawable>
-    <drawable name="pointBlue400">#00A3FF</drawable>
-    <drawable name="pointBlue500">#0092FE</drawable>
-    <drawable name="pointBlue600">#0084F0</drawable>
-    <drawable name="pointBlue700">#0072DD</drawable>
-    <drawable name="pointBlue800">#0060CB</drawable>
-    <drawable name="pointBlue900">#0042AB</drawable>
+    <!-- pointColor -->
+    <drawable name="pointColor050">#EBE6FB</drawable>
+    <drawable name="pointColor100">#CBC1F6</drawable>
+    <drawable name="pointColor200">#B2A4EF</drawable>
+    <drawable name="pointColor300">#A797F0</drawable>
+    <drawable name="pointColor400">#816DEC</drawable>
+    <drawable name="pointColor500">#5D4DE8</drawable>
+    <drawable name="pointColor600">#3230DC</drawable>
+    <drawable name="pointColor700">#1B2CD6</drawable>
+    <drawable name="pointColor800">#0025CD</drawable>
+    <drawable name="pointColor900">#0020C5</drawable>
 
     <!-- WarningRed -->
     <drawable name="warningRed050">#FFECEF</drawable>
@@ -62,6 +62,9 @@
     <drawable name="black000A10">#1A101112</drawable>
     <drawable name="gray900A30">#4D252729</drawable>
     <drawable name="gray900A70">#B3252729</drawable>
+
+    <!-- Point Alpha -->
+    <drawable name="pointColorA20">#33816DEC</drawable>
 
     <!-- Pink -->
     <drawable name="pink050">#FDE6F4</drawable>

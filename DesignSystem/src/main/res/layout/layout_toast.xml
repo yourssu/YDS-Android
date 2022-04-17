@@ -27,7 +27,7 @@
             android:layout_marginRight="24dp"
             android:layout_marginBottom="16dp"
             android:gravity="left"
-            android:textColor="@color/textReversed"
+            android:textColor="@color/textBright"
             app:typo="body2"
             tools:text="줄 수가 두 줄 이상이 되는 토스트 메시지입니다. 좌측 정렬을 해주세요." />
     </LinearLayout>

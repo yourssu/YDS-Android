@@ -24,7 +24,6 @@
             android:textColor="@color/textPrimary"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonPanel"
             app:layout_constraintStart_toStartOf="parent"
             app:typo="title2"
             tools:text="타이틀" />

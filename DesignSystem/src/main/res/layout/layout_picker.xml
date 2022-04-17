@@ -53,7 +53,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/dimThickReversed"
+                android:background="@color/dimThickBright"
                 android:layout_weight="1">
 
                 <com.yourssu.design.system.atom.Divider
@@ -71,7 +71,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/dimThickReversed"
+                android:background="@color/dimThickBright"
                 android:layout_weight="1">
 
                 <com.yourssu.design.system.atom.Divider

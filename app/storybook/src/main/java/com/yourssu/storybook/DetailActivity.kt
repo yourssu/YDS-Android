@@ -46,7 +46,7 @@ class DetailActivity : BaseActivity() {
         val fragmentClass = intent.getSerializableExtra(DetailFragmentClass) as Class<*>
 
         supportFragmentManager.beginTransaction()
-            .add(binding.fragmentFrame.id, fragmentClass.getConstructor().newInstance() as Fragment)
+            .replace(binding.fragmentFrame.id, fragmentClass.getConstructor().newInstance() as Fragment)
             .commitAllowingStateLoss()
     }
 
