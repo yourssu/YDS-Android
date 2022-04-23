@@ -27,7 +27,8 @@
     <!-- Dim -->
     <color name="dimNormal">@drawable/gray900A30</color>
     <color name="dimThick">@drawable/gray900A70</color>
-    <color name="dimThickBright">@drawable/black000A10</color> <!-- 디자이너 컨펌 기다리는 중 -->
+    <color name="dimThickBright">@drawable/white000A70</color>
+    <color name="dimPicker">@drawable/black000A10</color>
 
     <!-- Border -->
     <color name="borderThin">@drawable/gray900</color>
