@@ -7,59 +7,59 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ReferenceType">
 
     <!-- Background -->
-    <color name="bgNormal">@drawable/white000</color>
-    <color name="bgElevated">@drawable/white000</color>
-    <color name="bgRecomment">@drawable/gray050</color>
-    <color name="bgSelected">@drawable/gray100</color>
-    <color name="bgPressed">@drawable/gray100</color>
+    <color name="bgNormal">@drawable/black000</color>
+    <color name="bgElevated">@drawable/black000</color>
+    <color name="bgRecomment">@drawable/realBlack</color>
+    <color name="bgSelected">@drawable/gray900</color>
+    <color name="bgPressed">@drawable/gray800</color>
     <color name="bgNormalDark">@drawable/realBlack</color>
     <color name="bgElevatedDark">@drawable/realBlack</color>
 
     <!-- Text -->
-    <color name="textPrimary">@drawable/black000</color>
-    <color name="textSecondary">@drawable/gray900</color>
+    <color name="textPrimary">@drawable/gray100</color>
+    <color name="textSecondary">@drawable/gray200</color>
     <color name="textTertiary">@drawable/gray600</color>
-    <color name="textDisabled">@drawable/gray500</color>
+    <color name="textDisabled">@drawable/gray700</color>
     <color name="textBright">@drawable/white000</color>
-    <color name="textPointed">@drawable/pointColor400</color>
-    <color name="textWarned">@drawable/warningRed400</color>
+    <color name="textPointed">@drawable/pointColor300</color>
+    <color name="textWarned">@drawable/warningRed300</color>
 
     <!-- Dim -->
     <color name="dimNormal">@drawable/gray900A30</color>
     <color name="dimThick">@drawable/gray900A70</color>
     <color name="dimThickBright">@drawable/white000A70</color>
-    <color name="dimPicker">@drawable/white000A70</color>
+    <color name="dimPicker">@drawable/black000A10</color>
 
     <!-- Border -->
-    <color name="borderThin">@drawable/gray100</color>
-    <color name="borderNormal">@drawable/black000A10</color>
+    <color name="borderThin">@drawable/gray900</color>
+    <color name="borderNormal">@drawable/white000A10</color>
     <color name="borderThick">@drawable/gray500</color>
 
     <!-- Button -->
-    <color name="buttonNormal">@drawable/gray700</color>
-    <color name="buttonNormalPressed">@drawable/gray600</color>
-    <color name="buttonBG">@drawable/gray200</color>
-    <color name="buttonEmojiBG">@drawable/gray100</color>
+    <color name="buttonNormal">@drawable/gray300</color>
+    <color name="buttonNormalPressed">@drawable/gray200</color>
+    <color name="buttonBG">@drawable/gray800</color>
+    <color name="buttonEmojiBG">@drawable/gray900</color>
     <color name="buttonBright">@drawable/white000</color>
-    <color name="buttonDisabled">@drawable/gray500</color>
-    <color name="buttonDisabledBG">@drawable/gray200</color>
+    <color name="buttonDisabled">@drawable/gray600</color>
+    <color name="buttonDisabledBG">@drawable/gray800</color>
     <color name="buttonPoint">@drawable/pointColor400</color>
     <color name="buttonPointPressed">@drawable/pointColor300</color>
-    <color name="buttonPointBG">@drawable/pointColor050</color>
+    <color name="buttonPointBG">@drawable/pointColorA20</color>
     <color name="buttonWarned">@drawable/warningRed400</color>
     <color name="buttonWarnedPressed">@drawable/warningRed300</color>
     <color name="buttonWarnedBG">@drawable/warningRed050</color>
 
     <!-- BottomBar -->
     <color name="bottomBarNormal">@drawable/gray600</color>
-    <color name="bottomBarSelected">@drawable/gray800</color>
+    <color name="bottomBarSelected">@drawable/gray200</color>
 
     <!-- inputField -->
-    <color name="inputFieldNormal">@drawable/white000</color>
-    <color name="inputFieldElevated">@drawable/gray100</color>
+    <color name="inputFieldNormal">@drawable/black000</color>
+    <color name="inputFieldElevated">@drawable/gray900</color>
 
     <!-- Toast -->
-    <color name="toastBG">@drawable/gray700</color>
+    <color name="toastBG">@drawable/gray800</color>
 
     <!-- Tooltip -->
     <color name="tooltipBG">@drawable/gray700</color>

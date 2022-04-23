@@ -23,17 +23,18 @@ val basicColors = listOf<ColorCategory>(
         Color("logoBlue", "#1653DB", R.drawable.logoBlue),
         Color("logoYellow", "#FFC441", R.drawable.logoYellow)
     )),
-    ColorCategory("PointBlue", listOf(
-        Color("pointBlue050", "#E1F2FE", R.drawable.pointBlue050),
-        Color("pointBlue100", "#B6DDFE", R.drawable.pointBlue100),
-        Color("pointBlue200", "#86C8FE", R.drawable.pointBlue200),
-        Color("pointBlue300", "#4EB2FE", R.drawable.pointBlue300),
-        Color("pointBlue400", "#00A3FF", R.drawable.pointBlue400),
-        Color("pointBlue500", "#0092FE", R.drawable.pointBlue500),
-        Color("pointBlue600", "#0084F0", R.drawable.pointBlue600),
-        Color("pointBlue700", "#0072DD", R.drawable.pointBlue700),
-        Color("pointBlue800", "#0060CB", R.drawable.pointBlue800),
-        Color("pointBlue900", "#0042AB", R.drawable.pointBlue900),
+    ColorCategory("pointColor", listOf(
+        Color("pointColor050", "#E1F2FE", R.drawable.pointColor050),
+        Color("pointColor100", "#B6DDFE", R.drawable.pointColor100),
+        Color("pointColor200", "#86C8FE", R.drawable.pointColor200),
+        Color("pointColor300", "#4EB2FE", R.drawable.pointColor300),
+        Color("pointColor400", "#00A3FF", R.drawable.pointColor400),
+        Color("pointColor500", "#0092FE", R.drawable.pointColor500),
+        Color("pointColor600", "#0084F0", R.drawable.pointColor600),
+        Color("pointColor700", "#0072DD", R.drawable.pointColor700),
+        Color("pointColor800", "#0060CB", R.drawable.pointColor800),
+        Color("pointColor900", "#0042AB", R.drawable.pointColor900),
+        Color("pointColorA20", "#33816DEC (#816DEC, 20%)", R.drawable.pointColorA20)
     )),
     ColorCategory("WarningRed", listOf(
         Color("warningRed050", "#FFECEF", R.drawable.warningRed050),
