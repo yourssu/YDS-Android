@@ -1,10 +1,12 @@
 package com.yourssu.design.system.component
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
@@ -73,9 +75,11 @@ class BottomBar @JvmOverloads constructor(
             bindingMap[index] = item
 
             if (bottomTabType.get() == index) {
-                item.icon.setBackgroundResource(bottomTabInfo.iconSelectedDrawable)
+                item.icon.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.bottomBarSelected))
+                item.icon.setImageDrawable(ContextCompat.getDrawable(context, bottomTabInfo.iconSelectedDrawable))
             } else {
-                item.icon.setBackgroundResource(bottomTabInfo.iconDrawable)
+                item.icon.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.bottomBarNormal))
+                item.icon.setImageDrawable(ContextCompat.getDrawable(context, bottomTabInfo.iconDrawable))
             }
 
             item.root.setOnClickListener {
