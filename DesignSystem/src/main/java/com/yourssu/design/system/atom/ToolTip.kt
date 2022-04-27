@@ -20,6 +20,7 @@ import com.yourssu.design.R
 import com.yourssu.design.databinding.LayoutTooltipBinding
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.design.undercarriage.size.dpToPx
+import java.lang.IllegalStateException
 import kotlin.math.abs
 
 
@@ -33,6 +34,65 @@ class ToolTip private constructor(
     private var hopeLocation: Int?,
 ) {
 
+    class Builder {
+        var context: Context? = null
+        var windowManager: WindowManager? = null //화면크기를 알기위해
+        var layoutInflater: LayoutInflater? = null
+        var referenceView: View? = null //해당 툴팁이 붙고싶어하는 뷰
+        var isNormal: Boolean = true
+        var stringContents: String = "눌러보세요"
+        var hopeLocation: Int = -1
+
+        fun withContext(context: Context):Builder {
+            this.context=context
+            return this
+        }
+        fun withWindowManager(windowManager: WindowManager):Builder {
+            this.windowManager=windowManager
+            return this
+        }
+        fun withLayoutInflater(layoutInflater: LayoutInflater):Builder {
+            this.layoutInflater=layoutInflater
+            return this
+        }
+        fun withReferenceView(referenceView: View):Builder {
+            this.referenceView=referenceView
+            return this
+        }
+
+        fun withIsNormal(isNormal: Boolean):Builder {
+            this.isNormal=isNormal
+            return this
+        }
+        fun withStringContents(string: String):Builder {
+            this.stringContents=string
+            return this
+        }
+        fun withHopeLocation(hopeLocation: Int):Builder {
+            this.hopeLocation=hopeLocation
+            return this
+        }
+
+        fun build(): ToolTip {
+            if (context == null || windowManager == null ||
+                layoutInflater == null || referenceView == null ||
+                isNormal == null
+            ) {
+                throw IllegalStateException("인자부족 에러")
+            }
+
+            return ToolTip(
+                context!!,
+                windowManager!!, //화면크기를 알기위해
+                layoutInflater!!,
+                referenceView!!, //해당 툴팁이 붙고싶어하는 뷰
+                isNormal,
+                stringContents,
+                hopeLocation
+            )
+        }
+    }
+
     private lateinit var popup: PopupWindow
     private var popupX = 0f
     private var popUpY = 0f
@@ -44,7 +104,7 @@ class ToolTip private constructor(
     private var mHeightPixels = 0 //화면 정보를 얻음
     private val d = windowManager.defaultDisplay as Display
     private val metrics = DisplayMetrics()
-    private var animDuration=0L
+    private var animDuration = 0L
     //리스너 만들어 줘야함.
 
     private var Length: Float? = null
@@ -76,13 +136,6 @@ class ToolTip private constructor(
         referenceView = view
         referenceView.getLocationOnScreen(referenceViewLocation)
         //참조뷰에 대한 정보를 갱신
-
-        Log.d(
-            "kmj",
-            " 참조뷰 스크린 상 좌표: ${referenceViewLocation[0]} ${referenceViewLocation[1]} "
-        )
-        Log.d("kmj", "참조뷰바뀜")
-
         popup.dismiss()
         initView(referenceView, textInit)
         isShowOnce = false
@@ -154,10 +207,6 @@ class ToolTip private constructor(
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
 
-        binding.relativeLayout.setOnClickListener {
-            popup.dismiss()
-        }
-
 
         var isRemove = false
         popup.setTouchInterceptor(object : View.OnTouchListener {
@@ -166,11 +215,10 @@ class ToolTip private constructor(
                 if (!isRemove) {
                     when (event?.action) {
                         MotionEvent.ACTION_DOWN -> {
-                            Log.d("kmj", "터치호출 다운")
+
                         }
                         MotionEvent.ACTION_UP -> {
-                            isRemove=true
-                            Log.d("kmj", "터치호출 업")
+                            isRemove = true
                             val animation = AlphaAnimation(1.0f, 0.0f)
                             animation.duration = 2500
                             binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
@@ -180,7 +228,7 @@ class ToolTip private constructor(
                             }, 2450)
                         }
                         MotionEvent.ACTION_OUTSIDE -> {
-                            isRemove=true
+                            isRemove = true
                             val animation = AlphaAnimation(1.0f, 0.0f)
                             animation.duration = 2500
                             binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
@@ -204,9 +252,9 @@ class ToolTip private constructor(
         d.getMetrics(metrics)
         mWidthPixels = metrics.widthPixels
         mHeightPixels = metrics.heightPixels
-        Log.d("kmj", "화면 너비:" + mWidthPixels)
         //상단의 상태바 높이 구하기
-        val resourceId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
+        val resourceId =
+            context.resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resourceId > 0) {
             statusBarHeight = context.resources.getDimensionPixelSize(resourceId)
         }
@@ -221,21 +269,21 @@ class ToolTip private constructor(
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(ShortTooltip)
             }
-            animDuration=1500L
+            animDuration = 1500L
         } else if (text.length in 15..24) {
             Length = ToolTip.MediumTooltip
             binding.textBox.setBackgroundResource(R.drawable.tooltip_medium_background)
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(MediumTooltip)
             }
-            animDuration=2500L
+            animDuration = 2500L
         } else if (text.length in 25..35) { //25~35자까지. 넘어가면 어차피 안나옴. maxLength=35 로 설정했음.
             Length = ToolTip.LongTooltip
             binding.textBox.setBackgroundResource(R.drawable.tooltip_long_background)
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(LongTooltip)
             }
-            animDuration=3000L
+            animDuration = 3000L
         }
     }
 
@@ -244,7 +292,6 @@ class ToolTip private constructor(
         changeIsNormal(isNormal) //틴트색 결정.
 
         var canSetHopeLocation = hopeLocationSet()  //희망하는 위치에 설정
-        Log.d("kmj", "희망위치!!!" + hopeLocation)
 
         //희망하는 자리가 없거나
         //희망하는 위치에 놓을 수 없다면..... 가능한 곳에 배치시키기.
@@ -254,11 +301,11 @@ class ToolTip private constructor(
             val aboveByReferView = referenceViewLocation[1] - statusBarHeight
             val belowByReferView =
                 mHeightPixels - referenceViewLocation[1] - referenceView.height - statusBarHeight
-            if (aboveByReferView > context.dpToPx(50f)) {
+            if (aboveByReferView > context.dpToPx(58f)) {
                 //위에  배치시키기
                 hopeLocation = 0 //희망자리 수정.
                 hopeLocationSet() //재귀 호출
-            } else if (belowByReferView > context.dpToPx(50f)) {
+            } else if (belowByReferView > context.dpToPx(58f)) {
                 //아래에 배치시키기
                 hopeLocation = 1
                 hopeLocationSet()
@@ -284,7 +331,7 @@ class ToolTip private constructor(
                 hopeLocationSet()
             } else { //다 안된다면..... 최후의 수단. 이런경우는 거의 드물것임. 애초에 이런경우는 툴팁을 안쓰는걸 권장.
                 (binding.tail.layoutParams as RelativeLayout.LayoutParams).height =
-                    context.dpToPx(10f).toInt()
+                    context.dpToPx(17f).toInt()
                 binding.tail.setBackgroundResource(R.drawable.tooltip_tail_bottom)
                 (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
                     RelativeLayout.BELOW,
@@ -347,10 +394,10 @@ class ToolTip private constructor(
         if ((hopeLocation!! >= 0) && hopeLocation!! <= 3) { //희망하는 위치가 있다면
             when (hopeLocation) {
                 0 -> {                 //위에 올라갈 자리가 있는지 검사
-                    if ((referenceViewLocation[1] - statusBarHeight) > context.dpToPx(50f)) {
+                    if ((referenceViewLocation[1] - statusBarHeight) > context.dpToPx(58f)) {
                         canSetHopeLocation = true //위에 놓을 수 있음.
                         (binding.tail.layoutParams as RelativeLayout.LayoutParams).height =
-                            context.dpToPx(10f).toInt()
+                            context.dpToPx(9f).toInt()
                         binding.tail.setBackgroundResource(R.drawable.tooltip_tail_bottom)
 
                         (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
@@ -374,7 +421,7 @@ class ToolTip private constructor(
                                 ) / 2
 
                             popUpY =
-                                referenceViewLocation[1] - context.dpToPx(49f) - statusBarHeight
+                                referenceViewLocation[1] - context.dpToPx(49f + 8f)
 
                         } else if ((referenceViewLocation[0] + (referenceView.width / 2)) > (mWidthPixels / 2)) {
                             //참조뷰가  우측에 붙어있음.
@@ -382,18 +429,41 @@ class ToolTip private constructor(
                                 RelativeLayout.ALIGN_RIGHT,
                                 binding.textBox.id
                             )
-                            popupX =
-                                mWidthPixels - context.dpToPx(Length!!)
+                            //추가한 코드. 만약 자연스럽게 배치가 가능하면 이렇게 배치하자.
+                            if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
+                                    Length!! - 22f
+                                ) &&
+                                mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
+                                    22f
+                                )
+                            ) {
+                                popupX =
+                                    referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
+                                        Length!! - 22f
+                                    )
 
-                            popUpY =
-                                referenceViewLocation[1] - context.dpToPx(49f) - statusBarHeight
+                                popUpY =
+                                    referenceViewLocation[1] - context.dpToPx(49f + 8f)
+
+                                //꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
+                                    context.dpToPx(
+                                        8f
+                                    ).toInt()
+                            } else {
+                                popupX =
+                                    mWidthPixels - context.dpToPx(Length!!)
+
+                                popUpY =
+                                    referenceViewLocation[1] - context.dpToPx(49f + 8f)
 
 
-                            //꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
-                                mWidthPixels - referenceViewLocation[0] - (referenceView.width / 2) - context.dpToPx(
-                                    14f
-                                ).toInt()
+                                //꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
+                                    mWidthPixels - referenceViewLocation[0] - (referenceView.width / 2) - context.dpToPx(
+                                        14f
+                                    ).toInt()
+                            }
 
                         } else if (true) {
                             //만약 화면내의 왼쪽에 참조뷰가 치우쳐져 있다
@@ -401,27 +471,51 @@ class ToolTip private constructor(
                                 RelativeLayout.ALIGN_LEFT,
                                 binding.textBox.id
                             )
-                            popupX = 0f
-                            popUpY =
-                                referenceViewLocation[1] - context.dpToPx(49f) - statusBarHeight
 
-                            //꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
-                                referenceViewLocation[0] + (referenceView.width / 2) - context.dpToPx(
-                                    14f
-                                ).toInt()
+                            //추가한 코드. 만약 자연스럽게 배치가 가능하면 이렇게 배치하자.
+                            if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
+                                    22f
+                                ) &&
+                                mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
+                                    Length!! - 22f
+                                )
+                            ) {
+                                popupX =
+                                    referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
+                                        22f
+                                    )
+
+                                popUpY =
+                                    referenceViewLocation[1] - context.dpToPx(49f + 8f)
+
+                                //꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
+                                    context.dpToPx(
+                                        8f
+                                    ).toInt()
+                            } else {
+                                popupX = 0f
+                                popUpY =
+                                    referenceViewLocation[1] - context.dpToPx(49f + 8f)
+
+                                //꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
+                                    referenceViewLocation[0] + (referenceView.width / 2) - context.dpToPx(
+                                        14f
+                                    ).toInt()
+                            }
                         }
                     }
                 }
                 1 -> {  // 참조뷰의 아래에 들어갈 자리가 있는지 검사
                     if ((mHeightPixels - (referenceViewLocation[1] + referenceView.height - statusBarHeight)) > context.dpToPx(
-                            50f
+                            58f  //원래 57f지만 넉넉하게 1f 늘렸습니다.
                         )
                     ) {
                         canSetHopeLocation = true //아래에 놓을 수 있음.
                         (binding.tail.layoutParams as RelativeLayout.LayoutParams).height =
                             context.dpToPx(9f).toInt()
-                        binding.tail.setBackgroundResource(R.drawable.tooltip_tail_top) //수정필요
+                        binding.tail.setBackgroundResource(R.drawable.tooltip_tail_top)
                         (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
                             RelativeLayout.BELOW,
                             binding.tail.id
@@ -442,7 +536,9 @@ class ToolTip private constructor(
                                 ) / 2
 
                             popUpY =
-                                (referenceViewLocation[1] - statusBarHeight + referenceView.height).toFloat()
+                                (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                    8f
+                                )
 
                         } else if ((referenceViewLocation[0] + (referenceView.width / 2)) > mWidthPixels / 2) {
                             //만약 화면내의 오른쪽에 참조뷰가 치우쳐져 있다
@@ -450,17 +546,44 @@ class ToolTip private constructor(
                                 RelativeLayout.ALIGN_RIGHT,
                                 binding.textBox.id
                             )
-                            popupX =
-                                mWidthPixels - context.dpToPx(Length!!)
-                            popUpY =
-                                (referenceViewLocation[1] - statusBarHeight + referenceView.height).toFloat()
+
+                            if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
+                                    Length!! - 22f
+                                ) &&
+                                mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
+                                    22f
+                                )
+                            ) {
+                                popupX =
+                                    referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
+                                        Length!! - 22f
+                                    )
+
+                                popUpY =
+                                    (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                        8f
+                                    )
+
+                                //꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
+                                    context.dpToPx(
+                                        8f
+                                    ).toInt()
+                            } else {
+                                popupX =
+                                    mWidthPixels - context.dpToPx(Length!!)
+                                popUpY =
+                                    (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                        8f
+                                    )
 
 
-                            //꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
-                                mWidthPixels - referenceViewLocation[0] - (referenceView.width / 2) - context.dpToPx(
-                                    14f
-                                ).toInt()
+                                //꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
+                                    mWidthPixels - referenceViewLocation[0] - (referenceView.width / 2) - context.dpToPx(
+                                        14f
+                                    ).toInt()
+                            }
 
                         } else if (true) {
                             //만약 화면내의 왼쪽에 참조뷰가 치우쳐져 있다
@@ -468,16 +591,43 @@ class ToolTip private constructor(
                                 RelativeLayout.ALIGN_LEFT,
                                 binding.textBox.id
                             )
-                            popupX = 0f
-                            popUpY =
-                                (referenceViewLocation[1] - statusBarHeight + referenceView.height).toFloat()
+
+                            if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
+                                    22f
+                                ) &&
+                                mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
+                                    Length!! - 22f
+                                )
+                            ) {
+                                popupX =
+                                    referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
+                                        22f
+                                    )
+
+                                popUpY =
+                                    (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                        8f
+                                    )
+
+                                //꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
+                                    context.dpToPx(
+                                        8f
+                                    ).toInt()
+                            } else {
+                                popupX = 0f
+                                popUpY =
+                                    (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                        8f
+                                    )
 
 
-                            //꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
-                                referenceViewLocation[0] + (referenceView.width / 2) - context.dpToPx(
-                                    14f
-                                ).toInt()
+                                //꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
+                                    referenceViewLocation[0] + (referenceView.width / 2) - context.dpToPx(
+                                        14f
+                                    ).toInt()
+                            }
                         }
                     }
                 }
@@ -519,7 +669,7 @@ class ToolTip private constructor(
 
                         popupX = (referenceViewLocation[0] + referenceView.width).toFloat()
                         popUpY = //이때는 툴팁 높이가 40임.
-                            (referenceViewLocation[1] - statusBarHeight + referenceView.height / 2).toFloat() - context.dpToPx(
+                            (referenceViewLocation[1] + referenceView.height / 2).toFloat() - context.dpToPx(
                                 20f
                             )
                     }
@@ -556,12 +706,13 @@ class ToolTip private constructor(
                             binding.tooltip.id
                         )
 
-                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).topMargin = 14
+                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).topMargin =
+                            14
                         //중앙 가리키도록 내리기
 
                         popupX = (referenceViewLocation[0] - context.dpToPx(Length!! + 10f))
                         popUpY = //이때는 툴팁 높이가 40임.
-                            (referenceViewLocation[1] - statusBarHeight + referenceView.height / 2).toFloat() - context.dpToPx(
+                            (referenceViewLocation[1] + referenceView.height / 2).toFloat() - context.dpToPx(
                                 20f
                             )
 
@@ -580,7 +731,7 @@ class ToolTip private constructor(
                 referenceView,
                 Gravity.NO_GRAVITY,
                 popupX.toInt(),
-                popUpY.toInt() + statusBarHeight
+                popUpY.toInt()
             )
             val animation = AlphaAnimation(0.0f, 1.0f)
             animation.duration = animDuration
@@ -603,39 +754,10 @@ class ToolTip private constructor(
         const val RIGHT_SIDE = 2
         const val LEFT_SIDE = 3
 
-        //일부러 싱글턴 패턴으로는 안만들었음. 여러개의 툴팁을 띄우는 것이 가능하게 하기 위해.
-        class TooltipBuilder {
-            var t: ToolTip? = null
-            fun build(
-                context: Context,
-                windowManager: WindowManager, //화면크기를 알기위해
-                layoutInflater: LayoutInflater,
-                referenceView: View, //해당 툴팁이 붙고싶어하는 뷰
-                isNormal: Boolean,
-                text: String? = "눌러보세요",
-                hopeLocation: Int? = -1
-            ): ToolTip {
-
-                if (t == null) {
-                    t = ToolTip(
-                        context,
-                        windowManager,
-                        layoutInflater,
-                        referenceView = referenceView,
-                        isNormal = isNormal,
-                        text!!,
-                        hopeLocation
-                    )
-                    return t!!
-                } else {
-                    return t!!
-                }
-
-            }
-        }
     }
-
 }
+
+
 
 
 

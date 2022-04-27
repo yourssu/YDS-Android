@@ -35,7 +35,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt1" />
+                        android:text="testBt1"
+                        android:background="@drawable/black000"/>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -47,7 +48,8 @@
                             android:layout_height="300px"
                             android:layout_weight="1"
                             android:onClick="onClick"
-                            android:text="testBt2" />
+                            android:text="testBt2"
+                            android:background="@drawable/black000"/>
                     </LinearLayout>
 
 
@@ -57,7 +59,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt3" />
+                        android:text="testBt3"
+                        android:background="@drawable/black000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -134,7 +137,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt4" />
+                        android:text="testBt4"
+                        android:background="@drawable/black000"/>
 
                     <Button
                         android:id="@+id/testBt5"
@@ -142,7 +146,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt5" />
+                        android:text="testBt5"
+                        android:background="@drawable/black000"/>
 
                     <Button
                         android:id="@+id/testBt6"
@@ -150,7 +155,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt6" />
+                        android:text="testBt6"
+                        android:background="@drawable/black000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -163,7 +169,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt7" />
+                        android:text="testBt7"
+                        android:background="@drawable/black000"/>
 
                     <Button
                         android:id="@+id/testBt8"
@@ -171,7 +178,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt8" />
+                        android:text="testBt8"
+                        android:background="@drawable/black000"/>
 
                     <Button
                         android:id="@+id/testBt9"
@@ -179,7 +187,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt9" />
+                        android:text="testBt9"
+                        android:background="@drawable/black000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -192,7 +201,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt10" />
+                        android:text="testBt10"
+                        android:background="@drawable/black000"/>
 
                     <Button
                         android:id="@+id/testBt11"
@@ -200,7 +210,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt11" />
+                        android:text="testBt11"
+                        android:background="@drawable/black000"/>
 
                     <Button
                         android:id="@+id/testBt12"
@@ -208,7 +219,8 @@
                         android:layout_height="300px"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="testBt12" />
+                        android:text="testBt12"
+                        android:background="@drawable/black000"/>
                 </LinearLayout>
             </LinearLayout>
 
