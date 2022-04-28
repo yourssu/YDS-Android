@@ -45,7 +45,8 @@ class MainActivity : BaseActivity() {
         "DoubleTitleTopBar" to DoubleTitleTopBarFragment::class.java,
         "SearchTopBar" to SearchTopBarFragment::class.java,
         "BottomBar" to BottomBarFragment::class.java,
-        "TabBar" to TabBarFragment::class.java
+        "TabBar" to TabBarFragment::class.java,
+        "Tooltip" to TooltipFragment::class.java
     )
     /** 추가시 여기에만 선언하면 됨 */
 

@@ -88,18 +88,4 @@ class ToolTipActivity : AppCompatActivity() {
         toolTip.show()
     }
 
-//    fun onClick(view: View){
-//        toolTip = ToolTip.Builder().build(
-//            this,
-//            windowManager, //툴팁을 띄울 뷰그룹. 맨외곽에서 match_parent로 구성된 뷰그룹이면 됨.
-//            layoutInflater, //이게 있어야 함.
-//            view, //툴팁이 붙을 뷰
-//            binding.toggle.isSelected,  //툴팁 색상정보
-//            binding.tootipText.text.toString(),
-//            hopeReferencePositionNum  //희망 위치
-//        )
-//
-//        toolTip!!.show()  //띄우기
-//    }
-
 }

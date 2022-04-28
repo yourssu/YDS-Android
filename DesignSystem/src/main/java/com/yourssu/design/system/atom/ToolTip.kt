@@ -148,13 +148,13 @@ class ToolTip private constructor(
             true -> ColorStateList.valueOf(
                 ContextCompat.getColor(
                     context,
-                    R.color.buttonNormal
+                    R.color.tooltipBG
                 )
             )
             else -> ColorStateList.valueOf(
                 ContextCompat.getColor(
                     context,
-                    R.color.violetItemText  //일단은 이거로 설정
+                    R.color.tooltipPoint  //일단은 이거로 설정
                 )
             )
         }
@@ -163,13 +163,13 @@ class ToolTip private constructor(
             true -> ColorStateList.valueOf(
                 ContextCompat.getColor(
                     context,
-                    R.color.buttonNormal
+                    R.color.tooltipBG
                 )
             )
             false -> ColorStateList.valueOf(
                 ContextCompat.getColor(
                     context,
-                    R.color.violetItemText  //일단은 이거로 설정
+                    R.color.tooltipPoint  //일단은 이거로 설정
                 )
             )
         }
