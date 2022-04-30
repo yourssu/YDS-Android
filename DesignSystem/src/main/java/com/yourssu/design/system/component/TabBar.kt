@@ -95,7 +95,7 @@ class TabBar : ConstraintLayout {
     }
 
     private fun updatePaddingForFixed() {
-        val slidingTabStrip = binding.tabLayout.getChildAt(0) as LinearLayout
+        val slidingTabStrip = binding.tabLayout.getChildAt(SLIDING_TAB_STRIP_INDEX) as LinearLayout
         for (index in 0 until slidingTabStrip.childCount) {
             slidingTabStrip.getChildAt(index).apply {
                 updateLayoutParams {
@@ -152,7 +152,7 @@ class TabBar : ConstraintLayout {
     }
 
     private fun updatePaddingForScrollable() {
-        val slidingTabStrip = binding.tabLayout.getChildAt(0) as LinearLayout
+        val slidingTabStrip = binding.tabLayout.getChildAt(SLIDING_TAB_STRIP_INDEX) as LinearLayout
         for (index in 0 until slidingTabStrip.childCount) {
             if (index == 0) {
                 slidingTabStrip.getChildAt(index).apply {
@@ -257,6 +257,7 @@ class TabBar : ConstraintLayout {
     annotation class TabBarMode
 
     companion object {
+        private const val SLIDING_TAB_STRIP_INDEX = 0
         const val MODE_SCROLLABLE = 0
         const val MODE_FIXED = 1
     }
