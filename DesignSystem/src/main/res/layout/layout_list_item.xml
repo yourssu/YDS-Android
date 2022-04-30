@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.yourssu.design.system.atom.IconView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingHorizontal="20dp">
+
+        <com.yourssu.design.system.atom.IconView
+            android:id="@+id/icon_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/list_item_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:size="@{IconView.Medium}" />
+
+        <com.yourssu.design.system.atom.Text
+            android:id="@+id/list_item_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:textColor="@color/textSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/icon_right"
+            app:layout_constraintStart_toEndOf="@id/icon_left"
+            app:layout_constraintTop_toTopOf="parent"
+            app:typo="body1" />
+
+        <com.yourssu.design.system.atom.IconView
+            android:id="@+id/icon_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/list_item_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:size="@{IconView.Medium}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
