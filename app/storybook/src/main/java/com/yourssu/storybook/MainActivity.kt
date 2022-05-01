@@ -36,7 +36,8 @@ class MainActivity : BaseActivity() {
         "SimpleTextField" to SimpleTextFieldFragment::class.java,
         "SuffixTextField" to SuffixTextFieldFragment::class.java,
         "PasswordTextField" to PasswordTextFieldFragment::class.java,
-        "SearchTextField" to SearchTextFieldFragment::class.java
+        "SearchTextField" to SearchTextFieldFragment::class.java,
+        "ListItem" to ListItemFragment::class.java
     )
     private val componentList = listOf<Pair<String, Class<*>>>(
         "Toast" to ToastFragment::class.java,
