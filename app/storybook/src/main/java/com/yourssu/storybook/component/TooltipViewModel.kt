@@ -47,10 +47,10 @@ class TooltipViewModel(application: Application): BaseViewModel(application)  {
     fun onClick(view: View){
         val i=locationList.indexOf(hopeLocation.value)
         val toolTip: ToolTip =
-            tooltipBuilders?.withReferenceView(view)
+            tooltipBuilders
                 ?.withIsNormal(!(isNormal.value!!))
                 ?.withStringContents(explainText.value.toString())
-                ?.withHopeLocation(hopelocationList[i].second)!!.build()
+                ?.withHopeLocation(hopelocationList[i].second)!!.build(view)
 
         toolTip.show()
     }

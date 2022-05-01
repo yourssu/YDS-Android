@@ -62,17 +62,15 @@ class TooltipFragment : Fragment() {
         binding = FragmentTooltipBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
         context?.let {
             activity?.let { it1 ->
-                viewModel.tooltipBuilders = ToolTip.Builder().withContext(context = it)
-                    .withWindowManager(it1.windowManager)
-                    .withLayoutInflater(inflater)
+                viewModel.tooltipBuilders =
+                    ToolTip.Builder(context = it, it1.windowManager, inflater)
             }
         }
 
-
         initView()
-
 
         return binding.root
     }
