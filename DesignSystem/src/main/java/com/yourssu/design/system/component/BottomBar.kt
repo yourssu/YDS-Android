@@ -17,6 +17,7 @@ import com.yourssu.design.databinding.LayoutBottomBarBinding
 import com.yourssu.design.system.rule.Vibration
 import com.yourssu.design.system.rule.vibe
 import com.yourssu.design.undercarriage.animation.startAnim
+import kotlin.collections.List
 
 class BottomBar @JvmOverloads constructor(
         context: Context,
