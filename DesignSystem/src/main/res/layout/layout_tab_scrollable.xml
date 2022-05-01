@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="88dp"
-    android:layout_height="46dp">
+    android:layout_height="48dp"
+    android:orientation="vertical">
 
     <com.yourssu.design.system.atom.Text
         android:id="@android:id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="88dp"
+        android:layout_height="46dp"
+        android:gravity="center"
         android:singleLine="true"
         android:textColor="@drawable/selector_tab_text_color"
-        app:typo="button2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:typo="button2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/selected_indicator"
+        android:layout_width="88dp"
+        android:layout_height="2dp"
+        android:background="@drawable/selector_indicator" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
