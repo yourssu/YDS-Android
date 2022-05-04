@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="itemList">
+        <item>"참조뷰 위에희망"</item>
+        <item>"참조뷰 아래에희망"</item>
+        <item>"참조뷰 오른쪽에희망"</item>
+        <item>"참조뷰 왼쪽에희망"</item>
+        <item>"희망 위치 없음"</item>
+    </string-array>
+
+</resources>

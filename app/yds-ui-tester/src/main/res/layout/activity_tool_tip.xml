@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.yourssu.yds_ui_tester.ToolTipViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/testBig"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <Button
+                        android:id="@+id/testBt1"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt1"
+                        android:background="@drawable/black000"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <Button
+                            android:id="@+id/testBt2"
+                            android:layout_width="0dp"
+                            android:layout_height="300px"
+                            android:layout_weight="1"
+                            android:onClick="onClick"
+                            android:text="testBt2"
+                            android:background="@drawable/black000"/>
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/testBt3"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt3"
+                        android:background="@drawable/black000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0위,1아래,2오른,3왼 중 희망 입력" />
+
+                        <Spinner
+                            android:id="@+id/hopePositionSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="툴팁의 내용을 입력하세요" />
+
+                        <EditText
+                            android:id="@+id/tootipText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:maxLength="35"
+                            android:maxLines="2"
+                            android:minLines="2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="isNormal 체크하세요." />
+
+                        <com.yourssu.design.system.atom.Toggle
+                            android:id="@+id/toggle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/testBt4"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt4"
+                        android:background="@drawable/black000"/>
+
+                    <Button
+                        android:id="@+id/testBt5"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt5"
+                        android:background="@drawable/black000"/>
+
+                    <Button
+                        android:id="@+id/testBt6"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt6"
+                        android:background="@drawable/black000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/testBt7"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt7"
+                        android:background="@drawable/black000"/>
+
+                    <Button
+                        android:id="@+id/testBt8"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt8"
+                        android:background="@drawable/black000"/>
+
+                    <Button
+                        android:id="@+id/testBt9"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt9"
+                        android:background="@drawable/black000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/testBt10"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt10"
+                        android:background="@drawable/black000"/>
+
+                    <Button
+                        android:id="@+id/testBt11"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt11"
+                        android:background="@drawable/black000"/>
+
+                    <Button
+                        android:id="@+id/testBt12"
+                        android:layout_width="0dp"
+                        android:layout_height="300px"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="testBt12"
+                        android:background="@drawable/black000"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

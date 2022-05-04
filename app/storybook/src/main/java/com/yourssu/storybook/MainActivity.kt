@@ -48,6 +48,7 @@ class MainActivity : BaseActivity() {
         "SearchTopBar" to SearchTopBarFragment::class.java,
         "BottomBar" to BottomBarFragment::class.java,
         "TabBar" to TabBarFragment::class.java,
+        "Tooltip" to TooltipFragment::class.java,
         "List" to ListFragment::class.java
     )
     /** 추가시 여기에만 선언하면 됨 */

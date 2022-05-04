@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.YourssuDesignSystem">
         <activity
+            android:name=".TooltipFragmentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ToolTipActivity"
+            android:exported="true" />
+        <activity
             android:name=".EditTextActivity"
             android:exported="true">
             <intent-filter>
@@ -18,9 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TopBarActivity">
-
-        </activity>
+        <activity android:name=".TopBarActivity" />
         <activity android:name=".PlainButtonActivity" />
         <activity android:name=".SearchTextFieldActivity" />
         <activity android:name=".PasswordTextFieldActivity" />
@@ -30,7 +34,7 @@
         <activity android:name=".ToggleActivity" />
         <activity android:name=".BoxButtonActivity" />
         <activity android:name=".DividerActivity" />
-        <activity android:name=".DesignSystemListActivity"></activity>
+        <activity android:name=".DesignSystemListActivity" />
         <activity android:name=".MainActivity" />
     </application>
 
