@@ -14,7 +14,7 @@ class TooltipViewModel(application: Application): BaseViewModel(application)  {
     val hopeLocation: MutableLiveData<String> = MutableLiveData("on the reference view")
     val isNormal: MutableLiveData<Boolean> = MutableLiveData(true)
     val explainText: MutableLiveData<String> = MutableLiveData("explain")
-
+    val toastTime:MutableLiveData<Boolean> = MutableLiveData(true)
 
     //설명문 실시간 저장.
     val onExplainTextChangedListener = object : TextField.OnTextChanged {
@@ -26,6 +26,12 @@ class TooltipViewModel(application: Application): BaseViewModel(application)  {
     val selectedStateListener = object : Toggle.SelectedListener {
         override fun onSelected(boolean: Boolean) {
            isNormal.value = boolean
+        }
+    }
+
+    val toastTimeStateListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            toastTime.value = boolean
         }
     }
 
@@ -50,7 +56,12 @@ class TooltipViewModel(application: Application): BaseViewModel(application)  {
             tooltipBuilders
                 ?.withIsNormal(!(isNormal.value!!))
                 ?.withStringContents(explainText.value.toString())
-                ?.withHopeLocation(hopelocationList[i].second)!!.build(view)
+                ?.withHopeLocation(hopelocationList[i].second)
+                ?.withToastLength(when(toastTime.value){
+                    true ->ToolTip.Length_Long
+                    else ->ToolTip.Length_Short
+                })!!.build(view)
+
 
         toolTip.show()
     }

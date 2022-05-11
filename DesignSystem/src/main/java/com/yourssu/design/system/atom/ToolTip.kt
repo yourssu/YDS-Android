@@ -3,9 +3,12 @@ package com.yourssu.design.system.atom
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Handler
+import android.text.TextPaint
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
@@ -13,6 +16,7 @@ import android.view.animation.*
 
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 
 import com.yourssu.design.R
@@ -31,7 +35,8 @@ class ToolTip private constructor(
     private var referenceView: View,
     private var isNormal: Boolean, //changeIsNormal로만 바꾸도록. 지금 왜 setter오버라이드가 안되지
     private var textInit: String,
-    private var hopeLocation: Int?,
+    private var hopeLocation: Int,
+    private val toastTime:Long
 ) {
 
     //빌더를 위한 필수 변수들 세개. 참조뷰를 여기 안넣은 이유는 하나의 빌더를 생성하고
@@ -46,6 +51,7 @@ class ToolTip private constructor(
         var isNormal: Boolean = true
         var stringContents: String = "눌러보세요"
         var hopeLocation: Int = -1
+        var toastTime: Long = Length_Long
 
         fun withContext(context: Context): Builder {
             this.context = context
@@ -73,7 +79,20 @@ class ToolTip private constructor(
         }
 
         fun withHopeLocation(hopeLocation: Int): Builder {
-            this.hopeLocation = hopeLocation
+            if(hopeLocation<0 || hopeLocation>3) //잘못된 값을 넣으면 그냥 랜덤으로 배치시킴.
+                this.hopeLocation=-1
+            else
+                this.hopeLocation = hopeLocation
+
+            return this
+        }
+
+        fun withToastLength(toastTime: Long): Builder {
+            if(toastTime!=Length_Long && toastTime!=Length_Short) //잘못된 값을 넣으면 그냥 Long으로.
+                this.toastTime= Length_Long
+            else
+                this.toastTime = toastTime
+
             return this
         }
 
@@ -88,7 +107,8 @@ class ToolTip private constructor(
                 referenceView, //해당 툴팁이 붙고싶어하는 뷰
                 isNormal,
                 stringContents,
-                hopeLocation
+                hopeLocation,
+                toastTime
             )
         }
     }
@@ -104,20 +124,25 @@ class ToolTip private constructor(
     private var mHeightPixels = 0 //화면 정보를 얻음
     private val d = windowManager.defaultDisplay as Display
     private val metrics = DisplayMetrics()
-    private var animDuration = 0L
-    //리스너 만들어 줘야함.
+    private var animDuration = 250L //고정.
 
-    private var Length: Float= ShortTooltip
+
+    private var Length: Float = ShortTooltip
+    private var textRect: Rect = Rect()
 
     var text: CharSequence
         get() {
             return binding.textBox.text
         }
+
         set(value: CharSequence) {
-            val vLength = when (value.toString().length) {
-                in 0..14 -> ToolTip.ShortTooltip
-                in 15..24 -> ToolTip.MediumTooltip
-                else -> ToolTip.LongTooltip
+
+            val valuePaint: TextPaint = TextPaint()
+            val valueWidth:Float=valuePaint.measureText(value,0,value.length)
+            val vLength= when{ //바꿀 문자열에 맞는 알맞은 타입의 툴팁 고르기.
+                valueWidth < context.dpToPx(ShortTooltip-32) -> ShortTooltip
+                valueWidth < context.dpToPx(MediumTooltip-32) -> MediumTooltip
+                else -> LongTooltip
             }
             if (Length != vLength) { //길이가 다르면 다시 생성 필요.
                 popup.dismiss() //기존 팝업 삭제
@@ -207,7 +232,6 @@ class ToolTip private constructor(
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
 
-
         var isRemove = false
         popup.setTouchInterceptor(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
@@ -262,27 +286,28 @@ class ToolTip private constructor(
 
     //텍스트 길이에 따른 알맞은 백그라운드를 선택. 그리고 가로 길이 저장.
     private fun setBackgroundSize() {
-        if (text.length in 0..14) {
+        val textView = binding.textBox
+        textView.paint.getTextBounds(textView.text.toString(), 0, textView.text.length, textRect);
+        Log.d("kmj",""+textRect.width()+","+context.dpToPx(ShortTooltip-32)+","+context.dpToPx(ShortTooltip)+","+context.dpToPx(32f))
+        if (textRect.width() < (context.dpToPx(ShortTooltip - 32))) { //양옆의 패딩값 제외한 너비.
             Length = ToolTip.ShortTooltip
             binding.textBox.setBackgroundResource(R.drawable.tooltip_short_background)
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(ShortTooltip)
             }
-            animDuration = 150L
-        } else if (text.length in 15..24) {
+        } else if (textRect.width() < (context.dpToPx(MediumTooltip - 32))) {
             Length = ToolTip.MediumTooltip
             binding.textBox.setBackgroundResource(R.drawable.tooltip_medium_background)
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(MediumTooltip)
             }
-            animDuration = 250L
-        } else if (text.length in 25..35) { //25~35자까지. 넘어가면 어차피 안나옴. maxLength=35 로 설정했음.
+        } else if(textRect.width() < (context.dpToPx(LongTooltip - 32))){
+            //넘어가면 어차피 안나옴. maxLength=35 로 설정했음.
             Length = ToolTip.LongTooltip
             binding.textBox.setBackgroundResource(R.drawable.tooltip_long_background)
             (binding.textBox.layoutParams as RelativeLayout.LayoutParams).run {
                 width = context.dpToIntPx(LongTooltip)
             }
-            animDuration = 300L
         }
     }
 
@@ -723,7 +748,7 @@ class ToolTip private constructor(
     }
 
     private var isShowOnce = false
-    fun show() {
+    fun show() { //띄우고 나서 지정된 시간 이후에 사라지도록 구성됨.
         popup.setBackgroundDrawable(BitmapDrawable());
         if (!isShowOnce) {
             popup.showAtLocation(
@@ -736,8 +761,23 @@ class ToolTip private constructor(
             animation.duration = animDuration
             binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
             isShowOnce = true //이미 한번 띄웠음을 의미함.
+
+            val handler = Handler()
+            handler.postDelayed({ //show하고 나서 toastTime이후에 자동으로 사라짐.
+                val autoDisapperAnimation = AlphaAnimation(1.0f, 0.0f)
+                autoDisapperAnimation.duration = animDuration
+                binding.relativeLayout.startAnimation(autoDisapperAnimation) //애니메이션 시작.
+
+                val innerHandler = Handler()
+                innerHandler.postDelayed({
+                    popup.dismiss()
+                }, animDuration - 10L)
+
+            }, toastTime)
         }
     }
+
+
 
 
     companion object {
@@ -753,6 +793,9 @@ class ToolTip private constructor(
         const val RIGHT_SIDE = 2
         const val LEFT_SIDE = 3
 
+        //툴팁의 지속시간을 지정.
+        const val Length_Short=1500L
+        const val Length_Long=3000L
     }
 }
 
