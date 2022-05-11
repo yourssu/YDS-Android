@@ -24,7 +24,6 @@ import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.design.undercarriage.size.dpToPx
 
 
-
 class ToolTip private constructor(
     private val context: Context,
     private val windowManager: WindowManager,
@@ -284,12 +283,7 @@ class ToolTip private constructor(
     private fun setBackgroundSize() {
         val textView = binding.textBox
         textView.paint.getTextBounds(textView.text.toString(), 0, textView.text.length, textRect);
-        Log.d(
-            "kmj",
-            "" + textRect.width() + "," + context.dpToPx(ShortTooltip - 32) + "," + context.dpToPx(
-                ShortTooltip
-            ) + "," + context.dpToPx(32f)
-        )
+
         if (textRect.width() < (context.dpToPx(ShortTooltip - 32))) { //양옆의 패딩값 제외한 너비.
             Length = ToolTip.ShortTooltip
             binding.textBox.setBackgroundResource(R.drawable.tooltip_short_background)
