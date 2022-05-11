@@ -26,14 +26,17 @@ class BottomBar @JvmOverloads constructor(
         defStyleRes: Int = 0
 ): LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    class BottomTabInfo(@DrawableRes val iconDrawable: Int = -1,
-                        @DrawableRes val iconSelectedDrawable: Int = -1,
-                        val description: String? = null)
+    class BottomTabInfo(
+        val primaryName: String, // 탭 선택시 반환 받을 고유 name
+        @DrawableRes val iconDrawable: Int = -1,
+        @DrawableRes val iconSelectedDrawable: Int = -1,
+        val description: String? = null
+    )
 
     interface TabClickListener {
-        fun tabClicked(itemIndex: Int)
-        fun tabChanged(itemIndex: Int)
-        fun tabLongClicked(itemIndex: Int)
+        fun tabClicked(primaryName: String)
+        fun tabChanged(primaryName: String)
+        fun tabLongClicked(primaryName: String)
     }
 
     private val binding: LayoutBottomBarBinding by lazy {
@@ -75,6 +78,8 @@ class BottomBar @JvmOverloads constructor(
 
             bindingMap[index] = item
 
+            item.icon.contentDescription = bottomTabInfo.description // 접근성 관련
+
             if (bottomTabType.get() == index) {
                 item.icon.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.bottomBarSelected))
                 item.icon.setImageDrawable(ContextCompat.getDrawable(context, bottomTabInfo.iconSelectedDrawable))
@@ -98,11 +103,15 @@ class BottomBar @JvmOverloads constructor(
     }
 
     private fun tabClicked(index: Int) {
-        tabClickListener?.tabClicked(index)
+        val primaryName = tabList[index].primaryName
+
+        tabClickListener?.tabClicked(primaryName)
+
         if (isCanChangeTab) {
             this.bottomTabType.set(index)
-            tabClickListener?.tabChanged(index)
+            tabClickListener?.tabChanged(primaryName)
         }
+
         updateTabStatus()
     }
 
@@ -119,7 +128,9 @@ class BottomBar @JvmOverloads constructor(
     }
 
     private fun longTabClicked(index: Int) {
-        tabClickListener?.tabLongClicked(index)
+        val primaryName = tabList[index].primaryName
+
+        tabClickListener?.tabLongClicked(primaryName)
     }
 
     companion object {

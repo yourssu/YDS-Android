@@ -27,10 +27,10 @@ class MainActivity : AppCompatActivity() {
     val listString2 = listOf("오전", "오후")
 
     val mainTabType = listOf(
-        BottomBar.BottomTabInfo(R.drawable.ic_home_line, R.drawable.ic_home_filled),
-        BottomBar.BottomTabInfo(R.drawable.ic_timecalendar_line, R.drawable.ic_timecalendar_filled),
-        BottomBar.BottomTabInfo(R.drawable.ic_rank_line, R.drawable.ic_rank_filled),
-        BottomBar.BottomTabInfo(R.drawable.ic_person_line, R.drawable.ic_person_filled)
+        BottomBar.BottomTabInfo("Home", R.drawable.ic_home_line, R.drawable.ic_home_filled),
+        BottomBar.BottomTabInfo("TimeTable", R.drawable.ic_timecalendar_line, R.drawable.ic_timecalendar_filled),
+        BottomBar.BottomTabInfo("Rank", R.drawable.ic_rank_line, R.drawable.ic_rank_filled),
+        BottomBar.BottomTabInfo("Setting", R.drawable.ic_person_line, R.drawable.ic_person_filled)
     )
 
     val onValueChangeListener = object : Picker.OnValueChangeListener {
