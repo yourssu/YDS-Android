@@ -168,6 +168,30 @@
                         />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="toastTimeIsLong"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                    <com.yourssu.design.system.atom.Toggle
+                        android:id="@+id/toastTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        isSelected="@{viewModel.toastTime}"
+                        selectedListener="@{viewModel.toastTimeStateListener}"
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
