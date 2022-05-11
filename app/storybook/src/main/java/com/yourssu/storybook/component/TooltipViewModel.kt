@@ -1,11 +1,11 @@
 package com.yourssu.storybook.component
 
 import android.app.Application
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.yourssu.design.system.atom.Toggle
 import com.yourssu.design.system.atom.ToolTip
+import com.yourssu.design.system.atom.TooltipDuration
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
 
@@ -59,11 +59,10 @@ class TooltipViewModel(application: Application) : BaseViewModel(application) {
                 ?.withHopeLocation(hopelocationList[i].second)
                 ?.withToastLength(
                     when (toastTime.value) {
-                        true -> ToolTip.Length_Long
-                        else -> ToolTip.Length_Short
+                        true -> TooltipDuration.Length_Long
+                        else -> TooltipDuration.Length_Short
                     }
                 )!!.build(view)
-
 
         toolTip.show()
     }

@@ -17,7 +17,7 @@ import kotlinx.coroutines.GlobalScope
 class ToolTipActivity : AppCompatActivity() {
     private lateinit var binding: ActivityToolTipBinding
     private lateinit var viewModel: ToolTipViewModel
-    var toolTipBuilder: ToolTip.Builder = ToolTip.Builder()
+    var toolTipBuilder: ToolTip.Builder = ToolTip.Builder(this,windowManager,layoutInflater)
 
     var hopeReferencePositionNum = -1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +28,6 @@ class ToolTipActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ToolTipViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
-        toolTipBuilder
-            .withContext(context = this)
-            .withWindowManager(windowManager)
-            .withLayoutInflater(layoutInflater)
 
         binding.hopePositionSpinner.adapter = ArrayAdapter.createFromResource(
             this,
@@ -76,16 +71,6 @@ class ToolTipActivity : AppCompatActivity() {
                     }
                 }
             }
-    }
-
-    fun onClick(view: View) {
-        val toolTip: ToolTip =
-            toolTipBuilder.withReferenceView(view)
-            .withIsNormal(binding.toggle.isSelected)
-            .withStringContents(binding.tootipText.text.toString())
-            .withHopeLocation(hopeReferencePositionNum).build()
-
-        toolTip.show()
     }
 
 }

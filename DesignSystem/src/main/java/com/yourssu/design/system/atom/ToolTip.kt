@@ -20,6 +20,9 @@ import androidx.core.content.ContextCompat
 import com.yourssu.design.R
 
 import com.yourssu.design.databinding.LayoutTooltipBinding
+import com.yourssu.design.system.component.Toast
+import com.yourssu.design.undercarriage.animation.endListener
+import com.yourssu.design.undercarriage.animation.startAnim
 import com.yourssu.design.undercarriage.size.dpToIntPx
 import com.yourssu.design.undercarriage.size.dpToPx
 
@@ -32,7 +35,7 @@ class ToolTip private constructor(
     private var isNormal: Boolean, //changeIsNormal로만 바꾸도록. 지금 왜 setter오버라이드가 안되지
     private var textInit: String,
     private var hopeLocation: Int,
-    private val toastTime: Long
+    private val toastTime: TooltipDuration
 ) {
 
     //빌더를 위한 필수 변수들 세개. 참조뷰를 여기 안넣은 이유는 하나의 빌더를 생성하고
@@ -47,7 +50,7 @@ class ToolTip private constructor(
         var isNormal: Boolean = true
         var stringContents: String = "눌러보세요"
         var hopeLocation: Int = -1
-        var toastTime: Long = Length_Long
+        var toastTime: TooltipDuration = TooltipDuration.Length_Long
 
         fun withContext(context: Context): Builder {
             this.context = context
@@ -83,9 +86,9 @@ class ToolTip private constructor(
             return this
         }
 
-        fun withToastLength(toastTime: Long): Builder {
-            if (toastTime != Length_Long && toastTime != Length_Short) //잘못된 값을 넣으면 그냥 Long으로.
-                this.toastTime = Length_Long
+        fun withToastLength(toastTime: TooltipDuration): Builder {
+            if (toastTime != TooltipDuration.Length_Long && toastTime != TooltipDuration.Length_Short) //잘못된 값을 넣으면 그냥 Long으로.
+                this.toastTime = TooltipDuration.Length_Long
             else
                 this.toastTime = toastTime
 
@@ -237,23 +240,15 @@ class ToolTip private constructor(
                         }
                         MotionEvent.ACTION_UP -> {
                             isRemove = true
-                            val animation = AlphaAnimation(1.0f, 0.0f)
-                            animation.duration = animDuration
-                            binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
-                            val handler = Handler()
-                            handler.postDelayed({
+                            binding.relativeLayout.startAnim(R.anim.fade_out_motion_m, endListener {
                                 popup.dismiss()
-                            }, animDuration - 10L)
+                            })
                         }
                         MotionEvent.ACTION_OUTSIDE -> {
                             isRemove = true
-                            val animation = AlphaAnimation(1.0f, 0.0f)
-                            animation.duration = animDuration
-                            binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
-                            val handler = Handler()
-                            handler.postDelayed({
+                            binding.relativeLayout.startAnim(R.anim.fade_out_motion_m, endListener {
                                 popup.dismiss()
-                            }, animDuration - 10L)
+                            })
                         }
                     }
                 }
@@ -752,23 +747,18 @@ class ToolTip private constructor(
                 popupX.toInt(),
                 popUpY.toInt()
             )
-            val animation = AlphaAnimation(0.0f, 1.0f)
-            animation.duration = animDuration
-            binding.relativeLayout.startAnimation(animation) //애니메이션 시작.
+
             isShowOnce = true //이미 한번 띄웠음을 의미함.
 
-            val handler = Handler()
-            handler.postDelayed({ //show하고 나서 toastTime이후에 자동으로 사라짐.
-                val autoDisapperAnimation = AlphaAnimation(1.0f, 0.0f)
-                autoDisapperAnimation.duration = animDuration
-                binding.relativeLayout.startAnimation(autoDisapperAnimation) //애니메이션 시작.
-
-                val innerHandler = Handler()
-                innerHandler.postDelayed({
-                    popup.dismiss()
-                }, animDuration - 10L)
-
-            }, toastTime)
+            binding.relativeLayout.startAnim(R.anim.fade_in_motion_m, endListener {
+                binding.relativeLayout.startAnim(
+                    if (toastTime == TooltipDuration.Length_Long) R.anim.none_motion_toast_long else R.anim.none_motion_toast_short,
+                    endListener {
+                        binding.relativeLayout.startAnim(R.anim.fade_out_motion_m, endListener {
+                            popup.dismiss()
+                        })
+                    })
+            })
         }
     }
 
@@ -786,13 +776,13 @@ class ToolTip private constructor(
         const val RIGHT_SIDE = 2
         const val LEFT_SIDE = 3
 
-        //툴팁의 지속시간을 지정.
-        const val Length_Short = 1500L
-        const val Length_Long = 3000L
     }
 }
 
-
+enum class TooltipDuration(val Length: Long) {
+    Length_Short(1500L),
+    Length_Long(3000L)
+}
 
 
 
