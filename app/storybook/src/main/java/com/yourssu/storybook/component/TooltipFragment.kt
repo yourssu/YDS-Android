@@ -1,7 +1,6 @@
 package com.yourssu.storybook.component
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.yourssu.design.system.atom.Picker
 import com.yourssu.design.system.atom.ToolTip
-import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.bottomSheet
 import com.yourssu.design.system.language.picker
