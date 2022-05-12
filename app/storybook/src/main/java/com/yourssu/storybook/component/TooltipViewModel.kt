@@ -1,7 +1,6 @@
 package com.yourssu.storybook.component
 
 import android.app.Application
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.yourssu.design.system.atom.Toggle
@@ -9,12 +8,12 @@ import com.yourssu.design.system.atom.ToolTip
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
 
-class TooltipViewModel(application: Application): BaseViewModel(application)  {
-    var tooltipBuilders:ToolTip.Builder?=null
+class TooltipViewModel(application: Application) : BaseViewModel(application) {
+    var tooltipBuilders: ToolTip.Builder? = null
     val hopeLocation: MutableLiveData<String> = MutableLiveData("on the reference view")
     val isNormal: MutableLiveData<Boolean> = MutableLiveData(true)
     val explainText: MutableLiveData<String> = MutableLiveData("explain")
-
+    val toastTime: MutableLiveData<Boolean> = MutableLiveData(true)
 
     //설명문 실시간 저장.
     val onExplainTextChangedListener = object : TextField.OnTextChanged {
@@ -25,16 +24,22 @@ class TooltipViewModel(application: Application): BaseViewModel(application)  {
 
     val selectedStateListener = object : Toggle.SelectedListener {
         override fun onSelected(boolean: Boolean) {
-           isNormal.value = boolean
+            isNormal.value = boolean
         }
     }
 
-    private val hopelocationList = listOf<Pair<String, Int>>(
-        "on the reference view" to ToolTip.ABOVE,
-        "under the reference view" to ToolTip.BELOW,
-        "to the right of the reference view" to ToolTip.RIGHT_SIDE,
-        "to the left of the reference view" to ToolTip.LEFT_SIDE,
-        "random" to -1
+    val toastTimeStateListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            toastTime.value = boolean
+        }
+    }
+
+    private val hopelocationList = listOf<Pair<String, ToolTip.HopeLocation>>(
+        "on the reference view" to ToolTip.HopeLocation.ABOVE,
+        "under the reference view" to ToolTip.HopeLocation.BELOW,
+        "to the right of the reference view" to ToolTip.HopeLocation.RIGHT_SIDE,
+        "to the left of the reference view" to ToolTip.HopeLocation.LEFT_SIDE,
+        "random" to ToolTip.HopeLocation.RANDOM
     )
     private val locationList = listOf<String>(
         hopelocationList[0].first,
@@ -44,13 +49,19 @@ class TooltipViewModel(application: Application): BaseViewModel(application)  {
         hopelocationList[4].first
     )
 
-    fun onClick(view: View){
-        val i=locationList.indexOf(hopeLocation.value)
+    fun onClick(view: View) {
+        val i = locationList.indexOf(hopeLocation.value)
         val toolTip: ToolTip =
             tooltipBuilders
                 ?.withIsNormal(!(isNormal.value!!))
                 ?.withStringContents(explainText.value.toString())
-                ?.withHopeLocation(hopelocationList[i].second)!!.build(view)
+                ?.withHopeLocation(hopelocationList[i].second)
+                ?.withToastLength(
+                    when (toastTime.value) {
+                        true -> ToolTip.Length.LONG
+                        else -> ToolTip.Length.SHORT
+                    }
+                )!!.build(view)
 
         toolTip.show()
     }

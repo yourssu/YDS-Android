@@ -24,10 +24,9 @@
                 android:maxLength="35"
                 android:minLines="1"
                 android:maxLines="1"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
                 android:textColor="@color/bgNormal"
-                android:textSize="11dp" />
+                android:textSize="12dp"
+                android:includeFontPadding="false"/>
             <TextView
                 android:id="@+id/tail"
                 android:layout_width="wrap_content"

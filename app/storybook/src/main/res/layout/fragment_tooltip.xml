@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.yourssu.design.system.atom.BoxButton" />
+
         <variable
             name="viewModel"
             type="com.yourssu.storybook.component.TooltipViewModel" />
@@ -27,63 +29,64 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|left"
-                android:onClick="@{viewModel::onClick}"
-                android:backgroundTint="@color/aquaItemBG"/>
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/aquaItemBG"
+                android:onClick="@{viewModel::onClick}" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|top"
-                android:onClick="@{viewModel::onClick}"
-                android:backgroundTint="@color/aquaItemBG"/>
+                android:backgroundTint="@color/aquaItemBG"
+                android:onClick="@{viewModel::onClick}" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|top"
-                android:onClick="@{viewModel::onClick}"
-                android:backgroundTint="@color/aquaItemBG"/>
+                android:backgroundTint="@color/aquaItemBG"
+                android:onClick="@{viewModel::onClick}" />
 
             <Button
                 android:id="@+id/centerRefView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:onClick="@{viewModel::onClick}"
-                android:backgroundTint="@color/aquaItemBG"/>
+                android:backgroundTint="@color/aquaItemBG"
+                android:onClick="@{viewModel::onClick}" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|bottom"
                 android:layout_marginBottom="60dp"
-                android:onClick="@{viewModel::onClick}"
-                android:backgroundTint="@color/aquaItemBG"/>
+                android:backgroundTint="@color/aquaItemBG"
+                android:onClick="@{viewModel::onClick}" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
                 android:layout_marginBottom="20dp"
-                android:onClick="@{viewModel::onClick}"
-                android:backgroundTint="@color/aquaItemBG"/>
+                android:backgroundTint="@color/aquaItemBG"
+                android:onClick="@{viewModel::onClick}" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
                 android:layout_marginBottom="60dp"
-                android:onClick="@{viewModel::onClick}"
-                android:backgroundTint="@color/aquaItemBG"/>
+                android:backgroundTint="@color/aquaItemBG"
+                android:onClick="@{viewModel::onClick}" />
 
             <com.yourssu.design.system.atom.Text
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 android:layout_marginRight="8dp"
+                android:backgroundTint="@color/aquaItemBG"
                 android:text="Click Background to change Color"
                 android:textColor="@color/textPrimary"
-                android:backgroundTint="@color/aquaItemBG"
                 app:typo="subtitle2" />
 
             <com.yourssu.design.system.atom.Text
@@ -106,8 +109,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:padding="16dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp">
+
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
@@ -115,6 +119,7 @@
                     android:text="ExplainText"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2" />
+
                 <com.yourssu.design.system.atom.SimpleTextField
                     android:id="@+id/explain_text"
                     android:layout_width="match_parent"
@@ -123,8 +128,7 @@
                     android:layout_marginBottom="8dp"
                     android:imeOptions="actionDone"
                     android:onTextChanged="@{viewModel.onExplainTextChangedListener}"
-                    android:text="explain"
-                    />
+                    android:text="explain" />
 
                 <com.yourssu.design.system.atom.Text
                     android:layout_width="wrap_content"
@@ -133,6 +137,7 @@
                     android:text="HopeLocation"
                     android:textColor="@color/textPrimary"
                     app:typo="subtitle2" />
+
                 <com.yourssu.design.system.atom.BoxButton
                     android:id="@+id/hope_location_select"
                     android:layout_width="match_parent"
@@ -161,12 +166,33 @@
 
                     <com.yourssu.design.system.atom.Toggle
                         android:id="@+id/isNormal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
                         isSelected="@{viewModel.isNormal}"
                         selectedListener="@{viewModel.selectedStateListener}"
-                        />
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="toastTimeIsLong"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                    <com.yourssu.design.system.atom.Toggle
+                        android:id="@+id/toastTime"
+                        isSelected="@{viewModel.toastTime}"
+                        selectedListener="@{viewModel.toastTimeStateListener}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp" />
                 </LinearLayout>
 
             </LinearLayout>
