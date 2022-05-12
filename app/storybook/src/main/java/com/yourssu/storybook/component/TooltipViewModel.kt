@@ -59,8 +59,8 @@ class TooltipViewModel(application: Application) : BaseViewModel(application) {
                 ?.withHopeLocation(hopelocationList[i].second)
                 ?.withToastLength(
                     when (toastTime.value) {
-                        true -> TooltipDuration.Length_Long
-                        else -> TooltipDuration.Length_Short
+                        true -> TooltipDuration.LengthLong
+                        else -> TooltipDuration.LengthShort
                     }
                 )!!.build(view)
 
