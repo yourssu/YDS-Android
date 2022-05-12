@@ -25,10 +25,10 @@ class ToolTip private constructor(
     private val windowManager: WindowManager,
     private val layoutInflater: LayoutInflater,
     private var referenceView: View,
-    private var isNormal: Boolean, // changeIsNormal로만 바꾸도록. 지금 왜 setter오버라이드가 안되지
+    private var isNormal: Boolean,
     private var textInit: String,
-    private var hopeLocation: Int,
-    private val toastTime: TooltipDuration
+    private var hopeLocation: ToolTip.HopeLocation,
+    private val toastTime: ToolTip.Length
 ) {
 
     // 빌더를 위한 필수 변수들 세개. 참조뷰를 여기 안넣은 이유는 하나의 빌더를 생성하고
@@ -42,8 +42,8 @@ class ToolTip private constructor(
         lateinit var referenceView: View // 해당 툴팁이 붙고싶어하는 뷰
         var isNormal: Boolean = true
         var stringContents: String = "눌러보세요"
-        var hopeLocation: Int = -1
-        var toastTime: TooltipDuration = TooltipDuration.LengthLong
+        var hopeLocation: ToolTip.HopeLocation = ToolTip.HopeLocation.RANDOM
+        var toastTime: ToolTip.Length = ToolTip.Length.LONG
 
         fun withContext(context: Context): Builder {
             this.context = context
@@ -70,21 +70,15 @@ class ToolTip private constructor(
             return this
         }
 
-        fun withHopeLocation(hopeLocation: Int): Builder {
-            if (hopeLocation < 0 || hopeLocation > 3) {
-                //잘못된 값을 넣으면 그냥 랜덤으로 배치시킴.
-                this.hopeLocation = -1
-            } else {
-                this.hopeLocation = hopeLocation
-            }
-
+        fun withHopeLocation(hopeLocation: ToolTip.HopeLocation): Builder { // enum 클래스로 바꿔서 아예 인자의 예외상황을 제거
+            this.hopeLocation = hopeLocation
             return this
         }
 
-        fun withToastLength(toastTime: TooltipDuration): Builder {
-            if (toastTime != TooltipDuration.LengthLong && toastTime != TooltipDuration.LengthShort) {
+        fun withToastLength(toastTime: ToolTip.Length): Builder {
+            if (toastTime != Length.LONG && toastTime != Length.SHORT) {
                 // 잘못된 값을 넣으면 그냥 Long으로
-                this.toastTime = TooltipDuration.LengthLong
+                this.toastTime = Length.LONG
             } else {
                 this.toastTime = toastTime
             }
@@ -120,7 +114,7 @@ class ToolTip private constructor(
     private val d = windowManager.defaultDisplay as Display
     private val metrics = DisplayMetrics()
 
-    private var Length: Float = SHORT_TOOLTIP
+    private var TooltipWidth: Float = SHORT_TOOLTIP
     private var textRect: Rect = Rect()
 
     var text: CharSequence
@@ -135,7 +129,7 @@ class ToolTip private constructor(
                 valueWidth < context.dpToPx(MEDIUM_TOOLTIP - PADDING_SUM) -> MEDIUM_TOOLTIP
                 else -> LONG_TOOLTIP
             }
-            if (Length != vLength) { // 길이가 다르면 다시 생성 필요.
+            if (TooltipWidth != vLength) { // 길이가 다르면 다시 생성 필요.
                 popup.dismiss() // 기존 팝업 삭제
                 textInit = value.toString()
                 initView(referenceView, textInit) // 새로 팝업 객체 생성
@@ -269,17 +263,17 @@ class ToolTip private constructor(
         textView.paint.getTextBounds(textView.text.toString(), 0, textView.text.length, textRect)
 
         if (textRect.width() < (context.dpToPx(SHORT_TOOLTIP - PADDING_SUM))) { // 양옆의 패딩값 제외한 너비.
-            Length = SHORT_TOOLTIP
+            TooltipWidth = SHORT_TOOLTIP
             binding.textBox.setBackgroundResource(R.drawable.tooltip_short_background)
             binding.textBox.width = context.dpToIntPx(SHORT_TOOLTIP)
         } else if (textRect.width() < (context.dpToPx(MEDIUM_TOOLTIP - PADDING_SUM))) {
-            Length = MEDIUM_TOOLTIP
+            TooltipWidth = MEDIUM_TOOLTIP
             binding.textBox.setBackgroundResource(R.drawable.tooltip_medium_background)
             binding.textBox.width = context.dpToIntPx(MEDIUM_TOOLTIP)
         } else if (textRect.width() < (context.dpToPx(LONG_TOOLTIP - PADDING_SUM))) {
             // else로 안한 이유: 일부러 따로 패딩을 지정안했기 때문에 명시적인 가독성을 위해 조건을 걸었음.
             // 넘어가면 어차피 안나옴. maxLength=35 로 설정했음.
-            Length = LONG_TOOLTIP
+            TooltipWidth = LONG_TOOLTIP
             binding.textBox.setBackgroundResource(R.drawable.tooltip_long_background)
             binding.textBox.width = context.dpToIntPx(LONG_TOOLTIP)
         }
@@ -301,13 +295,13 @@ class ToolTip private constructor(
                 mHeightPixels - referenceViewLocation[1] - referenceView.height
             if (aboveByReferView > context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT + 1f)) {
                 // 위에  배치시키기
-                hopeLocation = ABOVE // 희망자리 수정.
+                hopeLocation = HopeLocation.ABOVE // 희망자리 수정.
                 hopeLocationSet() // 재귀 호출
             } else if (belowByReferView > context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT + 1f)) {
                 // 아래에 배치시키기
-                hopeLocation = BELOW
+                hopeLocation = HopeLocation.BELOW
                 hopeLocationSet()
-            } else if ((rightByReferView > context.dpToPx(Length!! + TAIL_HEIGHT + 1f)) &&
+            } else if ((rightByReferView > context.dpToPx(TooltipWidth!! + TAIL_HEIGHT + 1f)) &&
                 mHeightPixels - referenceViewLocation[1] - referenceView.height / 2 > context.dpToPx(
                     TEXT_BOX_HEIGHT / 2
                 ) &&
@@ -315,9 +309,9 @@ class ToolTip private constructor(
                     TEXT_BOX_HEIGHT / 2
                 )
             ) {
-                hopeLocation = RIGHT_SIDE
+                hopeLocation = HopeLocation.RIGHT_SIDE
                 hopeLocationSet()
-            } else if ((leftByReferView > context.dpToPx(Length!! + TAIL_HEIGHT + 1f)) &&
+            } else if ((leftByReferView > context.dpToPx(TooltipWidth!! + TAIL_HEIGHT + 1f)) &&
                 mHeightPixels - referenceViewLocation[1] - referenceView.height / 2 > context.dpToPx(
                     TEXT_BOX_HEIGHT / 2
                 ) &&
@@ -325,7 +319,7 @@ class ToolTip private constructor(
                     TEXT_BOX_HEIGHT / 2
                 )
             ) {
-                hopeLocation = LEFT_SIDE
+                hopeLocation = HopeLocation.LEFT_SIDE
                 hopeLocationSet()
             } else { // 다 안된다면..... 최후의 수단. 이런경우는 거의 드물것임. 애초에 이런경우는 툴팁을 안쓰는걸 권장.
                 (binding.tail.layoutParams as RelativeLayout.LayoutParams).height =
@@ -336,10 +330,10 @@ class ToolTip private constructor(
                     binding.textBox.id
                 )
                 if ((referenceViewLocation[0] + referenceView.width / 2) > context.dpToPx(
-                        Length / 2
+                        TooltipWidth / 2
                     ) &&
                     (mWidthPixels - referenceViewLocation[0] - referenceView.width / 2) > context.dpToPx(
-                        Length / 2
+                        TooltipWidth / 2
                     )
                 ) { // 뷰의 중앙에 있을 수 있는 경우
                     (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
@@ -347,7 +341,7 @@ class ToolTip private constructor(
                     )
                     popupX =
                         referenceViewLocation[0] + referenceView.width - (referenceView.width / 2) - context.dpToPx(
-                            Length / 2
+                            TooltipWidth / 2
                         )
                     popUpY = 0f // 최후의 수단의 대책임. 그냥 위에 달아버리기
 
@@ -358,7 +352,7 @@ class ToolTip private constructor(
                         binding.textBox.id
                     )
                     popupX =
-                        mWidthPixels - context.dpToPx(Length)
+                        mWidthPixels - context.dpToPx(TooltipWidth)
                     popUpY = 0f // 최후의 수단.
 
                     // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
@@ -390,335 +384,337 @@ class ToolTip private constructor(
     fun hopeLocationSet(): Boolean {
         var canSetHopeLocation = false
 
-        if ((hopeLocation!! >= 0) && hopeLocation!! <= 3) { // 희망하는 위치가 있다면
-            when (hopeLocation) {
-                ABOVE -> {                 // 위에 올라갈 자리가 있는지 검사
-                    if ((referenceViewLocation[1]) > context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT + 1f)) {
-                        canSetHopeLocation = true // 위에 놓을 수 있음.
-                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).height =
-                            context.dpToIntPx(TAIL_HEIGHT)
-                        binding.tail.setBackgroundResource(R.drawable.tooltip_tail_bottom)
+        when (hopeLocation) {
+            HopeLocation.ABOVE -> {                 // 위에 올라갈 자리가 있는지 검사
+                if ((referenceViewLocation[1]) > context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT + 1f)) {
+                    canSetHopeLocation = true // 위에 놓을 수 있음.
+                    (binding.tail.layoutParams as RelativeLayout.LayoutParams).height =
+                        context.dpToIntPx(TAIL_HEIGHT)
+                    binding.tail.setBackgroundResource(R.drawable.tooltip_tail_bottom)
 
+                    (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
+                        RelativeLayout.BELOW,
+                        binding.textBox.id
+                    )
+
+                    // 참조의 중앙에 툴팁을 위치시킬 수 있는 경우
+                    if ((referenceViewLocation[0] + referenceView.width / 2) > context.dpToPx(
+                            TooltipWidth / 2
+                        ) &&
+                        (mWidthPixels - referenceViewLocation[0] - referenceView.width / 2) > context.dpToPx(
+                            TooltipWidth / 2
+                        )
+                    ) { // 뷰의 중앙 위에 올라갈 수 있는 경우에는 꼬리를 중앙아래에 달면 됨.
                         (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
-                            RelativeLayout.BELOW,
+                            RelativeLayout.CENTER_HORIZONTAL
+                        )
+                        popupX =
+                            referenceViewLocation[0] + (referenceView.width / 2) - context.dpToPx(
+                                TooltipWidth / 2
+                            )
+
+                        // 팝업의 y좌표가 0이면 상태바(시간, 알림, 바때리 등 확인 가능한 영역) 바로 아래에 놓이게 됨.
+                        popUpY =
+                            referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
+                    } else if ((referenceViewLocation[0] + (referenceView.width / 2)) > (mWidthPixels / 2)) {
+                        // 참조뷰가 우측에 붙어있음.
+                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
+                            RelativeLayout.ALIGN_RIGHT,
+                            binding.textBox.id
+                        )
+                        // 추가한 코드. 만약 자연스럽게 배치가 가능하면 이렇게 배치하자.
+                        if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
+                                TooltipWidth - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
+                            ) &&
+                            mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
+                                TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
+                            )
+                        ) {
+                            popupX =
+                                referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
+                                    TooltipWidth - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
+                                )
+
+                            popUpY =
+                                referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
+
+                            // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
+                                context.dpToIntPx(
+                                    FROM_BORDER_TO_TAIL
+                                )
+                        } else {
+                            // 참조뷰가 우측에 가깝게 위치해 있는데, 자연스럽게 툴팁 배치가 안되는 경우
+                            popupX =
+                                mWidthPixels - context.dpToPx(TooltipWidth)
+
+                            popUpY =
+                                referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
+
+                            // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
+                                mWidthPixels - referenceViewLocation[0] - (referenceView.width / 2) - context.dpToIntPx(
+                                    TAIL_WIDTH / 2
+                                )
+                        }
+                    } else if (true) {
+                        // 만약 화면내의 왼쪽에 참조뷰가 치우쳐져 있다
+                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
+                            RelativeLayout.ALIGN_LEFT,
                             binding.textBox.id
                         )
 
-                        // 참조의 중앙에 툴팁을 위치시킬 수 있는 경우
-                        if ((referenceViewLocation[0] + referenceView.width / 2) > context.dpToPx(
-                                Length / 2
+                        // 만약 자연스럽게 배치가 가능하면
+                        if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
+                                TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
                             ) &&
-                            (mWidthPixels - referenceViewLocation[0] - referenceView.width / 2) > context.dpToPx(
-                                Length / 2
+                            mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
+                                TooltipWidth - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
                             )
-                        ) { // 뷰의 중앙 위에 올라갈 수 있는 경우에는 꼬리를 중앙아래에 달면 됨.
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
-                                RelativeLayout.CENTER_HORIZONTAL
-                            )
+                        ) {
                             popupX =
-                                referenceViewLocation[0] + (referenceView.width / 2) - context.dpToPx(
-                                    Length / 2
+                                referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
+                                    TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
                                 )
 
-                            // 팝업의 y좌표가 0이면 상태바(시간, 알림, 바때리 등 확인 가능한 영역) 바로 아래에 놓이게 됨.
                             popUpY =
                                 referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
-                        } else if ((referenceViewLocation[0] + (referenceView.width / 2)) > (mWidthPixels / 2)) {
-                            // 참조뷰가 우측에 붙어있음.
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
-                                RelativeLayout.ALIGN_RIGHT,
-                                binding.textBox.id
-                            )
-                            // 추가한 코드. 만약 자연스럽게 배치가 가능하면 이렇게 배치하자.
-                            if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
-                                    Length - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
-                                ) &&
-                                mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
-                                    TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
+
+                            // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
+                                context.dpToIntPx(
+                                    FROM_BORDER_TO_TAIL
                                 )
-                            ) {
-                                popupX =
-                                    referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
-                                        Length - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
-                                    )
+                        } else {
+                            // 참조뷰가 화면의 왼쪽에 가깝게 위치해있는데 자연스러운 배치가 불가능한 경우
+                            popupX = 0f
+                            popUpY =
+                                referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
 
-                                popUpY =
-                                    referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
-
-                                // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
-                                    context.dpToIntPx(
-                                        FROM_BORDER_TO_TAIL
-                                    )
-                            } else {
-                                // 참조뷰가 우측에 가깝게 위치해 있는데, 자연스럽게 툴팁 배치가 안되는 경우
-                                popupX =
-                                    mWidthPixels - context.dpToPx(Length)
-
-                                popUpY =
-                                    referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
-
-                                // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
-                                    mWidthPixels - referenceViewLocation[0] - (referenceView.width / 2) - context.dpToIntPx(
-                                        TAIL_WIDTH / 2
-                                    )
-                            }
-                        } else if (true) {
-                            // 만약 화면내의 왼쪽에 참조뷰가 치우쳐져 있다
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
-                                RelativeLayout.ALIGN_LEFT,
-                                binding.textBox.id
-                            )
-
-                            // 만약 자연스럽게 배치가 가능하면
-                            if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
-                                    TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
-                                ) &&
-                                mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
-                                    Length - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
+                            // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
+                                referenceViewLocation[0] + (referenceView.width / 2) - context.dpToIntPx(
+                                    TAIL_WIDTH / 2
                                 )
-                            ) {
-                                popupX =
-                                    referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
-                                        TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
-                                    )
-
-                                popUpY =
-                                    referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
-
-                                // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
-                                    context.dpToIntPx(
-                                        FROM_BORDER_TO_TAIL
-                                    )
-                            } else {
-                                // 참조뷰가 화면의 왼쪽에 가깝게 위치해있는데 자연스러운 배치가 불가능한 경우
-                                popupX = 0f
-                                popUpY =
-                                    referenceViewLocation[1] - context.dpToPx(TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT)
-
-                                // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
-                                    referenceViewLocation[0] + (referenceView.width / 2) - context.dpToIntPx(
-                                        TAIL_WIDTH / 2
-                                    )
-                            }
                         }
                     }
                 }
-                BELOW -> {  // 참조뷰의 아래에 들어갈 자리가 있는지 검사
-                    if ((mHeightPixels - (referenceViewLocation[1] + referenceView.height)) > context.dpToPx(
-                            TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT + 1f
+            }
+            HopeLocation.BELOW -> {  // 참조뷰의 아래에 들어갈 자리가 있는지 검사
+                if ((mHeightPixels - (referenceViewLocation[1] + referenceView.height)) > context.dpToPx(
+                        TEXT_BOX_HEIGHT + TAIL_HEIGHT + DISTANT + 1f
+                    )
+                ) {
+                    canSetHopeLocation = true // 아래에 놓을 수 있음.
+                    (binding.tail.layoutParams as RelativeLayout.LayoutParams).height =
+                        context.dpToIntPx(TAIL_HEIGHT)
+                    binding.tail.setBackgroundResource(R.drawable.tooltip_tail_top)
+                    (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
+                        RelativeLayout.BELOW,
+                        binding.tail.id
+                    )
+
+                    if ((referenceViewLocation[0] + referenceView.width / 2) > context.dpToPx(
+                            TooltipWidth / 2
+                        ) &&
+                        (mWidthPixels - referenceViewLocation[0] - referenceView.width / 2) > context.dpToPx(
+                            TooltipWidth / 2
                         )
-                    ) {
-                        canSetHopeLocation = true // 아래에 놓을 수 있음.
-                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).height =
-                            context.dpToIntPx(TAIL_HEIGHT)
-                        binding.tail.setBackgroundResource(R.drawable.tooltip_tail_top)
-                        (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
-                            RelativeLayout.BELOW,
-                            binding.tail.id
+                    ) {  // 참조뷰의 중앙 위에 툴팁이 올라갈 수 있는 경우에는 꼬리를 중앙위에 달면 됨.
+                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
+                            RelativeLayout.CENTER_HORIZONTAL
+                        )
+                        popupX =
+                            referenceViewLocation[0] + (referenceView.width / 2) - context.dpToPx(
+                                TooltipWidth / 2
+                            )
+
+                        popUpY =
+                            (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                DISTANT
+                            )
+                    } else if ((referenceViewLocation[0] + (referenceView.width / 2)) > mWidthPixels / 2) {
+                        // 만약 화면내의 오른쪽에 참조뷰가 치우쳐져 있다
+                        // 일단 tail을 툴팁의 경계선에 붙히고 생각하자.
+                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
+                            RelativeLayout.ALIGN_RIGHT,
+                            binding.textBox.id
                         )
 
-                        if ((referenceViewLocation[0] + referenceView.width / 2) > context.dpToPx(
-                                Length / 2
+                        // 자연스럽게 배치가 가능하다면
+                        if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
+                                TooltipWidth - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
                             ) &&
-                            (mWidthPixels - referenceViewLocation[0] - referenceView.width / 2) > context.dpToPx(
-                                Length / 2
+                            mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
+                                TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
                             )
-                        ) {  // 참조뷰의 중앙 위에 툴팁이 올라갈 수 있는 경우에는 꼬리를 중앙위에 달면 됨.
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
-                                RelativeLayout.CENTER_HORIZONTAL
-                            )
+                        ) {
                             popupX =
-                                referenceViewLocation[0] + (referenceView.width / 2) - context.dpToPx(
-                                    Length / 2
+                                referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
+                                    TooltipWidth - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
                                 )
 
                             popUpY =
                                 (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
                                     DISTANT
                                 )
-                        } else if ((referenceViewLocation[0] + (referenceView.width / 2)) > mWidthPixels / 2) {
-                            // 만약 화면내의 오른쪽에 참조뷰가 치우쳐져 있다
-                            // 일단 tail을 툴팁의 경계선에 붙히고 생각하자.
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
-                                RelativeLayout.ALIGN_RIGHT,
-                                binding.textBox.id
-                            )
 
-                            // 자연스럽게 배치가 가능하다면
-                            if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
-                                    Length - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
-                                ) &&
-                                mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
-                                    TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
+                            // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
+                                context.dpToIntPx(
+                                    FROM_BORDER_TO_TAIL
                                 )
-                            ) {
-                                popupX =
-                                    referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
-                                        Length - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
-                                    )
-
-                                popUpY =
-                                    (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
-                                        DISTANT
-                                    )
-
-                                // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
-                                    context.dpToIntPx(
-                                        FROM_BORDER_TO_TAIL
-                                    )
-                            } else {
-                                // 자연스럽게 배치가 안된다면
-                                popupX =
-                                    mWidthPixels - context.dpToPx(Length)
-                                popUpY =
-                                    (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
-                                        DISTANT
-                                    )
-
-                                // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
-                                    mWidthPixels - referenceViewLocation[0] - (referenceView.width / 2) - context.dpToIntPx(
-                                        TAIL_WIDTH / 2
-                                    )
-                            }
-                        } else if (true) {
-                            // 만약 화면내의 왼쪽에 참조뷰가 치우쳐져 있다
-                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
-                                RelativeLayout.ALIGN_LEFT,
-                                binding.textBox.id
-                            )
-
-                            // 자연스럽게 배치가 가능하다면
-                            if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
-                                    TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
-                                ) &&
-                                mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
-                                    Length - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
+                        } else {
+                            // 자연스럽게 배치가 안된다면
+                            popupX =
+                                mWidthPixels - context.dpToPx(TooltipWidth)
+                            popUpY =
+                                (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                    DISTANT
                                 )
-                            ) {
-                                popupX =
-                                    referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
-                                        TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
-                                    )
 
-                                popUpY =
-                                    (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
-                                        DISTANT
-                                    )
-
-                                // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
-                                    context.dpToPx(
-                                        FROM_BORDER_TO_TAIL
-                                    ).toInt()
-                            } else {
-                                // 자연스럽게 배치가 안된다면
-                                popupX = 0f
-                                popUpY =
-                                    (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
-                                        DISTANT
-                                    )
-
-                                // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
-                                (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
-                                    referenceViewLocation[0] + (referenceView.width / 2) - context.dpToIntPx(
-                                        TAIL_WIDTH / 2
-                                    )
-                            }
+                            // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).rightMargin =
+                                mWidthPixels - referenceViewLocation[0] - (referenceView.width / 2) - context.dpToIntPx(
+                                    TAIL_WIDTH / 2
+                                )
                         }
-                    }
-                }
-                RIGHT_SIDE -> {
-                    // 참조뷰의 오른쪽에 붙을 수 있는지 검사.
-                    if (mWidthPixels - referenceViewLocation[0] - referenceView.width > context.dpToPx(
-                            Length + TAIL_HEIGHT + 1f
-                        ) &&
-                        mHeightPixels - referenceViewLocation[1] - referenceView.height / 2 > context.dpToPx(
-                            TEXT_BOX_HEIGHT / 2
-                        ) &&
-                        referenceViewLocation[1] + referenceView.height / 2 > context.dpToPx(
-                            TEXT_BOX_HEIGHT / 2
-                        )
-                    ) {
-                        canSetHopeLocation = true
-
-                        binding.tail.setBackgroundResource(R.drawable.tooltip_tail_right_side)
-
-                        (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
-                            RelativeLayout.RIGHT_OF,
-                            binding.tail.id
-                        )
-
-                        // 툴팁내의 우측에 붙도록
-                        (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
-                            RelativeLayout.ALIGN_RIGHT,
-                            binding.tooltip.id
-                        )
-                        (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
-                            RelativeLayout.ALIGN_BASELINE,
-                            binding.tooltip.id
-                        )
-
-                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).topMargin =
-                            context.dpToIntPx(TEXT_BOX_HEIGHT / 2 - TAIL_WIDTH / 2) // 중앙 가리키도록 내리기
-
-                        popupX = (referenceViewLocation[0] + referenceView.width).toFloat()
-                        popUpY = // 이때는 툴팁 높이가 40임.
-                            (referenceViewLocation[1] + referenceView.height / 2).toFloat() - context.dpToPx(
-                                TEXT_BOX_HEIGHT / 2
-                            )
-                    }
-                }
-                LEFT_SIDE -> {
-                    // 참조뷰의 왼쪽에 붙을 수 있는지 검사.
-                    if (referenceViewLocation[0] > context.dpToPx(
-                            Length + TAIL_HEIGHT + 1f
-                        ) &&
-                        mHeightPixels - referenceViewLocation[1] - referenceView.height / 2 > context.dpToPx(
-                            TEXT_BOX_HEIGHT / 2
-                        ) &&
-                        referenceViewLocation[1] + referenceView.height / 2 > context.dpToPx(
-                            TEXT_BOX_HEIGHT / 2
-                        )
-                    ) {
-                        canSetHopeLocation = true
-
-                        binding.tail.setBackgroundResource(R.drawable.tooltip_tail_left_side)
-
+                    } else if (true) {
+                        // 만약 화면내의 왼쪽에 참조뷰가 치우쳐져 있다
                         (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
-                            RelativeLayout.RIGHT_OF,
+                            RelativeLayout.ALIGN_LEFT,
                             binding.textBox.id
                         )
 
-                        // 툴팁내의 좌측에 붙도록
-                        (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
-                            RelativeLayout.ALIGN_LEFT,
-                            binding.tooltip.id
-                        )
-                        (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
-                            RelativeLayout.ALIGN_BASELINE,
-                            binding.tooltip.id
-                        )
-
-                        (binding.tail.layoutParams as RelativeLayout.LayoutParams).topMargin =
-                            context.dpToIntPx(TEXT_BOX_HEIGHT / 2 - TAIL_WIDTH / 2)
-                        // 중앙 가리키도록 내리기
-
-                        popupX =
-                            (referenceViewLocation[0] - context.dpToPx(Length + TAIL_HEIGHT + 1f))
-                        popUpY = // 이때는 툴팁 높이가 40임.
-                            (referenceViewLocation[1] + referenceView.height / 2).toFloat() - context.dpToPx(
-                                TEXT_BOX_HEIGHT / 2
+                        // 자연스럽게 배치가 가능하다면
+                        if (referenceViewLocation[0] + referenceView.width / 2 > context.dpToPx(
+                                TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
+                            ) &&
+                            mWidthPixels - referenceViewLocation[0] - referenceView.width / 2 > context.dpToPx(
+                                TooltipWidth - TAIL_WIDTH / 2 - FROM_BORDER_TO_TAIL
                             )
+                        ) {
+                            popupX =
+                                referenceViewLocation[0] + referenceView.width / 2 - context.dpToPx(
+                                    TAIL_WIDTH / 2 + FROM_BORDER_TO_TAIL
+                                )
+
+                            popUpY =
+                                (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                    DISTANT
+                                )
+
+                            // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
+                                context.dpToPx(
+                                    FROM_BORDER_TO_TAIL
+                                ).toInt()
+                        } else {
+                            // 자연스럽게 배치가 안된다면
+                            popupX = 0f
+                            popUpY =
+                                (referenceViewLocation[1] + referenceView.height).toFloat() + context.dpToPx(
+                                    DISTANT
+                                )
+
+                            // 꼬리가 참조뷰의 중앙을 가리키도록 조정.
+                            (binding.tail.layoutParams as RelativeLayout.LayoutParams).leftMargin =
+                                referenceViewLocation[0] + (referenceView.width / 2) - context.dpToIntPx(
+                                    TAIL_WIDTH / 2
+                                )
+                        }
                     }
                 }
             }
+            HopeLocation.RIGHT_SIDE -> {
+                // 참조뷰의 오른쪽에 붙을 수 있는지 검사.
+                if (mWidthPixels - referenceViewLocation[0] - referenceView.width > context.dpToPx(
+                        TooltipWidth + TAIL_HEIGHT + 1f
+                    ) &&
+                    mHeightPixels - referenceViewLocation[1] - referenceView.height / 2 > context.dpToPx(
+                        TEXT_BOX_HEIGHT / 2
+                    ) &&
+                    referenceViewLocation[1] + referenceView.height / 2 > context.dpToPx(
+                        TEXT_BOX_HEIGHT / 2
+                    )
+                ) {
+                    canSetHopeLocation = true
+
+                    binding.tail.setBackgroundResource(R.drawable.tooltip_tail_right_side)
+
+                    (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
+                        RelativeLayout.RIGHT_OF,
+                        binding.tail.id
+                    )
+
+                    // 툴팁내의 우측에 붙도록
+                    (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
+                        RelativeLayout.ALIGN_RIGHT,
+                        binding.tooltip.id
+                    )
+                    (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
+                        RelativeLayout.ALIGN_BASELINE,
+                        binding.tooltip.id
+                    )
+
+                    (binding.tail.layoutParams as RelativeLayout.LayoutParams).topMargin =
+                        context.dpToIntPx(TEXT_BOX_HEIGHT / 2 - TAIL_WIDTH / 2) // 중앙 가리키도록 내리기
+
+                    popupX = (referenceViewLocation[0] + referenceView.width).toFloat()
+                    popUpY = // 이때는 툴팁 높이가 40임.
+                        (referenceViewLocation[1] + referenceView.height / 2).toFloat() - context.dpToPx(
+                            TEXT_BOX_HEIGHT / 2
+                        )
+                }
+            }
+            HopeLocation.LEFT_SIDE -> {
+                // 참조뷰의 왼쪽에 붙을 수 있는지 검사.
+                if (referenceViewLocation[0] > context.dpToPx(
+                        TooltipWidth + TAIL_HEIGHT + 1f
+                    ) &&
+                    mHeightPixels - referenceViewLocation[1] - referenceView.height / 2 > context.dpToPx(
+                        TEXT_BOX_HEIGHT / 2
+                    ) &&
+                    referenceViewLocation[1] + referenceView.height / 2 > context.dpToPx(
+                        TEXT_BOX_HEIGHT / 2
+                    )
+                ) {
+                    canSetHopeLocation = true
+
+                    binding.tail.setBackgroundResource(R.drawable.tooltip_tail_left_side)
+
+                    (binding.tail.layoutParams as RelativeLayout.LayoutParams).addRule(
+                        RelativeLayout.RIGHT_OF,
+                        binding.textBox.id
+                    )
+
+                    // 툴팁내의 좌측에 붙도록
+                    (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
+                        RelativeLayout.ALIGN_LEFT,
+                        binding.tooltip.id
+                    )
+                    (binding.textBox.layoutParams as RelativeLayout.LayoutParams).addRule(
+                        RelativeLayout.ALIGN_BASELINE,
+                        binding.tooltip.id
+                    )
+
+                    (binding.tail.layoutParams as RelativeLayout.LayoutParams).topMargin =
+                        context.dpToIntPx(TEXT_BOX_HEIGHT / 2 - TAIL_WIDTH / 2)
+                    // 중앙 가리키도록 내리기
+
+                    popupX =
+                        (referenceViewLocation[0] - context.dpToPx(TooltipWidth + TAIL_HEIGHT + 1f))
+                    popUpY = // 이때는 툴팁 높이가 40임.
+                        (referenceViewLocation[1] + referenceView.height / 2).toFloat() - context.dpToPx(
+                            TEXT_BOX_HEIGHT / 2
+                        )
+                }
+            }
+            HopeLocation.RANDOM -> {
+                canSetHopeLocation=false // 명시적으로 가독성을 위해 적음
+            }
         }
+
         return canSetHopeLocation
     }
 
@@ -737,7 +733,7 @@ class ToolTip private constructor(
 
             binding.relativeLayout.startAnim(R.anim.fade_in_motion_m, endListener {
                 binding.relativeLayout.startAnim(
-                    if (toastTime == TooltipDuration.LengthLong) R.anim.none_motion_toast_long else R.anim.none_motion_toast_short,
+                    if (toastTime == Length.LONG) R.anim.none_motion_toast_long else R.anim.none_motion_toast_short,
                     endListener {
                         binding.relativeLayout.startAnim(R.anim.fade_out_motion_m, endListener {
                             popup.dismiss()
@@ -769,18 +765,24 @@ class ToolTip private constructor(
         // 툴팁 내부의 텍스트를 위한 좌우 패딩 합.
         private const val PADDING_SUM = 32f
 
+    }
+
+    enum class Length(val length: Long) {
+        SHORT(1500L),
+        LONG(3000L)
+    }
+
+    enum class HopeLocation(val num: Int) {
         // 툴팁 생성 원할때 희망위치가 있다면 이걸로 지정해주면 됨.
-        const val ABOVE = 0
-        const val BELOW = 1
-        const val RIGHT_SIDE = 2
-        const val LEFT_SIDE = 3
+        ABOVE(0),
+        BELOW(1),
+        RIGHT_SIDE(2),
+        LEFT_SIDE(3),
+        RANDOM(-1)
     }
 }
 
-enum class TooltipDuration(val Length: Long) { //
-    LengthShort(1500L),
-    LengthLong(3000L)
-}
+
 
 
 

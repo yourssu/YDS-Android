@@ -1,7 +1,6 @@
 package com.yourssu.storybook.component
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,12 +21,12 @@ class TooltipFragment : Fragment() {
     private val viewModel: TooltipViewModel by viewModels()
 
 
-    val hopelocationList = listOf<Pair<String, Int>>(
-        "on the reference view" to ToolTip.ABOVE,
-        "under the reference view" to ToolTip.BELOW,
-        "to the right of the reference view" to ToolTip.RIGHT_SIDE,
-        "to the left of the reference view" to ToolTip.LEFT_SIDE,
-        "random" to -1
+    val hopelocationList = listOf<Pair<String, ToolTip.HopeLocation>>(
+        "on the reference view" to ToolTip.HopeLocation.ABOVE,
+        "under the reference view" to ToolTip.HopeLocation.BELOW,
+        "to the right of the reference view" to ToolTip.HopeLocation.RIGHT_SIDE,
+        "to the left of the reference view" to ToolTip.HopeLocation.LEFT_SIDE,
+        "random" to ToolTip.HopeLocation.RANDOM
     )
     val locationList = listOf<String>(
         hopelocationList[0].first,
@@ -51,7 +50,6 @@ class TooltipFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
