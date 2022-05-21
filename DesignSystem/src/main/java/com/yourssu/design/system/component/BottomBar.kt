@@ -17,6 +17,7 @@ import com.yourssu.design.databinding.LayoutBottomBarBinding
 import com.yourssu.design.system.rule.Vibration
 import com.yourssu.design.system.rule.vibe
 import com.yourssu.design.undercarriage.animation.startAnim
+import java.lang.Exception
 import kotlin.collections.List
 
 class BottomBar @JvmOverloads constructor(
@@ -43,7 +44,6 @@ class BottomBar @JvmOverloads constructor(
         LayoutBottomBarBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
-    private var isCanChangeTab = true
     private var tabList = listOf<BottomTabInfo>()
     private var bindingMap: MutableMap<Int, ItemBottomTabBinding> = mutableMapOf()
     var bottomTabType = ObservableInt(0)
@@ -59,8 +59,6 @@ class BottomBar @JvmOverloads constructor(
     private fun initialize(attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
 
         context.withStyledAttributes(attrs, R.styleable.BottomBar, defStyleAttr, defStyleRes) {
-            bottomTabType.set(getInteger(R.styleable.BottomBar_selectedIndex, 0))
-            isCanChangeTab = getBoolean(R.styleable.BottomBar_canChangeIndex, true)
             isImpactFeedbackEnabled = getBoolean(R.styleable.BottomBar_isImpactFeedbackEnabled, true)
         }
     }
@@ -68,7 +66,24 @@ class BottomBar @JvmOverloads constructor(
     fun setTabList(list: List<BottomTabInfo>) {
         tabList = list
         bindingMap = mutableMapOf()
+
         updateTabStatus()
+    }
+
+    fun setSelectedTab(primaryName: String) {
+        val selectedIndex = try {
+            tabList.map { it.primaryName }
+                .indexOf(primaryName)
+        } catch (e: Exception) {
+            -1
+        }
+
+        if (selectedIndex != -1) {
+            this.bottomTabType.set(selectedIndex)
+            tabClickListener?.tabChanged(primaryName)
+
+            updateTabStatus()
+        }
     }
 
     private fun updateTabStatus() {
@@ -90,8 +105,6 @@ class BottomBar @JvmOverloads constructor(
 
             item.root.setOnClickListener {
                 tabClicked(index)
-                springAnimation(index)
-                touchVibrationFeedback()
             }
             item.root.setOnLongClickListener {
                 longTabClicked(index)
@@ -107,12 +120,17 @@ class BottomBar @JvmOverloads constructor(
 
         tabClickListener?.tabClicked(primaryName)
 
-        if (isCanChangeTab) {
-            this.bottomTabType.set(index)
-            tabClickListener?.tabChanged(primaryName)
-        }
+        springAnimation(index)
+        touchVibrationFeedback(Vibration.INTERACT)
+    }
 
-        updateTabStatus()
+    private fun longTabClicked(index: Int) {
+        val primaryName = tabList[index].primaryName
+
+        springAnimation(index)
+        touchVibrationFeedback(Vibration.SUCCESS)
+
+        tabClickListener?.tabLongClicked(primaryName)
     }
 
     fun springAnimation(index: Int) {
@@ -121,16 +139,10 @@ class BottomBar @JvmOverloads constructor(
         }
     }
 
-    private fun touchVibrationFeedback() {
+    private fun touchVibrationFeedback(vibration: Vibration) {
         if (isImpactFeedbackEnabled) {
-            context.vibe(Vibration.INTERACT)
+            context.vibe(vibration)
         }
-    }
-
-    private fun longTabClicked(index: Int) {
-        val primaryName = tabList[index].primaryName
-
-        tabClickListener?.tabLongClicked(primaryName)
     }
 
     companion object {
@@ -144,6 +156,12 @@ class BottomBar @JvmOverloads constructor(
         @BindingAdapter("setTabInfoList")
         fun setTabInfoList(bottomBar: BottomBar, list: List<BottomTabInfo>) {
             bottomBar.setTabList(list)
+        }
+
+        @JvmStatic
+        @BindingAdapter("selectedTabPrimaryName")
+        fun setSelectedTab(bottomBar: BottomBar, primaryName: String) {
+            bottomBar.setSelectedTab(primaryName)
         }
 
         @JvmStatic
