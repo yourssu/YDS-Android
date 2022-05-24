@@ -9,7 +9,6 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import androidx.databinding.BindingAdapter
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableInt
 import com.yourssu.design.R
 import com.yourssu.design.databinding.ItemBottomTabBinding
