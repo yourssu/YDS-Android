@@ -74,10 +74,10 @@ class BottomBar @JvmOverloads constructor(
             tabList.map { it.primaryName }
                 .indexOf(primaryName)
         } catch (e: Exception) {
-            -1
+            INVALID_SELECTED_INDEX
         }
 
-        if (selectedIndex != -1) {
+        if (selectedIndex != INVALID_SELECTED_INDEX) {
             this.bottomTabType.set(selectedIndex)
             tabClickListener?.tabChanged(primaryName)
 
@@ -145,6 +145,8 @@ class BottomBar @JvmOverloads constructor(
     }
 
     companion object {
+        private const val INVALID_SELECTED_INDEX = -1
+
         @JvmStatic
         @BindingAdapter("setTabClickListener")
         fun setTabClickListener(bottomBar: BottomBar, tabClickListener: TabClickListener) {
