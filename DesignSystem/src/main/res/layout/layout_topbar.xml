@@ -14,7 +14,7 @@
         android:layout_height="56dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp"
-        android:background="@drawable/white000">
+        android:background="@color/bgElevated">
 
         <com.yourssu.design.system.atom.TopBarButton
             android:id="@+id/start_button"

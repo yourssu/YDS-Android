@@ -36,7 +36,9 @@ class MainActivity : BaseActivity() {
         "SimpleTextField" to SimpleTextFieldFragment::class.java,
         "SuffixTextField" to SuffixTextFieldFragment::class.java,
         "PasswordTextField" to PasswordTextFieldFragment::class.java,
-        "SearchTextField" to SearchTextFieldFragment::class.java
+        "SearchTextField" to SearchTextFieldFragment::class.java,
+        "ListItem" to ListItemFragment::class.java,
+        "ListToggleItem" to ListToggleItemFragment::class.java
     )
     private val componentList = listOf<Pair<String, Class<*>>>(
         "Toast" to ToastFragment::class.java,
@@ -44,7 +46,10 @@ class MainActivity : BaseActivity() {
         "SingleTitleTopBar" to SingleTitleTopBarFragment::class.java,
         "DoubleTitleTopBar" to DoubleTitleTopBarFragment::class.java,
         "SearchTopBar" to SearchTopBarFragment::class.java,
-        "BottomBar" to BottomBarFragment::class.java
+        "BottomBar" to BottomBarFragment::class.java,
+        "TabBar" to TabBarFragment::class.java,
+        "Tooltip" to TooltipFragment::class.java,
+        "List" to ListFragment::class.java
     )
     /** 추가시 여기에만 선언하면 됨 */
 

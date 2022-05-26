@@ -134,11 +134,11 @@ class BoxButton : LinearLayout {
                 bgColor = R.color.buttonDisabledBG
             }
             isWarned -> {
-                itemColor = R.color.buttonReversed
+                itemColor = R.color.buttonBright
                 bgColor = if (isPressed) R.color.buttonWarnedPressed else R.color.buttonWarned
             }
             else -> {
-                itemColor = R.color.buttonReversed
+                itemColor = R.color.buttonBright
                 bgColor = if (isPressed) R.color.buttonPointPressed else R.color.buttonPoint
             }
         }
@@ -280,16 +280,16 @@ class BoxButton : LinearLayout {
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        super.onTouchEvent(event)
         if (event != null) {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     isPressed = true
                     setBoxButtonInfo()
                 }
-                MotionEvent.ACTION_UP -> {
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     isPressed = false
                     setBoxButtonInfo()
-                    performClick() // 손을 떼는 순간만 인식해야함
                 }
             }
         }

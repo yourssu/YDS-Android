@@ -1,10 +1,12 @@
 package com.yourssu.design.system.component
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
@@ -15,6 +17,7 @@ import com.yourssu.design.databinding.LayoutBottomBarBinding
 import com.yourssu.design.system.rule.Vibration
 import com.yourssu.design.system.rule.vibe
 import com.yourssu.design.undercarriage.animation.startAnim
+import kotlin.collections.List
 
 class BottomBar @JvmOverloads constructor(
         context: Context,
@@ -23,14 +26,17 @@ class BottomBar @JvmOverloads constructor(
         defStyleRes: Int = 0
 ): LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    class BottomTabInfo(@DrawableRes val iconDrawable: Int = -1,
-                        @DrawableRes val iconSelectedDrawable: Int = -1,
-                        val description: String? = null)
+    class BottomTabInfo(
+        val primaryName: String, // 탭 선택시 반환 받을 고유 name
+        @DrawableRes val iconDrawable: Int = -1,
+        @DrawableRes val iconSelectedDrawable: Int = -1,
+        val description: String? = null
+    )
 
     interface TabClickListener {
-        fun tabClicked(itemIndex: Int)
-        fun tabChanged(itemIndex: Int)
-        fun tabLongClicked(itemIndex: Int)
+        fun tabClicked(primaryName: String)
+        fun tabChanged(primaryName: String)
+        fun tabLongClicked(primaryName: String)
     }
 
     private val binding: LayoutBottomBarBinding by lazy {
@@ -72,10 +78,14 @@ class BottomBar @JvmOverloads constructor(
 
             bindingMap[index] = item
 
+            item.icon.contentDescription = bottomTabInfo.description // 접근성 관련
+
             if (bottomTabType.get() == index) {
-                item.icon.setBackgroundResource(bottomTabInfo.iconSelectedDrawable)
+                item.icon.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.bottomBarSelected))
+                item.icon.setImageDrawable(ContextCompat.getDrawable(context, bottomTabInfo.iconSelectedDrawable))
             } else {
-                item.icon.setBackgroundResource(bottomTabInfo.iconDrawable)
+                item.icon.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.bottomBarNormal))
+                item.icon.setImageDrawable(ContextCompat.getDrawable(context, bottomTabInfo.iconDrawable))
             }
 
             item.root.setOnClickListener {
@@ -93,11 +103,15 @@ class BottomBar @JvmOverloads constructor(
     }
 
     private fun tabClicked(index: Int) {
-        tabClickListener?.tabClicked(index)
+        val primaryName = tabList[index].primaryName
+
+        tabClickListener?.tabClicked(primaryName)
+
         if (isCanChangeTab) {
             this.bottomTabType.set(index)
-            tabClickListener?.tabChanged(index)
+            tabClickListener?.tabChanged(primaryName)
         }
+
         updateTabStatus()
     }
 
@@ -114,7 +128,9 @@ class BottomBar @JvmOverloads constructor(
     }
 
     private fun longTabClicked(index: Int) {
-        tabClickListener?.tabLongClicked(index)
+        val primaryName = tabList[index].primaryName
+
+        tabClickListener?.tabLongClicked(primaryName)
     }
 
     companion object {

@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
@@ -198,7 +199,7 @@ class SearchTextField @JvmOverloads constructor(
                 R.styleable.TextField_android_inputType,
                 InputType.TYPE_CLASS_TEXT
             )
-            imeOptions = typedArray.getInt(R.styleable.TextField_android_imeOptions, 0)
+            imeOptions = typedArray.getInt(R.styleable.TextField_android_imeOptions, EditorInfo.IME_ACTION_SEARCH)
 
             typedArray.recycle()
         }

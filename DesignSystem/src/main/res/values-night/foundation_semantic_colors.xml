@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 실제로 개발자들이 쓰게 되는 semantic color
+     color 사용시 basic color 에 직접 접근하는것을 막기 위해서 basic color 는 drawable 로 선언되어 있다
+     때문에 reference type 으로 강제해야 한다 -->
+
+<!-- com.yourssu.design.system.foundation.SemanticColors 같이 업데이트 하기 -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ReferenceType">
+
+    <!-- Background -->
+    <color name="bgNormal">@drawable/black000</color>
+    <color name="bgElevated">@drawable/black000</color>
+    <color name="bgRecomment">@drawable/realBlack</color>
+    <color name="bgSelected">@drawable/gray900</color>
+    <color name="bgPressed">@drawable/gray800</color>
+    <color name="bgNormalDark">@drawable/realBlack</color>
+    <color name="bgElevatedDark">@drawable/realBlack</color>
+
+    <!-- Text -->
+    <color name="textPrimary">@drawable/gray100</color>
+    <color name="textSecondary">@drawable/gray200</color>
+    <color name="textTertiary">@drawable/gray600</color>
+    <color name="textDisabled">@drawable/gray700</color>
+    <color name="textBright">@drawable/white000</color>
+    <color name="textPointed">@drawable/pointColor300</color>
+    <color name="textWarned">@drawable/warningRed300</color>
+
+    <!-- Dim -->
+    <color name="dimNormal">@drawable/gray900A30</color>
+    <color name="dimThick">@drawable/gray900A70</color>
+    <color name="dimThickBright">@drawable/white000A70</color>
+    <color name="dimPicker">@drawable/black000A10</color>
+
+    <!-- Border -->
+    <color name="borderThin">@drawable/gray900</color>
+    <color name="borderNormal">@drawable/white000A10</color>
+    <color name="borderThick">@drawable/gray500</color>
+
+    <!-- Button -->
+    <color name="buttonNormal">@drawable/gray300</color>
+    <color name="buttonNormalPressed">@drawable/gray200</color>
+    <color name="buttonBG">@drawable/gray800</color>
+    <color name="buttonEmojiBG">@drawable/gray900</color>
+    <color name="buttonBright">@drawable/white000</color>
+    <color name="buttonDisabled">@drawable/gray600</color>
+    <color name="buttonDisabledBG">@drawable/gray800</color>
+    <color name="buttonPoint">@drawable/pointColor400</color>
+    <color name="buttonPointPressed">@drawable/pointColor300</color>
+    <color name="buttonPointBG">@drawable/pointColorA20</color>
+    <color name="buttonWarned">@drawable/warningRed400</color>
+    <color name="buttonWarnedPressed">@drawable/warningRed300</color>
+    <color name="buttonWarnedBG">@drawable/warningRed050</color>
+
+    <!-- BottomBar -->
+    <color name="bottomBarNormal">@drawable/gray600</color>
+    <color name="bottomBarSelected">@drawable/gray200</color>
+
+    <!-- inputField -->
+    <color name="inputFieldNormal">@drawable/black000</color>
+    <color name="inputFieldElevated">@drawable/gray900</color>
+
+    <!-- Toast -->
+    <color name="toastBG">@drawable/gray800</color>
+
+    <!-- Tooltip -->
+    <color name="tooltipBG">@drawable/gray700</color>
+    <color name="tooltipPoint">@drawable/pointColor400</color>
+
+    <!-- Pressed -->
+    <color name="pressed">@drawable/black000A10</color>
+
+    <!-- Shadow -->
+    <color name="shadowThin">@drawable/gray400</color>
+    <color name="shadowNormal">@drawable/gray500</color>
+
+    <!-- ///////////////  ItemColor  //////////////// -->
+
+    <!-- MonoItem -->
+    <color name="monoItemPrimary">@drawable/gray700</color>
+    <color name="monoItemBG">@drawable/gray100</color>
+    <color name="monoItemText">@drawable/gray800</color>
+
+    <!-- GreenItem -->
+    <color name="greenItemPrimary">@drawable/green300</color>
+    <color name="greenItemBG">@drawable/green050</color>
+    <color name="greenItemText">@drawable/green800</color>
+
+    <!-- EmeraldItem -->
+    <color name="emeraldItemPrimary">@drawable/emerald300</color>
+    <color name="emeraldItemBG">@drawable/emerald050</color>
+    <color name="emeraldItemText">@drawable/emerald800</color>
+
+    <!-- AquaItem -->
+    <color name="aquaItemPrimary">@drawable/aqua300</color>
+    <color name="aquaItemBG">@drawable/aqua050</color>
+    <color name="aquaItemText">@drawable/aqua700</color>
+
+    <!-- BlueItem -->
+    <color name="blueItemPrimary">@drawable/blue300</color>
+    <color name="blueItemBG">@drawable/blue050</color>
+    <color name="blueItemText">@drawable/blue700</color>
+
+    <!-- IndigoItem -->
+    <color name="indigoItemPrimary">@drawable/indigo300</color>
+    <color name="indigoItemBG">@drawable/indigo050</color>
+    <color name="indigoItemText">@drawable/indigo400</color>
+    
+    <!-- VioletItem -->
+    <color name="violetItemPrimary">@drawable/violet300</color>
+    <color name="violetItemBG">@drawable/violet050</color>
+    <color name="violetItemText">@drawable/violet400</color>
+
+    <!-- PurpleItem -->
+    <color name="purpleItemPrimary">@drawable/purple300</color>
+    <color name="purpleItemBG">@drawable/purple050</color>
+    <color name="purpleItemText">@drawable/purple400</color>
+
+    <!-- PinkItem -->
+    <color name="pinkItemPrimary">@drawable/pink300</color>
+    <color name="pinkItemBG">@drawable/pink050</color>
+    <color name="pinkItemText">@drawable/pink600</color>
+
+</resources>
