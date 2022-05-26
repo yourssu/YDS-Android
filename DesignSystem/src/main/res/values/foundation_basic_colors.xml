@@ -60,6 +60,7 @@
     <drawable name="white000A30">#4DFFFFFF</drawable>
     <drawable name="white000A70">#B3FFFFFF</drawable>
     <drawable name="black000A10">#1A101112</drawable>
+    <drawable name="black000A70">#B3101112</drawable>
     <drawable name="gray900A30">#4D252729</drawable>
     <drawable name="gray900A70">#B3252729</drawable>
 

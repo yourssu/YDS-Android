@@ -21,6 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:isImpactFeedbackEnabled="@{true}"
-            app:setTabInfoList="@{viewModel.bottomType}"/>
+            app:setTabInfoList="@{viewModel.bottomType}"
+            app:selectedTabPrimaryName="@{viewModel.selectedBottomBarTapName}"
+            app:setTabClickListener="@{viewModel.tabClickListener}"/>
     </FrameLayout>
 </layout>
