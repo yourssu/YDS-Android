@@ -3,6 +3,7 @@ package com.yourssu.storybook
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.yourssu.design.system.atom.ToolTip
 import com.yourssu.design.system.component.Toast.Companion.toast
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*

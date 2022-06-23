@@ -42,7 +42,7 @@ class ToolTip private constructor(
         lateinit var referenceView: View // 해당 툴팁이 붙고싶어하는 뷰
         var isNormal: Boolean = true
         var stringContents: String = "눌러보세요"
-        var hopeLocation: ToolTip.HopeLocation = ToolTip.HopeLocation.RANDOM
+        var hopeLocation: ToolTip.HopeLocation = ToolTip.HopeLocation.AUTO
         var toastTime: ToolTip.Length = ToolTip.Length.LONG
 
         fun withContext(context: Context): Builder {
@@ -142,20 +142,28 @@ class ToolTip private constructor(
 
     // 기존 팝업을 제거하고 참조뷰 바꿔서 새로 팝업 띄워야 하는 상황에 사용.
     // 그냥 새로 툴팁을 처음부터 만드는게 낫지 않을까 싶지만 일단 기능은 만들었음.
-    fun changeReferenceView(view: View) {
+    fun setReferenceView(view: View) {
         // 참조뷰에 대한 정보를 갱신
         referenceView = view
         referenceView.getLocationOnScreen(referenceViewLocation)
 
-        popup.dismiss()
-        initView(referenceView, textInit)
-        isShowOnce = false
-        show() // 다시 만든 팝업 객체 다시 띄우기
+        if(!isRemove) { //제거됐던 적이 있다면
+            popup.dismiss()
+            isRemove=false
+            initView(referenceView, textInit)
+            isShowOnce = false
+            show() // 다시 만든 팝업 객체 다시 띄우기
+        }
+        else{ //제거된 적이 없다면
+            isRemove=false
+            initView(referenceView, textInit)
+            isShowOnce = false
+            show() // 다시 만든 팝업 객체 다시 띄우기
+        }
     }
 
-    fun changeIsNormal(boolean: Boolean) {
-        isNormal = boolean
-        binding.textBox.backgroundTintList = when (isNormal) {
+    fun  setIsNormal(boolean: Boolean) {
+        binding.textBox.backgroundTintList = when (boolean) {
             true -> ColorStateList.valueOf(
                 ContextCompat.getColor(
                     context,
@@ -170,7 +178,7 @@ class ToolTip private constructor(
             )
         }
 
-        binding.tail.backgroundTintList = when (isNormal) {
+        binding.tail.backgroundTintList = when (boolean) {
             true -> ColorStateList.valueOf(
                 ContextCompat.getColor(
                     context,
@@ -206,6 +214,7 @@ class ToolTip private constructor(
     }
 
 
+    var isRemove = false
     private fun inflateLayout(context: Context, referenceView: View) {
         binding = LayoutTooltipBinding.inflate(layoutInflater)
 
@@ -215,7 +224,6 @@ class ToolTip private constructor(
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
 
-        var isRemove = false
         popup.setTouchInterceptor(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 if (!isRemove) {
@@ -281,7 +289,7 @@ class ToolTip private constructor(
 
     private fun calculateTooltipPosition() {
         setBackgroundSize() // 글자길이너비에 맞춰서 백그라운드 크기 지정
-        changeIsNormal(isNormal) // 틴트색 결정.
+        setIsNormal(isNormal) // 틴트색 결정.
 
         var canSetHopeLocation = hopeLocationSet()  // 희망하는 위치에 설정
 
@@ -710,7 +718,7 @@ class ToolTip private constructor(
                         )
                 }
             }
-            HopeLocation.RANDOM -> {
+            HopeLocation.AUTO -> {
                 canSetHopeLocation=false // 명시적으로 가독성을 위해 적음
             }
         }
@@ -736,6 +744,7 @@ class ToolTip private constructor(
                     if (toastTime == Length.LONG) R.anim.none_motion_toast_long else R.anim.none_motion_toast_short,
                     endListener {
                         binding.relativeLayout.startAnim(R.anim.fade_out_motion_m, endListener {
+                            isRemove = true
                             popup.dismiss()
                         })
                     })
@@ -778,7 +787,7 @@ class ToolTip private constructor(
         BELOW(1),
         RIGHT_SIDE(2),
         LEFT_SIDE(3),
-        RANDOM(-1)
+        AUTO(-1)
     }
 }
 

@@ -1,6 +1,7 @@
 package com.yourssu.storybook.atom
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.yourssu.design.system.atom.Checkbox
 import com.yourssu.design.system.atom.Toggle

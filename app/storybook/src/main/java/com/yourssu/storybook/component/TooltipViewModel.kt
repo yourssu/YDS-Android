@@ -39,7 +39,7 @@ class TooltipViewModel(application: Application) : BaseViewModel(application) {
         "under the reference view" to ToolTip.HopeLocation.BELOW,
         "to the right of the reference view" to ToolTip.HopeLocation.RIGHT_SIDE,
         "to the left of the reference view" to ToolTip.HopeLocation.LEFT_SIDE,
-        "random" to ToolTip.HopeLocation.RANDOM
+        "random" to ToolTip.HopeLocation.AUTO
     )
     private val locationList = listOf<String>(
         hopelocationList[0].first,
