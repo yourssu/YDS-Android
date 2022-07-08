@@ -25,6 +25,11 @@ class Checkbox @JvmOverloads constructor(
     private val binding: LayoutCheckBoxBinding =
         LayoutCheckBoxBinding.inflate(LayoutInflater.from(context), this, true)
 
+    init {
+        // 이게 없으면 라이브러리 사용자가 초기에 isSelected나 isDisabled의 값을 직접 대입안해주면 호출안됨.
+        setState()
+    }
+
     var size: Int = SMALL
         set(size) {
             field = size
