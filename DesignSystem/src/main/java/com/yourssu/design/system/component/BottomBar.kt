@@ -81,11 +81,11 @@ class BottomBar @JvmOverloads constructor(
             this.bottomTabType.set(selectedIndex)
             tabClickListener?.tabChanged(primaryName)
 
-            updateTabStatus()
+            updateTabStatus(selectedIndex)
         }
     }
 
-    private fun updateTabStatus() {
+    private fun updateTabStatus(animationIndex: Int? = null) {
         binding.tabArea.removeAllViews()
         tabList.forEachIndexed { index, bottomTabInfo ->
             val item: ItemBottomTabBinding = ItemBottomTabBinding.inflate(LayoutInflater.from(context), this, false)
@@ -112,6 +112,8 @@ class BottomBar @JvmOverloads constructor(
 
             binding.tabArea.addView(item.root)
         }
+
+        animationIndex?.let { springAnimation(it) } // 뷰 업데이트 이후 애니메이션이 필요한 경우 실행
     }
 
     private fun tabClicked(index: Int) {

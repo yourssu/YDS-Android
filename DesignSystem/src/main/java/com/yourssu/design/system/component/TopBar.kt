@@ -80,6 +80,18 @@ class TopBar @JvmOverloads constructor(
         binding.title.text = title
     }
 
+    private fun setStartButtonEnabled(isEnabled: Boolean) {
+        binding.startButton.isEnabled = isEnabled
+    }
+
+    private fun setEndFirstButtonEnabled(isEnabled: Boolean) {
+        binding.endFirstButton.isEnabled = isEnabled
+    }
+
+    private fun setEndSecondButtonEnabled(isEnabled: Boolean) {
+        binding.endSecondButton.isEnabled = isEnabled
+    }
+
     companion object {
         @JvmStatic
         @BindingAdapter("startIcon")
@@ -139,6 +151,24 @@ class TopBar @JvmOverloads constructor(
         @BindingAdapter("onEndSecondIconClick")
         fun setOnEndSecondClickListener(topBar: TopBar, endSecondClickListener: OnClickListener) {
             topBar.endSecondButtonClickListener = endSecondClickListener
+        }
+
+        @JvmStatic
+        @BindingAdapter("startButtonEnabled")
+        fun setStartButtonEnabled(topBar: TopBar, isEnabled: Boolean) {
+            topBar.setStartButtonEnabled(isEnabled)
+        }
+
+        @JvmStatic
+        @BindingAdapter("endFirstButtonEnabled")
+        fun setEndFirstButtonEnabled(topBar: TopBar, isEnabled: Boolean) {
+            topBar.setEndFirstButtonEnabled(isEnabled)
+        }
+
+        @JvmStatic
+        @BindingAdapter("endSecondButtonEnabled")
+        fun setEndSecondButtonEnabled(topBar: TopBar, isEnabled: Boolean) {
+            topBar.setEndSecondButtonEnabled(isEnabled)
         }
     }
 }

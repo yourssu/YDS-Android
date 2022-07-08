@@ -248,13 +248,13 @@ class PasswordTextField @JvmOverloads constructor(
         }
 
         private fun displayText(iconView: IconView, editText: EditText) {
-            iconView.icon = Icon.ic_bellmute_line
+            iconView.icon = Icon.ic_eyeopen_line
             editText.inputType =
                 InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_CLASS_TEXT
         }
 
         private fun hideText(iconView: IconView, editText: EditText) {
-            iconView.icon = Icon.ic_bell_line
+            iconView.icon = Icon.ic_eyeclosed_line
             editText.inputType =
                 InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
         }

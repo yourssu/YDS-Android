@@ -27,8 +27,12 @@ class Toggle @JvmOverloads constructor(
         }
 
     override fun setSelected(selected: Boolean) {
+        var isChanged = false
+        if (selected != isSelected)
+            isChanged = true
         super.setSelected(selected)
-        selectedListener?.onSelected(selected)
+        if (isChanged)
+            selectedListener?.onSelected(isSelected)
         setToggleInfo()
     }
 

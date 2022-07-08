@@ -3,6 +3,7 @@ package com.yourssu.design.system.atom
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.updatePadding
 import com.yourssu.design.R
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.foundation.Typography
@@ -64,7 +65,8 @@ open class Text: AppCompatTextView {
         // 줄 간 간격인 lineSpacing 이자 (topPadding, bottomPadding) 의 합
         val lineSpacing = figmaLineHeight - fontLineHeight
 
-        setPadding(0, lineSpacing.toInt() / 2, 0, lineSpacing.toInt() / 2)
-        setLineSpacing(lineSpacing, 1f)
+        val padding = if (lineSpacing <= 0) 0 else lineSpacing.toInt() / 2
+        updatePadding(top = padding, bottom = padding)
+        if (lineSpacing >= 0) setLineSpacing(lineSpacing, 1f)
     }
 }
