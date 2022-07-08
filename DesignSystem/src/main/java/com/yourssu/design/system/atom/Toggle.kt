@@ -3,7 +3,6 @@ package com.yourssu.design.system.atom
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.widget.CompoundButton
 import androidx.databinding.BindingAdapter
@@ -28,7 +27,12 @@ class Toggle @JvmOverloads constructor(
         }
 
     override fun setSelected(selected: Boolean) {
+        var isChanged = false
+        if (selected != isSelected)
+            isChanged = true
         super.setSelected(selected)
+        if (isChanged)
+            selectedListener?.onSelected(isSelected)
         setToggleInfo()
     }
 
@@ -66,7 +70,6 @@ class Toggle @JvmOverloads constructor(
 
                 if (isTogglePressed && !isDisabled) {
                     isSelected = !isSelected
-                    selectedListener?.onSelected(isSelected)
                     setToggleInfo()
                 }
             }

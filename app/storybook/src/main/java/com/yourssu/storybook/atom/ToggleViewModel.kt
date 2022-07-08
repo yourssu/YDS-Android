@@ -8,7 +8,7 @@ import com.yourssu.design.system.atom.Toggle
 import com.yourssu.design.undercarriage.base.TextField
 import com.yourssu.storybook.BaseViewModel
 
-class ToggleViewModel(application: Application): BaseViewModel(application) {
+class ToggleViewModel(application: Application) : BaseViewModel(application) {
     val textString = MutableLiveData<String>("Checkbox")
     val size: MutableLiveData<Int> = MutableLiveData(Checkbox.SMALL)
     val sizeText: MutableLiveData<String> = MutableLiveData("SMALL")
