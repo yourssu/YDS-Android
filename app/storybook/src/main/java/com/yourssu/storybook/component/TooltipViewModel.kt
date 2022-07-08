@@ -53,7 +53,7 @@ class TooltipViewModel(application: Application) : BaseViewModel(application) {
         val i = locationList.indexOf(hopeLocation.value)
         val toolTip: ToolTip =
             tooltipBuilders
-                ?.withIsNormal(!(isNormal.value!!))
+                ?.withIsNormal(isNormal.value!!)
                 ?.withStringContents(explainText.value.toString())
                 ?.withHopeLocation(hopelocationList[i].second)
                 ?.withToastLength(

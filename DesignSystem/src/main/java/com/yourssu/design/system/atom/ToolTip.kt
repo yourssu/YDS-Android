@@ -147,22 +147,21 @@ class ToolTip private constructor(
         referenceView = view
         referenceView.getLocationOnScreen(referenceViewLocation)
 
-        if(!isRemove) { //제거됐던 적이 있다면
+        if (!isRemove) { //제거됐던 적이 있다면
             popup.dismiss()
-            isRemove=false
+            isRemove = false
             initView(referenceView, textInit)
             isShowOnce = false
             show() // 다시 만든 팝업 객체 다시 띄우기
-        }
-        else{ //제거된 적이 없다면
-            isRemove=false
+        } else { //제거된 적이 없다면
+            isRemove = false
             initView(referenceView, textInit)
             isShowOnce = false
             show() // 다시 만든 팝업 객체 다시 띄우기
         }
     }
 
-    fun  setIsNormal(boolean: Boolean) {
+    fun setIsNormal(boolean: Boolean) {
         binding.textBox.backgroundTintList = when (boolean) {
             true -> ColorStateList.valueOf(
                 ContextCompat.getColor(
@@ -719,7 +718,7 @@ class ToolTip private constructor(
                 }
             }
             HopeLocation.AUTO -> {
-                canSetHopeLocation=false // 명시적으로 가독성을 위해 적음
+                canSetHopeLocation = false // 명시적으로 가독성을 위해 적음
             }
         }
 
