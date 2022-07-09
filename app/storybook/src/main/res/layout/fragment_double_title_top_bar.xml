@@ -6,6 +6,7 @@
     <data>
 
         <import type="com.yourssu.design.system.atom.BoxButton" />
+        <import type="android.widget.LinearLayout" />
 
         <variable
             name="viewModel"
@@ -15,12 +16,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="@{viewModel.isLandscape ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL}"
+        tools:orientation="vertical"
         tools:context=".atom.ProfileImageViewFragment">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@{viewModel.componentBackgroundColor}"
             android:onClick="@{() -> viewModel.changeBackground()}">
@@ -64,7 +66,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
 

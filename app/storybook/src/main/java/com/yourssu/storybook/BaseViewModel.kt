@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 abstract class BaseViewModel(application: Application): AndroidViewModel(application) {
 
     val componentBackgroundColor = MutableLiveData(application.getColor(R.drawable.gray500))
+    val isLandscape = MutableLiveData(false)
 
     fun changeBackground() {
         when (componentBackgroundColor.value) {

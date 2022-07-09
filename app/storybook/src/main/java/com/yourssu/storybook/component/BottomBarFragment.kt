@@ -2,18 +2,14 @@ package com.yourssu.storybook.component
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.yourssu.design.system.component.Toast.Companion.toast
-import com.yourssu.design.system.language.*
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.databinding.FragmentBottomBarBinding
-import com.yourssu.storybook.databinding.FragmentToastBinding
 
-class BottomBarFragment : Fragment() {
+class BottomBarFragment : BaseFragment() {
 
     lateinit var binding: FragmentBottomBarBinding
     private val viewModel: BottomBarViewModel by viewModels()
@@ -39,5 +35,15 @@ class BottomBarFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initView() {
+    }
+
+    override fun onPortrait() {
+        super.onPortrait()
+        viewModel.isLandscape.value = false
+    }
+
+    override fun onLandscape() {
+        super.onLandscape()
+        viewModel.isLandscape.value = true
     }
 }

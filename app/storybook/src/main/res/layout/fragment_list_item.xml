@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="com.yourssu.design.system.foundation.Icon" />
-
+        <import type="android.widget.LinearLayout" />
         <import type="com.yourssu.design.system.atom.BoxButton" />
 
         <variable
@@ -16,11 +17,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="@{viewModel.isLandscape ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL}"
+        tools:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@{viewModel.componentBackgroundColor}"
             android:onClick="@{() -> viewModel.changeBackground()}">
@@ -56,7 +58,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
             <LinearLayout
