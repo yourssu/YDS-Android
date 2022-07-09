@@ -22,22 +22,18 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="88dp" />
-            
-            <ScrollView
-                android:id="@+id/bottomSheetLayout"
+
+
+
+            <LinearLayout
+                android:id="@+id/bottomSheetContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bottom_sheet_background">
-    
-                <LinearLayout
-                    android:id="@+id/bottomSheetContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="88dp"
-                    android:orientation="vertical"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp" />
-            </ScrollView>
+                android:background="@drawable/bottom_sheet_background"
+                android:minHeight="88dp"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp" />
         </LinearLayout>
     </FrameLayout>
 </layout>
