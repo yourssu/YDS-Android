@@ -22,28 +22,13 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="@{() -> viewModel.changeBackground()}"
-            android:background="@{viewModel.componentBackgroundColor}">
+            android:layout_weight="1">
 
-            <!-- 안내 텍스트 -->
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:textColor="@color/textPrimary"
-                android:layout_gravity="bottom|right"
-                android:text="Click Background to change Color"
-                app:typo="subtitle2" />
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:textColor="@drawable/white000"
-                android:alpha=".5"
-                android:layout_gravity="bottom|right"
-                android:text="Click Background to change Color"
-                app:typo="subtitle2" />
+            <include
+                layout="@layout/component_background_area"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:viewModel="@{viewModel}" />
         </FrameLayout>
 
         <ScrollView

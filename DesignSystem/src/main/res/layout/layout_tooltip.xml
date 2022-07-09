@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="com.yourssu.design.system.atom.ToolTip"/>
@@ -16,18 +16,19 @@
             android:id="@+id/tooltip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <TextView
+
+            <com.yourssu.design.system.atom.Text
                 android:id="@+id/textBox"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLength="35"
                 android:minLines="1"
                 android:maxLines="1"
-                android:textColor="@color/bgNormal"
-                android:textSize="12dp"
-                android:includeFontPadding="false"/>
-            <TextView
+                android:textColor="@color/textBright"
+                app:typo="caption0"/>
+
+            <com.yourssu.design.system.atom.Text
                 android:id="@+id/tail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

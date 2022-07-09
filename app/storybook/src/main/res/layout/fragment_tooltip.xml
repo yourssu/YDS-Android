@@ -23,15 +23,19 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@{viewModel.componentBackgroundColor}"
-            android:onClick="@{() -> viewModel.changeBackground()}">
+            android:layout_weight="1">
+
+            <include
+                layout="@layout/component_background_area"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:viewModel="@{viewModel}" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|left"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="60dp"
                 android:backgroundTint="@color/aquaItemBG"
                 android:onClick="@{viewModel::onClick}" />
 
@@ -61,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|bottom"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="100dp"
                 android:backgroundTint="@color/aquaItemBG"
                 android:onClick="@{viewModel::onClick}" />
 
@@ -69,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="40dp"
                 android:backgroundTint="@color/aquaItemBG"
                 android:onClick="@{viewModel::onClick}" />
 
@@ -77,29 +81,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="100dp"
                 android:backgroundTint="@color/aquaItemBG"
                 android:onClick="@{viewModel::onClick}" />
-
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="8dp"
-                android:backgroundTint="@color/aquaItemBG"
-                android:text="Click Background to change Color"
-                android:textColor="@color/textPrimary"
-                app:typo="subtitle2" />
-
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="8dp"
-                android:alpha=".5"
-                android:text="Click Background to change Color"
-                android:textColor="@drawable/white000"
-                app:typo="subtitle2" />
         </FrameLayout>
 
         <ScrollView
