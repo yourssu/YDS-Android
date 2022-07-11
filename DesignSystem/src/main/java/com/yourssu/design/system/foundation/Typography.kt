@@ -1,5 +1,8 @@
 package com.yourssu.design.system.foundation
 
+import android.content.Context
+import android.content.res.TypedArray
+import android.graphics.Typeface
 import androidx.annotation.DimenRes
 import androidx.annotation.IntDef
 import androidx.annotation.StyleRes
@@ -63,6 +66,20 @@ object Typo {
         Caption1 -> R.style.Text_Caption1
         Caption2 -> R.style.Text_Caption2
         else -> R.style.Text_Title1
+    }
+
+    val attrs = intArrayOf(android.R.attr.textSize, android.R.attr.fontFamily)
+
+    fun getStyleTextSize(context: Context, @StyleRes style: Int): String? {
+        val attrs = intArrayOf(android.R.attr.textSize)
+
+        val ta: TypedArray = context.obtainStyledAttributes(style, attrs)
+
+        val textSize = ta.getString(0)
+
+        ta.recycle()
+
+        return textSize
     }
 
     @DimenRes
