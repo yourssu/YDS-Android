@@ -1,7 +1,6 @@
 package com.yourssu.storybook.component
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,10 @@ import com.yourssu.design.system.language.picker
 import com.yourssu.design.system.language.setLayout
 import com.yourssu.design.system.language.text
 import com.yourssu.design.undercarriage.size.dpToIntPx
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.databinding.FragmentListBinding
 
-class ListFragment : Fragment() {
+class ListFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = ListFragment()
@@ -95,5 +95,13 @@ class ListFragment : Fragment() {
         }
     }
 
+    override fun onPortrait() {
+        super.onPortrait()
+        viewModel.isLandscape.value = false
+    }
 
+    override fun onLandscape() {
+        super.onLandscape()
+        viewModel.isLandscape.value = true
+    }
 }

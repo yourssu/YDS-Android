@@ -6,7 +6,7 @@
     <data>
 
         <import type="com.yourssu.design.system.atom.Badge" />
-
+        <import type="android.widget.LinearLayout" />
         <import type="com.yourssu.design.system.atom.BoxButton" />
 
         <variable
@@ -17,23 +17,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="@{viewModel.isLandscape ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL}"
+        tools:orientation="vertical"
         tools:context=".atom.ProfileImageViewFragment">
 
-        <com.yourssu.design.system.component.TabBar
-            android:id="@+id/tab_bar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            <com.yourssu.design.system.component.TabBar
+                android:id="@+id/tab_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
             <LinearLayout

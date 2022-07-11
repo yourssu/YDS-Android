@@ -5,15 +5,15 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.yourssu.design.system.atom.ProfileImageView
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.foundation.semanticColors
 import com.yourssu.design.system.language.*
 import com.yourssu.design.undercarriage.size.dpToIntPx
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.R
 
-class SemanticColorFragment: Fragment() {
+class SemanticColorFragment: BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

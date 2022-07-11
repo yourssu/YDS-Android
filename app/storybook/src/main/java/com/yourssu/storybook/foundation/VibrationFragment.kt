@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.yourssu.design.system.component.Toast.Companion.shortToast
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
 import com.yourssu.design.system.rule.Vibration
 import com.yourssu.design.system.rule.vibe
 import com.yourssu.design.undercarriage.size.dpToIntPx
+import com.yourssu.storybook.BaseFragment
 
-class VibrationFragment: Fragment() {
+class VibrationFragment: BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

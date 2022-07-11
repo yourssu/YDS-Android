@@ -15,7 +15,7 @@ class TooltipViewModel(application: Application) : BaseViewModel(application) {
     val explainText: MutableLiveData<String> = MutableLiveData("explain")
     val toastTime: MutableLiveData<Boolean> = MutableLiveData(true)
 
-    //설명문 실시간 저장.
+    // 설명문 실시간 저장.
     val onExplainTextChangedListener = object : TextField.OnTextChanged {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             s?.toString()?.let { explainText.value = it }

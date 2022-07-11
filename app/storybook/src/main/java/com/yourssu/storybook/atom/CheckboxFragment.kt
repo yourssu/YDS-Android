@@ -2,7 +2,6 @@ package com.yourssu.storybook.atom
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,15 @@ import androidx.fragment.app.viewModels
 import com.yourssu.design.system.atom.Checkbox
 import com.yourssu.design.system.atom.Picker
 import com.yourssu.design.system.foundation.Typo
-import com.yourssu.design.system.language.*
+import com.yourssu.design.system.language.bottomSheet
+import com.yourssu.design.system.language.picker
+import com.yourssu.design.system.language.setLayout
+import com.yourssu.design.system.language.text
 import com.yourssu.design.undercarriage.size.dpToIntPx
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.databinding.FragmentCheckboxBinding
 
-class CheckboxFragment : Fragment() {
+class CheckboxFragment : BaseFragment() {
 
     lateinit var binding: FragmentCheckboxBinding
     private val viewModel: CheckboxViewModel by viewModels()
@@ -74,5 +77,15 @@ class CheckboxFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onPortrait() {
+        super.onPortrait()
+        viewModel.isLandscape.value = false
+    }
+
+    override fun onLandscape() {
+        super.onLandscape()
+        viewModel.isLandscape.value = true
     }
 }
