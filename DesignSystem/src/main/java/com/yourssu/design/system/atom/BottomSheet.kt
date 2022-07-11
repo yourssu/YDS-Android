@@ -34,13 +34,13 @@ class BottomSheet constructor(context: Context): BaseFullDialog(context), Compon
 
     override fun show() {
         super.show()
-        binding.bottomSheetLayout.startAnimation(AnimationUtils.loadAnimation(context, R.anim.popup_in_motion_m))
+        binding.bottomSheetContent.startAnimation(AnimationUtils.loadAnimation(context, R.anim.popup_in_motion_m))
         binding.dim.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in_motion_m))
     }
 
     override fun dismiss() {
         binding.dim.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out_motion_m))
-        binding.bottomSheetLayout.startAnimation(AnimationUtils.loadAnimation(context, R.anim.popup_out_motion_m).apply {
+        binding.bottomSheetContent.startAnimation(AnimationUtils.loadAnimation(context, R.anim.popup_out_motion_m).apply {
             setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationRepeat(animation: Animation?) {}
                 override fun onAnimationStart(animation: Animation?) {}
