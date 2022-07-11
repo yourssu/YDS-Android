@@ -8,27 +8,27 @@
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M12,14.83C12.9389,14.83 13.7,14.0689 13.7,13.13C13.7,12.1911 12.9389,11.43 12,11.43C11.0611,11.43 10.3,12.1911 10.3,13.13C10.3,14.0689 11.0611,14.83 12,14.83Z"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M12,16.91C14.0876,16.91 15.78,15.2176 15.78,13.13C15.78,11.0423 14.0876,9.35 12,9.35C9.9123,9.35 8.22,11.0423 8.22,13.13C8.22,15.2176 9.9123,16.91 12,16.91Z"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M8,4.75H15.78C15.9928,4.75 16.2034,4.7919 16.4,4.8733C16.5965,4.9547 16.7751,5.0741 16.9255,5.2245C17.076,5.3749 17.1953,5.5535 17.2767,5.7501C17.3581,5.9466 17.4,6.1573 17.4,6.37V7H6.4V6.37C6.4,5.9438 6.5679,5.5347 6.8674,5.2315C7.1669,4.9283 7.5739,4.7553 8,4.75V4.75Z"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
 </vector>

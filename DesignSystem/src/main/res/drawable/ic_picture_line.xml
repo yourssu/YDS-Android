@@ -8,16 +8,16 @@
         android:pathData="M3,3h18v18h-18z"/>
     <path
         android:pathData="M19.5,4.5V19.5H4.5V4.5H19.5ZM20.08,3H3.91C3.7871,2.9999 3.6654,3.0247 3.5523,3.0729C3.4392,3.1211 3.337,3.1917 3.252,3.2805C3.1669,3.3693 3.1008,3.4744 3.0575,3.5895C3.0142,3.7045 2.9946,3.8272 3,3.95V20.09C3,20.3313 3.0959,20.5628 3.2666,20.7335C3.4372,20.9041 3.6687,21 3.91,21H20.08C20.3223,21 20.5548,20.9045 20.7271,20.7341C20.8993,20.5637 20.9974,20.3323 21,20.09V3.95C20.9974,3.7077 20.8993,3.4763 20.7271,3.3059C20.5548,3.1355 20.3223,3.04 20.08,3.04V3Z"
-        android:fillColor="#252729"/>
+        android:fillColor="@color/buttonNormal"/>
     <path
         android:pathData="M3.9,13.75L7.97,9.71L12.65,14.13L15.23,11.46L20,16.63"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"/>
+        android:strokeColor="@color/buttonNormal"/>
     <path
         android:pathData="M16.54,8.77C17.3021,8.77 17.92,8.1522 17.92,7.39C17.92,6.6279 17.3021,6.01 16.54,6.01C15.7778,6.01 15.16,6.6279 15.16,7.39C15.16,8.1522 15.7778,8.77 16.54,8.77Z"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"/>
+        android:strokeColor="@color/buttonNormal"/>
   </group>
 </vector>

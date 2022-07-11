@@ -7,42 +7,42 @@
       android:pathData="M13.7645,5.5484C14.1191,5.1518 14.5509,4.8317 15.0334,4.6077C15.516,4.3836 16.0392,4.2604 16.571,4.2456C17.1028,4.2307 17.632,4.3245 18.1264,4.5212C18.6207,4.7179 19.0697,5.0134 19.4459,5.3896C19.8221,5.7658 20.1175,6.2148 20.3142,6.7091C20.511,7.2034 20.6047,7.7326 20.5899,8.2645C20.575,8.7963 20.4518,9.3195 20.2278,9.802C20.0037,10.2846 19.6836,10.7163 19.287,11.0709"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M14.6547,7.8733C14.9359,7.6392 15.2944,7.5188 15.6598,7.5354C16.0253,7.5521 16.3713,7.7048 16.63,7.9635C16.8886,8.2222 17.0413,8.5682 17.058,8.9336C17.0747,9.2991 16.9542,9.6576 16.7202,9.9388"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M19.4425,10.9154L11.1026,19.601"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M16.7375,9.9215L8.0864,18.8837"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M14.8535,7.6745L7.2568,15.5996"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M13.9201,5.3929L4.5517,15.107"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M7.9741,19.0133C7.4882,19.4993 6.8291,19.7722 6.1419,19.7722C5.4547,19.7722 4.7956,19.4993 4.3097,19.0133C3.8238,18.5274 3.5508,17.8683 3.5508,17.1811C3.5508,16.4939 3.8238,15.8349 4.3097,15.3489"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
 </vector>
