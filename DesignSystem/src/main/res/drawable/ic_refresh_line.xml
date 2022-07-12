@@ -10,14 +10,14 @@
         android:pathData="M3.75,11C3.75,9.3683 4.2339,7.7733 5.1404,6.4166C6.0469,5.0598 7.3354,4.0024 8.8429,3.378C10.3504,2.7536 12.0092,2.5902 13.6095,2.9085C15.2098,3.2269 16.6798,4.0126 17.8336,5.1664C18.9874,6.3202 19.7732,7.7902 20.0915,9.3905C20.4098,10.9909 20.2464,12.6497 19.622,14.1571C18.9976,15.6646 17.9402,16.9531 16.5835,17.8596C15.2267,18.7662 13.6317,19.25 12,19.25"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#000000"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M13,21.75L10.5,19.25L13,16.75"
         android:strokeLineJoin="round"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#000000"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
   </group>
 </vector>

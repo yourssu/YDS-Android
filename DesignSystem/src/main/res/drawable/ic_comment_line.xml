@@ -8,26 +8,26 @@
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"/>
+      android:strokeColor="@color/buttonNormal"/>
   <path
       android:pathData="M7.5555,8.9445H16.4444"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M7.5555,12H13.1222"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M7.5555,15.0555H14.6667"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
 </vector>
