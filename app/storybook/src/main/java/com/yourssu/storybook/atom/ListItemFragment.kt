@@ -2,7 +2,6 @@ package com.yourssu.storybook.atom
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +14,10 @@ import com.yourssu.design.system.language.picker
 import com.yourssu.design.system.language.setLayout
 import com.yourssu.design.system.language.text
 import com.yourssu.design.undercarriage.size.dpToIntPx
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.databinding.FragmentListItemBinding
 
-class ListItemFragment : Fragment() {
+class ListItemFragment : BaseFragment() {
 
     lateinit var binding: FragmentListItemBinding
     private val viewModel: ListItemViewModel by viewModels()
@@ -98,4 +98,13 @@ class ListItemFragment : Fragment() {
         }
     }
 
+    override fun onPortrait() {
+        super.onPortrait()
+        viewModel.isLandscape.value = false
+    }
+
+    override fun onLandscape() {
+        super.onLandscape()
+        viewModel.isLandscape.value = true
+    }
 }

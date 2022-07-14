@@ -11,37 +11,37 @@
         android:strokeLineJoin="round"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M13.32,15C16.6,15 19.25,12.86 19.25,9.27C19.25,5.68 16.59,2.76 13.32,2.76L7.39,2.76L7.39,9.28C7.39,11.19 7.03,13.39 8.72,14.69"
-        android:fillColor="#252729"/>
+        android:fillColor="@color/buttonNormal"/>
     <path
         android:pathData="M13.32,15C16.6,15 19.25,12.86 19.25,9.27C19.25,5.68 16.59,2.76 13.32,2.76L7.39,2.76L7.39,9.28C7.39,11.19 7.03,13.39 8.72,14.69"
         android:strokeLineJoin="round"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M8.7,14.69C8.7,14.69 9.4,20.53 10.05,21C10.7,21.47 12.26,21.06 12.89,19.84C13.52,18.62 13.27,15 13.27,15"
-        android:fillColor="#252729"/>
+        android:fillColor="@color/buttonNormal"/>
     <path
         android:pathData="M8.7,14.69C8.7,14.69 9.4,20.53 10.05,21C10.7,21.47 12.26,21.06 12.89,19.84C13.52,18.62 13.27,15 13.27,15"
         android:strokeLineJoin="round"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M13.32,15C14.8579,14.9984 16.3353,14.4003 17.4413,13.3316C18.5472,12.263 19.1956,10.807 19.25,9.27C19.25,5.68 16.59,2.76 13.32,2.76"
-        android:fillColor="#252729"/>
+        android:fillColor="@color/buttonNormal"/>
     <path
         android:pathData="M13.32,15C14.8579,14.9984 16.3353,14.4003 17.4413,13.3316C18.5472,12.263 19.1956,10.807 19.25,9.27C19.25,5.68 16.59,2.76 13.32,2.76"
         android:strokeLineJoin="round"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
   </group>
 </vector>

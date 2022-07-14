@@ -2,7 +2,6 @@ package com.yourssu.storybook.atom
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +10,15 @@ import com.yourssu.design.system.atom.BoxButton
 import com.yourssu.design.system.atom.Picker
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.Typo
-import com.yourssu.design.system.language.*
+import com.yourssu.design.system.language.bottomSheet
+import com.yourssu.design.system.language.picker
+import com.yourssu.design.system.language.setLayout
+import com.yourssu.design.system.language.text
 import com.yourssu.design.undercarriage.size.dpToIntPx
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.databinding.FragmentBoxButtonBinding
 
-class BoxButtonFragment : Fragment() {
+class BoxButtonFragment : BaseFragment() {
 
     lateinit var binding: FragmentBoxButtonBinding
     private val viewModel: BoxButtonViewModel by viewModels()
@@ -191,5 +194,15 @@ class BoxButtonFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onPortrait() {
+        super.onPortrait()
+        viewModel.isLandscape.value = false
+    }
+
+    override fun onLandscape() {
+        super.onLandscape()
+        viewModel.isLandscape.value = true
     }
 }

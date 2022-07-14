@@ -8,15 +8,15 @@
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
       android:fillType="evenOdd"
-      android:strokeColor="#252729"/>
+      android:strokeColor="@color/buttonNormal"/>
   <path
       android:pathData="M8.49,18.3L5.7,15.51"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"/>
+      android:strokeColor="@color/buttonNormal"/>
   <path
       android:pathData="M18.67,8.11L15.89,5.33"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"/>
+      android:strokeColor="@color/buttonNormal"/>
 </vector>

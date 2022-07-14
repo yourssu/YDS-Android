@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="com.yourssu.design.system.foundation.Icon" />
-
+        <import type="android.widget.LinearLayout" />
         <import type="com.yourssu.design.system.atom.BoxButton" />
 
         <variable
@@ -16,14 +17,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="@{viewModel.isLandscape ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL}"
+        tools:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@{viewModel.componentBackgroundColor}"
-            android:onClick="@{() -> viewModel.changeBackground()}">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <include
+                layout="@layout/component_background_area"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:viewModel="@{viewModel}" />
 
             <com.yourssu.design.system.atom.ListToggleItem
                 android:layout_width="match_parent"
@@ -32,31 +38,11 @@
                 app:isSelected="@{viewModel.isToggleSelected}"
                 app:selectedListener="@{viewModel.toggleSelectedListener}"
                 app:text="@{viewModel.textString}" />
-
-            <!-- 안내 텍스트 -->
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="8dp"
-                android:text="Click Background to change Color"
-                android:textColor="@color/textPrimary"
-                app:typo="subtitle2" />
-
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="8dp"
-                android:alpha=".5"
-                android:text="Click Background to change Color"
-                android:textColor="@drawable/white000"
-                app:typo="subtitle2" />
         </FrameLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
             <LinearLayout

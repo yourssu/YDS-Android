@@ -2,10 +2,10 @@ package com.yourssu.storybook.component
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,12 +19,13 @@ import com.yourssu.design.system.language.bottomSheet
 import com.yourssu.design.system.language.picker
 import com.yourssu.design.system.language.setLayout
 import com.yourssu.design.system.language.text
-import com.yourssu.design.util.TabBarMediator
 import com.yourssu.design.undercarriage.size.dpToIntPx
+import com.yourssu.design.util.TabBarMediator
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.R
 import com.yourssu.storybook.databinding.FragmentTabBarBinding
 
-class TabBarFragment : Fragment() {
+class TabBarFragment : BaseFragment() {
 
     private lateinit var binding: FragmentTabBarBinding
     private val viewModel: TabBarViewModel by viewModels()
@@ -119,7 +120,7 @@ class TabBarFragment : Fragment() {
 
     }
 
-    class DemoFragment : Fragment() {
+    class DemoFragment : BaseFragment() {
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -135,6 +136,16 @@ class TabBarFragment : Fragment() {
                 textView.text = getString(ARG_OBJECT) ?: ""
             }
         }
+    }
+
+    override fun onPortrait() {
+        super.onPortrait()
+        viewModel.isLandscape.value = false
+    }
+
+    override fun onLandscape() {
+        super.onLandscape()
+        viewModel.isLandscape.value = true
     }
 
 

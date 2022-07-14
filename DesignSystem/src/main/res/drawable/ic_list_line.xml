@@ -10,19 +10,19 @@
         android:pathData="M3.75,7.75H20.25"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M3.75,11.75H14.09"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M4,15.75H17.2"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
   </group>
 </vector>

@@ -8,27 +8,27 @@
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M13.32,9C14.0945,8.951 14.8706,9.0641 15.5989,9.3321C16.3272,9.6 16.9917,10.0169 17.5497,10.5561C18.1078,11.0954 18.5472,11.7451 18.84,12.4638C19.1328,13.1825 19.2724,13.9543 19.25,14.73C19.25,18.32 16.59,21.24 13.32,21.24H7.39V14.72C7.39,12.81 7.03,10.61 8.72,9.31"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M8.7,9.31C8.7,9.31 9.4,3.47 10.04,3C10.68,2.53 12.25,2.94 12.89,4.16C13.53,5.38 13.27,9 13.27,9"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M13.32,9C14.8535,9.0163 16.3225,9.6193 17.4253,10.6849C18.5282,11.7505 19.1811,13.198 19.25,14.73C19.25,18.32 16.59,21.24 13.32,21.24"
       android:strokeLineJoin="round"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
 </vector>

@@ -7,64 +7,64 @@
       android:pathData="M11.1438,19.25H4.196C4.0777,19.25 3.9642,19.2042 3.8806,19.1228C3.797,19.0413 3.75,18.9308 3.75,18.8156V5.1844C3.75,5.0692 3.797,4.9587 3.8806,4.8772C3.9642,4.7958 4.0777,4.75 4.196,4.75H19.8041C19.9216,4.7522 20.0337,4.7987 20.1168,4.8797C20.2,4.9607 20.2477,5.0699 20.25,5.1844V10.484"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M9,2.75V6.25"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M15,2.75V6.25"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M8.5,9.5H15.5"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M14.3685,15.7961C15.013,15.1516 14.9438,14.0374 14.2139,13.3075C13.484,12.5776 12.3698,12.5084 11.7253,13.1529C11.0808,13.7974 11.1501,14.9115 11.88,15.6414C12.6099,16.3713 13.7241,16.4406 14.3685,15.7961Z"
       android:strokeWidth="1.5"
-      android:fillColor="#252729"
-      android:strokeColor="#252729"/>
+      android:fillColor="@color/buttonNormal"
+      android:strokeColor="@color/buttonNormal"/>
   <path
       android:pathData="M14.3676,15.797L17.8075,19.2368"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M17.1712,15.7772L13.7314,19.217"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M20.1437,14.9819C19.2788,15.8468 18.0958,16.0556 17.4893,15.4492C16.8829,14.8427 17.1016,13.6597 17.9566,12.8047L20.1437,14.9819Z"
       android:strokeWidth="1.5"
-      android:fillColor="#252729"
-      android:strokeColor="#252729"/>
+      android:fillColor="@color/buttonNormal"
+      android:strokeColor="@color/buttonNormal"/>
   <path
       android:pathData="M17.8384,12.8046L18.753,11.89"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M20.2584,14.9818L21.173,14.0671"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M19.0502,13.8982L19.9747,12.9736"
       android:strokeWidth="1.33"
       android:fillColor="#00000000"
-      android:strokeColor="#252729"
+      android:strokeColor="@color/buttonNormal"
       android:strokeLineCap="round"/>
 </vector>

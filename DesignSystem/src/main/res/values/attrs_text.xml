@@ -15,8 +15,9 @@
             <enum name="button2" value="32" />
             <enum name="button3" value="33" />
             <enum name="button4" value="34" />
-            <enum name="caption1" value="40" />
-            <enum name="caption2" value="41" />
+            <enum name="caption0" value="40" />
+            <enum name="caption1" value="41" />
+            <enum name="caption2" value="42" />
         </attr>
     </declare-styleable>
 </resources>

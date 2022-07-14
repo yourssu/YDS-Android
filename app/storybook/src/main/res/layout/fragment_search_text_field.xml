@@ -6,6 +6,7 @@
     <data>
         <import type="com.yourssu.design.system.foundation.Icon" />
         <import type="com.yourssu.design.system.atom.BoxButton" />
+        <import type="android.widget.LinearLayout" />
         <variable
             name="viewModel"
             type="com.yourssu.storybook.atom.SearchTextFieldViewModel" />
@@ -14,15 +15,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="@{viewModel.isLandscape ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL}"
+        tools:orientation="vertical"
         tools:context=".atom.ProfileImageViewFragment">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:onClick="@{() -> viewModel.changeBackground()}"
-            android:background="@{viewModel.componentBackgroundColor}">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <include
+                layout="@layout/component_background_area"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:viewModel="@{viewModel}" />
 
             <com.yourssu.design.system.atom.SearchTextField
                 android:layout_width="match_parent"
@@ -30,32 +36,12 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="16dp"
                 app:placeholderText="@{viewModel.placeholderTextString}"
-                app:isDisabled="@{viewModel.isDisable}"
-                 />
-
-            <!-- 안내 텍스트 -->
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:textColor="@color/textPrimary"
-                android:layout_gravity="bottom|right"
-                android:text="Click Background to change Color"
-                app:typo="subtitle2" />
-            <com.yourssu.design.system.atom.Text
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:textColor="@drawable/white000"
-                android:alpha=".5"
-                android:layout_gravity="bottom|right"
-                android:text="Click Background to change Color"
-                app:typo="subtitle2" />
+                app:isDisabled="@{viewModel.isDisable}" />
         </FrameLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
             <LinearLayout

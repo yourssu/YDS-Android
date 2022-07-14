@@ -8,36 +8,36 @@
         android:pathData="M2,4h20v15.998h-20z"/>
     <path
         android:pathData="M3.991,7.5518L2.7904,7.8519C2.5661,7.9086 2.3665,8.037 2.222,8.2176C2.0775,8.3982 1.9961,8.6212 1.99,8.8524V13.2346C1.9843,13.4659 2.059,13.692 2.2013,13.8744C2.3436,14.0568 2.5447,14.1843 2.7704,14.2351L3.991,14.5352V7.5518Z"
-        android:fillColor="#252729"/>
+        android:fillColor="@color/buttonNormal"/>
     <path
         android:pathData="M5.4917,7.1816V14.8754L16.2771,17.3667V4.4802L5.4917,7.1816Z"
-        android:fillColor="#252729"/>
+        android:fillColor="@color/buttonNormal"/>
     <path
         android:pathData="M15.5568,4.7504V17.2166"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M6.2221,14.2952V19.2476"
         android:strokeLineJoin="round"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M17.7379,9.6628C18.0722,9.6918 18.3834,9.8451 18.6102,10.0923C18.837,10.3396 18.9628,10.663 18.9628,10.9985C18.9628,11.334 18.837,11.6574 18.6102,11.9047C18.3834,12.152 18.0722,12.3052 17.7379,12.3342"
         android:strokeLineJoin="round"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
     <path
         android:pathData="M17.6078,7.3417C18.0861,7.3417 18.5596,7.4359 19.0015,7.6189C19.4433,7.8019 19.8448,8.0702 20.183,8.4083C20.5211,8.7465 20.7894,9.148 20.9724,9.5898C21.1554,10.0317 21.2496,10.5052 21.2496,10.9835C21.2496,11.4617 21.1554,11.9353 20.9724,12.3772C20.7894,12.819 20.5211,13.2205 20.183,13.5587C19.8448,13.8968 19.4433,14.1651 19.0015,14.3481C18.5596,14.5311 18.0861,14.6253 17.6078,14.6253"
         android:strokeLineJoin="round"
         android:strokeWidth="1.5"
         android:fillColor="#00000000"
-        android:strokeColor="#252729"
+        android:strokeColor="@color/buttonNormal"
         android:strokeLineCap="round"/>
   </group>
 </vector>

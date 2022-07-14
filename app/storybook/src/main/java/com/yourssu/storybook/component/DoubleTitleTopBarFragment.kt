@@ -1,7 +1,6 @@
 package com.yourssu.storybook.component
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,10 @@ import com.yourssu.design.system.language.picker
 import com.yourssu.design.system.language.setLayout
 import com.yourssu.design.system.language.text
 import com.yourssu.design.undercarriage.size.dpToIntPx
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.databinding.FragmentDoubleTitleTopBarBinding
 
-class DoubleTitleTopBarFragment : Fragment() {
+class DoubleTitleTopBarFragment : BaseFragment() {
     private lateinit var binding: FragmentDoubleTitleTopBarBinding
     private val viewModel: DoubleTitleTopBarViewModel by viewModels()
     private val iconList = Icon.getList().map { Icon.getName(it) }
@@ -117,5 +117,15 @@ class DoubleTitleTopBarFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onPortrait() {
+        super.onPortrait()
+        viewModel.isLandscape.value = false
+    }
+
+    override fun onLandscape() {
+        super.onLandscape()
+        viewModel.isLandscape.value = true
     }
 }

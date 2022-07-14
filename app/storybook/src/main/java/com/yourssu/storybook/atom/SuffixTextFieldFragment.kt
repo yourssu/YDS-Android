@@ -2,14 +2,14 @@ package com.yourssu.storybook.atom
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.yourssu.storybook.BaseFragment
 import com.yourssu.storybook.databinding.FragmentSuffixTextFieldBinding
 
-class SuffixTextFieldFragment : Fragment() {
+class SuffixTextFieldFragment : BaseFragment() {
 
     lateinit var binding: FragmentSuffixTextFieldBinding
     private val viewModel: SuffixTextFieldViewModel by viewModels()
@@ -36,5 +36,15 @@ class SuffixTextFieldFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun initView() {
 
+    }
+
+    override fun onPortrait() {
+        super.onPortrait()
+        viewModel.isLandscape.value = false
+    }
+
+    override fun onLandscape() {
+        super.onLandscape()
+        viewModel.isLandscape.value = true
     }
 }
