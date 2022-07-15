@@ -17,6 +17,8 @@ import com.yourssu.design.system.foundation.Typo.Button4
 import com.yourssu.design.system.foundation.Typo.Caption0
 import com.yourssu.design.system.foundation.Typo.Caption1
 import com.yourssu.design.system.foundation.Typo.Caption2
+import com.yourssu.design.system.foundation.Typo.Display1
+import com.yourssu.design.system.foundation.Typo.Display2
 import com.yourssu.design.system.foundation.Typo.SubTitle1
 import com.yourssu.design.system.foundation.Typo.SubTitle2
 import com.yourssu.design.system.foundation.Typo.SubTitle3
@@ -26,7 +28,7 @@ import com.yourssu.design.system.foundation.Typo.Title3
 
 
 @Retention(AnnotationRetention.SOURCE)
-@IntDef(value = [Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption0, Caption1, Caption2])
+@IntDef(value = [Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption0, Caption1, Caption2, Display1, Display2])
 annotation class Typography
 
 object Typo {
@@ -46,6 +48,8 @@ object Typo {
     const val Caption0 = 40
     const val Caption1 = 41
     const val Caption2 = 42
+    const val Display1 = 50
+    const val Display2 = 51
 
     @StyleRes
     fun getStyle(@Typography typo: Int): Int = when (typo) {
@@ -65,6 +69,8 @@ object Typo {
         Caption0 -> R.style.Text_Caption0
         Caption1 -> R.style.Text_Caption1
         Caption2 -> R.style.Text_Caption2
+        Display1 -> R.style.Text_Display1
+        Display2 -> R.style.Text_Display2
         else -> R.style.Text_Title1
     }
 
@@ -100,12 +106,14 @@ object Typo {
         Caption0 -> R.dimen.caption0_line_height
         Caption1 -> R.dimen.caption1_line_height
         Caption2 -> R.dimen.caption2_line_height
+        Display1 -> R.dimen.display1_line_height
+        Display2 -> R.dimen.display2_line_height
         else -> R.dimen.title1_line_height
     }
 
     fun getList(): List<Int> {
         return listOf(
-            Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption0, Caption1, Caption2
+            Title1, Title2, Title3, SubTitle1, SubTitle2, SubTitle3, Body1, Body2, Button0, Button1, Button2, Button3, Button4, Caption0, Caption1, Caption2, Display1, Display2
         )
     }
 
@@ -127,6 +135,8 @@ object Typo {
             Caption0 -> "Caption0"
             Caption1 -> "Caption1"
             Caption2 -> "Caption2"
+            Display1 -> "Display1"
+            Display2 -> "Display2"
             else -> "Title1"
         }
     }
@@ -149,6 +159,8 @@ object Typo {
             "Caption0" -> Caption0
             "Caption1" -> Caption1
             "Caption2" -> Caption2
+            "Display1" -> Display1
+            "Display2" -> Display2
             else -> Title1
         }
     }

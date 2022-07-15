@@ -2,6 +2,18 @@
 <resources>
     <style name="Text">Text</style>
 
+    <style name="Text.Display1">
+        <item name="android:textSize">40dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+    </style>
+    <dimen name="display1_line_height">52dp</dimen>
+
+    <style name="Text.Display2">
+        <item name="android:textSize">32dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+    </style>
+    <dimen name="display2_line_height">41.6dp</dimen>
+
     <style name="Text.Title1">
         <item name="android:textSize">28dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
