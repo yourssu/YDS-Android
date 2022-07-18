@@ -33,27 +33,27 @@ class TopBarFragment : BaseFragment() {
         }
     }
 
-    private val onEndFirstIconValueChangeListener = object : Picker.OnValueChangeListener {
+    private val onEndRightIconValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
             secondValue: String,
             thirdValue: String,
             totalValue: String,
         ) {
-            viewModel.endFirstIconText.value = firstValue
-            viewModel.endFirstIcon.value = Icon.getValueByName(firstValue)
+            viewModel.endRightIconText.value = firstValue
+            viewModel.endRightIcon.value = Icon.getValueByName(firstValue)
         }
     }
 
-    private val onEndSecondIconValueChangeListener = object : Picker.OnValueChangeListener {
+    private val onEndLeftIconValueChangeListener = object : Picker.OnValueChangeListener {
         override fun onValueChange(
             firstValue: String,
             secondValue: String,
             thirdValue: String,
             totalValue: String,
         ) {
-            viewModel.endSecondIconText.value = firstValue
-            viewModel.endSecondIcon.value = Icon.getValueByName(firstValue)
+            viewModel.endLeftIconText.value = firstValue
+            viewModel.endLeftIcon.value = Icon.getValueByName(firstValue)
         }
     }
 
@@ -86,10 +86,10 @@ class TopBarFragment : BaseFragment() {
             }
         }
 
-        binding.endFirstIconSelect.setOnClickListener {
+        binding.endRightIconSelect.setOnClickListener {
             bottomSheet {
                 text {
-                    text = "endFirstIcon"
+                    text = "endRightIcon"
                     typo = Typo.SubTitle2
 
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
@@ -97,15 +97,15 @@ class TopBarFragment : BaseFragment() {
                 picker {
                     setFirstRow(iconList)
                     setFirstRowPosition(iconList.indexOf(viewModel.startIconText.value))
-                    this.onValueChangeListener = onEndFirstIconValueChangeListener
+                    this.onValueChangeListener = onEndRightIconValueChangeListener
                 }
             }
         }
 
-        binding.endSecondIconSelect.setOnClickListener {
+        binding.endLeftIconSelect.setOnClickListener {
             bottomSheet {
                 text {
-                    text = "endSecondIcon"
+                    text = "endLeftIcon"
                     typo = Typo.SubTitle2
 
                     setLayout(leftMarginPx = context.dpToIntPx(16f))
@@ -113,7 +113,7 @@ class TopBarFragment : BaseFragment() {
                 picker {
                     setFirstRow(iconList)
                     setFirstRowPosition(iconList.indexOf(viewModel.startIconText.value))
-                    this.onValueChangeListener = onEndSecondIconValueChangeListener
+                    this.onValueChangeListener = onEndLeftIconValueChangeListener
                 }
             }
         }
