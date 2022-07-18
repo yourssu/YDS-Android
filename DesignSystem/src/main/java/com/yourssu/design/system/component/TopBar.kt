@@ -27,14 +27,14 @@ class TopBar @JvmOverloads constructor(
             binding.startButton.setOnClickListener(value)
         }
 
-    var endFirstButtonClickListener: OnClickListener? = null
+    var endRightButtonClickListener: OnClickListener? = null
         set(value) {
-            binding.endFirstButton.setOnClickListener(value)
+            binding.endRightButton.setOnClickListener(value)
         }
 
-    var endSecondButtonClickListener: OnClickListener? = null
+    var endLeftButtonClickListener: OnClickListener? = null
         set(value) {
-            binding.endSecondButton.setOnClickListener(value)
+            binding.endLeftButton.setOnClickListener(value)
         }
 
     var startText: String = ""
@@ -50,30 +50,30 @@ class TopBar @JvmOverloads constructor(
             binding.startButton.icon = icon
         }
 
-    var endFirstText: String = ""
+    var endRightText: String = ""
         set(value) {
             field = value
-            binding.endFirstButton.text = value
+            binding.endRightButton.text = value
         }
 
-    var endSecondText: String = ""
+    var endLeftText: String = ""
         set(value) {
             field = value
-            binding.endSecondButton.text = value
+            binding.endLeftButton.text = value
         }
 
     @Icon.Iconography
-    var endFirstIcon: Int? = null
+    var endRightIcon: Int? = null
         set(icon) {
             field = icon
-            binding.endFirstButton.icon = icon
+            binding.endRightButton.icon = icon
         }
 
     @Icon.Iconography
-    var endSecondIcon: Int? = null
+    var endLeftIcon: Int? = null
         set(icon) {
             field = icon
-            binding.endSecondButton.icon = icon
+            binding.endLeftButton.icon = icon
         }
 
     private fun setTitleText() {
@@ -84,12 +84,12 @@ class TopBar @JvmOverloads constructor(
         binding.startButton.isEnabled = isEnabled
     }
 
-    private fun setEndFirstButtonEnabled(isEnabled: Boolean) {
-        binding.endFirstButton.isEnabled = isEnabled
+    private fun setEndRightButtonEnabled(isEnabled: Boolean) {
+        binding.endRightButton.isEnabled = isEnabled
     }
 
-    private fun setEndSecondButtonEnabled(isEnabled: Boolean) {
-        binding.endSecondButton.isEnabled = isEnabled
+    private fun setEndLeftButtonEnabled(isEnabled: Boolean) {
+        binding.endLeftButton.isEnabled = isEnabled
     }
 
     companion object {
@@ -106,27 +106,27 @@ class TopBar @JvmOverloads constructor(
         }
 
         @JvmStatic
-        @BindingAdapter("endFirstText")
-        fun setEndFirstText(topBar: TopBar, endFirstText: String) {
-            topBar.endFirstText = endFirstText
+        @BindingAdapter("endRightText")
+        fun setEndRightText(topBar: TopBar, endRightText: String) {
+            topBar.endRightText = endRightText
         }
 
         @JvmStatic
-        @BindingAdapter("endSecondText")
-        fun setEndSecondText(topBar: TopBar, endSecondText: String) {
-            topBar.endSecondText = endSecondText
+        @BindingAdapter("endLeftText")
+        fun setEndLeftText(topBar: TopBar, endLeftText: String) {
+            topBar.endLeftText = endLeftText
         }
 
         @JvmStatic
-        @BindingAdapter("endFirstIcon")
-        fun setEndFirstIcon(topBar: TopBar, @Icon.Iconography icon: Int?) {
-            topBar.endFirstIcon = icon
+        @BindingAdapter("endRightIcon")
+        fun setEndRightIcon(topBar: TopBar, @Icon.Iconography icon: Int?) {
+            topBar.endRightIcon = icon
         }
 
         @JvmStatic
-        @BindingAdapter("endSecondIcon")
-        fun setEndSecondIcon(topBar: TopBar, @Icon.Iconography icon: Int?) {
-            topBar.endSecondIcon = icon
+        @BindingAdapter("endLeftIcon")
+        fun setEndLeftIcon(topBar: TopBar, @Icon.Iconography icon: Int?) {
+            topBar.endLeftIcon = icon
         }
 
         @JvmStatic
@@ -142,15 +142,15 @@ class TopBar @JvmOverloads constructor(
         }
 
         @JvmStatic
-        @BindingAdapter("onEndFirstClick")
-        fun setOnEndFirstClickListener(topBar: TopBar, endFirstClickListener: OnClickListener) {
-            topBar.endFirstButtonClickListener = endFirstClickListener
+        @BindingAdapter("onEndRightClick")
+        fun setOnEndRightClickListener(topBar: TopBar, endRightClickListener: OnClickListener) {
+            topBar.endRightButtonClickListener = endRightClickListener
         }
 
         @JvmStatic
-        @BindingAdapter("onEndSecondIconClick")
-        fun setOnEndSecondClickListener(topBar: TopBar, endSecondClickListener: OnClickListener) {
-            topBar.endSecondButtonClickListener = endSecondClickListener
+        @BindingAdapter("onEndLeftIconClick")
+        fun setOnEndLeftClickListener(topBar: TopBar, endLeftClickListener: OnClickListener) {
+            topBar.endLeftButtonClickListener = endLeftClickListener
         }
 
         @JvmStatic
@@ -160,15 +160,15 @@ class TopBar @JvmOverloads constructor(
         }
 
         @JvmStatic
-        @BindingAdapter("endFirstButtonEnabled")
-        fun setEndFirstButtonEnabled(topBar: TopBar, isEnabled: Boolean) {
-            topBar.setEndFirstButtonEnabled(isEnabled)
+        @BindingAdapter("endRightButtonEnabled")
+        fun setEndRightButtonEnabled(topBar: TopBar, isEnabled: Boolean) {
+            topBar.setEndRightButtonEnabled(isEnabled)
         }
 
         @JvmStatic
-        @BindingAdapter("endSecondButtonEnabled")
-        fun setEndSecondButtonEnabled(topBar: TopBar, isEnabled: Boolean) {
-            topBar.setEndSecondButtonEnabled(isEnabled)
+        @BindingAdapter("endLeftButtonEnabled")
+        fun setEndLeftButtonEnabled(topBar: TopBar, isEnabled: Boolean) {
+            topBar.setEndLeftButtonEnabled(isEnabled)
         }
     }
 }

@@ -39,10 +39,10 @@
                 app:title="@{viewModel.titleLiveData}"
                 app:startIcon="@{viewModel.startIconVisibility ? viewModel.startIcon : null}"
                 app:startText="@{viewModel.startText}"
-                app:endFirstIcon="@{viewModel.endFirstIconVisibility ? viewModel.endFirstIcon : null}"
-                app:endFirstText="@{viewModel.endFirstText}"
-                app:endSecondIcon="@{viewModel.endSecondIconVisibility ? viewModel.endSecondIcon : null}"
-                app:endSecondText="@{viewModel.endSecondText}"/>
+                app:endRightIcon="@{viewModel.endRightIconVisibility ? viewModel.endRightIcon : null}"
+                app:endRightText="@{viewModel.endRightText}"
+                app:endLeftIcon="@{viewModel.endLeftIconVisibility ? viewModel.endLeftIcon : null}"
+                app:endLeftText="@{viewModel.endLeftText}"/>
         </FrameLayout>
 
         <ScrollView
@@ -134,25 +134,25 @@
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndFirstIcon"
+                        android:text="EndRightIcon"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                     <com.yourssu.design.system.atom.Toggle
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.endFirstIconVisibility}"
-                        app:selectedListener="@{viewModel.endFirstIconSelectListener}"/>
+                        app:isSelected="@{viewModel.endRightIconVisibility}"
+                        app:selectedListener="@{viewModel.endRightIconSelectListener}"/>
                 </LinearLayout>
 
                 <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/end_first_icon_select"
+                    android:id="@+id/end_right_icon_select"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     app:rounding="@{8}"
                     app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.endFirstIconText}"
+                    app:text="@{viewModel.endRightIconText}"
                     app:type="@{BoxButton.LINE}" />
 
                 <LinearLayout
@@ -164,7 +164,7 @@
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndFirstText"
+                        android:text="EndRightText"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                 </LinearLayout>
@@ -175,7 +175,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:imeOptions="actionDone"
-                    android:onTextChanged="@{viewModel.onEndFirstTextChangedListener}"
+                    android:onTextChanged="@{viewModel.onEndRightTextChangedListener}"
                     android:text="알림" />
 
                 <LinearLayout
@@ -187,25 +187,25 @@
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndSecondIcon"
+                        android:text="EndLeftIcon"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                     <com.yourssu.design.system.atom.Toggle
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:isSelected="@{viewModel.endSecondIconVisibility}"
-                        app:selectedListener="@{viewModel.endSecondIconSelectListener}"/>
+                        app:isSelected="@{viewModel.endLeftIconVisibility}"
+                        app:selectedListener="@{viewModel.endLeftIconSelectListener}"/>
                 </LinearLayout>
 
                 <com.yourssu.design.system.atom.BoxButton
-                    android:id="@+id/end_second_icon_select"
+                    android:id="@+id/end_left_icon_select"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     app:rounding="@{8}"
                     app:size="@{BoxButton.ExtraLarge}"
-                    app:text="@{viewModel.endSecondIconText}"
+                    app:text="@{viewModel.endLeftIconText}"
                     app:type="@{BoxButton.LINE}" />
 
                 <LinearLayout
@@ -217,7 +217,7 @@
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndSecondText"
+                        android:text="EndLeftText"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                 </LinearLayout>
@@ -228,7 +228,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:imeOptions="actionDone"
-                    android:onTextChanged="@{viewModel.onEndSecondTextChangedListener}"
+                    android:onTextChanged="@{viewModel.onEndLeftTextChangedListener}"
                     android:text="검색" />
             </LinearLayout>
         </ScrollView>
