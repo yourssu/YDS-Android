@@ -80,15 +80,15 @@ class TopBar @JvmOverloads constructor(
         binding.title.text = title
     }
 
-    private fun setStartButtonEnabled(isEnabled: Boolean) {
+    fun setStartButtonEnabled(isEnabled: Boolean) {
         binding.startButton.isEnabled = isEnabled
     }
 
-    private fun setEndRightButtonEnabled(isEnabled: Boolean) {
+    fun setEndRightButtonEnabled(isEnabled: Boolean) {
         binding.endRightButton.isEnabled = isEnabled
     }
 
-    private fun setEndLeftButtonEnabled(isEnabled: Boolean) {
+    fun setEndLeftButtonEnabled(isEnabled: Boolean) {
         binding.endLeftButton.isEnabled = isEnabled
     }
 
