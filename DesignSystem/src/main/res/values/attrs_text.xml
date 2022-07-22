@@ -18,6 +18,8 @@
             <enum name="caption0" value="40" />
             <enum name="caption1" value="41" />
             <enum name="caption2" value="42" />
+            <enum name="display1" value="50" />
+            <enum name="display2" value="51" />
         </attr>
     </declare-styleable>
 </resources>
