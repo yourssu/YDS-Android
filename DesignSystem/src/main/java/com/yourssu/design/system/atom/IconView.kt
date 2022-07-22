@@ -3,10 +3,9 @@ package com.yourssu.design.system.atom
 import android.content.Context
 import android.util.AttributeSet
 import androidx.annotation.IntDef
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
-import com.yourssu.design.R
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.undercarriage.size.dpToIntPx
 
@@ -64,9 +63,12 @@ class IconView @JvmOverloads constructor(
     }
 
     private fun setIconResource() {
-        setImageDrawable(ResourcesCompat.getDrawable(resources,
-            Icon.getIconDrawable(icon),
-            context.theme))
+        setImageDrawable(
+            AppCompatResources.getDrawable(
+                context,
+                Icon.getIconDrawable(icon)
+            )
+        )
     }
 
     @Retention(AnnotationRetention.SOURCE)
