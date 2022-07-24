@@ -1,9 +1,10 @@
 package com.yourssu.storybook
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import com.yourssu.design.system.component.Toast.Companion.toast
 import com.yourssu.design.system.foundation.Icon
 import com.yourssu.design.system.foundation.Typo
 import com.yourssu.design.system.language.*
@@ -79,7 +80,24 @@ class MainActivity : BaseActivity() {
                     title = "StoryBook"
                     thirdIcon = Icon.ic_warningcircle_line
                     thirdButtonListener = View.OnClickListener {
-                        toast("Current Version : ${BuildConfig.VERSION_NAME}")
+                        bottomSheet {
+                            list {
+                                subHeader = "Setting"
+
+                                listItem {
+                                    text = "Current Version : ${BuildConfig.VERSION_NAME}"
+                                }
+                                listItem {
+                                    text = "Privacy policy"
+                                    rightIcon = Icon.ic_arrow_right_line
+                                    setOnClickListener {
+                                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(
+                                                                                    R.string.link_privacy_policy)))
+                                        startActivity(intent)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 scrollView {
