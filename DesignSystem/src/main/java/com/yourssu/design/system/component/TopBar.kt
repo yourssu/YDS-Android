@@ -92,6 +92,18 @@ class TopBar @JvmOverloads constructor(
         binding.endLeftButton.isEnabled = isEnabled
     }
 
+    fun setStartButtonDisabled(isDisabled: Boolean) {
+        binding.startButton.isDisabled = isDisabled
+    }
+
+    fun setEndRightButtonDisabled(isDisabled: Boolean) {
+        binding.endRightButton.isDisabled = isDisabled
+    }
+
+    fun setEndLeftButtonDisabled(isDisabled: Boolean) {
+        binding.endLeftButton.isDisabled = isDisabled
+    }
+
     companion object {
         @JvmStatic
         @BindingAdapter("startIcon")
@@ -169,6 +181,24 @@ class TopBar @JvmOverloads constructor(
         @BindingAdapter("endLeftButtonEnabled")
         fun setEndLeftButtonEnabled(topBar: TopBar, isEnabled: Boolean) {
             topBar.setEndLeftButtonEnabled(isEnabled)
+        }
+
+        @JvmStatic
+        @BindingAdapter("startButtonDisabled")
+        fun setStartButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
+            topBar.setStartButtonDisabled(isDisabled)
+        }
+
+        @JvmStatic
+        @BindingAdapter("endRightButtonDisabled")
+        fun setEndRightButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
+            topBar.setEndRightButtonDisabled(isDisabled)
+        }
+
+        @JvmStatic
+        @BindingAdapter("endLeftButtonDisabled")
+        fun setEndLeftButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
+            topBar.setEndLeftButtonDisabled(isDisabled)
         }
     }
 }
