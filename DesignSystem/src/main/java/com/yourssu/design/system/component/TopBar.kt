@@ -76,6 +76,24 @@ class TopBar @JvmOverloads constructor(
             binding.endLeftButton.icon = icon
         }
 
+    var startDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.startButton.isDisabled = value
+        }
+
+    var endLeftDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.endLeftButton.isDisabled = value
+        }
+
+    var endRightDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.endRightButton.isDisabled = value
+        }
+
     private fun setTitleText() {
         binding.title.text = title
     }
@@ -90,18 +108,6 @@ class TopBar @JvmOverloads constructor(
 
     fun setEndLeftButtonEnabled(isEnabled: Boolean) {
         binding.endLeftButton.isEnabled = isEnabled
-    }
-
-    fun setStartButtonDisabled(isDisabled: Boolean) {
-        binding.startButton.isDisabled = isDisabled
-    }
-
-    fun setEndRightButtonDisabled(isDisabled: Boolean) {
-        binding.endRightButton.isDisabled = isDisabled
-    }
-
-    fun setEndLeftButtonDisabled(isDisabled: Boolean) {
-        binding.endLeftButton.isDisabled = isDisabled
     }
 
     companion object {
@@ -186,19 +192,19 @@ class TopBar @JvmOverloads constructor(
         @JvmStatic
         @BindingAdapter("startButtonDisabled")
         fun setStartButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
-            topBar.setStartButtonDisabled(isDisabled)
+            topBar.startDisabled = isDisabled
         }
 
         @JvmStatic
         @BindingAdapter("endRightButtonDisabled")
         fun setEndRightButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
-            topBar.setEndRightButtonDisabled(isDisabled)
+            topBar.endRightDisabled = isDisabled
         }
 
         @JvmStatic
         @BindingAdapter("endLeftButtonDisabled")
         fun setEndLeftButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
-            topBar.setEndLeftButtonDisabled(isDisabled)
+            topBar.endLeftDisabled = isDisabled
         }
     }
 }
