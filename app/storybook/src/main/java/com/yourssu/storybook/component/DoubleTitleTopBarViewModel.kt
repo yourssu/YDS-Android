@@ -16,18 +16,21 @@ class DoubleTitleTopBarViewModel(application: Application) : BaseViewModel(appli
     val firstIconText = MutableLiveData("ic_arrow_left_line")
     val firstIcon: MutableLiveData<Int> = MutableLiveData(Icon.ic_arrow_left_line)
     val firstIconVisibility = MutableLiveData(true)
+    val firstDisabled = MutableLiveData(false)
 
     val secondText = MutableLiveData("알림")
 
     val secondIconText = MutableLiveData("ic_arrow_left_line")
     val secondIcon: MutableLiveData<Int> = MutableLiveData(Icon.ic_arrow_left_line)
     val secondIconVisibility = MutableLiveData(true)
+    val secondDisabled = MutableLiveData(false)
 
     val thirdText = MutableLiveData("검색")
 
     val thirdIconText = MutableLiveData("ic_arrow_left_line")
     val thirdIcon: MutableLiveData<Int> = MutableLiveData(Icon.ic_arrow_left_line)
     val thirdIconVisibility = MutableLiveData(true)
+    val thirdDisabled = MutableLiveData(false)
 
 
     val onTitleTextChangedListener = object : TextField.OnTextChanged {
@@ -81,6 +84,24 @@ class DoubleTitleTopBarViewModel(application: Application) : BaseViewModel(appli
     val thirdIconSelectListener = object : Toggle.SelectedListener {
         override fun onSelected(boolean: Boolean) {
             thirdIconVisibility.value = boolean
+        }
+    }
+
+    val firstDisabledSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            firstDisabled.value = boolean
+        }
+    }
+
+    val secondDisabledSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            secondDisabled.value = boolean
+        }
+    }
+
+    val thirdDisabledSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            thirdDisabled.value = boolean
         }
     }
 }

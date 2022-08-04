@@ -86,6 +86,25 @@ class DoubleTitleTopBar @JvmOverloads constructor(
             binding.thirdButton.text = value
         }
 
+    var firstDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.firstButton.isDisabled = value
+        }
+
+    var secondDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.secondButton.isDisabled = value
+        }
+
+    var thirdDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.thirdButton.isDisabled = value
+        }
+
+
     companion object {
         @JvmStatic
         @BindingAdapter("title")
@@ -119,19 +138,19 @@ class DoubleTitleTopBar @JvmOverloads constructor(
 
         @JvmStatic
         @BindingAdapter("firstText")
-        fun setFirstText(singleTitleTopBar: SingleTitleTopBar, value: String) {
+        fun setFirstText(singleTitleTopBar: DoubleTitleTopBar, value: String) {
             singleTitleTopBar.firstText = value
         }
 
         @JvmStatic
         @BindingAdapter("secondText")
-        fun setSecondText(singleTitleTopBar: SingleTitleTopBar, value: String) {
+        fun setSecondText(singleTitleTopBar: DoubleTitleTopBar, value: String) {
             singleTitleTopBar.secondText = value
         }
 
         @JvmStatic
         @BindingAdapter("thirdText")
-        fun setThirdText(singleTitleTopBar: SingleTitleTopBar, value: String) {
+        fun setThirdText(singleTitleTopBar: DoubleTitleTopBar, value: String) {
             singleTitleTopBar.thirdText = value
         }
 
@@ -160,6 +179,24 @@ class DoubleTitleTopBar @JvmOverloads constructor(
             onClickListener: OnClickListener,
         ) {
             doubleTitleTopBar.thirdButtonListener = onClickListener
+        }
+
+        @JvmStatic
+        @BindingAdapter("firstButtonDisabled")
+        fun setStartButtonDisabled(doubleTitleTopBar: DoubleTitleTopBar, isDisabled: Boolean) {
+            doubleTitleTopBar.firstDisabled = isDisabled
+        }
+
+        @JvmStatic
+        @BindingAdapter("secondButtonDisabled")
+        fun setEndRightButtonDisabled(doubleTitleTopBar: DoubleTitleTopBar, isDisabled: Boolean) {
+            doubleTitleTopBar.secondDisabled = isDisabled
+        }
+
+        @JvmStatic
+        @BindingAdapter("thirdButtonDisabled")
+        fun setEndLeftButtonDisabled(doubleTitleTopBar: DoubleTitleTopBar, isDisabled: Boolean) {
+            doubleTitleTopBar.thirdDisabled = isDisabled
         }
 
     }
