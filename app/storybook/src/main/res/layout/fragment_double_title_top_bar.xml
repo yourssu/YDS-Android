@@ -38,10 +38,13 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:firstDisabled="@{viewModel.firstDisabled}"
                 app:firstIcon="@{viewModel.firstIconVisibility ? viewModel.firstIcon : null}"
                 app:firstText="@{viewModel.firstText}"
+                app:secondDisabled="@{viewModel.secondDisabled}"
                 app:secondIcon="@{viewModel.secondIconVisibility ? viewModel.secondIcon : null}"
                 app:secondText="@{viewModel.secondText}"
+                app:thirdDisabled="@{viewModel.thirdDisabled}"
                 app:thirdIcon="@{viewModel.thirdIconVisibility ? viewModel.thirdIcon : null}"
                 app:thirdText="@{viewModel.thirdText}"
                 app:title="@{viewModel.title}"
@@ -95,6 +98,26 @@
                     android:imeOptions="actionDone"
                     android:onTextChanged="@{viewModel.onSubTitleTextChangedListener}"
                     android:text="SubTitle" />
+
+                <!-- first disabled-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="firstDisabled"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.firstDisabled}"
+                        app:selectedListener="@{viewModel.firstDisabledSelectListener}"/>
+                </LinearLayout>
 
                 <!-- first icon-->
                 <LinearLayout
@@ -152,6 +175,25 @@
                     android:text="닫기"
                     android:onTextChanged="@{viewModel.firstTextChangedListener}" />
 
+                <!-- second disabled-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="secondDisabled"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.secondDisabled}"
+                        app:selectedListener="@{viewModel.secondDisabledSelectListener}"/>
+                </LinearLayout>
 
                 <!-- second icon-->
                 <LinearLayout
@@ -208,6 +250,26 @@
                     android:layout_marginBottom="8dp"
                     android:text="알림"
                     android:onTextChanged="@{viewModel.secondTextChangedListener}" />
+
+                <!-- third disabled-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="thirdDisabled"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2"/>
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isSelected="@{viewModel.thirdDisabled}"
+                        app:selectedListener="@{viewModel.thirdDisabledSelectListener}"/>
+                </LinearLayout>
 
                 <!-- third icon-->
                 <LinearLayout

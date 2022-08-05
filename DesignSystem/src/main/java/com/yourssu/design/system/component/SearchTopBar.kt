@@ -76,6 +76,12 @@ class SearchTopBar @JvmOverloads constructor(
             return binding.searchTextField.imeOptions
         }
 
+    var leftArrowDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.leftArrowButton.isDisabled = value
+        }
+
     @SuppressLint("CustomViewStyleable")
     private fun initAttributes(context: Context, attrs: AttributeSet?) {
         if (attrs != null) {
@@ -185,6 +191,12 @@ class SearchTopBar @JvmOverloads constructor(
         @BindingAdapter("isDisabled")
         fun setIsDisabled(searchTopBar: SearchTopBar, isDisabled: Boolean) {
             searchTopBar.isDisabled = isDisabled
+        }
+
+        @JvmStatic
+        @BindingAdapter("leftArrowDisabled")
+        fun setLeftArrowDisabled(searchTopBar: SearchTopBar, isDisabled: Boolean) {
+            searchTopBar.leftArrowDisabled = isDisabled
         }
     }
 }

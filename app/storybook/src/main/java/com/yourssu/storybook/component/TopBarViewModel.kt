@@ -10,18 +10,21 @@ import com.yourssu.storybook.BaseViewModel
 class TopBarViewModel(application: Application) : BaseViewModel(application) {
     val titleLiveData = MutableLiveData("Title")
 
+    val startButtonDisabled: MutableLiveData<Boolean> = MutableLiveData(false)
     val startIcon: MutableLiveData<Int> = MutableLiveData(Icon.ic_arrow_left_line)
     val startIconText: MutableLiveData<String> = MutableLiveData("ic_arrow_left_line")
     val startIconVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
 
     val startText: MutableLiveData<String> = MutableLiveData("닫기")
 
+    val endRightButtonDisabled: MutableLiveData<Boolean> = MutableLiveData(false)
     val endRightIcon: MutableLiveData<Int> = MutableLiveData(Icon.ic_search_line)
     val endRightIconText: MutableLiveData<String> = MutableLiveData("ic_search_line")
     val endRightIconVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
 
     val endRightText: MutableLiveData<String> = MutableLiveData("알림")
 
+    val endLeftButtonDisabled: MutableLiveData<Boolean> = MutableLiveData(false)
     val endLeftIcon: MutableLiveData<Int> = MutableLiveData(Icon.ic_bell_line)
     val endLeftIconText: MutableLiveData<String> = MutableLiveData("ic_bell_line")
     val endLeftIconVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
@@ -73,6 +76,24 @@ class TopBarViewModel(application: Application) : BaseViewModel(application) {
     val endLeftIconSelectListener = object : Toggle.SelectedListener {
         override fun onSelected(boolean: Boolean) {
             endLeftIconVisibility.value = boolean
+        }
+    }
+
+    val startDisabledSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            startButtonDisabled.value = boolean
+        }
+    }
+
+    val endRightDisabledSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            endRightButtonDisabled.value = boolean
+        }
+    }
+
+    val endLeftDisabledSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            endLeftButtonDisabled.value = boolean
         }
     }
 }
