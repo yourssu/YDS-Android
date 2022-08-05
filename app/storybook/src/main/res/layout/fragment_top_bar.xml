@@ -85,7 +85,7 @@
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="StartButtonDisabled"
+                        android:text="StartDisabled"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                     <com.yourssu.design.system.atom.Toggle
@@ -156,7 +156,7 @@
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndRightButtonDisabled"
+                        android:text="EndRightDisabled"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                     <com.yourssu.design.system.atom.Toggle
@@ -228,7 +228,7 @@
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="EndLeftButtonDisabled"
+                        android:text="EndLeftDisabled"
                         android:textColor="@color/textPrimary"
                         app:typo="subtitle2"/>
                     <com.yourssu.design.system.atom.Toggle
