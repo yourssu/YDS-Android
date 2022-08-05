@@ -78,6 +78,7 @@ class SearchTopBar @JvmOverloads constructor(
 
     var leftArrowDisabled: Boolean = false
         set(value) {
+            field = value
             binding.leftArrowButton.isDisabled = value
         }
 
