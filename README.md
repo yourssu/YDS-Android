@@ -35,6 +35,7 @@ implementation "com.github.yourssu:YDS-Android:${YDSVersion}"
 
 ## 🧪 샘플 어플리케이션
 <img src="https://user-images.githubusercontent.com/39309953/141673413-0e76bb0b-3d52-4f06-af15-5a070e20ebad.gif" width=300 />
+<a href='https://play.google.com/store/apps/details?id=com.yourssu.storybook&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='다운로드하기 Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/ko_badge_web_generic.png' width=200 /></a>
 
 ## 🖥 YDS 개발자 규칙
 [YDS 개발 수칙](https://www.notion.so/yourssu/Android-309726587b1943a4bfb3f501e3ed672a)
