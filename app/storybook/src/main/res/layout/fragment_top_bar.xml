@@ -39,13 +39,13 @@
                 app:title="@{viewModel.titleLiveData}"
                 app:startIcon="@{viewModel.startIconVisibility ? viewModel.startIcon : null}"
                 app:startText="@{viewModel.startText}"
-                app:startButtonDisabled="@{viewModel.startButtonDisabled}"
+                app:startDisabled="@{viewModel.startButtonDisabled}"
                 app:endRightIcon="@{viewModel.endRightIconVisibility ? viewModel.endRightIcon : null}"
                 app:endRightText="@{viewModel.endRightText}"
-                app:endRightButtonDisabled="@{viewModel.endRightButtonDisabled}"
+                app:endRightDisabled="@{viewModel.endRightButtonDisabled}"
                 app:endLeftIcon="@{viewModel.endLeftIconVisibility ? viewModel.endLeftIcon : null}"
                 app:endLeftText="@{viewModel.endLeftText}"
-                app:endLeftButtonDisabled="@{viewModel.endLeftButtonDisabled}"/>
+                app:endLeftDisabled="@{viewModel.endLeftButtonDisabled}"/>
         </FrameLayout>
 
         <ScrollView

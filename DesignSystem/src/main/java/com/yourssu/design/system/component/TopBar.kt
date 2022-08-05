@@ -190,20 +190,20 @@ class TopBar @JvmOverloads constructor(
         }
 
         @JvmStatic
-        @BindingAdapter("startButtonDisabled")
-        fun setStartButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
+        @BindingAdapter("startDisabled")
+        fun setStartDisabled(topBar: TopBar, isDisabled: Boolean) {
             topBar.startDisabled = isDisabled
         }
 
         @JvmStatic
-        @BindingAdapter("endRightButtonDisabled")
-        fun setEndRightButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
+        @BindingAdapter("endRightDisabled")
+        fun setEndRightDisabled(topBar: TopBar, isDisabled: Boolean) {
             topBar.endRightDisabled = isDisabled
         }
 
         @JvmStatic
-        @BindingAdapter("endLeftButtonDisabled")
-        fun setEndLeftButtonDisabled(topBar: TopBar, isDisabled: Boolean) {
+        @BindingAdapter("endLeftDisabled")
+        fun setEndLeftDisabled(topBar: TopBar, isDisabled: Boolean) {
             topBar.endLeftDisabled = isDisabled
         }
     }
