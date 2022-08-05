@@ -22,9 +22,17 @@ class SearchTopBarViewModel(application: Application): BaseViewModel(application
     val initText = "initText"
     private val _isDisable = MutableLiveData(false)
     val isDisable: LiveData<Boolean> = _isDisable
+    private val _leftArrowDisabled = MutableLiveData(false)
+    val leftArrowDisabled: LiveData<Boolean> = _leftArrowDisabled
     val enableSelectListener = object : Toggle.SelectedListener {
         override fun onSelected(boolean: Boolean) {
             _isDisable.value = boolean
+        }
+    }
+
+    val leftArrowDisabledSelectListener = object : Toggle.SelectedListener {
+        override fun onSelected(boolean: Boolean) {
+            _leftArrowDisabled.value = boolean
         }
     }
 
