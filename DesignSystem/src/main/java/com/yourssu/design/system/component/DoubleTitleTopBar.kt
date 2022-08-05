@@ -138,20 +138,20 @@ class DoubleTitleTopBar @JvmOverloads constructor(
 
         @JvmStatic
         @BindingAdapter("firstText")
-        fun setFirstText(singleTitleTopBar: DoubleTitleTopBar, value: String) {
-            singleTitleTopBar.firstText = value
+        fun setFirstText(doubleTitleTopBar: DoubleTitleTopBar, value: String) {
+            doubleTitleTopBar.firstText = value
         }
 
         @JvmStatic
         @BindingAdapter("secondText")
-        fun setSecondText(singleTitleTopBar: DoubleTitleTopBar, value: String) {
-            singleTitleTopBar.secondText = value
+        fun setSecondText(doubleTitleTopBar: DoubleTitleTopBar, value: String) {
+            doubleTitleTopBar.secondText = value
         }
 
         @JvmStatic
         @BindingAdapter("thirdText")
-        fun setThirdText(singleTitleTopBar: DoubleTitleTopBar, value: String) {
-            singleTitleTopBar.thirdText = value
+        fun setThirdText(doubleTitleTopBar: DoubleTitleTopBar, value: String) {
+            doubleTitleTopBar.thirdText = value
         }
 
         @JvmStatic

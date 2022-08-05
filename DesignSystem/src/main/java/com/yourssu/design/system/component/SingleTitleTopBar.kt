@@ -170,20 +170,20 @@ class SingleTitleTopBar @JvmOverloads constructor(
 
         @JvmStatic
         @BindingAdapter("firstDisabled")
-        fun setFirstDisabled(topBar: SingleTitleTopBar, isDisabled: Boolean) {
-            topBar.firstDisabled = isDisabled
+        fun setFirstDisabled(singleTitleTopBar: SingleTitleTopBar, isDisabled: Boolean) {
+            singleTitleTopBar.firstDisabled = isDisabled
         }
 
         @JvmStatic
         @BindingAdapter("secondDisabled")
-        fun setSecondDisabled(topBar: SingleTitleTopBar, isDisabled: Boolean) {
-            topBar.secondDisabled = isDisabled
+        fun setSecondDisabled(singleTitleTopBar: SingleTitleTopBar, isDisabled: Boolean) {
+            singleTitleTopBar.secondDisabled = isDisabled
         }
 
         @JvmStatic
         @BindingAdapter("thirdDisabled")
-        fun setThirdDisabled(topBar: SingleTitleTopBar, isDisabled: Boolean) {
-            topBar.thirdDisabled = isDisabled
+        fun setThirdDisabled(singleTitleTopBar: SingleTitleTopBar, isDisabled: Boolean) {
+            singleTitleTopBar.thirdDisabled = isDisabled
         }
     }
 }
