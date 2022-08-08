@@ -18,12 +18,12 @@ default_platform(:android)
 platform :android do
   desc "Submit a new Internal Build to Play Store"
   lane :internal_release do
-    upload_to_play_store(track: 'internal', apk: 'app/build/outputs/apk/production/release/app-production-release.apk')
+    upload_to_play_store(track: 'internal', aab: 'app/build/outputs/apk/production/release/app-production-release.aab')
   end
 
   desc "Submit a new Beta Build to Play Store"
   lane :beta_release do
-    upload_to_play_store(track: 'beta', apk: 'app/build/outputs/apk/production/release/app-production-release.apk')
+    upload_to_play_store(track: 'beta', aab: 'app/build/outputs/apk/production/release/app-production-release.aab')
   end
 
   desc "Promote Beta to Production"
