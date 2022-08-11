@@ -36,6 +36,7 @@ class TopBarButton : LinearLayout {
             field = value
             setTopBarButtonInfo()
             requestLayout()
+            isEnabled = !isDisabled
         }
 
     var text = ""

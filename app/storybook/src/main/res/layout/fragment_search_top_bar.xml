@@ -41,6 +41,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:onLeftArrowButtonClick="@{() -> viewModel.onLeftArrowButtonClicked()}"
+                app:leftArrowDisabled="@{viewModel.leftArrowDisabled}"
                 app:placeholderText="@{viewModel.placeholderText}" />
         </FrameLayout>
 
@@ -54,6 +55,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+
+                    <com.yourssu.design.system.atom.Text
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="leftArrowDisabled"
+                        android:textColor="@color/textPrimary"
+                        app:typo="subtitle2" />
+
+                    <com.yourssu.design.system.atom.Toggle
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:selectedListener="@{viewModel.leftArrowDisabledSelectListener}" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

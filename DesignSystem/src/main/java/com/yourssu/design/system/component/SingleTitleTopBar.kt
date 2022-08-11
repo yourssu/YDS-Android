@@ -80,6 +80,24 @@ class SingleTitleTopBar @JvmOverloads constructor(
             binding.thirdButton.text = value
         }
 
+    var firstDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.firstButton.isDisabled = value
+        }
+
+    var secondDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.secondButton.isDisabled = value
+        }
+
+    var thirdDisabled: Boolean = false
+        set(value) {
+            field = value
+            binding.thirdButton.isDisabled = value
+        }
+
     companion object {
         @JvmStatic
         @BindingAdapter("title")
@@ -148,6 +166,24 @@ class SingleTitleTopBar @JvmOverloads constructor(
             onClickListener: OnClickListener
         ) {
             singleTitleTopBar.thirdButtonListener = onClickListener
+        }
+
+        @JvmStatic
+        @BindingAdapter("firstDisabled")
+        fun setFirstDisabled(singleTitleTopBar: SingleTitleTopBar, isDisabled: Boolean) {
+            singleTitleTopBar.firstDisabled = isDisabled
+        }
+
+        @JvmStatic
+        @BindingAdapter("secondDisabled")
+        fun setSecondDisabled(singleTitleTopBar: SingleTitleTopBar, isDisabled: Boolean) {
+            singleTitleTopBar.secondDisabled = isDisabled
+        }
+
+        @JvmStatic
+        @BindingAdapter("thirdDisabled")
+        fun setThirdDisabled(singleTitleTopBar: SingleTitleTopBar, isDisabled: Boolean) {
+            singleTitleTopBar.thirdDisabled = isDisabled
         }
     }
 }
