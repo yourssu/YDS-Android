@@ -14,6 +14,7 @@
     <color name="bgPressed">@drawable/gray100</color>
     <color name="bgNormalDark">@drawable/realBlack</color>
     <color name="bgElevatedDark">@drawable/realBlack</color>
+    <color name="bgDimDark">@drawable/gray900A30</color>
 
     <!-- Text -->
     <color name="textPrimary">@drawable/black000</color>
@@ -59,14 +60,14 @@
     <color name="inputFieldElevated">@drawable/gray100</color>
 
     <!-- Toast -->
-    <color name="toastBG">@drawable/gray700</color>
+    <color name="toastBG">@drawable/gray800</color>
 
     <!-- Tooltip -->
     <color name="tooltipBG">@drawable/gray700</color>
     <color name="tooltipPoint">@drawable/pointColor400</color>
 
     <!-- Pressed -->
-    <color name="pressed">@drawable/black000A10</color>
+    <color name="pressed">@drawable/gray900A5</color>
 
     <!-- Shadow -->
     <color name="shadowThin">@drawable/gray400</color>
