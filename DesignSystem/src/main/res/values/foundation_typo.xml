@@ -66,31 +66,31 @@
         <item name="android:textSize">16dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
     </style>
-    <dimen name="button0_line_height">21dp</dimen>
+    <dimen name="button0_line_height">22.4dp</dimen>
 
     <style name="Text.Button1">
         <item name="android:textSize">16dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
     </style>
-    <dimen name="button1_line_height">21dp</dimen>
+    <dimen name="button1_line_height">22.4dp</dimen>
 
     <style name="Text.Button2">
         <item name="android:textSize">14dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
     </style>
-    <dimen name="button2_line_height">18dp</dimen>
+    <dimen name="button2_line_height">18.2dp</dimen>
 
     <style name="Text.Button3">
         <item name="android:textSize">14dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
     </style>
-    <dimen name="button3_line_height">18dp</dimen>
+    <dimen name="button3_line_height">18.2dp</dimen>
 
     <style name="Text.Button4">
         <item name="android:textSize">12dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
     </style>
-    <dimen name="button4_line_height">16dp</dimen>
+    <dimen name="button4_line_height">16.8dp</dimen>
 
     <style name="Text.Caption0">
         <item name="android:textSize">12dp</item>
