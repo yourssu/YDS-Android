@@ -19,6 +19,9 @@ data class ColorCategory(
 )
 
 val basicColors = listOf<ColorCategory>(
+    ColorCategory("GroupName", listOf(
+        Color("colorName", "lightValue / darkValue", R.color.transparent)
+    )),
     ColorCategory("Logo", listOf(
         Color("logoIndigo", "#4E5986", R.drawable.logoIndigo),
         Color("logoViolet", "#8969AC", R.drawable.logoViolet),
