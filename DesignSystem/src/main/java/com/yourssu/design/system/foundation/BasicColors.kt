@@ -20,6 +20,8 @@ data class ColorCategory(
 
 val basicColors = listOf<ColorCategory>(
     ColorCategory("Logo", listOf(
+        Color("logoIndigo", "#4E5986", R.drawable.logoIndigo),
+        Color("logoViolet", "#8969AC", R.drawable.logoViolet),
         Color("logoBlue", "#1653DB", R.drawable.logoBlue),
         Color("logoYellow", "#FFC441", R.drawable.logoYellow)
     )),
@@ -66,10 +68,15 @@ val basicColors = listOf<ColorCategory>(
         Color("gray900", "#252729", R.drawable.gray900),
     )),
     ColorCategory("WB Alpha", listOf(
+        Color("white000A5", "#1AFFFFFF", R.drawable.white000A5),
         Color("white000A10", "#1AFFFFFF", R.drawable.white000A10),
         Color("white000A30", "#4DFFFFFF", R.drawable.white000A30),
         Color("white000A70", "#B3FFFFFF", R.drawable.white000A70),
+        Color("black000A5", "#0D101112", R.drawable.black000A5),
         Color("black000A10", "#1A101112", R.drawable.black000A10),
+        Color("black000A30", "#4D101112", R.drawable.black000A30),
+        Color("black000A70", "#B3101112", R.drawable.black000A70),
+        Color("gray900A5", "#0D252729", R.drawable.gray900A5),
         Color("gray900A30", "#4D252729", R.drawable.gray900A30),
         Color("gray900A70", "#B3252729", R.drawable.gray900A70),
     )),
