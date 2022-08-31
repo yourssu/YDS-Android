@@ -10,29 +10,26 @@ import com.yourssu.composedesignsystem.ui.theme.foundation.LocalYdsTypography
 
 @Composable
 fun YdsTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(), // 추후에 제거
+    colors: YdsColorScheme = YdsTheme.colors,
     typography: YdsTypography = YdsTheme.typography,
     content: @Composable () -> Unit
 ) {
-    val colors = lightColorScheme
-    // TODO add  darkColorScheme
-    CompositionLocalProvider(LocalYdsTypography provides typography) {
-//    MaterialTheme(
-//        colors = colors,
-//        typography = typography,
-//        shapes = Shapes,
-//        content = content
-//    )
-
-    }
-
+    CompositionLocalProvider(
+        LocalYdsTypography provides typography,
+        LocalYdsColorScheme provides colors,
+        content = content
+    )
 }
 
 object YdsTheme {
     val colors: YdsColorScheme
         @Composable
         @ReadOnlyComposable
-        get() = LocalYdsColorScheme.current
+        get() = if (isSystemInDarkTheme()) {
+            darkColorScheme
+        } else {
+            lightColorScheme
+        }
 
     val typography: YdsTypography
         @Composable
