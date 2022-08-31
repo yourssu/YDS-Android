@@ -185,7 +185,7 @@ val darkColorScheme = YdsColorScheme(
     // Pressed
     pressed = White000A10
 
-    // Shadow * 다크모드에서는 Shadow를 사용하지 않흡니다 *
+    // Shadow * 다크모드에서는 Shadow를 사용하지 않습니다 *
 
     // 나머지 Item Color는 동일
 )
