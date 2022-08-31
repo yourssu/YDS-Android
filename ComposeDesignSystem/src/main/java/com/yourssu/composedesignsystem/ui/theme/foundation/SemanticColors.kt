@@ -2,8 +2,6 @@ package com.yourssu.composedesignsystem.ui.theme.foundation
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.yourssu.composedesignsystem.ui.theme.*
-
 
 data class YdsColorScheme(
     // Background

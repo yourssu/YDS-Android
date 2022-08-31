@@ -1,4 +1,4 @@
-package com.yourssu.composedesignsystem.ui.theme
+package com.yourssu.composedesignsystem.ui.theme.foundation
 
 import androidx.compose.ui.graphics.Color
 
