@@ -5,7 +5,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import com.yourssu.composedesignsystem.ui.theme.*
+import com.yourssu.composedesignsystem.ui.theme.foundation.LocalYdsTypography
+import com.yourssu.composedesignsystem.ui.theme.foundation.YdsTypography
 
 /*private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -29,17 +33,32 @@ private val LightColorPalette = lightColors(
 )*/
 
 @Composable
-fun YdsTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun YdsTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(), // 추후에 제거
+    typography: YdsTypography = YdsTheme.typography,
+    content: @Composable () -> Unit
+) {
     val colors = if (darkTheme) {
         //DarkColorPalette
     } else {
         //LightColorPalette
     }
 
-    MaterialTheme(
-        //colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
+    CompositionLocalProvider(LocalYdsTypography provides typography) {
+//    MaterialTheme(
+//        colors = colors,
+//        typography = typography,
+//        shapes = Shapes,
+//        content = content
+//    )
+
+    }
+
+}
+
+object YdsTheme {
+    val typography: YdsTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalYdsTypography.current
 }
