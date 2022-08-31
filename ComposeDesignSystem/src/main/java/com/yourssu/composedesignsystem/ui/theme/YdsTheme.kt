@@ -1,36 +1,12 @@
 package com.yourssu.composedesignsystem.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
-import com.yourssu.composedesignsystem.ui.theme.*
+import com.yourssu.composedesignsystem.ui.theme.foundation.*
+import com.yourssu.composedesignsystem.ui.theme.foundation.LocalYdsColorScheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.LocalYdsTypography
-import com.yourssu.composedesignsystem.ui.theme.foundation.YdsTypography
-
-/*private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
-)
-
-private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
-
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
-)*/
 
 @Composable
 fun YdsTheme(
@@ -38,12 +14,8 @@ fun YdsTheme(
     typography: YdsTypography = YdsTheme.typography,
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) {
-        //DarkColorPalette
-    } else {
-        //LightColorPalette
-    }
-
+    val colors = lightColorScheme
+    // TODO add  darkColorScheme
     CompositionLocalProvider(LocalYdsTypography provides typography) {
 //    MaterialTheme(
 //        colors = colors,
@@ -57,6 +29,11 @@ fun YdsTheme(
 }
 
 object YdsTheme {
+    val colors: YdsColorScheme
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalYdsColorScheme.current
+
     val typography: YdsTypography
         @Composable
         @ReadOnlyComposable
