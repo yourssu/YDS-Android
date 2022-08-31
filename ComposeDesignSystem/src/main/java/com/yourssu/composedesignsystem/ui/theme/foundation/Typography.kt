@@ -1,5 +1,6 @@
 package com.yourssu.composedesignsystem.ui.theme.foundation
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -15,6 +16,7 @@ val fonts = FontFamily(
     Font(R.font.spoqa_han_sans_neo_bold, FontWeight.Bold)
 )
 
+@Immutable
 data class YdsTypography(
     val title1: TextStyle = TextStyle(
         fontFamily = fonts,
