@@ -2,236 +2,190 @@ package com.yourssu.composedesignsystem.ui.theme.foundation
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.yourssu.composedesignsystem.ui.theme.*
-
 
 data class YdsColorScheme(
     // Background
-    val bgNormal: Color,
-    val bgElevated: Color,
-    val bgRecomment: Color,
-    val bgSelected: Color,
-    val bgPressed: Color,
-    val bgNormalDark: Color,
-    val bgElevatedDark: Color,
-    val bgDimDark: Color,
+    val bgNormal: Color = White000,
+    val bgElevated: Color = White000,
+    val bgRecomment: Color = Gray050,
+    val bgSelected: Color = Gray100,
+    val bgPressed: Color = Gray100,
+    val bgNormalDark: Color = RealBlack,
+    val bgElevatedDark: Color = RealBlack,
+    val bgDimDark: Color = Gray900A30,
 
     // Text
-    val textPrimary: Color,
-    val textSecondary: Color,
-    val textTertiary: Color,
-    val textDisabled: Color,
-    val textBright: Color,
-    val textPointed: Color,
-    val textWarned: Color,
+    val textPrimary: Color = Black000,
+    val textSecondary: Color = Gray900,
+    val textTertiary: Color = Gray600,
+    val textDisabled: Color = Gray500,
+    val textBright: Color = White000,
+    val textPointed: Color = PointColor400,
+    val textWarned: Color = WarningRed400,
 
     // Dim
-    val dimNormal: Color,
-    val dimThick: Color,
-    val dimThickBright: Color,
-    val dimPicker: Color,
+    val dimNormal: Color = Gray900A30,
+    val dimThick: Color = Gray900A70,
+    val dimThickBright: Color = White000A70,
+    val dimPicker: Color = White000A70,
 
     // Border
-    val borderThin: Color,
-    val borderNormal: Color,
-    val borderThick: Color,
+    val borderThin: Color = Gray100,
+    val borderNormal: Color = Black000A10,
+    val borderThick: Color = Gray500,
 
     // Button
-    val buttonNormal: Color,
-    val buttonNormalPressed: Color,
-    val buttonBG: Color,
-    val buttonEmojiBG: Color,
-    val buttonBright: Color,
-    val buttonDisabled: Color,
-    val buttonDisabledBG: Color,
-    val buttonPoint: Color,
-    val buttonPointPressed: Color,
-    val buttonPointBG: Color,
-    val buttonWarned: Color,
-    val buttonWarnedPressed: Color,
-    val buttonWarnedBG: Color,
+    val buttonNormal: Color = Gray700,
+    val buttonNormalPressed: Color = Gray600,
+    val buttonBG: Color = Gray200,
+    val buttonEmojiBG: Color = Gray100,
+    val buttonBright: Color = White000,
+    val buttonDisabled: Color = Gray500,
+    val buttonDisabledBG: Color = Gray200,
+    val buttonPoint: Color = PointColor400,
+    val buttonPointPressed: Color = PointColor300,
+    val buttonPointBG: Color = PointColor050,
+    val buttonWarned: Color = WarningRed400,
+    val buttonWarnedPressed: Color = WarningRed300,
+    val buttonWarnedBG: Color = WarningRed050,
 
     // BottomBar
-    val bottomBarNormal: Color,
-    val bottomBarSelected: Color,
-
-    // InputField
-    val inputFieldNormal: Color,
-    val inputFieldElevated: Color,
-
-    // Toast
-    val toastBG: Color,
-
-    // Tooltip
-    val tooltipBG: Color,
-    val tooltipPoint: Color,
-
-    // Pressed
-    val pressed: Color,
-
-    // Shadow
-    val shadowThin: Color,
-    val shadowNormal: Color,
-
-    /***** ItemColor *****/
-    // MonoItem
-    val monoItemPrimary: Color,
-    val monoItemBG: Color,
-    val monoItemText: Color,
-
-    // GreenItem
-    val greenItemPrimary: Color,
-    val greenItemBG: Color,
-    val greenItemText: Color,
-
-    // EmeraldItem
-    val emeraldItemPrimary: Color,
-    val emeraldItemBG: Color,
-    val emeraldItemText: Color,
-
-    // AquaItem
-    val aquaItemPrimary: Color,
-    val aquaItemBG: Color,
-    val aquaItemText: Color,
-
-    // BlueItem
-    val blueItemPrimary: Color,
-    val blueItemBG: Color,
-    val blueItemText: Color,
-
-    // IndigoItem
-    val indigoItemPrimary: Color,
-    val indigoItemBG: Color,
-    val indigoItemText: Color,
-
-    // VioletItem
-    val violetItemPrimary: Color,
-    val violetItemBG: Color,
-    val violetItemText: Color,
-
-    // PurpleItem
-    val purpleItemPrimary: Color,
-    val purpleItemBG: Color,
-    val purpleItemText: Color,
-
-    // PinkItem
-    val pinkItemPrimary: Color,
-    val pinkItemBG: Color,
-    val pinkItemText: Color,
-)
-
-val lightColorScheme = YdsColorScheme(
-    // Background
-    bgNormal = White000,
-    bgElevated = White000,
-    bgRecomment = Gray050,
-    bgSelected = Gray100,
-    bgPressed = Gray100,
-    bgNormalDark = RealBlack,
-    bgElevatedDark = RealBlack,
-    bgDimDark = Gray900A30,
-
-    // Text,
-    textPrimary = Black000,
-    textSecondary = Gray900,
-    textTertiary = Gray600,
-    textDisabled = Gray500,
-    textBright = White000,
-    textPointed = PointColor400,
-    textWarned = WarningRed400,
-
-    // Dim
-    dimNormal = Gray900A30,
-    dimThick = Gray900A70,
-    dimThickBright = White000A70,
-    dimPicker = White000A70,
-
-    // Border
-    borderThin = Gray100,
-    borderNormal = Black000A10,
-    borderThick = Gray500,
-
-    // Button
-    buttonNormal = Gray700,
-    buttonNormalPressed = Gray600,
-    buttonBG = Gray200,
-    buttonEmojiBG = Gray100,
-    buttonBright = White000,
-    buttonDisabled = Gray500,
-    buttonDisabledBG = Gray200,
-    buttonPoint = PointColor400,
-    buttonPointPressed = PointColor300,
-    buttonPointBG = PointColor050,
-    buttonWarned = WarningRed400,
-    buttonWarnedPressed = WarningRed300,
-    buttonWarnedBG = WarningRed050,
-
-    // BottomBar
-    bottomBarNormal = Gray600,
-    bottomBarSelected = Gray800,
+    val bottomBarNormal: Color = Gray600,
+    val bottomBarSelected: Color = Gray800,
 
     // InputField,
-    inputFieldNormal = White000,
-    inputFieldElevated = Gray100,
+    val inputFieldNormal: Color = White000,
+    val inputFieldElevated: Color = Gray100,
 
     // Toast
-    toastBG = Gray800,
+    val toastBG: Color = Gray800,
 
     // Tooltip
-    tooltipBG = Gray700,
-    tooltipPoint = PointColor400,
+    val tooltipBG: Color = Gray700,
+    val tooltipPoint: Color = PointColor400,
 
     // Pressed
-    pressed = Gray900A5,
+    val pressed: Color = Gray900A5,
 
     // Shadow
-    shadowThin = Gray400,
-    shadowNormal = Gray500,
+    val shadowThin: Color = Gray400,
+    val shadowNormal: Color = Gray500,
 
     // MonoItem
-    monoItemPrimary = Gray700,
-    monoItemBG = Gray100,
-    monoItemText = Gray800,
+    val monoItemPrimary: Color = Gray700,
+    val monoItemBG: Color = Gray100,
+    val monoItemText: Color = Gray800,
 
     // GreenItem
-    greenItemPrimary = Green300,
-    greenItemBG = Green050,
-    greenItemText = Green800,
+    val greenItemPrimary: Color = Green300,
+    val greenItemBG: Color = Green050,
+    val greenItemText: Color = Green800,
 
     // EmeraldItem
-    emeraldItemPrimary = Emerald300,
-    emeraldItemBG = Emerald050,
-    emeraldItemText = Emerald800,
+    val emeraldItemPrimary: Color = Emerald300,
+    val emeraldItemBG: Color = Emerald050,
+    val emeraldItemText: Color = Emerald800,
 
     // AquaItem
-    aquaItemPrimary = Aqua300,
-    aquaItemBG = Aqua050,
-    aquaItemText = Aqua700,
+    val aquaItemPrimary: Color = Aqua300,
+    val aquaItemBG: Color = Aqua050,
+    val aquaItemText: Color = Aqua700,
 
     // BlueItem
-    blueItemPrimary = Blue300,
-    blueItemBG = Blue050,
-    blueItemText = Blue700,
+    val blueItemPrimary: Color = Blue300,
+    val blueItemBG: Color = Blue050,
+    val blueItemText: Color = Blue700,
 
     // IndigoItem,
-    indigoItemPrimary = Indigo300,
-    indigoItemBG = Indigo050,
-    indigoItemText = Indigo400,
+    val indigoItemPrimary: Color = Indigo300,
+    val indigoItemBG: Color = Indigo050,
+    val indigoItemText: Color = Indigo400,
 
     // VioletItem
-    violetItemPrimary = Violet300,
-    violetItemBG = Violet050,
-    violetItemText = Violet400,
+    val violetItemPrimary: Color = Violet300,
+    val violetItemBG: Color = Violet050,
+    val violetItemText: Color = Violet400,
 
     // PurpleItem,
-    purpleItemPrimary = Purple300,
-    purpleItemBG = Purple050,
-    purpleItemText = Purple400,
+    val purpleItemPrimary: Color = Purple300,
+    val purpleItemBG: Color = Purple050,
+    val purpleItemText: Color = Purple400,
 
     // PinkItem
-    pinkItemPrimary = Pink300,
-    pinkItemBG = Pink050,
-    pinkItemText = Pink600
+    val pinkItemPrimary: Color = Pink300,
+    val pinkItemBG: Color = Pink050,
+    val pinkItemText: Color = Pink600
+)
+
+val lightColorScheme = YdsColorScheme()
+
+val darkColorScheme = YdsColorScheme(
+    // Background
+    bgNormal = Black000,
+    bgElevated = Black000,
+    bgRecomment = RealBlack,
+    bgSelected = White000A5,
+    bgPressed = White000A5,
+    bgNormalDark = RealBlack,
+    bgElevatedDark = RealBlack,
+    bgDimDark = Black000A30,
+
+    // Text
+    textPrimary = Gray900_night,
+    textSecondary = Gray800_night,
+    textTertiary = Gray600_night,
+    textDisabled = Gray500_night,
+    textBright = White000,
+    textPointed = PointColor400_night,
+    textWarned = WarningRed400_night,
+
+    // Dim
+    dimNormal = Black000A30,
+    dimThick = Black000A70,
+    dimThickBright = White000A70,
+    dimPicker = Black000A70,
+
+    // Border
+    borderThin = Gray100_night,
+    borderNormal = White000A10,
+    borderThick = Gray500_night,
+
+    // Button
+    buttonNormal = Gray700_night,
+    buttonNormalPressed = Gray600_night,
+    buttonBG = Gray200_night,
+    buttonEmojiBG = Gray100_night,
+    buttonBright = White000,
+    buttonDisabled = Gray500_night,
+    buttonDisabledBG = Gray200_night,
+    buttonPoint = PointColor400_night,
+    buttonPointPressed = PointColor300_night,
+    buttonPointBG = PointColor050_night,
+    buttonWarned = WarningRed400_night,
+    buttonWarnedPressed = WarningRed300_night,
+    buttonWarnedBG = WarningRed050_night,
+
+    // BottomBar
+    bottomBarNormal = Gray600_night,
+    bottomBarSelected = Gray800_night,
+
+    // InputField,
+    inputFieldNormal = Black000,
+    inputFieldElevated = Gray100_night,
+
+    // Toast
+    toastBG = Gray300_night,
+
+    // Tooltip
+    tooltipBG = Gray400_night,
+    tooltipPoint = PointColor400_night,
+
+    // Pressed
+    pressed = White000A10
+
+    // Shadow * 다크모드에서는 Shadow를 사용하지 않습니다 *
+
+    // 나머지 Item Color는 동일
 )
 
 internal val LocalYdsColorScheme = staticCompositionLocalOf { lightColorScheme }
