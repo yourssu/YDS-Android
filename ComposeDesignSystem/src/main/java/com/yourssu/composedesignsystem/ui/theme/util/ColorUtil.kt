@@ -1,11 +1,13 @@
 package com.yourssu.composedesignsystem.ui.theme.util
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 
 @Composable
 fun Color.toPressed(isPressed: Boolean): Color {
+    Log.d("ToPressed", "toPressed: $isPressed")
     return if (isPressed) {
         when (this) {
             YdsTheme.colors.buttonNormal -> YdsTheme.colors.buttonNormalPressed
