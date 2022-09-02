@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 
 @Composable
-fun Color.toPressed(isPressed: Boolean): Color {
+fun Color.maybePressed(isPressed: Boolean): Color {
     Log.d("ToPressed", "toPressed: $isPressed")
     return if (isPressed) {
         when (this) {

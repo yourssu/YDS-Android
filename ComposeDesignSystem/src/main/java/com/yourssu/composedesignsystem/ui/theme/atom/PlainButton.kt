@@ -5,10 +5,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.ButtonDefaults.elevation
-import androidx.compose.material.ButtonDefaults.textButtonColors
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,7 +24,7 @@ import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsTypo
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
-import com.yourssu.composedesignsystem.ui.theme.util.toPressed
+import com.yourssu.composedesignsystem.ui.theme.util.maybePressed
 
 //sealed class PlainButtonSize(val iconSize: IconSize, val typo: TextStyle?) {
 //    object Large : PlainButtonSize(IconSize.Medium, null)
@@ -63,10 +61,10 @@ data class PlainButtonState(
 
     val contentColor: Color
         @Composable get() = when (buttonType) {
-            PlainButtonType.Normal -> YdsTheme.colors.buttonNormal.toPressed(isPressed)
-            PlainButtonType.Pointed -> YdsTheme.colors.buttonPoint.toPressed(isPressed)
+            PlainButtonType.Normal -> YdsTheme.colors.buttonNormal.maybePressed(isPressed)
+            PlainButtonType.Pointed -> YdsTheme.colors.buttonPoint.maybePressed(isPressed)
             PlainButtonType.Disabled -> YdsTheme.colors.buttonDisabled
-            PlainButtonType.Warned -> YdsTheme.colors.buttonWarned.toPressed(isPressed)
+            PlainButtonType.Warned -> YdsTheme.colors.buttonWarned.maybePressed(isPressed)
         }
 
 //    val typo: TextStyle
