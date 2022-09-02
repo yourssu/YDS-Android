@@ -12,4 +12,6 @@ data class Border(
     val thick: Dp = 8.dp
 )
 
-internal val LocalYdsBorder = staticCompositionLocalOf { Border() }
+internal val YdsBorder = Border()
+
+internal val LocalYdsBorder = staticCompositionLocalOf { YdsBorder }
