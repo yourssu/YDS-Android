@@ -14,12 +14,16 @@ import com.yourssu.composedesignsystem.ui.theme.rule.LocalYdsRounding
 
 @Composable
 fun YdsTheme(
-    colors: YdsColorScheme = YdsTheme.colors,
     typography: YdsTypography = YdsTheme.typography,
     rounding: Shapes = YdsTheme.rounding,
     border: Border = YdsTheme.border,
     content: @Composable () -> Unit
 ) {
+    val colors = if (isSystemInDarkTheme()) {
+        darkColorScheme
+    } else {
+        lightColorScheme
+    }
     CompositionLocalProvider(
         LocalYdsColorScheme provides colors,
         LocalYdsTypography provides typography,
@@ -33,11 +37,7 @@ object YdsTheme {
     val colors: YdsColorScheme
         @Composable
         @ReadOnlyComposable
-        get() = if (isSystemInDarkTheme()) {
-            darkColorScheme
-        } else {
-            lightColorScheme
-        }
+        get() = LocalYdsColorScheme.current
 
     val typography: YdsTypography
         @Composable

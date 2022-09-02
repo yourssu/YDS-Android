@@ -14,7 +14,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.mapSaver
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -23,25 +22,22 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.R
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
+import com.yourssu.composedesignsystem.ui.theme.foundation.YdsTypo
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
 import com.yourssu.composedesignsystem.ui.theme.util.toPressed
 
-sealed class PlainButtonSize(val iconSize: IconSize) {
-    open val typo: TextStyle
-        @Composable get() = YdsTheme.typography.button1
+//sealed class PlainButtonSize(val iconSize: IconSize, val typo: TextStyle?) {
+//    object Large : PlainButtonSize(IconSize.Medium, null)
+//    object Medium : PlainButtonSize(IconSize.Small, YdsTypo.button3)
+//    object Small : PlainButtonSize(IconSize.ExtraSmall, YdsTypo.button4)
+//}
 
-    object Large : PlainButtonSize(IconSize.Medium)
-    object Medium : PlainButtonSize(IconSize.Small) {
-        override val typo: TextStyle
-            @Composable get() = YdsTheme.typography.button3
-    }
-    object Small : PlainButtonSize(IconSize.ExtraSmall) {
-        override val typo: TextStyle
-            @Composable get() = YdsTheme.typography.button4
-    }
+enum class PlainButtonSize(val iconSize: IconSize, val typo: TextStyle?) {
+    Large(IconSize.Medium, null),
+    Medium(IconSize.Small, YdsTypo.button3),
+    Small(IconSize.ExtraSmall, YdsTypo.button4)
 }
 
-// TODO: sealed class 로 변환하기
 enum class PlainButtonType {
     Normal,
     Pointed,
@@ -59,6 +55,9 @@ data class PlainButtonState(
 ) {
     private val isPressed: Boolean
         @Composable get() = interactionSource.collectIsPressedAsState().value
+
+    val isDisabled: Boolean
+        get() = buttonType == PlainButtonType.Disabled
 
     val contentColor: Color
         @Composable get() = when (buttonType) {
@@ -122,9 +121,10 @@ fun rememberPlainButtonState(
     buttonType: PlainButtonType = PlainButtonType.Normal,
     buttonSize: PlainButtonSize = PlainButtonSize.Medium,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
-) = rememberSaveable(
-    text, leftIcon, rightIcon, buttonType, buttonSize, interactionSource,
-    stateSaver = PlainButtonState.Saver
+) = remember(
+    text, leftIcon, rightIcon, buttonType, buttonSize, interactionSource
+    // TODO: sealed class 때문에 Saver 오류남.
+    // stateSaver = PlainButtonState.Saver
 ) {
     mutableStateOf(
         PlainButtonState(text, leftIcon, rightIcon, buttonType, buttonSize, interactionSource)
@@ -140,6 +140,7 @@ fun PlainButton(
     Button(
         onClick = onClick,
         modifier = modifier,
+        enabled = !buttonState.isDisabled,  // TODO: disabled 됐을 때 색깔 지정 안 됨.
         colors = textButtonColors(contentColor = buttonState.contentColor),
         elevation = elevation(0.dp, 0.dp, 0.dp)
     ) {
@@ -164,11 +165,10 @@ fun PlainButton(
                     modifier = Modifier.padding(end = 2.dp)
                 )
             }
-            (buttonState as PlainButtonSize.Medium)
-            (buttonState as PlainButtonSize.Small)
+
             Text(
                 text = buttonState.text,
-                style = buttonState.size.typo
+                style = buttonState.size.typo!!
             )
 
             if (buttonState.leftIcon == null && buttonState.rightIcon != null) {
@@ -189,7 +189,7 @@ fun PlainButtonPreview() {
     val buttonState1 by rememberPlainButtonState(
         text = "MEDIUM",
         buttonSize = PlainButtonSize.Medium,
-        buttonType = PlainButtonType.Warned,
+        buttonType = PlainButtonType.Disabled,
         leftIcon = R.drawable.ic_ground_filled
     )
     val buttonState2 by rememberPlainButtonState(
