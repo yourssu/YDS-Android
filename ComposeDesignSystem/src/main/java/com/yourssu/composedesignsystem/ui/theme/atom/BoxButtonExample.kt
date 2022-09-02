@@ -8,7 +8,6 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.material.Text
@@ -51,7 +50,7 @@ enum class ButtonState {
     IS_WARNED
 }
 
-data class BoxButtonState(
+data class BoxButtonState1(
     val text: String = "",
     @DrawableRes val leftIcon: Int? = null,
     @DrawableRes val rightIcon: Int? = null,
@@ -168,7 +167,7 @@ data class BoxButtonState(
 
 @Composable
 fun BoxButton(
-    boxButtonState: BoxButtonState,
+    boxButtonState: BoxButtonState1,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -252,7 +251,7 @@ val boxButtonSaver = run {
             )
         },
         restore = {
-            BoxButtonState(
+            BoxButtonState1(
                 it[textKey] as String,
                 it[leftIconKey] as Int?,
                 it[rightIconKey] as Int?,
@@ -280,7 +279,7 @@ fun PreviewBoxButton() {
 
     var state1 by rememberSaveable(stateSaver = boxButtonSaver) {
         mutableStateOf(
-            BoxButtonState(
+            BoxButtonState1(
                 text = "FILLED",
                 type = Type.FILLED,
                 leftIcon = R.drawable.ic_ground_filled,
@@ -293,7 +292,7 @@ fun PreviewBoxButton() {
 
     var state2 by rememberSaveable(stateSaver = boxButtonSaver) {
         mutableStateOf(
-            BoxButtonState(
+            BoxButtonState1(
                 text = "LINE",
                 type = Type.LINE,
                 leftIcon = R.drawable.ic_ground_filled,

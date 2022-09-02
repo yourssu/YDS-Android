@@ -5,6 +5,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.material.ButtonDefaults.textButtonColors
 import androidx.compose.material.Text
@@ -135,13 +137,13 @@ fun rememberPlainButtonState(
 fun PlainButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    buttonState: PlainButtonState,
+    buttonState: PlainButtonState
 ) {
     Button(
         onClick = onClick,
         modifier = modifier,
         enabled = !buttonState.isDisabled,  // TODO: disabled 됐을 때 색깔 지정 안 됨.
-        colors = textButtonColors(contentColor = buttonState.contentColor),
+        colors = buttonColors(contentColor = buttonState.contentColor),
         elevation = elevation(0.dp, 0.dp, 0.dp)
     ) {
         if (buttonState.size == PlainButtonSize.Large) {
