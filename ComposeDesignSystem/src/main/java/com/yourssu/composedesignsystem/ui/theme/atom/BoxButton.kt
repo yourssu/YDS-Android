@@ -7,15 +7,12 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -33,7 +30,8 @@ import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonColorState
 import com.yourssu.composedesignsystem.ui.theme.util.maybePressed
 
-// TODO: BoxButtonStyle로 이름 바꾸고, isPressed 값 외부에서 주입받기
+// TODO: isPressed 값 외부에서 주입받기
+// copy로 직접 할당하는 방법 말고 다른 방법으로도 recomposition 일어날 수 있게 설계하기
 data class BoxButtonState(
     val isDisabled: Boolean = false,
     val isWarned: Boolean = false,
@@ -96,6 +94,7 @@ data class BoxButtonState(
             val buttonSizeKey = "buttonSize"
             val roundingKey = "rounding"
 
+            // rounding 넣으면 오류남,
             mapSaver(
                 save = {
                     mapOf(
@@ -103,7 +102,7 @@ data class BoxButtonState(
                         warnedKey to it.isWarned,
                         buttonTypeKey to it.buttonType,
                         buttonSizeKey to it.buttonSize,
-                        roundingKey to it.roundingShape
+                        // roundingKey to it.roundingShape
                     )
                 },
                 restore = {
@@ -112,7 +111,7 @@ data class BoxButtonState(
                         it[warnedKey] as Boolean,
                         it[buttonTypeKey] as Type,
                         it[buttonSizeKey] as Size,
-                        it[roundingKey] as CornerBasedShape
+                        // it[roundingKey] as CornerBasedShape
                     )
                 }
             )
@@ -120,7 +119,25 @@ data class BoxButtonState(
     }
 }
 
-// TODO: 확인해보기
+@Composable
+fun rememberBoxButtonStyleState(
+    isDisabled: Boolean = false,
+    isWarned: Boolean = false,
+    buttonType: BoxButtonState.Type = BoxButtonState.Type.Filled,
+    buttonSize: BoxButtonState.Size = BoxButtonState.Size.ExtraLarge,
+    roundingShape: CornerBasedShape = YdsRounding.large,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+): MutableState<BoxButtonState> = rememberSaveable(
+    isDisabled, isWarned, buttonType, buttonSize, roundingShape, interactionSource,
+    stateSaver = BoxButtonState.Saver
+) {
+    mutableStateOf(
+        BoxButtonState(
+            isDisabled, isWarned, buttonType, buttonSize, roundingShape, interactionSource
+        )
+    )
+}
+
 @Composable
 private fun boxButtonColorByType(
     type: BoxButtonState.Type
@@ -185,52 +202,55 @@ fun BoxButton(
     modifier: Modifier = Modifier,
     @DrawableRes leftIcon: Int? = null,
     @DrawableRes rightIcon: Int? = null,
-    boxButtonState: BoxButtonState
+    styleState: BoxButtonState
 ) {
     val buttonColors = buttonColors(
-        backgroundColor = boxButtonState.backgroundColor,
-        contentColor = boxButtonState.contentColor,
-        disabledBackgroundColor = boxButtonState.disabledBackgroundColor,
-        disabledContentColor = boxButtonState.disabledContentColor
+        backgroundColor = styleState.backgroundColor,
+        contentColor = styleState.contentColor,
+        disabledBackgroundColor = styleState.disabledBackgroundColor,
+        disabledContentColor = styleState.disabledContentColor
     )
 
     Button(
         onClick = onClick,
         modifier = Modifier
             .then(modifier)
-            .height(boxButtonState.height),
-        enabled = !boxButtonState.isDisabled,
+            .height(styleState.height),
+        enabled = !styleState.isDisabled,
         elevation = elevation(0.dp, 0.dp, 0.dp),
         colors = buttonColors,
-        border = if (boxButtonState.buttonType == BoxButtonState.Type.Line) {
-            BorderStroke(YdsBorder.normal, boxButtonState.contentColor)
+        border = if (styleState.buttonType == BoxButtonState.Type.Line) {
+            BorderStroke(
+                YdsBorder.normal,
+                styleState.contentColor
+            )
         } else { null },
-        interactionSource = boxButtonState.interactionSource,
-        shape = boxButtonState.roundingShape,
+        interactionSource = styleState.interactionSource,
+        shape = styleState.roundingShape,
         contentPadding = PaddingValues(
-            horizontal = boxButtonState.horizontalPadding
+            horizontal = styleState.horizontalPadding
         )
     ) {
         leftIcon?.let { leftIconId ->
                 YdsIcon(
                     id = leftIconId,
-                    iconSize = boxButtonState.iconSize,
-                    tint = boxButtonState.contentColor
+                    iconSize = styleState.iconSize,
+                    tint = styleState.contentColor
                 )
                 Spacer(modifier = Modifier.width(4.dp))
             }
 
         Text(
             text = text,
-            style = boxButtonState.typo
+            style = styleState.typo
         )
 
         rightIcon?.let { rightIconId ->
             Spacer(modifier = Modifier.width(4.dp))
             YdsIcon(
                 id = rightIconId,
-                iconSize = boxButtonState.iconSize,
-                tint = boxButtonState.contentColor
+                iconSize = styleState.iconSize,
+                tint = styleState.contentColor
             )
         }
     }
@@ -239,20 +259,29 @@ fun BoxButton(
 @Preview(showBackground = true)
 @Composable
 fun BoxButtonPreview() {
-    val buttonState1 by remember {
-        mutableStateOf(
-            BoxButtonState(
-                buttonType = BoxButtonState.Type.Filled
-            )
-        )
-    }
+    var buttonState1 by rememberBoxButtonStyleState()
+    val buttonState2 by rememberBoxButtonStyleState(
+        isWarned = true,
+        buttonType = BoxButtonState.Type.Line
+    )
+
     YdsTheme {
         Column {
             BoxButton(
                 onClick = { },
                 text = "Filled",
-                boxButtonState = buttonState1,
+                styleState = buttonState1,
                 leftIcon = R.drawable.ic_ground_filled
+            )
+            BoxButton(
+                onClick = {
+                          buttonState1 = buttonState1.copy(
+                              isDisabled = true,
+                              buttonType = BoxButtonState.Type.Tinted
+                          )
+                },
+                text = "Line",
+                styleState = buttonState2
             )
         }
     }
