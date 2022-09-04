@@ -8,12 +8,9 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -22,92 +19,91 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.R
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
-import com.yourssu.composedesignsystem.ui.theme.foundation.YdsTypo
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
+import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
 import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
 
-//sealed class PlainButtonSize(val iconSize: IconSize, val typo: TextStyle?) {
-//    object Large : PlainButtonSize(IconSize.Medium, null)
-//    object Medium : PlainButtonSize(IconSize.Small, YdsTypo.button3)
-//    object Small : PlainButtonSize(IconSize.ExtraSmall, YdsTypo.button4)
-//}
-
-/*
-enum class PlainButtonSize(val iconSize: IconSize, val typo: TextStyle?) {
-
-    Large(IconSize.Medium, null),
-    Medium(IconSize.Small, YdsTypo.button3),
-    Small(IconSize.ExtraSmall, YdsTypo.button4)
-}
-
 data class PlainButtonState(
-    val text: String = "",
-    @DrawableRes val leftIcon: Int? = null,
-    @DrawableRes val rightIcon: Int? = null,
-    val isPointed: Boolean = false,
-    val isDisabled: Boolean = false,
-    val isWarned: Boolean = false,
-    val size: PlainButtonSize = PlainButtonSize.Medium,
+    private val text: String = "",
+    @DrawableRes private val leftIcon: Int? = null,
+    @DrawableRes private val rightIcon: Int? = null,
+    private val isDisabled: Boolean = false,
+    private val isWarned: Boolean = false,
+    private val isPointed: Boolean = false,
+    private val buttonSize: Size = Size.Medium,
     val interactionSource: MutableInteractionSource = MutableInteractionSource()
 ) {
+    /**
+     * [BoxButtonState]의 설명 참고
+     */
+    var textState by mutableStateOf(text)
+    var leftIconState by mutableStateOf(leftIcon)
+    var rightIconState by mutableStateOf(rightIcon)
+    var isDisabledState by mutableStateOf(isDisabled)
+    var isWarnedState by mutableStateOf(isWarned)
+    var isPointedState by mutableStateOf(isPointed)
+    var buttonSizeState by mutableStateOf(buttonSize)
+
     private val isPressed: Boolean
         @Composable get() = interactionSource.collectIsPressedAsState().value
 
-    val contentColor: Color
-        @Composable get() = when (buttonType) {
-            PlainButtonType.Normal -> YdsTheme.colors.buttonNormal.alterColorIfPressed(isPressed)
-            PlainButtonType.Pointed -> YdsTheme.colors.buttonPoint.alterColorIfPressed(isPressed)
-            PlainButtonType.Disabled -> YdsTheme.colors.buttonDisabled
-            PlainButtonType.Warned -> YdsTheme.colors.buttonWarned.alterColorIfPressed(isPressed)
-        }
+    private val sizeState: ButtonSizeState
+        @Composable get() = plainButtonSizeStateBySize(size = buttonSizeState)
 
-//    val typo: TextStyle
-//        @Composable get() = when (buttonSize) {
-//            PlainButtonSize.Medium -> YdsTheme.typography.button3
-//            else -> YdsTheme.typography.button4
-//        }
-//
-//    val iconSize: IconSize
-//        get() = when (buttonSize) {
-//            PlainButtonSize.Large -> IconSize.Medium
-//            PlainButtonSize.Medium -> IconSize.Small
-//            PlainButtonSize.Small -> IconSize.ExtraSmall
-//        }
+    val contentColor: Color
+        @Composable get() = when {
+            isWarnedState -> YdsTheme.colors.buttonWarned
+            isPointedState -> YdsTheme.colors.buttonPoint
+            else -> YdsTheme.colors.buttonNormal
+        }.alterColorIfPressed(isPressed = isPressed)
+
+    val disabledContentColor: Color
+        @Composable get() = YdsTheme.colors.buttonDisabled
+
+    val typo: TextStyle
+        @Composable get() = sizeState.typo
+    val iconSize: IconSize
+        @Composable get() = sizeState.iconSize
 
     enum class Size {
         Large, Medium, Small
     }
 
     companion object {
-        val Saver: Saver<PlainButtonState, *>
-            get() = run {
-                val textKey = "text"
-                val leftIconKey = "leftIcon"
-                val rightIconKey = "rightIcon"
-                val buttonTypeKey = "buttonType"
-                val buttonSizeKey = "buttonSize"
+        val Saver = run {
+            val textKey = "text"
+            val leftIconKey = "leftIcon"
+            val rightIconKey = "rightIcon"
+            val disabledKey = "disabled"
+            val warnedKey = "warned"
+            val pointedKey = "pointed"
+            val buttonSizeKey = "buttonSize"
 
-                mapSaver(
-                    save = {
-                        mapOf(
-                            textKey to it.text,
-                            leftIconKey to it.leftIcon,
-                            rightIconKey to it.rightIcon,
-                            buttonTypeKey to it.buttonType,
-                            buttonSizeKey to it.size
-                        )
-                    },
-                    restore = {
-                        PlainButtonState(
-                            it[textKey] as String,
-                            it[leftIconKey] as Int?,
-                            it[rightIconKey] as Int?,
-                            it[buttonTypeKey] as PlainButtonType,
-                            it[buttonSizeKey] as PlainButtonSize
-                        )
-                    }
-                )
-            }
+            mapSaver(
+                save = {
+                    mapOf(
+                        textKey to it.textState,
+                        leftIconKey to it.leftIconState,
+                        rightIconKey to it.rightIconState,
+                        disabledKey to it.isDisabledState,
+                        warnedKey to it.isWarnedState,
+                        pointedKey to it.isPointedState,
+                        buttonSizeKey to it.buttonSizeState
+                    )
+                },
+                restore = {
+                    PlainButtonState(
+                        it[textKey] as String,
+                        it[leftIconKey] as Int?,
+                        it[rightIconKey] as Int?,
+                        it[disabledKey] as Boolean,
+                        it[warnedKey] as Boolean,
+                        it[pointedKey] as Boolean,
+                        it[buttonSizeKey] as Size
+                    )
+                }
+            )
+        }
     }
 }
 
@@ -116,66 +112,88 @@ fun rememberPlainButtonState(
     text: String = "",
     @DrawableRes leftIcon: Int? = null,
     @DrawableRes rightIcon: Int? = null,
-    buttonType: PlainButtonType = PlainButtonType.Normal,
-    buttonSize: PlainButtonSize = PlainButtonSize.Medium,
+    isDisabled: Boolean = false,
+    isWarned: Boolean = false,
+    isPointed: Boolean = false,
+    buttonSize: PlainButtonState.Size = PlainButtonState.Size.Medium,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
-) = remember(
-    text, leftIcon, rightIcon, buttonType, buttonSize, interactionSource
-    // TODO: sealed class 때문에 Saver 오류남.
-    // stateSaver = PlainButtonState.Saver
+): PlainButtonState = rememberSaveable(
+    text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize, interactionSource,
+    saver = PlainButtonState.Saver
 ) {
-    mutableStateOf(
-        PlainButtonState(text, leftIcon, rightIcon, buttonType, buttonSize, interactionSource)
+    PlainButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize, interactionSource)
+}
+
+@Composable
+private fun plainButtonSizeStateBySize(
+    size: PlainButtonState.Size
+): ButtonSizeState = when (size) {
+    PlainButtonState.Size.Large -> ButtonSizeState(iconSize = IconSize.Medium)
+    PlainButtonState.Size.Medium -> ButtonSizeState(
+        typo = YdsTheme.typography.button3,
+        iconSize = IconSize.Small
+    )
+    PlainButtonState.Size.Small -> ButtonSizeState(
+        typo = YdsTheme.typography.button4,
+        iconSize = IconSize.ExtraSmall
     )
 }
 
 @Composable
 fun PlainButton(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    buttonState: PlainButtonState
+    state: PlainButtonState,
+    modifier: Modifier = Modifier
 ) {
+    val buttonColor = buttonColors(
+        backgroundColor = Color.Transparent,
+        contentColor = state.contentColor,
+        disabledBackgroundColor = Color.Transparent,
+        disabledContentColor = state.disabledContentColor
+    )
+
     Button(
         onClick = onClick,
         modifier = modifier,
-        enabled = !buttonState.isDisabled,  // TODO: disabled 됐을 때 색깔 지정 안 됨.
-        colors = buttonColors(contentColor = buttonState.contentColor),
-        elevation = elevation(0.dp, 0.dp, 0.dp)
+        enabled = !state.isDisabledState,
+        colors = buttonColor,
+        elevation = elevation(0.dp, 0.dp, 0.dp),
+        interactionSource = state.interactionSource,
+        contentPadding = PaddingValues(0.dp)
     ) {
-        if (buttonState.size == PlainButtonSize.Large) {
+        if (state.buttonSizeState == PlainButtonState.Size.Large) {
 
             // leftIcon이 null이라면 rightIcon 할당
-            val iconResource = buttonState.leftIcon ?: buttonState.rightIcon
+            val iconResource = state.leftIconState ?: state.rightIconState
 
             iconResource?.let { iconRes ->
                 YdsIcon(
                     id = iconRes,
-                    iconSize = buttonState.size.iconSize,
-                    tint = buttonState.contentColor
+                    iconSize = state.iconSize
                 )
             }
         } else {
-            if (buttonState.leftIcon != null) {
+            state.leftIconState?.let { leftIconId ->
                 YdsIcon(
-                    id = buttonState.leftIcon,
-                    iconSize = buttonState.size.iconSize,
-                    tint = buttonState.contentColor,
-                    modifier = Modifier.padding(end = 2.dp)
+                    id = leftIconId,
+                    iconSize = state.iconSize
                 )
+                Spacer(modifier = Modifier.width(2.dp))
             }
 
             Text(
-                text = buttonState.text,
-                style = buttonState.size.typo!!
+                text = state.textState,
+                style = state.typo
             )
 
-            if (buttonState.leftIcon == null && buttonState.rightIcon != null) {
-                YdsIcon(
-                    id = buttonState.rightIcon,
-                    iconSize = buttonState.size.iconSize,
-                    tint = buttonState.contentColor,
-                    modifier = Modifier.padding(start = 2.dp)
-                )
+            if (state.leftIconState == null) {
+                state.rightIconState?.let { rightIconId ->
+                    Spacer(modifier = Modifier.width(2.dp))
+                    YdsIcon(
+                        id = rightIconId,
+                        iconSize = state.iconSize
+                    )
+                }
             }
         }
     }
@@ -184,27 +202,32 @@ fun PlainButton(
 @Preview(showBackground = true)
 @Composable
 fun PlainButtonPreview() {
-    val buttonState1 by rememberPlainButtonState(
+    val buttonState1 = rememberPlainButtonState(
         text = "MEDIUM",
-        buttonSize = PlainButtonSize.Medium,
-        buttonType = PlainButtonType.Disabled,
-        leftIcon = R.drawable.ic_ground_filled
+        leftIcon = R.drawable.ic_ground_filled,
+        buttonSize = PlainButtonState.Size.Medium
     )
-    val buttonState2 by rememberPlainButtonState(
-        buttonSize = PlainButtonSize.Large,
-        buttonType = PlainButtonType.Normal,
-        leftIcon = R.drawable.ic_ground_filled
+    val buttonState2 = rememberPlainButtonState(
+        text = "click me!",
+        leftIcon = R.drawable.ic_ground_filled,
+        buttonSize = PlainButtonState.Size.Small,
+        isWarned = true
     )
 
-    Column {
-        PlainButton(
-            onClick = {},
-            buttonState = buttonState1,
-            modifier = Modifier.padding(0.dp)
-        )
-        PlainButton(
-            onClick = {},
-            buttonState = buttonState2
-        )
+    YdsTheme {
+        Column {
+            PlainButton(
+                onClick = {},
+                state = buttonState1
+            )
+            PlainButton(
+                onClick = {
+                    buttonState1.textState = "Small"
+                    buttonState1.isPointedState = true
+                    buttonState1.buttonSizeState = PlainButtonState.Size.Small
+                },
+                state = buttonState2
+            )
+        }
     }
-}*/
+}

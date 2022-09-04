@@ -6,9 +6,11 @@ data class ButtonColorState(
     val contentColor: Color = Color.Unspecified,
     val disabledContentColor: Color = Color.Unspecified,
     val warnedContentColor: Color = Color.Unspecified,
+    val pointedContentColor: Color = Color.Unspecified,
     val bgColor: Color = Color.Transparent,
     val disabledBgColor: Color = Color.Transparent,
-    val warnedBgColor: Color = Color.Transparent
+    val warnedBgColor: Color = Color.Transparent,
+    val pointedBgColor: Color = Color.Transparent
 ) {
     constructor(
         contentColor: Color,
@@ -16,9 +18,11 @@ data class ButtonColorState(
         warnedContentColor: Color,
         bgColor: Color
     ) : this(
-        contentColor,
-        disabledContentColor,
-        warnedContentColor,
-        bgColor, bgColor, bgColor
+        contentColor = contentColor,
+        disabledContentColor = disabledContentColor,
+        warnedBgColor = warnedContentColor,
+        bgColor = bgColor,
+        disabledBgColor = bgColor,
+        warnedContentColor = bgColor
     )
 }
