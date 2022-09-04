@@ -22,9 +22,9 @@ sealed class IconSize(val value: Dp) {
 @Composable
 fun YdsIcon(
     @DrawableRes id: Int,
-    iconSize: IconSize,
-    tint: Color = LocalContentColor.current,
     modifier: Modifier = Modifier,
+    iconSize: IconSize = IconSize.Medium,
+    tint: Color = LocalContentColor.current
 ) {
     Icon(
         imageVector = ImageVector.vectorResource(id = id),

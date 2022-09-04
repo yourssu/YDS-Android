@@ -257,8 +257,8 @@ fun BoxButton(
         state.leftIconState?.let { leftIconId ->
                 YdsIcon(
                     id = leftIconId,
-                    iconSize = state.iconSize,
-                    tint = state.contentColor
+                    iconSize = state.iconSize
+                // tint 자동으로 contentColor로 지정됨
                 )
                 Spacer(modifier = Modifier.width(4.dp))
             }
@@ -272,8 +272,7 @@ fun BoxButton(
             Spacer(modifier = Modifier.width(4.dp))
             YdsIcon(
                 id = rightIconId,
-                iconSize = state.iconSize,
-                tint = state.contentColor
+                iconSize = state.iconSize
             )
         }
     }
