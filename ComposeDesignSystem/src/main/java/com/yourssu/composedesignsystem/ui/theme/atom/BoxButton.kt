@@ -298,10 +298,6 @@ fun BoxButtonPreview() {
             )
             BoxButton(
                 onClick = {
-//                    buttonState1 = buttonState1.copy(
-//                      isDisabled = true,
-//                      buttonType = BoxButtonState.Type.Tinted
-//                    )
                     buttonState1.isWarnedState = true
                     buttonState1.buttonTypeState = BoxButtonState.Type.Line
 
