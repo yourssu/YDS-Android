@@ -127,6 +127,4 @@ data class YdsTypography(
     )
 )
 
-internal val YdsTypo = YdsTypography()
-
-internal val LocalYdsTypography = staticCompositionLocalOf { YdsTypo }
+internal val LocalYdsTypography = staticCompositionLocalOf { YdsTypography() }

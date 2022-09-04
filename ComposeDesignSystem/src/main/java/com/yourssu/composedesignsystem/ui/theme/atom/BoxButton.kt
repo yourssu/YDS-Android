@@ -23,7 +23,6 @@ import com.yourssu.composedesignsystem.R
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
-import com.yourssu.composedesignsystem.ui.theme.foundation.YdsTypo
 import com.yourssu.composedesignsystem.ui.theme.rule.YdsBorder
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonColorState
@@ -191,29 +190,30 @@ private fun boxButtonColorByType(
     )
 }
 
+@Composable
 private fun boxButtonSizeStateBySize(
     size: BoxButtonState.Size
 ): ButtonSizeState = when (size) {
     BoxButtonState.Size.ExtraLarge -> ButtonSizeState(
-        typo = YdsTypo.button1,
+        typo = YdsTheme.typography.button1,
         iconSize = IconSize.Medium,
         height = 56.dp,
         horizontalPadding = 16.dp
     )
     BoxButtonState.Size.Large -> ButtonSizeState(
-        typo = YdsTypo.button2,
+        typo = YdsTheme.typography.button2,
         iconSize = IconSize.Medium,
         height = 48.dp,
         horizontalPadding = 16.dp
     )
     BoxButtonState.Size.Medium -> ButtonSizeState(
-        typo = YdsTypo.button2,
+        typo = YdsTheme.typography.button2,
         iconSize = IconSize.Medium,
         height = 40.dp,
         horizontalPadding = 12.dp
     )
     BoxButtonState.Size.Small -> ButtonSizeState(
-        typo = YdsTypo.button4,
+        typo = YdsTheme.typography.button4,
         iconSize = IconSize.Small,
         height = 32.dp,
         horizontalPadding = 12.dp
