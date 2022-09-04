@@ -185,8 +185,7 @@ private fun boxButtonColorByType(
     BoxButtonState.Type.Line -> ButtonColorState(
         contentColor = YdsTheme.colors.buttonPoint,
         disabledContentColor = YdsTheme.colors.buttonDisabled,
-        warnedContentColor = YdsTheme.colors.buttonWarned,
-        bgColor = YdsTheme.colors.bgNormal
+        warnedContentColor = YdsTheme.colors.buttonWarned
     )
 }
 
@@ -303,8 +302,8 @@ fun BoxButtonPreview() {
 //                      isDisabled = true,
 //                      buttonType = BoxButtonState.Type.Tinted
 //                    )
-                    buttonState1.isDisabledState = true
-                    buttonState1.buttonTypeState = BoxButtonState.Type.Tinted
+                    buttonState1.isWarnedState = true
+                    buttonState1.buttonTypeState = BoxButtonState.Type.Line
 
                 },
                 state = buttonState2
