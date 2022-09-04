@@ -24,7 +24,7 @@ import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsTypo
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
-import com.yourssu.composedesignsystem.ui.theme.util.maybePressed
+import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
 
 //sealed class PlainButtonSize(val iconSize: IconSize, val typo: TextStyle?) {
 //    object Large : PlainButtonSize(IconSize.Medium, null)
@@ -32,39 +32,33 @@ import com.yourssu.composedesignsystem.ui.theme.util.maybePressed
 //    object Small : PlainButtonSize(IconSize.ExtraSmall, YdsTypo.button4)
 //}
 
+/*
 enum class PlainButtonSize(val iconSize: IconSize, val typo: TextStyle?) {
+
     Large(IconSize.Medium, null),
     Medium(IconSize.Small, YdsTypo.button3),
     Small(IconSize.ExtraSmall, YdsTypo.button4)
-}
-
-enum class PlainButtonType {
-    Normal,
-    Pointed,
-    Disabled,
-    Warned
 }
 
 data class PlainButtonState(
     val text: String = "",
     @DrawableRes val leftIcon: Int? = null,
     @DrawableRes val rightIcon: Int? = null,
-    val buttonType: PlainButtonType = PlainButtonType.Normal,
+    val isPointed: Boolean = false,
+    val isDisabled: Boolean = false,
+    val isWarned: Boolean = false,
     val size: PlainButtonSize = PlainButtonSize.Medium,
     val interactionSource: MutableInteractionSource = MutableInteractionSource()
 ) {
     private val isPressed: Boolean
         @Composable get() = interactionSource.collectIsPressedAsState().value
 
-    val isDisabled: Boolean
-        get() = buttonType == PlainButtonType.Disabled
-
     val contentColor: Color
         @Composable get() = when (buttonType) {
-            PlainButtonType.Normal -> YdsTheme.colors.buttonNormal.maybePressed(isPressed)
-            PlainButtonType.Pointed -> YdsTheme.colors.buttonPoint.maybePressed(isPressed)
+            PlainButtonType.Normal -> YdsTheme.colors.buttonNormal.alterColorIfPressed(isPressed)
+            PlainButtonType.Pointed -> YdsTheme.colors.buttonPoint.alterColorIfPressed(isPressed)
             PlainButtonType.Disabled -> YdsTheme.colors.buttonDisabled
-            PlainButtonType.Warned -> YdsTheme.colors.buttonWarned.maybePressed(isPressed)
+            PlainButtonType.Warned -> YdsTheme.colors.buttonWarned.alterColorIfPressed(isPressed)
         }
 
 //    val typo: TextStyle
@@ -79,6 +73,10 @@ data class PlainButtonState(
 //            PlainButtonSize.Medium -> IconSize.Small
 //            PlainButtonSize.Small -> IconSize.ExtraSmall
 //        }
+
+    enum class Size {
+        Large, Medium, Small
+    }
 
     companion object {
         val Saver: Saver<PlainButtonState, *>
@@ -209,4 +207,4 @@ fun PlainButtonPreview() {
             buttonState = buttonState2
         )
     }
-}
+}*/

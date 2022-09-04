@@ -29,6 +29,8 @@ import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonColorState
 import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
 
+// interactionSource가 껴있으면 클릭 할 때마다 객체가 재생성되는 건가?
+// 만약 그렇다면 interactionSource를 외부로 옮길 필요가 있을 듯
 data class BoxButtonState(
     private val text: String = "",
     @DrawableRes private val leftIcon: Int? = null,
@@ -154,13 +156,11 @@ fun rememberBoxButtonState(
     buttonType: BoxButtonState.Type = BoxButtonState.Type.Filled,
     buttonSize: BoxButtonState.Size = BoxButtonState.Size.Large,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
-): MutableState<BoxButtonState> = rememberSaveable(
+): BoxButtonState = rememberSaveable(
     text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize, interactionSource,
-    stateSaver = BoxButtonState.Saver
+    saver = BoxButtonState.Saver
 ) {
-    mutableStateOf(
-        BoxButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize, interactionSource)
-    )
+    BoxButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize, interactionSource)
 }
 
 @Composable
@@ -282,11 +282,11 @@ fun BoxButton(
 @Preview(showBackground = true)
 @Composable
 fun BoxButtonPreview() {
-    val buttonState1 by rememberBoxButtonState(
+    val buttonState1 = rememberBoxButtonState(
         text = "Filled",
         leftIcon = R.drawable.ic_ground_filled
     )
-    val buttonState2 by rememberBoxButtonState(
+    val buttonState2 = rememberBoxButtonState(
         text = "Line",
         isWarned = true,
         buttonType = BoxButtonState.Type.Line
@@ -300,10 +300,10 @@ fun BoxButtonPreview() {
             )
             BoxButton(
                 onClick = {
-//                          buttonState1 = buttonState1.copy(
-//                              isDisabled = true,
-//                              buttonType = BoxButtonState.Type.Tinted
-//                          )
+//                    buttonState1 = buttonState1.copy(
+//                      isDisabled = true,
+//                      buttonType = BoxButtonState.Type.Tinted
+//                    )
                     buttonState1.isDisabledState = true
                     buttonState1.buttonTypeState = BoxButtonState.Type.Tinted
 
