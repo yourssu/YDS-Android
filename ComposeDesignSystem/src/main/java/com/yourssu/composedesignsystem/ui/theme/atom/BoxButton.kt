@@ -25,53 +25,73 @@ import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsTypo
 import com.yourssu.composedesignsystem.ui.theme.rule.YdsBorder
-import com.yourssu.composedesignsystem.ui.theme.rule.YdsRounding
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonColorState
-import com.yourssu.composedesignsystem.ui.theme.util.maybePressed
+import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
 
-// TODO: isPressed 값 외부에서 주입받기
-// copy로 직접 할당하는 방법 말고 다른 방법으로도 recomposition 일어날 수 있게 설계하기
 data class BoxButtonState(
-    val isDisabled: Boolean = false,
-    val isWarned: Boolean = false,
-    val buttonType: Type = Type.Filled,
-    val buttonSize: Size = Size.ExtraLarge,
-    val roundingShape: CornerBasedShape = YdsRounding.large,
+    private val text: String = "",
+    @DrawableRes private val leftIcon: Int? = null,
+    @DrawableRes private val rightIcon: Int? = null,
+    private val isDisabled: Boolean = false,
+    private val isWarned: Boolean = false,
+    private val buttonType: Type = Type.Filled,
+    private val buttonSize: Size = Size.Large,
     val interactionSource: MutableInteractionSource = MutableInteractionSource()
 ) {
+    /**
+     * 외부에서 BoxButtonState의 속성을 변경할 때 접근하는 프로퍼티입니다.
+     *
+     * 생성자의 프로퍼티는 외부에서 접근하면 안되므로
+     * private 접근 지정자가 지정되어 있습니다.
+     *
+     * 변경된 속성과 관련된 compose 함수를 자동을
+     * recomposition 시킬 수 있도록 MutableState 객체로 정의되어 있습니다.
+     */
+    var textState by mutableStateOf(text)
+    var leftIconState by mutableStateOf(leftIcon)
+    var rightIconState by mutableStateOf(rightIcon)
+    var isDisabledState by mutableStateOf(isDisabled)
+    var isWarnedState by mutableStateOf(isWarned)
+    var buttonTypeState by mutableStateOf(buttonType)
+    var buttonSizeState by mutableStateOf(buttonSize)
+
     private val isPressed: Boolean
         @Composable get() = interactionSource.collectIsPressedAsState().value
 
     private val colorState: ButtonColorState
-        @Composable get() = boxButtonColorByType(type = buttonType)
+        @Composable get() = boxButtonColorByType(type = buttonTypeState)
+
+    private val sizeState: ButtonSizeState
+        @Composable get() = boxButtonSizeStateBySize(size = buttonSizeState)
 
     val contentColor: Color
         @Composable get() = when {
-            isDisabled -> colorState.disabledContentColor
-            isWarned -> colorState.warnedContentColor
+            isDisabledState -> colorState.disabledContentColor
+            isWarnedState -> colorState.warnedContentColor
             else -> colorState.contentColor
-        }.maybePressed(isPressed = isPressed)
-
-    val disabledContentColor: Color
-        @Composable get() = colorState.disabledContentColor
+        }.alterColorIfPressed(isPressed = isPressed)
 
     val backgroundColor: Color
         @Composable get() = when {
-            isDisabled -> colorState.disabledBgColor
-            isWarned -> colorState.warnedBgColor
+            isDisabledState -> colorState.disabledBgColor
+            isWarnedState -> colorState.warnedBgColor
             else -> colorState.bgColor
-        }.maybePressed(isPressed = isPressed)
+        }.alterColorIfPressed(isPressed = isPressed)
 
+    val disabledContentColor: Color
+        @Composable get() = colorState.disabledContentColor
     val disabledBackgroundColor: Color
         @Composable get() = colorState.disabledBgColor
 
-    private val sizeState: ButtonSizeState = boxButtonSizeStateBySize(size = buttonSize)
-
-    val typo: TextStyle = sizeState.typo
-    val iconSize: IconSize = sizeState.iconSize
-    val height: Dp = sizeState.height
-    val horizontalPadding: Dp = sizeState.horizontalPadding
+    val typo: TextStyle
+        @Composable get() = sizeState.typo
+    val iconSize: IconSize
+        @Composable get() = sizeState.iconSize
+    val height: Dp
+        @Composable get() = sizeState.height
+    val horizontalPadding: Dp
+        @Composable get() = sizeState.horizontalPadding
 
     enum class Type {
         Filled,
@@ -88,30 +108,35 @@ data class BoxButtonState(
 
     companion object {
         val Saver = run {
+            val textKey = "text"
+            val leftIconKey = "leftIcon"
+            val rightIconKey = "rightIcon"
             val disabledKey = "disabled"
             val warnedKey = "warned"
             val buttonTypeKey = "buttonType"
             val buttonSizeKey = "buttonSize"
-            val roundingKey = "rounding"
 
-            // rounding 넣으면 오류남,
             mapSaver(
                 save = {
                     mapOf(
-                        disabledKey to it.isDisabled,
-                        warnedKey to it.isWarned,
-                        buttonTypeKey to it.buttonType,
-                        buttonSizeKey to it.buttonSize,
-                        // roundingKey to it.roundingShape
+                        textKey to it.textState,
+                        leftIconKey to it.leftIconState,
+                        rightIconKey to it.rightIconState,
+                        disabledKey to it.isDisabledState,
+                        warnedKey to it.isWarnedState,
+                        buttonTypeKey to it.buttonTypeState,
+                        buttonSizeKey to it.buttonSizeState
                     )
                 },
                 restore = {
                     BoxButtonState(
+                        it[textKey] as String,
+                        it[leftIconKey] as Int?,
+                        it[rightIconKey] as Int?,
                         it[disabledKey] as Boolean,
                         it[warnedKey] as Boolean,
                         it[buttonTypeKey] as Type,
-                        it[buttonSizeKey] as Size,
-                        // it[roundingKey] as CornerBasedShape
+                        it[buttonSizeKey] as Size
                     )
                 }
             )
@@ -120,21 +145,21 @@ data class BoxButtonState(
 }
 
 @Composable
-fun rememberBoxButtonStyleState(
+fun rememberBoxButtonState(
+    text: String,
+    @DrawableRes leftIcon: Int? = null,
+    @DrawableRes rightIcon: Int? = null,
     isDisabled: Boolean = false,
     isWarned: Boolean = false,
     buttonType: BoxButtonState.Type = BoxButtonState.Type.Filled,
-    buttonSize: BoxButtonState.Size = BoxButtonState.Size.ExtraLarge,
-    roundingShape: CornerBasedShape = YdsRounding.large,
+    buttonSize: BoxButtonState.Size = BoxButtonState.Size.Large,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ): MutableState<BoxButtonState> = rememberSaveable(
-    isDisabled, isWarned, buttonType, buttonSize, roundingShape, interactionSource,
+    text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize, interactionSource,
     stateSaver = BoxButtonState.Saver
 ) {
     mutableStateOf(
-        BoxButtonState(
-            isDisabled, isWarned, buttonType, buttonSize, roundingShape, interactionSource
-        )
+        BoxButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize, interactionSource)
     )
 }
 
@@ -198,59 +223,57 @@ private fun boxButtonSizeStateBySize(
 @Composable
 fun BoxButton(
     onClick: () -> Unit,
-    text: String,
+    state: BoxButtonState,
     modifier: Modifier = Modifier,
-    @DrawableRes leftIcon: Int? = null,
-    @DrawableRes rightIcon: Int? = null,
-    styleState: BoxButtonState
+    rounding: CornerBasedShape = YdsTheme.rounding.large
 ) {
     val buttonColors = buttonColors(
-        backgroundColor = styleState.backgroundColor,
-        contentColor = styleState.contentColor,
-        disabledBackgroundColor = styleState.disabledBackgroundColor,
-        disabledContentColor = styleState.disabledContentColor
+        backgroundColor = state.backgroundColor,
+        contentColor = state.contentColor,
+        disabledBackgroundColor = state.disabledBackgroundColor,
+        disabledContentColor = state.disabledContentColor
     )
 
     Button(
         onClick = onClick,
         modifier = Modifier
             .then(modifier)
-            .height(styleState.height),
-        enabled = !styleState.isDisabled,
+            .height(state.height),
+        enabled = !state.isDisabledState,
         elevation = elevation(0.dp, 0.dp, 0.dp),
         colors = buttonColors,
-        border = if (styleState.buttonType == BoxButtonState.Type.Line) {
+        border = if (state.buttonTypeState == BoxButtonState.Type.Line) {
             BorderStroke(
                 YdsBorder.normal,
-                styleState.contentColor
+                state.contentColor
             )
         } else { null },
-        interactionSource = styleState.interactionSource,
-        shape = styleState.roundingShape,
+        interactionSource = state.interactionSource,
+        shape = rounding,
         contentPadding = PaddingValues(
-            horizontal = styleState.horizontalPadding
+            horizontal = state.horizontalPadding
         )
     ) {
-        leftIcon?.let { leftIconId ->
+        state.leftIconState?.let { leftIconId ->
                 YdsIcon(
                     id = leftIconId,
-                    iconSize = styleState.iconSize,
-                    tint = styleState.contentColor
+                    iconSize = state.iconSize,
+                    tint = state.contentColor
                 )
                 Spacer(modifier = Modifier.width(4.dp))
             }
 
         Text(
-            text = text,
-            style = styleState.typo
+            text = state.textState,
+            style = state.typo
         )
 
-        rightIcon?.let { rightIconId ->
+        state.rightIconState?.let { rightIconId ->
             Spacer(modifier = Modifier.width(4.dp))
             YdsIcon(
                 id = rightIconId,
-                iconSize = styleState.iconSize,
-                tint = styleState.contentColor
+                iconSize = state.iconSize,
+                tint = state.contentColor
             )
         }
     }
@@ -259,8 +282,12 @@ fun BoxButton(
 @Preview(showBackground = true)
 @Composable
 fun BoxButtonPreview() {
-    var buttonState1 by rememberBoxButtonStyleState()
-    val buttonState2 by rememberBoxButtonStyleState(
+    val buttonState1 by rememberBoxButtonState(
+        text = "Filled",
+        leftIcon = R.drawable.ic_ground_filled
+    )
+    val buttonState2 by rememberBoxButtonState(
+        text = "Line",
         isWarned = true,
         buttonType = BoxButtonState.Type.Line
     )
@@ -269,19 +296,19 @@ fun BoxButtonPreview() {
         Column {
             BoxButton(
                 onClick = { },
-                text = "Filled",
-                styleState = buttonState1,
-                leftIcon = R.drawable.ic_ground_filled
+                state = buttonState1
             )
             BoxButton(
                 onClick = {
-                          buttonState1 = buttonState1.copy(
-                              isDisabled = true,
-                              buttonType = BoxButtonState.Type.Tinted
-                          )
+//                          buttonState1 = buttonState1.copy(
+//                              isDisabled = true,
+//                              buttonType = BoxButtonState.Type.Tinted
+//                          )
+                    buttonState1.isDisabledState = true
+                    buttonState1.buttonTypeState = BoxButtonState.Type.Tinted
+
                 },
-                text = "Line",
-                styleState = buttonState2
+                state = buttonState2
             )
         }
     }
