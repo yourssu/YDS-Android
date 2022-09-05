@@ -5,10 +5,14 @@ import androidx.compose.material.Shapes
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.dp
 
+internal val smallRounding = 2.dp
+internal val normalRounding = 4.dp
+internal val largeRounding = 8.dp
+
 internal val YdsRounding = Shapes(
-    small = RoundedCornerShape(2.dp),
-    medium = RoundedCornerShape(4.dp),
-    large = RoundedCornerShape(8.dp)
+    small = RoundedCornerShape(smallRounding),
+    medium = RoundedCornerShape(normalRounding),
+    large = RoundedCornerShape(largeRounding)
 )
 
 internal val LocalYdsRounding = staticCompositionLocalOf { YdsRounding }
