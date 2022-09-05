@@ -2,8 +2,8 @@ package com.yourssu.composedesignsystem.ui.theme.atom
 
 import android.util.Log
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.R
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
+import com.yourssu.composedesignsystem.ui.theme.base.noRippleClickable
 
 data class ListItemState(
     private val text: String,
@@ -26,6 +27,9 @@ data class ListItemState(
     var leftIconState by mutableStateOf(leftIcon)
     var rightIconState by mutableStateOf(rightIcon)
     var isDisabledState by mutableStateOf(isDisabled)
+
+    val isPressed: Boolean
+        @Composable get() = interactionSource.collectIsPressedAsState().value
 }
 
 @Composable
@@ -47,17 +51,14 @@ fun ListItem(
     state: ListItemState,
     modifier: Modifier = Modifier
 ) {
-    val notClickableModifier = Modifier
-        .then(modifier)
-        .fillMaxWidth()
-        .height(48.dp)
-
     Row(
-        modifier = if (state.isDisabledState) {
-            notClickableModifier
-        } else {
-            notClickableModifier.clickable { onClick() }
-        },
+        modifier = Modifier
+            .then(modifier)
+            .fillMaxWidth()
+            .height(48.dp)
+            .noRippleClickable {
+                onClick()
+            },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -84,8 +85,11 @@ fun ListItem(
 @Preview(showBackground = true)
 @Composable
 fun ListItemPreview() {
+    var count by remember {
+        mutableStateOf(0)
+    }
     ListItem(
-        onClick = {  },
+        onClick = { Log.d("asdf", "ListItemPreview: ${count++}") },
         state = rememberListItemState(
             text = "로그아웃",
             isDisabled = true,
