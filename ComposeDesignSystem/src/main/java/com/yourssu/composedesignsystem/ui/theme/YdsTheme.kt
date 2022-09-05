@@ -1,31 +1,36 @@
 package com.yourssu.composedesignsystem.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import com.yourssu.composedesignsystem.ui.theme.foundation.*
 import com.yourssu.composedesignsystem.ui.theme.foundation.LocalYdsColorScheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.LocalYdsTypography
+import com.yourssu.composedesignsystem.ui.theme.rule.Border
+import com.yourssu.composedesignsystem.ui.theme.rule.LocalYdsBorder
+import com.yourssu.composedesignsystem.ui.theme.rule.LocalYdsRounding
 
 @Composable
 fun YdsTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(), // 추후에 제거
     typography: YdsTypography = YdsTheme.typography,
+    rounding: Shapes = YdsTheme.rounding,
+    border: Border = YdsTheme.border,
     content: @Composable () -> Unit
 ) {
-    val colors = lightColorScheme
-    // TODO add  darkColorScheme
-    CompositionLocalProvider(LocalYdsTypography provides typography) {
-//    MaterialTheme(
-//        colors = colors,
-//        typography = typography,
-//        shapes = Shapes,
-//        content = content
-//    )
-
+    val colors = if (isSystemInDarkTheme()) {
+        darkColorScheme
+    } else {
+        lightColorScheme
     }
-
+    CompositionLocalProvider(
+        LocalYdsColorScheme provides colors,
+        LocalYdsTypography provides typography,
+        LocalYdsRounding provides rounding,
+        LocalYdsBorder provides border,
+        content = content
+    )
 }
 
 object YdsTheme {
@@ -38,4 +43,14 @@ object YdsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalYdsTypography.current
+
+    val rounding: Shapes
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalYdsRounding.current
+
+    val border: Border
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalYdsBorder.current
 }
