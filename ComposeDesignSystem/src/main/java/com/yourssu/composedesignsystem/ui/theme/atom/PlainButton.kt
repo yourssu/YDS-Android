@@ -68,15 +68,15 @@ data class PlainButtonState(
     }
 
     companion object {
-        val Saver = run {
-            val textKey = "text"
-            val leftIconKey = "leftIcon"
-            val rightIconKey = "rightIcon"
-            val disabledKey = "disabled"
-            val warnedKey = "warned"
-            val pointedKey = "pointed"
-            val buttonSizeKey = "buttonSize"
+        private const val textKey = "text"
+        private const val leftIconKey = "leftIcon"
+        private const val rightIconKey = "rightIcon"
+        private const val disabledKey = "disabled"
+        private const val warnedKey = "warned"
+        private const val pointedKey = "pointed"
+        private const val buttonSizeKey = "buttonSize"
 
+        val Saver = run {
             mapSaver(
                 save = {
                     mapOf(
