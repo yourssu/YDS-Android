@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.R
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
+import com.yourssu.composedesignsystem.ui.theme.base.NoRippleButton
 import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
 import com.yourssu.composedesignsystem.ui.theme.rule.YdsBorder
@@ -28,8 +29,6 @@ import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonColorState
 import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
 
-// interactionSource가 껴있으면 클릭 할 때마다 객체가 재생성되는 건가?
-// 만약 그렇다면 interactionSource를 외부로 옮길 필요가 있을 듯
 data class BoxButtonState(
     private val text: String = "",
     @DrawableRes private val leftIcon: Int? = null,
@@ -37,8 +36,7 @@ data class BoxButtonState(
     private val isDisabled: Boolean = false,
     private val isWarned: Boolean = false,
     private val buttonType: Type = Type.Filled,
-    private val buttonSize: Size = Size.Large,
-    val interactionSource: MutableInteractionSource = MutableInteractionSource()
+    private val buttonSize: Size = Size.Large
 ) {
     /**
      * 외부에서 BoxButtonState의 속성을 변경할 때 접근하는 프로퍼티입니다.
@@ -57,34 +55,14 @@ data class BoxButtonState(
     var buttonTypeState by mutableStateOf(buttonType)
     var buttonSizeState by mutableStateOf(buttonSize)
 
-    private val isPressed: Boolean
-        @Composable get() = interactionSource.collectIsPressedAsState().value
-
-    private val colorState: ButtonColorState
-        @Composable get() = boxButtonColorByType(type = buttonTypeState)
+    val colorState: ButtonColorState
+        @Composable get() = boxButtonColorByType(
+            isWarned = isWarnedState,
+            type = buttonTypeState
+        )
 
     private val sizeState: ButtonSizeState
         @Composable get() = boxButtonSizeStateBySize(size = buttonSizeState)
-
-    val contentColor: Color
-        @Composable get() = when {
-            isDisabledState -> colorState.disabledContentColor
-            isWarnedState -> colorState.warnedContentColor
-            else -> colorState.contentColor
-        }.alterColorIfPressed(isPressed = isPressed)
-
-    val backgroundColor: Color
-        @Composable get() = when {
-            isDisabledState -> colorState.disabledBgColor
-            isWarnedState -> colorState.warnedBgColor
-            else -> colorState.bgColor
-        }.alterColorIfPressed(isPressed = isPressed)
-
-    val disabledContentColor: Color
-        @Composable get() = colorState.disabledContentColor
-    val disabledBackgroundColor: Color
-        @Composable get() = colorState.disabledBgColor
-
     val typo: TextStyle
         @Composable get() = sizeState.typo
     val iconSize: IconSize
@@ -153,40 +131,46 @@ fun rememberBoxButtonState(
     isDisabled: Boolean = false,
     isWarned: Boolean = false,
     buttonType: BoxButtonState.Type = BoxButtonState.Type.Filled,
-    buttonSize: BoxButtonState.Size = BoxButtonState.Size.Large,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    buttonSize: BoxButtonState.Size = BoxButtonState.Size.Large
 ): BoxButtonState = rememberSaveable(
-    text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize, interactionSource,
+    text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize,
     saver = BoxButtonState.Saver
 ) {
-    BoxButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize, interactionSource)
+    BoxButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize)
 }
 
 @Composable
 private fun boxButtonColorByType(
+    isWarned: Boolean,
     type: BoxButtonState.Type
 ): ButtonColorState = when (type) {
     BoxButtonState.Type.Filled -> ButtonColorState(
         contentColor = YdsTheme.colors.buttonBright,
         disabledContentColor = YdsTheme.colors.buttonDisabled,
-        warnedContentColor = YdsTheme.colors.buttonBright,
-        bgColor = YdsTheme.colors.buttonPoint,
+        bgColor = when {
+            isWarned -> YdsTheme.colors.buttonWarned
+            else -> YdsTheme.colors.buttonPoint
+        },
         disabledBgColor = YdsTheme.colors.buttonDisabledBG,
-        warnedBgColor = YdsTheme.colors.buttonWarned
     )
     BoxButtonState.Type.Tinted -> ButtonColorState(
-        contentColor = YdsTheme.colors.buttonPoint,
+        contentColor = when {
+            isWarned -> YdsTheme.colors.buttonWarned
+            else -> YdsTheme.colors.buttonPoint
+        },
         disabledContentColor = YdsTheme.colors.buttonDisabled,
-        warnedContentColor = YdsTheme.colors.buttonWarned,
-        bgColor = YdsTheme.colors.buttonPointBG,
-        disabledBgColor = YdsTheme.colors.buttonDisabledBG,
-        warnedBgColor = YdsTheme.colors.buttonWarnedBG
+        bgColor = when {
+            isWarned -> YdsTheme.colors.buttonWarnedBG
+            else -> YdsTheme.colors.buttonPointBG
+        },
+        disabledBgColor = YdsTheme.colors.buttonDisabledBG
     )
     BoxButtonState.Type.Line -> ButtonColorState(
-        contentColor = YdsTheme.colors.buttonPoint,
-        disabledContentColor = YdsTheme.colors.buttonDisabled,
-        warnedContentColor = YdsTheme.colors.buttonWarned,
-        bgColor = YdsTheme.colors.bgNormal
+        contentColor = when {
+            isWarned -> YdsTheme.colors.buttonWarned
+            else -> YdsTheme.colors.buttonPoint
+        },
+        disabledContentColor = YdsTheme.colors.buttonDisabled
     )
 }
 
@@ -225,30 +209,20 @@ fun BoxButton(
     onClick: () -> Unit,
     state: BoxButtonState,
     modifier: Modifier = Modifier,
-    rounding: CornerBasedShape = YdsTheme.rounding.large
+    rounding: CornerBasedShape = YdsTheme.rounding.large,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
-    val buttonColors = buttonColors(
-        backgroundColor = state.backgroundColor,
-        contentColor = state.contentColor,
-        disabledBackgroundColor = state.disabledBackgroundColor,
-        disabledContentColor = state.disabledContentColor
-    )
 
-    Button(
+    NoRippleButton(
         onClick = onClick,
+        colors = state.colorState,
         modifier = Modifier
             .then(modifier)
             .height(state.height),
         enabled = !state.isDisabledState,
+        showBorder = (state.buttonTypeState == BoxButtonState.Type.Line),
         elevation = elevation(0.dp, 0.dp, 0.dp),
-        colors = buttonColors,
-        border = if (state.buttonTypeState == BoxButtonState.Type.Line) {
-            BorderStroke(
-                YdsBorder.normal,
-                state.contentColor
-            )
-        } else { null },
-        interactionSource = state.interactionSource,
+        interactionSource = interactionSource,
         shape = rounding,
         contentPadding = PaddingValues(
             horizontal = state.horizontalPadding
@@ -299,12 +273,8 @@ fun BoxButtonPreview() {
             )
             BoxButton(
                 onClick = {
-//                    buttonState1 = buttonState1.copy(
-//                      isDisabled = true,
-//                      buttonType = BoxButtonState.Type.Tinted
-//                    )
-                    buttonState1.isDisabledState = true
-                    buttonState1.buttonTypeState = BoxButtonState.Type.Tinted
+                    buttonState1.isWarnedState = true
+                    buttonState1.buttonTypeState = BoxButtonState.Type.Line
 
                 },
                 state = buttonState2
