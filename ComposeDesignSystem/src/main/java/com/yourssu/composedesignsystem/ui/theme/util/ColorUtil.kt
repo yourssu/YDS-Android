@@ -1,6 +1,5 @@
 package com.yourssu.composedesignsystem.ui.theme.util
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
