@@ -18,8 +18,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.R
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
+import com.yourssu.composedesignsystem.ui.theme.base.NoRippleButton
 import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
+import com.yourssu.composedesignsystem.ui.theme.states.ButtonColorState
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
 import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
 
@@ -30,8 +32,7 @@ data class PlainButtonState(
     private val isDisabled: Boolean = false,
     private val isWarned: Boolean = false,
     private val isPointed: Boolean = false,
-    private val buttonSize: Size = Size.Medium,
-    val interactionSource: MutableInteractionSource = MutableInteractionSource()
+    private val buttonSize: Size = Size.Medium
 ) {
     /**
      * [BoxButtonState]의 설명 참고
@@ -44,22 +45,19 @@ data class PlainButtonState(
     var isPointedState by mutableStateOf(isPointed)
     var buttonSizeState by mutableStateOf(buttonSize)
 
-    private val isPressed: Boolean
-        @Composable get() = interactionSource.collectIsPressedAsState().value
+
+    val colorState: ButtonColorState
+        @Composable get() = ButtonColorState(
+            contentColor = when {
+                isWarnedState -> YdsTheme.colors.buttonWarned
+                isPointedState -> YdsTheme.colors.buttonPoint
+                else -> YdsTheme.colors.buttonNormal
+            },
+            disabledContentColor = YdsTheme.colors.buttonDisabled
+        )
 
     private val sizeState: ButtonSizeState
         @Composable get() = plainButtonSizeStateBySize(size = buttonSizeState)
-
-    val contentColor: Color
-        @Composable get() = when {
-            isWarnedState -> YdsTheme.colors.buttonWarned
-            isPointedState -> YdsTheme.colors.buttonPoint
-            else -> YdsTheme.colors.buttonNormal
-        }.alterColorIfPressed(isPressed = isPressed)
-
-    val disabledContentColor: Color
-        @Composable get() = YdsTheme.colors.buttonDisabled
-
     val typo: TextStyle
         @Composable get() = sizeState.typo
     val iconSize: IconSize
@@ -115,13 +113,12 @@ fun rememberPlainButtonState(
     isDisabled: Boolean = false,
     isWarned: Boolean = false,
     isPointed: Boolean = false,
-    buttonSize: PlainButtonState.Size = PlainButtonState.Size.Medium,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    buttonSize: PlainButtonState.Size = PlainButtonState.Size.Medium
 ): PlainButtonState = rememberSaveable(
-    text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize, interactionSource,
+    text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize,
     saver = PlainButtonState.Saver
 ) {
-    PlainButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize, interactionSource)
+    PlainButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize)
 }
 
 @Composable
@@ -143,26 +140,20 @@ private fun plainButtonSizeStateBySize(
 fun PlainButton(
     onClick: () -> Unit,
     state: PlainButtonState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
-    val buttonColor = buttonColors(
-        backgroundColor = Color.Transparent,
-        contentColor = state.contentColor,
-        disabledBackgroundColor = Color.Transparent,
-        disabledContentColor = state.disabledContentColor
-    )
 
-    Button(
+    NoRippleButton(
         onClick = onClick,
         modifier = modifier,
         enabled = !state.isDisabledState,
-        colors = buttonColor,
+        colors = state.colorState,
         elevation = elevation(0.dp, 0.dp, 0.dp),
-        interactionSource = state.interactionSource,
+        interactionSource = interactionSource,
         contentPadding = PaddingValues(0.dp)
     ) {
         if (state.buttonSizeState == PlainButtonState.Size.Large) {
-
             // leftIcon이 null이라면 rightIcon 할당
             val iconResource = state.leftIconState ?: state.rightIconState
 

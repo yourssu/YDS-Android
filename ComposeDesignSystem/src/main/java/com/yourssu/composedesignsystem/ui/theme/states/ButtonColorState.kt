@@ -12,22 +12,18 @@ import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
 data class ButtonColorState(
     val contentColor: Color = Color.Unspecified,
     val disabledContentColor: Color = Color.Unspecified,
-    val warnedContentColor: Color = Color.Unspecified,
-    val pointedContentColor: Color = Color.Unspecified,
     val bgColor: Color = Color.Transparent,
-    val disabledBgColor: Color = Color.Transparent,
-    val warnedBgColor: Color = Color.Transparent,
-    val pointedBgColor: Color = Color.Transparent
+    val disabledBgColor: Color = Color.Transparent
 ) {
     @Composable
     fun contentColor(
         enabled: Boolean,
-        interactionSource: MutableInteractionSource? = null
+        interactionSource: MutableInteractionSource
     ): State<Color> {
-        val pressed = interactionSource?.collectIsPressedAsState()?.value
+        val pressed = interactionSource.collectIsPressedAsState().value
 
         return rememberUpdatedState(if (enabled) {
-            contentColor.alterColorIfPressed(isPressed = pressed ?: false)
+            contentColor.alterColorIfPressed(isPressed = pressed)
         } else {
             disabledContentColor
         })
