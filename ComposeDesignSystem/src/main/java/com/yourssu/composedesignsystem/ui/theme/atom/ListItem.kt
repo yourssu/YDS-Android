@@ -43,12 +43,12 @@ data class ListItemState(
         }
 
     companion object {
-        val Saver = run {
-            val textKey = "text"
-            val leftIconKey = "leftIcon"
-            val rightIconKey = "rightIcon"
-            val disabledKey = "disabled"
+        private const val textKey = "text"
+        private const val leftIconKey = "leftIcon"
+        private const val rightIconKey = "rightIcon"
+        private const val disabledKey = "disabled"
 
+        val Saver = run {
             mapSaver(
                 save = {
                     mapOf(
