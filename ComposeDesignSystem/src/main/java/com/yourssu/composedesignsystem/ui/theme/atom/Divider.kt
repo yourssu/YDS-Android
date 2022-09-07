@@ -38,7 +38,7 @@ fun Divider(
                     Thickness.Thick -> YdsTheme.colors.borderThin
                 }
             )
-            .composed {
+            .then(
                 when (direction) {
                     Direction.Horizontal -> Modifier
                         .fillMaxWidth()
@@ -47,7 +47,7 @@ fun Divider(
                         .fillMaxHeight()
                         .width(thickness.value)
                 }
-            }
+            )
     )
 }
 
@@ -67,12 +67,18 @@ fun DividerPreview() {
             Spacer(Modifier.height(8.dp))
 
             Row(modifier = Modifier.height(IntrinsicSize.Min)) {
-                Text(text = "abcd")
+                Text(
+                    text = "abcd",
+                    modifier = Modifier.padding(end = 8.dp)
+                )
                 Divider(
                     direction = Direction.Vertical,
                     thickness = Thickness.Thin
                 )
-                Text(text = "efgh")
+                Text(
+                    text = "efgh",
+                    modifier = Modifier.padding(start = 8.dp)
+                )
             }
         }
     }
