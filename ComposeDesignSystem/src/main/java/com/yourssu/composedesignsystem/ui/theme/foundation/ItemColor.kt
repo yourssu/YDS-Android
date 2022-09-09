@@ -17,7 +17,7 @@ enum class ItemColor {
     Pink;
 
     @Composable
-    fun getSemanticColor() = rememberUpdatedState(when (this) {
+    fun getSemanticColor() = when (this) {
         Mono -> YdsTheme.colors.monoItemBG
         Green -> YdsTheme.colors.greenItemBG
         Emerald -> YdsTheme.colors.emeraldItemBG
@@ -27,5 +27,5 @@ enum class ItemColor {
         Violet -> YdsTheme.colors.violetItemBG
         Purple -> YdsTheme.colors.purpleItemBG
         Pink -> YdsTheme.colors.pinkItemBG
-    })
+    }
 }
