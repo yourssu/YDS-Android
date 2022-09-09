@@ -9,5 +9,6 @@ data class ButtonSizeState(
     val typo: TextStyle = TextStyle.Default,
     val iconSize: IconSize = IconSize.Medium,
     val height: Dp = 0.dp,
-    val horizontalPadding: Dp = 0.dp
+    val horizontalPadding: Dp = 0.dp,
+    val betweenSpace: Dp = 0.dp
 )
