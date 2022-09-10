@@ -1,5 +1,6 @@
 package com.yourssu.composedesignsystem.ui.theme.atom
 
+import android.os.Parcelable
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
@@ -19,56 +20,24 @@ import com.yourssu.composedesignsystem.R
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
 import com.yourssu.composedesignsystem.ui.theme.base.noRippleClickable
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ListItemState(
-    private val text: String,
+    private val _text: String,
     @DrawableRes private val leftIcon: Int? = null,
     @DrawableRes private val rightIcon: Int? = null,
-    private val isDisabled: Boolean = false,
-    val interactionSource: MutableInteractionSource = MutableInteractionSource()
-) {
-    var textState by mutableStateOf(text)
+    private val isDisabled: Boolean = false
+) : Parcelable {
+    @IgnoredOnParcel
+    var textState by mutableStateOf(_text)
+    @IgnoredOnParcel
     var leftIconState by mutableStateOf(leftIcon)
+    @IgnoredOnParcel
     var rightIconState by mutableStateOf(rightIcon)
+    @IgnoredOnParcel
     var isDisabledState by mutableStateOf(isDisabled)
-
-    private val isPressed: Boolean
-        @Composable get() = interactionSource.collectIsPressedAsState().value
-
-    val backgroundColor: Color
-        @Composable get() = if (isPressed && !isDisabledState) {
-            YdsTheme.colors.bgPressed
-        } else {
-            YdsTheme.colors.bgNormal
-        }
-
-    companion object {
-        private const val textKey = "text"
-        private const val leftIconKey = "leftIcon"
-        private const val rightIconKey = "rightIcon"
-        private const val disabledKey = "disabled"
-
-        val Saver = run {
-            mapSaver(
-                save = {
-                    mapOf(
-                        textKey to it.textState,
-                        leftIconKey to it.leftIconState,
-                        rightIconKey to it.rightIconState,
-                        disabledKey to it.isDisabledState
-                    )
-                },
-                restore = {
-                    ListItemState(
-                        it[textKey] as String,
-                        it[leftIconKey] as Int?,
-                        it[rightIconKey] as Int?,
-                        it[disabledKey] as Boolean
-                    )
-                }
-            )
-        }
-    }
 }
 
 @Composable
@@ -76,32 +45,38 @@ fun rememberListItemState(
     text: String,
     @DrawableRes leftIcon: Int? = null,
     @DrawableRes rightIcon: Int? = null,
-    isDisabled: Boolean = false,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    isDisabled: Boolean = false
 ): ListItemState = rememberSaveable(
-    text, leftIcon, rightIcon, isDisabled, interactionSource,
-    saver = ListItemState.Saver
+    text, leftIcon, rightIcon, isDisabled
 ) {
-    ListItemState(text, leftIcon, rightIcon, isDisabled, interactionSource)
+    ListItemState(text, leftIcon, rightIcon, isDisabled)
 }
 
 @Composable
 fun ListItem(
     onClick: () -> Unit,
     state: ListItemState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
+    val isPressed by interactionSource.collectIsPressedAsState()
+    val backgroundColor = if (isPressed && !state.isDisabledState) {
+        YdsTheme.colors.bgPressed
+    } else {
+        YdsTheme.colors.bgNormal
+    }
+
     Row(
         modifier = Modifier
             .then(modifier)
             .fillMaxWidth()
             .height(48.dp)
-            .noRippleClickable(interactionSource = state.interactionSource) {
+            .noRippleClickable(interactionSource) {
                 if (!state.isDisabledState) {
                     onClick()
                 }
             }
-            .background(color = state.backgroundColor),
+            .background(color = backgroundColor),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
