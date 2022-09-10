@@ -1,18 +1,15 @@
 package com.yourssu.composedesignsystem.ui.theme.atom
 
+import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,41 +20,50 @@ import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonColorState
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
-import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PlainButtonState(
-    private val text: String = "",
-    @DrawableRes private val leftIcon: Int? = null,
-    @DrawableRes private val rightIcon: Int? = null,
-    private val isDisabled: Boolean = false,
-    private val isWarned: Boolean = false,
-    private val isPointed: Boolean = false,
-    private val buttonSize: Size = Size.Medium
-) {
+    private val _text: String = "",
+    @DrawableRes private val _leftIcon: Int? = null,
+    @DrawableRes private val _rightIcon: Int? = null,
+    private val _isDisabled: Boolean = false,
+    private val _isWarned: Boolean = false,
+    private val _isPointed: Boolean = false,
+    private val _buttonSize: Size = Size.Medium
+) : Parcelable {
     /**
      * [BoxButtonState]의 설명 참고
      */
-    var textState by mutableStateOf(text)
-    var leftIconState by mutableStateOf(leftIcon)
-    var rightIconState by mutableStateOf(rightIcon)
-    var isDisabledState by mutableStateOf(isDisabled)
-    var isWarnedState by mutableStateOf(isWarned)
-    var isPointedState by mutableStateOf(isPointed)
-    var buttonSizeState by mutableStateOf(buttonSize)
+    @IgnoredOnParcel
+    var text by mutableStateOf(_text)
+    @IgnoredOnParcel
+    var leftIcon by mutableStateOf(_leftIcon)
+    @IgnoredOnParcel
+    var rightIcon by mutableStateOf(_rightIcon)
+    @IgnoredOnParcel
+    var isDisabled by mutableStateOf(_isDisabled)
+    @IgnoredOnParcel
+    var isWarned by mutableStateOf(_isWarned)
+    @IgnoredOnParcel
+    var isPointed by mutableStateOf(_isPointed)
+    @IgnoredOnParcel
+    var buttonSize by mutableStateOf(_buttonSize)
 
 
     val colorState: ButtonColorState
         @Composable get() = ButtonColorState(
             contentColor = when {
-                isWarnedState -> YdsTheme.colors.buttonWarned
-                isPointedState -> YdsTheme.colors.buttonPoint
+                isWarned -> YdsTheme.colors.buttonWarned
+                isPointed -> YdsTheme.colors.buttonPoint
                 else -> YdsTheme.colors.buttonNormal
             },
             disabledContentColor = YdsTheme.colors.buttonDisabled
         )
 
     private val sizeState: ButtonSizeState
-        @Composable get() = plainButtonSizeStateBySize(size = buttonSizeState)
+        @Composable get() = plainButtonSizeStateBySize(size = buttonSize)
     val typo: TextStyle
         @Composable get() = sizeState.typo
     val iconSize: IconSize
@@ -80,13 +86,13 @@ data class PlainButtonState(
             mapSaver(
                 save = {
                     mapOf(
-                        textKey to it.textState,
-                        leftIconKey to it.leftIconState,
-                        rightIconKey to it.rightIconState,
-                        disabledKey to it.isDisabledState,
-                        warnedKey to it.isWarnedState,
-                        pointedKey to it.isPointedState,
-                        buttonSizeKey to it.buttonSizeState
+                        textKey to it.text,
+                        leftIconKey to it.leftIcon,
+                        rightIconKey to it.rightIcon,
+                        disabledKey to it.isDisabled,
+                        warnedKey to it.isWarned,
+                        pointedKey to it.isPointed,
+                        buttonSizeKey to it.buttonSize
                     )
                 },
                 restore = {
@@ -115,8 +121,7 @@ fun rememberPlainButtonState(
     isPointed: Boolean = false,
     buttonSize: PlainButtonState.Size = PlainButtonState.Size.Medium
 ): PlainButtonState = rememberSaveable(
-    text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize,
-    saver = PlainButtonState.Saver
+    text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize
 ) {
     PlainButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, isPointed, buttonSize)
 }
@@ -143,19 +148,18 @@ fun PlainButton(
     modifier: Modifier = Modifier,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
-
     NoRippleButton(
         onClick = onClick,
         modifier = modifier,
-        enabled = !state.isDisabledState,
+        enabled = !state.isDisabled,
         colors = state.colorState,
         elevation = elevation(0.dp, 0.dp, 0.dp),
         interactionSource = interactionSource,
         contentPadding = PaddingValues(0.dp)
     ) {
-        if (state.buttonSizeState == PlainButtonState.Size.Large) {
+        if (state.buttonSize == PlainButtonState.Size.Large) {
             // leftIcon이 null이라면 rightIcon 할당
-            val iconResource = state.leftIconState ?: state.rightIconState
+            val iconResource = state.leftIcon ?: state.rightIcon
 
             iconResource?.let { iconRes ->
                 YdsIcon(
@@ -164,7 +168,7 @@ fun PlainButton(
                 )
             }
         } else {
-            state.leftIconState?.let { leftIconId ->
+            state.leftIcon?.let { leftIconId ->
                 YdsIcon(
                     id = leftIconId,
                     iconSize = state.iconSize
@@ -173,12 +177,12 @@ fun PlainButton(
             }
 
             Text(
-                text = state.textState,
+                text = state.text,
                 style = state.typo
             )
 
-            if (state.leftIconState == null) {
-                state.rightIconState?.let { rightIconId ->
+            if (state.leftIcon == null) {
+                state.rightIcon?.let { rightIconId ->
                     Spacer(modifier = Modifier.width(2.dp))
                     YdsIcon(
                         id = rightIconId,
@@ -213,9 +217,9 @@ fun PlainButtonPreview() {
             )
             PlainButton(
                 onClick = {
-                    buttonState1.textState = "Small"
-                    buttonState1.isPointedState = true
-                    buttonState1.buttonSizeState = PlainButtonState.Size.Small
+                    buttonState1.text = "Small"
+                    buttonState1.isPointed = true
+                    buttonState1.buttonSize = PlainButtonState.Size.Small
                 },
                 state = buttonState2
             )

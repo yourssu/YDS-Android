@@ -1,20 +1,16 @@
 package com.yourssu.composedesignsystem.ui.theme.atom
 
+import android.os.Parcelable
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerBasedShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -24,20 +20,21 @@ import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.base.NoRippleButton
 import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
-import com.yourssu.composedesignsystem.ui.theme.rule.YdsBorder
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonSizeState
 import com.yourssu.composedesignsystem.ui.theme.states.ButtonColorState
-import com.yourssu.composedesignsystem.ui.theme.util.alterColorIfPressed
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class BoxButtonState(
-    private val text: String = "",
-    @DrawableRes private val leftIcon: Int? = null,
-    @DrawableRes private val rightIcon: Int? = null,
-    private val isDisabled: Boolean = false,
-    private val isWarned: Boolean = false,
-    private val buttonType: Type = Type.Filled,
-    private val buttonSize: Size = Size.Large
-) {
+    private val _text: String = "",
+    @DrawableRes private val _leftIcon: Int? = null,
+    @DrawableRes private val _rightIcon: Int? = null,
+    private val _isDisabled: Boolean = false,
+    private val _isWarned: Boolean = false,
+    private val _buttonType: Type = Type.Filled,
+    private val _buttonSize: Size = Size.Large
+) : Parcelable {
     /**
      * 외부에서 BoxButtonState의 속성을 변경할 때 접근하는 프로퍼티입니다.
      *
@@ -47,22 +44,29 @@ data class BoxButtonState(
      * 변경된 속성과 관련된 compose 함수를 자동을
      * recomposition 시킬 수 있도록 MutableState 객체로 정의되어 있습니다.
      */
-    var textState by mutableStateOf(text)
-    var leftIconState by mutableStateOf(leftIcon)
-    var rightIconState by mutableStateOf(rightIcon)
-    var isDisabledState by mutableStateOf(isDisabled)
-    var isWarnedState by mutableStateOf(isWarned)
-    var buttonTypeState by mutableStateOf(buttonType)
-    var buttonSizeState by mutableStateOf(buttonSize)
+    @IgnoredOnParcel
+    var text by mutableStateOf(_text)
+    @IgnoredOnParcel
+    var leftIcon by mutableStateOf(_leftIcon)
+    @IgnoredOnParcel
+    var rightIcon by mutableStateOf(_rightIcon)
+    @IgnoredOnParcel
+    var isDisabled by mutableStateOf(_isDisabled)
+    @IgnoredOnParcel
+    var isWarned by mutableStateOf(_isWarned)
+    @IgnoredOnParcel
+    var buttonType by mutableStateOf(_buttonType)
+    @IgnoredOnParcel
+    var buttonSize by mutableStateOf(_buttonSize)
 
     val colorState: ButtonColorState
         @Composable get() = boxButtonColorByType(
-            isWarned = isWarnedState,
-            type = buttonTypeState
+            isWarned = isWarned,
+            type = buttonType
         )
 
     private val sizeState: ButtonSizeState
-        @Composable get() = boxButtonSizeStateBySize(size = buttonSizeState)
+        @Composable get() = boxButtonSizeStateBySize(size = buttonSize)
     val typo: TextStyle
         @Composable get() = sizeState.typo
     val iconSize: IconSize
@@ -84,43 +88,6 @@ data class BoxButtonState(
         Medium,
         Small
     }
-
-    companion object {
-        private const val textKey = "text"
-        private const val leftIconKey = "leftIcon"
-        private const val rightIconKey = "rightIcon"
-        private const val disabledKey = "disabled"
-        private const val warnedKey = "warned"
-        private const val buttonTypeKey = "buttonType"
-        private const val buttonSizeKey = "buttonSize"
-
-        val Saver = run {
-            mapSaver(
-                save = {
-                    mapOf(
-                        textKey to it.textState,
-                        leftIconKey to it.leftIconState,
-                        rightIconKey to it.rightIconState,
-                        disabledKey to it.isDisabledState,
-                        warnedKey to it.isWarnedState,
-                        buttonTypeKey to it.buttonTypeState,
-                        buttonSizeKey to it.buttonSizeState
-                    )
-                },
-                restore = {
-                    BoxButtonState(
-                        it[textKey] as String,
-                        it[leftIconKey] as Int?,
-                        it[rightIconKey] as Int?,
-                        it[disabledKey] as Boolean,
-                        it[warnedKey] as Boolean,
-                        it[buttonTypeKey] as Type,
-                        it[buttonSizeKey] as Size
-                    )
-                }
-            )
-        }
-    }
 }
 
 @Composable
@@ -133,8 +100,7 @@ fun rememberBoxButtonState(
     buttonType: BoxButtonState.Type = BoxButtonState.Type.Filled,
     buttonSize: BoxButtonState.Size = BoxButtonState.Size.Large
 ): BoxButtonState = rememberSaveable(
-    text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize,
-    saver = BoxButtonState.Saver
+    text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize
 ) {
     BoxButtonState(text, leftIcon, rightIcon, isDisabled, isWarned, buttonType, buttonSize)
 }
@@ -219,8 +185,8 @@ fun BoxButton(
         modifier = Modifier
             .then(modifier)
             .height(state.height),
-        enabled = !state.isDisabledState,
-        showBorder = (state.buttonTypeState == BoxButtonState.Type.Line),
+        enabled = !state.isDisabled,
+        showBorder = (state.buttonType == BoxButtonState.Type.Line),
         elevation = elevation(0.dp, 0.dp, 0.dp),
         interactionSource = interactionSource,
         shape = rounding,
@@ -228,7 +194,7 @@ fun BoxButton(
             horizontal = state.horizontalPadding
         )
     ) {
-        state.leftIconState?.let { leftIconId ->
+        state.leftIcon?.let { leftIconId ->
                 YdsIcon(
                     id = leftIconId,
                     iconSize = state.iconSize
@@ -238,11 +204,11 @@ fun BoxButton(
             }
 
         Text(
-            text = state.textState,
+            text = state.text,
             style = state.typo
         )
 
-        state.rightIconState?.let { rightIconId ->
+        state.rightIcon?.let { rightIconId ->
             Spacer(modifier = Modifier.width(4.dp))
             YdsIcon(
                 id = rightIconId,
@@ -273,8 +239,8 @@ fun BoxButtonPreview() {
             )
             BoxButton(
                 onClick = {
-                    buttonState1.isWarnedState = true
-                    buttonState1.buttonTypeState = BoxButtonState.Type.Line
+                    buttonState1.isWarned = true
+                    buttonState1.buttonType = BoxButtonState.Type.Line
 
                 },
                 state = buttonState2
