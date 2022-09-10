@@ -12,7 +12,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.R
@@ -21,21 +20,20 @@ import com.yourssu.composedesignsystem.ui.theme.foundation.IconSize
 import com.yourssu.composedesignsystem.ui.theme.foundation.ItemColor
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsIcon
 import kotlinx.parcelize.IgnoredOnParcel
-import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BadgeState(
-    private val text: String,
-    private val itemColor: ItemColor,
-    @DrawableRes private val icon: Int? = null
+    private val _text: String,
+    private val _itemColor: ItemColor,
+    @DrawableRes private val _icon: Int? = null
 ) : Parcelable {
     @IgnoredOnParcel
-    var textState by mutableStateOf(text)
+    var text by mutableStateOf(_text)
     @IgnoredOnParcel
-    var itemColorState by mutableStateOf(itemColor)
+    var itemColor by mutableStateOf(_itemColor)
     @IgnoredOnParcel
-    var iconState by mutableStateOf(icon)
+    var icon by mutableStateOf(_icon)
 }
 
 @Composable
@@ -54,17 +52,17 @@ fun Badge(
 ) {
     Badge(
         modifier = modifier,
-        text = state.textState,
-        itemColor = state.itemColorState,
-        icon = state.iconState
+        text = state.text,
+        itemColor = state.itemColor,
+        icon = state.icon
     )
 }
 
 @Composable
 fun Badge(
-    modifier: Modifier = Modifier,
     text: String,
     itemColor: ItemColor,
+    modifier: Modifier = Modifier,
     @DrawableRes icon: Int? = null
 ) {
     Surface(
@@ -105,8 +103,8 @@ fun BadgePreview() {
             Badge(text = "핑크 뱃지", itemColor = ItemColor.Pink)
             BoxButton(
                 onClick = {
-                    state1.textState = "퍼플 뱃지"
-                    state1.itemColorState = ItemColor.Purple
+                    state1.text = "퍼플 뱃지"
+                    state1.itemColor = ItemColor.Purple
                 },
                 state = rememberBoxButtonState(text = "Click")
             )
