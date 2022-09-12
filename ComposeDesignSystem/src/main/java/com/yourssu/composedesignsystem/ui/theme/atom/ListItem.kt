@@ -9,11 +9,9 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.R
@@ -26,18 +24,18 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ListItemState(
     private val _text: String,
-    @DrawableRes private val leftIcon: Int? = null,
-    @DrawableRes private val rightIcon: Int? = null,
-    private val isDisabled: Boolean = false
+    @DrawableRes private val _leftIcon: Int? = null,
+    @DrawableRes private val _rightIcon: Int? = null,
+    private val _isDisabled: Boolean = false
 ) : Parcelable {
     @IgnoredOnParcel
-    var textState by mutableStateOf(_text)
+    var text by mutableStateOf(_text)
     @IgnoredOnParcel
-    var leftIconState by mutableStateOf(leftIcon)
+    var leftIcon by mutableStateOf(_leftIcon)
     @IgnoredOnParcel
-    var rightIconState by mutableStateOf(rightIcon)
+    var rightIcon by mutableStateOf(_rightIcon)
     @IgnoredOnParcel
-    var isDisabledState by mutableStateOf(isDisabled)
+    var isDisabled by mutableStateOf(_isDisabled)
 }
 
 @Composable
@@ -60,7 +58,7 @@ fun ListItem(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     val isPressed by interactionSource.collectIsPressedAsState()
-    val backgroundColor = if (isPressed && !state.isDisabledState) {
+    val backgroundColor = if (isPressed && !state.isDisabled) {
         YdsTheme.colors.bgPressed
     } else {
         YdsTheme.colors.bgNormal
@@ -72,7 +70,7 @@ fun ListItem(
             .fillMaxWidth()
             .height(48.dp)
             .noRippleClickable(interactionSource) {
-                if (!state.isDisabledState) {
+                if (!state.isDisabled) {
                     onClick()
                 }
             }
@@ -82,18 +80,18 @@ fun ListItem(
     ) {
         Spacer(Modifier.width(20.dp))
 
-        state.leftIconState?.let { leftIconId ->
+        state.leftIcon?.let { leftIconId ->
             YdsIcon(id = leftIconId)
             Spacer(Modifier.width(8.dp))
         }
 
         Text(
-            text = state.textState,
+            text = state.text,
             modifier = Modifier.weight(1.0f),
             style = YdsTheme.typography.body1
         )
 
-        state.rightIconState?.let { rightIconId ->
+        state.rightIcon?.let { rightIconId ->
             Spacer(Modifier.width(8.dp))
             YdsIcon(id = rightIconId)
         }
