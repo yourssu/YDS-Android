@@ -70,7 +70,10 @@ fun ListToggleItem(
 
         Toggle(
             state = state.toggleState,
-            onCheckedChange = onCheckedChange
+            onCheckedChange = { newValue ->
+                state.isSelected = newValue
+                onCheckedChange(newValue)
+            }
         )
 
         Spacer(Modifier.width(20.dp))
@@ -80,7 +83,6 @@ fun ListToggleItem(
 @Preview
 @Composable
 fun ListToggleItemPreview() {
-    // state2가 체크되어있지 않은 상태로 state1을 체크하면 state2가 같이 움직이는 버그 있음
     val state1 = rememberListToggleItemState(text = "로그아웃")
     val state2 = rememberListToggleItemState(text = "테스트", isSelected = true)
     YdsTheme {
