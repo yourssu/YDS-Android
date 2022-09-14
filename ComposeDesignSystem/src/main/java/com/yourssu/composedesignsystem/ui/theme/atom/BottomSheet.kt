@@ -38,7 +38,7 @@ data class BottomSheetState(
 fun rememberBottomSheetState(
     initialValue: ModalBottomSheetValue = ModalBottomSheetValue.HalfExpanded,
     animationSpec: AnimationSpec<Float> = tween(
-        durationMillis = Duration.Short.millis,
+        durationMillis = Duration.Medium.millis,
         easing = YdsInAndOutEasing
     ),
     modalBottomSheetState: ModalBottomSheetState = rememberModalBottomSheetState(
