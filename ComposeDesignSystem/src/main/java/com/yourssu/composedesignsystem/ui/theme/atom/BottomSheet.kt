@@ -4,7 +4,9 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -14,28 +16,27 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 import com.yourssu.composedesignsystem.ui.theme.foundation.Duration
 import com.yourssu.composedesignsystem.ui.theme.foundation.YdsInAndOutEasing
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 data class BottomSheetState(
-    val modalBottomSheetState: ModalBottomSheetState
+    val modalBottomSheetState: ModalBottomSheetState,
+    private val coroutineScope: CoroutineScope
 ) {
-    var currentValue by mutableStateOf(modalBottomSheetState.currentValue)
-
-    fun show() {
-        currentValue = ModalBottomSheetValue.Expanded
+    fun show() = coroutineScope.launch {
+        modalBottomSheetState.show()
     }
 
-    fun hide() {
-        currentValue = ModalBottomSheetValue.Hidden
+    fun hide() = coroutineScope.launch {
+        modalBottomSheetState.hide()
     }
 }
 
-// rememberSavable
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun rememberBottomSheetState(
-    initialValue: ModalBottomSheetValue = ModalBottomSheetValue.Expanded,
+    initialValue: ModalBottomSheetValue = ModalBottomSheetValue.HalfExpanded,
     animationSpec: AnimationSpec<Float> = tween(
         durationMillis = Duration.Short.millis,
         easing = YdsInAndOutEasing
@@ -43,27 +44,36 @@ fun rememberBottomSheetState(
     modalBottomSheetState: ModalBottomSheetState = rememberModalBottomSheetState(
         initialValue = initialValue,
         animationSpec = animationSpec
-    )
+    ),
+    coroutineScope: CoroutineScope = rememberCoroutineScope()
 ): BottomSheetState = remember {
-    BottomSheetState(modalBottomSheetState = modalBottomSheetState)
+    BottomSheetState(
+        modalBottomSheetState = modalBottomSheetState,
+        coroutineScope = coroutineScope
+    )
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun BottomSheet(
     sheetState: BottomSheetState,
+    enableScroll: Boolean = true,
     content: @Composable ColumnScope.() -> Unit
 ) {
     ModalBottomSheetLayout(
         sheetContent = {
             Column(
                 Modifier
-                    .fillMaxWidth()
                     .heightIn(
                         min = 88.dp,
                         max = LocalConfiguration.current.screenHeightDp.dp - 88.dp
                     )
-                    .padding(vertical = 20.dp),
+                    .fillMaxWidth()
+                    .padding(vertical = 20.dp)
+                    .verticalScroll(
+                        rememberScrollState(),
+                        enabled = enableScroll
+                    ),
                 content = content
             )
         },
@@ -76,14 +86,6 @@ private fun BottomSheet(
     BackHandler {
         sheetState.hide()
     }
-
-    LaunchedEffect(sheetState.currentValue) {
-        when (sheetState.currentValue) {
-            ModalBottomSheetValue.Hidden -> sheetState.modalBottomSheetState.hide()
-            ModalBottomSheetValue.Expanded -> sheetState.modalBottomSheetState.show()
-            else -> {}
-        }
-    }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -91,14 +93,19 @@ private fun BottomSheet(
 @Composable
 fun BottomSheetPreview() {
     val sheetState = rememberBottomSheetState()
+
     YdsTheme {
-        // Show 안 먹힘
-        Button(onClick = { sheetState.show() }) {
-            Text(text = "Show")
+        Column {
+            Button(onClick = { sheetState.show() }) {
+                Text(text = "Show")
+            }
         }
         BottomSheet(sheetState = sheetState) {
-            repeat(10) {
-                ListItem(onClick = { /*TODO*/ }, state = rememberListItemState(text = "hello $it"))
+            repeat(15) {
+                ListItem(
+                    onClick = { /*TODO*/ },
+                    state = rememberListItemState(text = "hello $it")
+                )
             }
         }
     }
