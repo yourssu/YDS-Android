@@ -16,6 +16,7 @@ object Icon {
         ic_bell_filled,
         ic_bell_line,
         ic_bellmute_line,
+        ic_blockuser_line,
         ic_board_filled,
         ic_board_line,
         ic_book_filled,
@@ -102,80 +103,81 @@ object Icon {
     const val ic_bell_filled = 6
     const val ic_bell_line = 7
     const val ic_bellmute_line = 8
-    const val ic_board_filled = 9
-    const val ic_board_line = 10
-    const val ic_book_filled = 11
-    const val ic_book_line = 12
-    const val ic_calendar_filled = 13
-    const val ic_calendar_line = 14
-    const val ic_camera_filled = 15
-    const val ic_camera_line = 16
-    const val ic_cameracircle_line = 17
-    const val ic_check_line = 18
-    const val ic_checkcircle_filled = 19
-    const val ic_checkcircle_line = 20
-    const val ic_clip_line = 21
-    const val ic_comment_filled = 22
-    const val ic_comment_line = 23
-    const val ic_dotbadge_line = 24
-    const val ic_dots_horizontal_line = 25
-    const val ic_dots_vertical_line = 26
-    const val ic_download_line = 27
-    const val ic_emojiadd_line = 28
-    const val ic_eyeclosed_line = 29
-    const val ic_eyeopen_line = 30
-    const val ic_food_filled = 31
-    const val ic_food_line = 32
-    const val ic_foodcalendar_filled = 33
-    const val ic_foodcalendar_line = 34
-    const val ic_ground_filled = 35
-    const val ic_ground_line = 36
-    const val ic_home_filled = 37
-    const val ic_home_line = 38
-    const val ic_list_line = 39
-    const val ic_lock_filled = 40
-    const val ic_lock_line = 41
-    const val ic_new_filled = 42
-    const val ic_new_line = 43
-    const val ic_notice_filled = 44
-    const val ic_notice_line = 45
-    const val ic_pen_filled = 46
-    const val ic_pen_line = 47
-    const val ic_person_filled = 48
-    const val ic_person_line = 49
-    const val ic_personcircle_line = 50
-    const val ic_picture_filled = 51
-    const val ic_picture_line = 52
-    const val ic_pin_filled = 53
-    const val ic_pin_line = 54
-    const val ic_playcircle_filled = 55
-    const val ic_playcircle_line = 56
-    const val ic_plus_line = 57
-    const val ic_rank_filled = 58
-    const val ic_rank_line = 59
-    const val ic_recomment_line = 60
-    const val ic_refresh_line = 61
-    const val ic_savecircle_filled = 62
-    const val ic_savecircle_line = 63
-    const val ic_schoolcalendar_filled = 64
-    const val ic_schoolcalendar_line = 65
-    const val ic_search_line = 66
-    const val ic_sharecircle_filled = 67
-    const val ic_sharecircle_line = 68
-    const val ic_star_filled = 69
-    const val ic_star_line = 70
-    const val ic_thumb_down_filled = 71
-    const val ic_thumb_down_line = 72
-    const val ic_thumb_up_filled = 73
-    const val ic_thumb_up_line = 74
-    const val ic_timecalendar_filled = 75
-    const val ic_timecalendar_line = 76
-    const val ic_trashcan_filled = 77
-    const val ic_trashcan_line = 78
-    const val ic_warningcircle_filled = 79
-    const val ic_warningcircle_line = 80
-    const val ic_x_line = 81
-    const val ic_xcircle_filled= 82
+    const val ic_blockuser_line = 9
+    const val ic_board_filled = 10
+    const val ic_board_line = 11
+    const val ic_book_filled = 12
+    const val ic_book_line = 13
+    const val ic_calendar_filled = 14
+    const val ic_calendar_line = 15
+    const val ic_camera_filled = 16
+    const val ic_camera_line = 17
+    const val ic_cameracircle_line = 18
+    const val ic_check_line = 19
+    const val ic_checkcircle_filled = 20
+    const val ic_checkcircle_line = 21
+    const val ic_clip_line = 22
+    const val ic_comment_filled = 23
+    const val ic_comment_line = 24
+    const val ic_dotbadge_line = 25
+    const val ic_dots_horizontal_line = 26
+    const val ic_dots_vertical_line = 27
+    const val ic_download_line = 28
+    const val ic_emojiadd_line = 29
+    const val ic_eyeclosed_line = 30
+    const val ic_eyeopen_line = 31
+    const val ic_food_filled = 32
+    const val ic_food_line = 33
+    const val ic_foodcalendar_filled = 34
+    const val ic_foodcalendar_line = 35
+    const val ic_ground_filled = 36
+    const val ic_ground_line = 37
+    const val ic_home_filled = 38
+    const val ic_home_line = 39
+    const val ic_list_line = 40
+    const val ic_lock_filled = 41
+    const val ic_lock_line = 42
+    const val ic_new_filled = 43
+    const val ic_new_line = 44
+    const val ic_notice_filled = 45
+    const val ic_notice_line = 46
+    const val ic_pen_filled = 47
+    const val ic_pen_line = 48
+    const val ic_person_filled = 49
+    const val ic_person_line = 50
+    const val ic_personcircle_line = 51
+    const val ic_picture_filled = 52
+    const val ic_picture_line = 53
+    const val ic_pin_filled = 54
+    const val ic_pin_line = 55
+    const val ic_playcircle_filled = 56
+    const val ic_playcircle_line = 57
+    const val ic_plus_line = 58
+    const val ic_rank_filled = 59
+    const val ic_rank_line = 60
+    const val ic_recomment_line = 61
+    const val ic_refresh_line = 62
+    const val ic_savecircle_filled = 63
+    const val ic_savecircle_line = 64
+    const val ic_schoolcalendar_filled = 65
+    const val ic_schoolcalendar_line = 66
+    const val ic_search_line = 67
+    const val ic_sharecircle_filled = 68
+    const val ic_sharecircle_line = 69
+    const val ic_star_filled = 70
+    const val ic_star_line = 71
+    const val ic_thumb_down_filled = 72
+    const val ic_thumb_down_line = 73
+    const val ic_thumb_up_filled = 74
+    const val ic_thumb_up_line = 75
+    const val ic_timecalendar_filled = 76
+    const val ic_timecalendar_line = 77
+    const val ic_trashcan_filled = 78
+    const val ic_trashcan_line = 79
+    const val ic_warningcircle_filled = 80
+    const val ic_warningcircle_line = 81
+    const val ic_x_line = 82
+    const val ic_xcircle_filled= 83
 
     @DrawableRes
     fun getIconDrawable(@Iconography icon: Int): Int {
@@ -189,6 +191,7 @@ object Icon {
             ic_bell_filled -> R.drawable.ic_bell_filled
             ic_bell_line -> R.drawable.ic_bell_line
             ic_bellmute_line -> R.drawable.ic_bellmute_line
+            ic_blockuser_line -> R.drawable.ic_blockuser_line
             ic_board_filled -> R.drawable.ic_board_filled
             ic_board_line -> R.drawable.ic_board_line
             ic_book_filled -> R.drawable.ic_book_filled
@@ -278,6 +281,7 @@ object Icon {
             ic_bell_filled -> "ic_bell_filled"
             ic_bell_line -> "ic_bell_line"
             ic_bellmute_line -> "ic_bellmute_line"
+            ic_blockuser_line -> "ic_blockuser_line"
             ic_board_filled -> "ic_board_filled"
             ic_board_line -> "ic_board_line"
             ic_book_filled -> "ic_book_filled"
@@ -367,6 +371,7 @@ object Icon {
             "ic_bell_filled" -> ic_bell_filled
             "ic_bell_line" -> ic_bell_line
             "ic_bellmute_line" -> ic_bellmute_line
+            "ic_blockuser_line" -> ic_blockuser_line
             "ic_board_filled" -> ic_board_filled
             "ic_board_line" -> ic_board_line
             "ic_book_filled" -> ic_book_filled
@@ -456,6 +461,7 @@ object Icon {
             ic_bell_filled,
             ic_bell_line,
             ic_bellmute_line,
+            ic_blockuser_line,
             ic_board_filled,
             ic_board_line,
             ic_book_filled,
