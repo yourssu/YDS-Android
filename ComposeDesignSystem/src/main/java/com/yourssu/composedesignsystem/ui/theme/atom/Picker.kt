@@ -1,15 +1,12 @@
 package com.yourssu.composedesignsystem.ui.theme.atom
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -21,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.composedesignsystem.ui.theme.YdsTheme
 
 class PickerState(
-    initialIndex: Int = 0,
-    val itemList: List<String>
+    val itemList: List<String>,
+    initialIndex: Int = 0
 ) {
     internal val lazyListState = LazyListState(initialIndex)
 
@@ -37,64 +34,92 @@ class PickerState(
             itemList: List<String>
         ): Saver<PickerState, *> = Saver(
             save = { it.currentIndex },
-            restore = { PickerState(it, itemList) }
+            restore = { PickerState(itemList, it) }
         )
     }
 }
 
 @Composable
-fun rememberPickerState(
-    initialIndex: Int = 0,
-    itemList: List<String>
-): PickerState = rememberSaveable(
-    saver = PickerState.saver(itemList)
-) {
-    PickerState(initialIndex, itemList)
+fun rememberPickerStates(
+    firstItemList: List<String>,
+    secondItemList: List<String>? = null,
+    thirdItemList: List<String>? = null,
+    firstInitialIndex: Int = 0,
+    secondInitialIndex: Int = 0,
+    thirdInitialIndex: Int = 0
+): List<PickerState?> {
+    return listOf(
+        rememberPickerState(
+            itemList = firstItemList,
+            initialIndex = firstInitialIndex
+        ),
+        rememberPickerState(
+            itemList = secondItemList,
+            initialIndex = secondInitialIndex
+        ),
+        rememberPickerState(
+            itemList = thirdItemList,
+            initialIndex = thirdInitialIndex
+        )
+    )
+}
+
+@Composable
+private fun rememberPickerState(
+    itemList: List<String>?,
+    initialIndex: Int = 0
+): PickerState? = itemList?.let {
+    rememberSaveable(saver = PickerState.saver(itemList)) {
+        PickerState(itemList, initialIndex)
+    }
+}
+
+interface PickerItemChangeListener {
+    fun onFirstItemChange(index: Int)
 }
 
 @Composable
 fun Picker(
-    state: PickerState,
+    stateList: List<PickerState?>,
     modifier: Modifier = Modifier,
-    onSelectedItemChange: (currentIndex: Int) -> Unit = {}
+    onFirstItemChange: (index: Int) -> Unit = {},
+    onSecondItemChange: (index: Int) -> Unit = {},
+    onThirdItemChange: (index: Int) -> Unit = {}
 ) {
-    // Height 제대로 측정 안 됨 (예상보다 짧게 됨)
     val itemHeightDp = with(LocalDensity.current) {
-        YdsTheme.typography.body1.fontSize.toDp() + 4.dp * 2 // 위 아래 패딩 4dp
+        YdsTheme.typography.body1.lineHeight.toDp()
     }
+    val totalItemHeightDp = itemHeightDp + 4.dp * 2 // 위 아래 패딩 4dp
+
+    val listenerList = listOf(onFirstItemChange, onSecondItemChange, onThirdItemChange)
 
     Box(
         modifier = Modifier
             .then(modifier)
             .background(color = YdsTheme.colors.dimThickBright)
-            .wrapContentWidth()
-            .height(itemHeightDp * 7)
-            .padding(vertical = 16.dp),
+            .padding(vertical = 16.dp)
+            .height(totalItemHeightDp * 7),
         contentAlignment = Alignment.Center
     ) {
-        LazyColumn(
-            state = state.lazyListState,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Row(
+            horizontalArrangement = Arrangement.Center
         ) {
-            items(3) {
-                PickerItem(itemHeight = itemHeightDp)
-            }
-            itemsIndexed(state.itemList) { i, text ->
-                PickerItem(
-                    text = text,
-                    itemHeight = itemHeightDp,
-                    showed = (i == state.currentIndex)
-                )
-            }
-            items(3) {
-                PickerItem(itemHeight = itemHeightDp)
+            stateList.forEachIndexed { i, state ->
+                state?.let {
+                    WheelPicker(
+                        state = it,
+                        itemHeightDp = itemHeightDp,
+                        totalItemHeightDp = totalItemHeightDp,
+                        onItemChange = listenerList[i]
+                    )
+                }
             }
         }
 
         Column(
             modifier = Modifier
                 .align(Alignment.Center)
-                .height(itemHeightDp),
+                .height(totalItemHeightDp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Divider(
@@ -107,8 +132,42 @@ fun Picker(
             )
         }
     }
+}
 
-    val itemHeightPx = with(LocalDensity.current) { itemHeightDp.toPx() }
+
+@Composable
+private fun WheelPicker(
+    state: PickerState,
+    itemHeightDp: Dp,
+    totalItemHeightDp: Dp,
+    onItemChange: (Int) -> Unit
+) {
+    val currentOnItemChange by rememberUpdatedState(onItemChange)
+
+    LaunchedEffect(state.currentIndex) {
+        currentOnItemChange(state.currentIndex)
+    }
+
+    LazyColumn(
+        state = state.lazyListState,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        items(3) {
+            PickerItem(itemHeight = itemHeightDp)
+        }
+        itemsIndexed(state.itemList) { i, text ->
+            PickerItem(
+                text = text,
+                itemHeight = itemHeightDp,
+                showed = (i == state.currentIndex)
+            )
+        }
+        items(3) {
+            PickerItem(itemHeight = itemHeightDp)
+        }
+    }
+
+    val itemHeightPx = with(LocalDensity.current) { totalItemHeightDp.toPx() }
 
     LaunchedEffect(state.lazyListState.isScrollInProgress) {
         if (state.currentItemOffset > (itemHeightPx / 2)) {
@@ -125,17 +184,17 @@ fun Picker(
 
 @Composable
 private fun PickerItem(
-    text: String = "",
     itemHeight: Dp,
+    text: String = "",
     showed: Boolean = false
 ) {
     Box(
         modifier = Modifier
-            .height(itemHeight)
             .padding(
                 horizontal = 20.dp,
                 vertical = 4.dp
             )
+            .height(itemHeight)
     ) {
         Text(
             text = text,
@@ -156,10 +215,26 @@ private fun PickerItem(
 @Preview(showBackground = true)
 @Composable
 fun PickerPreview() {
-    val items = (1..100).map { it.toString() }.toList()
-    val state = rememberPickerState(itemList = items)
+    val items1 = listOf("오전", "오후")
+    val items2 = (1..100).map { it.toString() }.toList()
+    val state = rememberPickerStates(
+        firstItemList = items1,
+        secondItemList = items2
+    )
+    
+    var text by remember {
+        mutableStateOf("")
+    }
 
     YdsTheme {
-        Picker(state = state)
+        Column {
+            Picker(
+                stateList = state,
+                onFirstItemChange = {
+                    text = items1[it]
+                }
+            )
+            Text(text = text)
+        }
     }
 }
