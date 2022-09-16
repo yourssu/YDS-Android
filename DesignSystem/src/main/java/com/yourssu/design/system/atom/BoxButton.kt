@@ -66,6 +66,7 @@ class BoxButton : LinearLayout {
 
     var isDisabled: Boolean = false
         set(isDisabled) {
+            isEnabled = !isDisabled
             field = isDisabled
             setBoxButtonInfo()
         }
