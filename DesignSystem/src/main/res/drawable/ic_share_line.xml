@@ -5,11 +5,11 @@
     android:viewportHeight="24">
   <path
       android:pathData="M20,5C20,6.657 18.657,8 17,8C15.343,8 14,6.657 14,5C14,3.343 15.343,2 17,2C18.657,2 20,3.343 20,5ZM10,12C10,13.657 8.657,15 7,15C5.343,15 4,13.657 4,12C4,10.343 5.343,9 7,9C8.657,9 10,10.343 10,12ZM17,22C18.657,22 20,20.657 20,19C20,17.343 18.657,16 17,16C15.343,16 14,17.343 14,19C14,20.657 15.343,22 17,22Z"
-      android:fillColor="#505458"
+      android:fillColor="@color/buttonNormal"
       android:fillType="evenOdd"/>
   <path
       android:pathData="M17,5L7,12L17,19"
       android:strokeWidth="1.5"
       android:fillColor="#00000000"
-      android:strokeColor="#505458"/>
+      android:strokeColor="@color/buttonNormal"/>
 </vector>
