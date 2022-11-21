@@ -45,6 +45,8 @@ object Icon {
         ic_foodcalendar_line,
         ic_ground_filled,
         ic_ground_line,
+        ic_heart_filled,
+        ic_heart_line,
         ic_home_filled,
         ic_home_line,
         ic_list_line,
@@ -75,6 +77,8 @@ object Icon {
         ic_schoolcalendar_filled,
         ic_schoolcalendar_line,
         ic_search_line,
+        ic_setting_line,
+        ic_share_line,
         ic_sharecircle_filled,
         ic_sharecircle_line,
         ic_star_filled,
@@ -132,52 +136,56 @@ object Icon {
     const val ic_foodcalendar_line = 35
     const val ic_ground_filled = 36
     const val ic_ground_line = 37
-    const val ic_home_filled = 38
-    const val ic_home_line = 39
-    const val ic_list_line = 40
-    const val ic_lock_filled = 41
-    const val ic_lock_line = 42
-    const val ic_new_filled = 43
-    const val ic_new_line = 44
-    const val ic_notice_filled = 45
-    const val ic_notice_line = 46
-    const val ic_pen_filled = 47
-    const val ic_pen_line = 48
-    const val ic_person_filled = 49
-    const val ic_person_line = 50
-    const val ic_personcircle_line = 51
-    const val ic_picture_filled = 52
-    const val ic_picture_line = 53
-    const val ic_pin_filled = 54
-    const val ic_pin_line = 55
-    const val ic_playcircle_filled = 56
-    const val ic_playcircle_line = 57
-    const val ic_plus_line = 58
-    const val ic_rank_filled = 59
-    const val ic_rank_line = 60
-    const val ic_recomment_line = 61
-    const val ic_refresh_line = 62
-    const val ic_savecircle_filled = 63
-    const val ic_savecircle_line = 64
-    const val ic_schoolcalendar_filled = 65
-    const val ic_schoolcalendar_line = 66
-    const val ic_search_line = 67
-    const val ic_sharecircle_filled = 68
-    const val ic_sharecircle_line = 69
-    const val ic_star_filled = 70
-    const val ic_star_line = 71
-    const val ic_thumb_down_filled = 72
-    const val ic_thumb_down_line = 73
-    const val ic_thumb_up_filled = 74
-    const val ic_thumb_up_line = 75
-    const val ic_timecalendar_filled = 76
-    const val ic_timecalendar_line = 77
-    const val ic_trashcan_filled = 78
-    const val ic_trashcan_line = 79
-    const val ic_warningcircle_filled = 80
-    const val ic_warningcircle_line = 81
-    const val ic_x_line = 82
-    const val ic_xcircle_filled= 83
+    const val ic_heart_filled = 38
+    const val ic_heart_line = 39
+    const val ic_home_filled = 40
+    const val ic_home_line = 41
+    const val ic_list_line = 42
+    const val ic_lock_filled = 43
+    const val ic_lock_line = 44
+    const val ic_new_filled = 45
+    const val ic_new_line = 46
+    const val ic_notice_filled = 47
+    const val ic_notice_line = 48
+    const val ic_pen_filled = 49
+    const val ic_pen_line = 50
+    const val ic_person_filled = 51
+    const val ic_person_line = 52
+    const val ic_personcircle_line = 53
+    const val ic_picture_filled = 54
+    const val ic_picture_line = 55
+    const val ic_pin_filled = 56
+    const val ic_pin_line = 57
+    const val ic_playcircle_filled = 58
+    const val ic_playcircle_line = 59
+    const val ic_plus_line = 60
+    const val ic_rank_filled = 61
+    const val ic_rank_line = 62
+    const val ic_recomment_line = 63
+    const val ic_refresh_line = 64
+    const val ic_savecircle_filled = 65
+    const val ic_savecircle_line = 66
+    const val ic_schoolcalendar_filled = 67
+    const val ic_schoolcalendar_line = 68
+    const val ic_search_line = 69
+    const val ic_setting_line = 70
+    const val ic_share_line = 71
+    const val ic_sharecircle_filled = 72
+    const val ic_sharecircle_line = 73
+    const val ic_star_filled = 74
+    const val ic_star_line = 75
+    const val ic_thumb_down_filled = 76
+    const val ic_thumb_down_line = 77
+    const val ic_thumb_up_filled = 78
+    const val ic_thumb_up_line = 79
+    const val ic_timecalendar_filled = 80
+    const val ic_timecalendar_line = 81
+    const val ic_trashcan_filled = 82
+    const val ic_trashcan_line = 83
+    const val ic_warningcircle_filled = 84
+    const val ic_warningcircle_line = 85
+    const val ic_x_line = 86
+    const val ic_xcircle_filled= 87
 
     @DrawableRes
     fun getIconDrawable(@Iconography icon: Int): Int {
@@ -220,6 +228,8 @@ object Icon {
             ic_foodcalendar_line -> R.drawable.ic_foodcalendar_line
             ic_ground_filled -> R.drawable.ic_ground_filled
             ic_ground_line -> R.drawable.ic_ground_line
+            ic_heart_filled -> R.drawable.ic_heart_filled
+            ic_heart_line -> R.drawable.ic_heart_line
             ic_home_filled -> R.drawable.ic_home_filled
             ic_home_line -> R.drawable.ic_home_line
             ic_list_line -> R.drawable.ic_list_line
@@ -250,6 +260,8 @@ object Icon {
             ic_schoolcalendar_filled -> R.drawable.ic_schoolcalendar_filled
             ic_schoolcalendar_line -> R.drawable.ic_schoolcalendar_line
             ic_search_line -> R.drawable.ic_search_line
+            ic_setting_line -> R.drawable.ic_setting_line
+            ic_share_line -> R.drawable.ic_share_line
             ic_sharecircle_filled -> R.drawable.ic_sharecircle_filled
             ic_sharecircle_line -> R.drawable.ic_sharecircle_line
             ic_star_filled -> R.drawable.ic_star_filled
@@ -310,6 +322,8 @@ object Icon {
             ic_foodcalendar_line -> "ic_foodcalendar_line"
             ic_ground_filled -> "ic_ground_filled"
             ic_ground_line -> "ic_ground_line"
+            ic_heart_filled -> "ic_heart_filled"
+            ic_heart_line -> "ic_heart_line"
             ic_home_filled -> "ic_home_filled"
             ic_home_line -> "ic_home_line"
             ic_list_line -> "ic_list_line"
@@ -340,6 +354,8 @@ object Icon {
             ic_schoolcalendar_filled -> "ic_schoolcalendar_filled"
             ic_schoolcalendar_line -> "ic_schoolcalendar_line"
             ic_search_line -> "ic_search_line"
+            ic_setting_line -> "ic_setting_line"
+            ic_share_line -> "ic_share_line"
             ic_sharecircle_filled -> "ic_sharecircle_filled"
             ic_sharecircle_line -> "ic_sharecircle_line"
             ic_star_filled -> "ic_star_filled"
@@ -400,6 +416,8 @@ object Icon {
             "ic_foodcalendar_line" -> ic_foodcalendar_line
             "ic_ground_filled" -> ic_ground_filled
             "ic_ground_line" -> ic_ground_line
+            "ic_heart_filled" -> ic_heart_filled
+            "ic_heart_line" -> ic_heart_line
             "ic_home_filled" -> ic_home_filled
             "ic_home_line" -> ic_home_line
             "ic_list_line" -> ic_list_line
@@ -430,6 +448,8 @@ object Icon {
             "ic_schoolcalendar_filled" -> ic_schoolcalendar_filled
             "ic_schoolcalendar_line" -> ic_schoolcalendar_line
             "ic_search_line" -> ic_search_line
+            "ic_setting_line" -> ic_setting_line
+            "ic_share_line" -> ic_share_line
             "ic_sharecircle_filled" -> ic_sharecircle_filled
             "ic_sharecircle_line" -> ic_sharecircle_line
             "ic_star_filled" -> ic_star_filled
@@ -490,6 +510,8 @@ object Icon {
             ic_foodcalendar_line,
             ic_ground_filled,
             ic_ground_line,
+            ic_heart_filled,
+            ic_heart_line,
             ic_home_filled,
             ic_home_line,
             ic_list_line,
@@ -520,6 +542,8 @@ object Icon {
             ic_schoolcalendar_filled,
             ic_schoolcalendar_line,
             ic_search_line,
+            ic_setting_line,
+            ic_share_line,
             ic_sharecircle_filled,
             ic_sharecircle_line,
             ic_star_filled,
