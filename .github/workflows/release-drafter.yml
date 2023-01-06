@@ -1,0 +1,18 @@
+# 해당 워크플로우의 이름.
+name: Release Drafter
+#조건. 마스터 브랜치에 푸쉬될때,
+on:
+  push:
+    branches:
+      - master
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        with:
+          # 해당 confing파일에 정의한 대로 릴리즈 노트가 작성됨.
+          config-name: config.yml
+        env:
+          # 자동생성되는 환경변수.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
