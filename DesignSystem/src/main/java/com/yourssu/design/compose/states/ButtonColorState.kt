@@ -2,13 +2,11 @@ package com.yourssu.design.compose.states
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import com.yourssu.design.compose.util.alterColorIfPressed
 
+@Immutable
 data class ButtonColorState(
     val contentColor: Color = Color.Unspecified,
     val disabledContentColor: Color = Color.Unspecified,
