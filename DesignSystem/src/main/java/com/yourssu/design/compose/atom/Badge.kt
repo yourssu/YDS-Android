@@ -106,7 +106,7 @@ fun BadgePreview() {
                     state1.text = "퍼플 뱃지"
                     state1.itemColor = ItemColor.Purple
                 },
-                state = rememberBoxButtonState(text = "Click")
+                text = "Click"
             )
         }
     }

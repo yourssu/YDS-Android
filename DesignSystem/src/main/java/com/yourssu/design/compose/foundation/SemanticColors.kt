@@ -1,8 +1,10 @@
 package com.yourssu.design.compose.foundation
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
+@Immutable
 data class YdsColorScheme(
     // Background
     val bgNormal: Color = White000,
