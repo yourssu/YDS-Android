@@ -1,15 +1,10 @@
 package com.yourssu.design.compose.atom
 
-import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,44 +14,6 @@ import com.yourssu.design.compose.YdsTheme
 import com.yourssu.design.compose.foundation.IconSize
 import com.yourssu.design.compose.foundation.ItemColor
 import com.yourssu.design.compose.foundation.YdsIcon
-import kotlinx.parcelize.IgnoredOnParcel
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
-data class BadgeState(
-    private val _text: String,
-    private val _itemColor: ItemColor,
-    @DrawableRes private val _icon: Int? = null
-) : Parcelable {
-    @IgnoredOnParcel
-    var text by mutableStateOf(_text)
-    @IgnoredOnParcel
-    var itemColor by mutableStateOf(_itemColor)
-    @IgnoredOnParcel
-    var icon by mutableStateOf(_icon)
-}
-
-@Composable
-fun rememberBadgeState(
-    text: String,
-    itemColor: ItemColor,
-    @DrawableRes icon: Int? = null,
-): BadgeState = rememberSaveable(text, itemColor, icon) {
-    BadgeState(text, itemColor, icon)
-}
-
-@Composable
-fun Badge(
-    modifier: Modifier = Modifier,
-    state: BadgeState
-) {
-    Badge(
-        modifier = modifier,
-        text = state.text,
-        itemColor = state.itemColor,
-        icon = state.icon
-    )
-}
 
 @Composable
 fun Badge(
@@ -66,8 +23,7 @@ fun Badge(
     @DrawableRes icon: Int? = null
 ) {
     Surface(
-        modifier = Modifier
-            .then(modifier)
+        modifier = modifier
             .requiredHeight(24.dp)
             .wrapContentWidth(),
         shape = YdsTheme.rounding.small,
@@ -94,17 +50,19 @@ fun Badge(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun BadgePreview() {
+    var text by remember { mutableStateOf("에메랄드 뱃지") }
+    var itemColor by remember { mutableStateOf(ItemColor.Emerald) }
+
     YdsTheme {
         Column {
-            val state1 = rememberBadgeState(text = "에메랄드 뱃지", itemColor = ItemColor.Emerald, icon = R.drawable.ic_ground_filled)
             Badge(
-                state = state1
+                text = text, itemColor = itemColor, icon = R.drawable.ic_ground_filled
             )
             Badge(text = "핑크 뱃지", itemColor = ItemColor.Pink)
             BoxButton(
                 onClick = {
-                    state1.text = "퍼플 뱃지"
-                    state1.itemColor = ItemColor.Purple
+                    text = "퍼플 뱃지"
+                    itemColor = ItemColor.Purple
                 },
                 text = "Click"
             )
