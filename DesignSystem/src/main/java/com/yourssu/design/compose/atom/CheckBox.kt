@@ -1,12 +1,9 @@
 package com.yourssu.design.compose.atom
 
-import android.os.Parcelable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,115 +11,90 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.R
 import com.yourssu.design.compose.YdsTheme
+import com.yourssu.design.compose.base.noRippleClickable
 import com.yourssu.design.compose.foundation.IconSize
 import com.yourssu.design.compose.foundation.YdsIcon
 import com.yourssu.design.compose.states.ButtonSizeState
-import kotlinx.parcelize.IgnoredOnParcel
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
-data class CheckBoxState(
-    private val _text: String,
-    private val _size: Size,
-    private val _isSelected: Boolean = false,
-    private val _isDisabled: Boolean = false
-) : Parcelable {
-
-    @IgnoredOnParcel
-    var text by mutableStateOf(_text)
-    @IgnoredOnParcel
-    var size by mutableStateOf(_size)
-    @IgnoredOnParcel
-    var isSelected by mutableStateOf(_isSelected)
-    @IgnoredOnParcel
-    var isDisabled by mutableStateOf(_isDisabled)
-
-    val contentColor: Color
-        @Composable get() = when {
-            isDisabled -> YdsTheme.colors.buttonDisabled
-            isSelected -> YdsTheme.colors.buttonPoint
-            else -> YdsTheme.colors.buttonNormal
-        }
-
-    val sizeState: ButtonSizeState
-        @Composable get() = checkBoxSizeStateBySize(size)
-
-    enum class Size {
-        Small, Medium, Large
-    }
+enum class CheckBoxSize {
+    Small, Medium, Large
 }
 
-@Composable
-fun rememberCheckBoxState(
-    text: String,
-    size: CheckBoxState.Size = CheckBoxState.Size.Medium,
-    isSelected: Boolean = false,
-    isDisabled: Boolean = false
-): CheckBoxState = rememberSaveable(text, size, isSelected, isDisabled) {
-    CheckBoxState(text, size, isSelected, isDisabled)
-}
-
+@Stable
 @Composable
 private fun checkBoxSizeStateBySize(
-    size: CheckBoxState.Size
+    size: CheckBoxSize
 ): ButtonSizeState = when (size) {
-    CheckBoxState.Size.Small -> ButtonSizeState(
+    CheckBoxSize.Small -> ButtonSizeState(
         typo = YdsTheme.typography.button4,
         iconSize = IconSize.ExtraSmall,
         betweenSpace = 4.dp
     )
-    CheckBoxState.Size.Medium -> ButtonSizeState(
+    CheckBoxSize.Medium -> ButtonSizeState(
         typo = YdsTheme.typography.button3,
         iconSize = IconSize.Small,
         betweenSpace = 8.dp
     )
-    CheckBoxState.Size.Large -> ButtonSizeState(
+    CheckBoxSize.Large -> ButtonSizeState(
         typo = YdsTheme.typography.button3,
         iconSize = IconSize.Small,
         betweenSpace = 8.dp
     )
 }
 
+@Stable
+@Composable
+private fun checkBoxColor(
+    checked: Boolean,
+    isDisabled: Boolean,
+): Color = when {
+    isDisabled -> YdsTheme.colors.buttonDisabled
+    checked -> YdsTheme.colors.buttonPoint
+    else -> YdsTheme.colors.buttonNormal
+}
 
 @Composable
 fun CheckBox(
-    state: CheckBoxState,
+    checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    text: String = "",
+    isDisabled: Boolean = false,
+    sizeType: CheckBoxSize = CheckBoxSize.Medium,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
+    val icon = when {
+        checked -> R.drawable.ic_checkcircle_filled
+        else -> R.drawable.ic_checkcircle_line
+    }
+    val contentColor = checkBoxColor(checked = checked, isDisabled = isDisabled)
+
+    val sizeState = checkBoxSizeStateBySize(size = sizeType)
+    val iconSize = sizeState.iconSize
+    val typo = sizeState.typo
+    val betweenSpace = sizeState.betweenSpace
+
     Row(
-        modifier = Modifier
-            .then(modifier)
+        modifier = modifier
             .wrapContentWidth()
-            .toggleable(
-                value = state.isSelected,
-                enabled = !state.isDisabled,
-                interactionSource = interactionSource,
-                indication = null,
-                onValueChange = { newValue ->
-                    state.isSelected = newValue
-                    onCheckedChange(newValue)
-                }
+            .noRippleClickable(
+                interactionSource,
+                onClick = { onCheckedChange(!checked) }
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         YdsIcon(
-            id = if (state.isSelected) {
-                R.drawable.ic_checkcircle_filled
-            } else {
-                R.drawable.ic_checkcircle_line
-            },
-            iconSize = state.sizeState.iconSize,
-            tint = state.contentColor
+            id = icon,
+            iconSize = iconSize,
+            tint = contentColor
         )
 
-        Spacer(Modifier.width(state.sizeState.betweenSpace))
+        Spacer(Modifier.width(betweenSpace))
 
         Text(
-            text = state.text,
-            style = state.sizeState.typo,
-            color = state.contentColor
+            text = text,
+            style = typo,
+            color = contentColor
         )
     }
 }
@@ -130,23 +102,27 @@ fun CheckBox(
 @Preview(showBackground = true)
 @Composable
 fun CheckBoxPreview() {
-    val state1 = rememberCheckBoxState(
-        text = "텍스트",
-        isSelected = true
-    )
-    val state2 = rememberCheckBoxState(
-        text = "Disabled",
-        size = CheckBoxState.Size.Large,
-        isDisabled = true,
-        isSelected = true
-    )
+    var checked1 by remember { mutableStateOf(false) }
+    var disabled by remember { mutableStateOf(false) }
+    var checked2 by remember { mutableStateOf(false) }
 
     YdsTheme {
         Column {
-            CheckBox(state = state1, onCheckedChange = {
-                state2.isSelected = it
-            })
-            CheckBox(state = state2, onCheckedChange = {})
+            CheckBox(
+                checked = checked1,
+                onCheckedChange = { checked1 = it },
+                text = "test",
+                isDisabled = disabled
+            )
+            CheckBox(
+                checked = checked2,
+                onCheckedChange = {
+                    checked2 = it
+                    disabled = it
+                },
+                text = "disabled",
+                sizeType = CheckBoxSize.Large
+            )
         }
     }
 }
