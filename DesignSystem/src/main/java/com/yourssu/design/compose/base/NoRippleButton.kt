@@ -32,9 +32,9 @@ fun NoRippleButton(
 ) {
     val contentColor by colors.contentColor(enabled, interactionSource)
     Surface(
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
+        modifier = Modifier
+            .noRippleClickable(interactionSource, onClick = onClick)
+            .then(modifier),
         shape = shape,
         color = colors.backgroundColor(enabled, interactionSource).value,
         contentColor = contentColor,
@@ -43,7 +43,6 @@ fun NoRippleButton(
             contentColor
         ) else null,
         elevation = elevation?.elevation(enabled, interactionSource)?.value ?: 0.dp,
-        interactionSource = interactionSource
     ) {
         CompositionLocalProvider(LocalContentAlpha provides contentColor.alpha) {
             ProvideTextStyle(value = MaterialTheme.typography.button) {
