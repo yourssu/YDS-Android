@@ -1,57 +1,25 @@
 package com.yourssu.design.compose.atom
 
-import android.os.Parcelable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.compose.YdsTheme
-import kotlinx.parcelize.IgnoredOnParcel
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
-data class ListToggleItemState(
-    private val _text: String,
-    private val _isSelected: Boolean,
-    private val _isDisabled: Boolean
-) : Parcelable {
-    @IgnoredOnParcel
-    var text by mutableStateOf(_text)
-    @IgnoredOnParcel
-    var isSelected by mutableStateOf(_isSelected)
-    @IgnoredOnParcel
-    var isDisabled by mutableStateOf(_isDisabled)
-
-    val toggleState: ToggleState
-        @Composable get() = rememberToggleState(isSelected = isSelected, isDisabled = isDisabled)
-}
-
-@Composable
-fun rememberListToggleItemState(
-    text: String,
-    isSelected: Boolean = false,
-    isDisabled: Boolean = false
-): ListToggleItemState = rememberSaveable(text, isSelected, isDisabled) {
-    ListToggleItemState(text, isSelected, isDisabled)
-}
 
 @Composable
 fun ListToggleItem(
-    state: ListToggleItemState,
+    text: String,
+    checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isDisabled: Boolean = false,
 ) {
     Row(
-        modifier = Modifier
-            .then(modifier)
+        modifier = modifier
             .fillMaxWidth()
             .height(48.dp)
             .background(color = YdsTheme.colors.bgNormal),
@@ -61,7 +29,7 @@ fun ListToggleItem(
         Spacer(Modifier.width(20.dp))
 
         Text(
-            text = state.text,
+            text = text,
             modifier = Modifier.weight(1f),
             style = YdsTheme.typography.body1
         )
@@ -69,11 +37,9 @@ fun ListToggleItem(
         Spacer(Modifier.width(8.dp))
 
         Toggle(
-            state = state.toggleState,
-            onCheckedChange = { newValue ->
-                state.isSelected = newValue
-                onCheckedChange(newValue)
-            }
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+            isDisabled = isDisabled
         )
 
         Spacer(Modifier.width(20.dp))
@@ -83,14 +49,13 @@ fun ListToggleItem(
 @Preview
 @Composable
 fun ListToggleItemPreview() {
-    val state1 = rememberListToggleItemState(text = "로그아웃")
-    val state2 = rememberListToggleItemState(text = "테스트", isSelected = true)
+    var checked1 by remember { mutableStateOf(false) }
+    var checked2 by remember { mutableStateOf(false) }
+
     YdsTheme {
         Column {
-            ListToggleItem(state = state1, onCheckedChange = {
-                state2.isDisabled = it
-            })
-            ListToggleItem(state = state2, onCheckedChange = {})
+            ListToggleItem(text = "로그아웃", checked = checked1, onCheckedChange = { checked1 = it })
+            ListToggleItem(text = "테스트", checked = checked2, onCheckedChange = { checked2 = it })
         }
     }
 }
