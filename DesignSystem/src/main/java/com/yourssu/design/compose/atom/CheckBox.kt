@@ -74,13 +74,13 @@ fun CheckBox(
     val typo = sizeState.typo
     val betweenSpace = sizeState.betweenSpace
 
+    val clickableModifier = if (isDisabled) Modifier else
+        Modifier.noRippleClickable(interactionSource) { onCheckedChange(!checked) }
+
     Row(
         modifier = modifier
             .wrapContentWidth()
-            .noRippleClickable(
-                interactionSource,
-                onClick = { onCheckedChange(!checked) }
-            ),
+            .then(clickableModifier),
         verticalAlignment = Alignment.CenterVertically
     ) {
         YdsIcon(
