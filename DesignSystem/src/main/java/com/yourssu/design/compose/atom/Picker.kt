@@ -21,21 +21,21 @@ fun Picker(
     firstItemList: List<String>,
     secondItemList: List<String>? = null,
     thirdItemList: List<String>? = null,
-    onFirstItemChange: (index: Int) -> Unit = {},
+    firstInitialIndex: Int = 0,
+    secondInitialIndex: Int = 0,
+    thirdInitialIndex: Int = 0,
+    onFirstItemChange: ((index: Int) -> Unit)?,
     onSecondItemChange: ((index: Int) -> Unit)? = null,
     onThirdItemChange: ((index: Int) -> Unit)? = null,
-    initialIndexList: List<Int> = listOf(0, 0, 0)
 ) {
     val itemHeightDp: Dp = with(LocalDensity.current) {
         YdsTheme.typography.body1.lineHeight.toDp()
     }
     val totalItemHeightDp = itemHeightDp + 4.dp * 2 // 위 아래 패딩 4dp
 
-    val itemPairList = listOf(
-        firstItemList to onFirstItemChange,
-        secondItemList to onSecondItemChange,
-        thirdItemList to onThirdItemChange
-    )
+    val itemLists = listOf(firstItemList, secondItemList, thirdItemList)
+    val initialIndices = listOf(firstInitialIndex, secondInitialIndex, thirdInitialIndex)
+    val itemListeners = listOf(onFirstItemChange, onSecondItemChange, onThirdItemChange)
 
     Box(
         modifier = modifier
@@ -47,17 +47,16 @@ fun Picker(
         Row(
             horizontalArrangement = Arrangement.Center
         ) {
-            itemPairList
-                .filter { it.first != null }
-                .forEachIndexed { i, pair ->
-                    val (itemList, listener) = pair
-
-                    WheelPicker(
-                        itemList = itemList!!,
-                        initialIndex = initialIndexList[i],
-                        totalItemHeightDp = totalItemHeightDp,
-                        onItemChange = listener
-                    )
+            itemLists
+                .forEachIndexed { i, itemList ->
+                    if (itemList != null) {
+                        WheelPicker(
+                            itemList = itemList,
+                            initialIndex = initialIndices[i],
+                            totalItemHeightDp = totalItemHeightDp,
+                            onItemChange = itemListeners[i]
+                        )
+                    }
                 }
         }
 
@@ -162,7 +161,8 @@ fun PickerPreview() {
     YdsTheme {
         Picker(
             firstItemList = items1,
-            secondItemList = items2
+            secondItemList = items2,
+            onFirstItemChange = null
         )
     }
 }
