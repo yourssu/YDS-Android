@@ -14,7 +14,7 @@ import com.yourssu.design.compose.rule.LocalYdsRounding
 
 @Composable
 fun YdsTheme(
-    typography: YdsTypography = YdsTheme.typography,
+    typography: YdsTypography = getYDSTypography(),
     rounding: Shapes = YdsTheme.rounding,
     border: Border = YdsTheme.border,
     content: @Composable () -> Unit
