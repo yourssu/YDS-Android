@@ -5,41 +5,24 @@ on:
     branches: [ master ]
 
 jobs:
-  upload:
-
+  release:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Read versionName property
         id: release_version
-        uses: christian-draeger/read-properties@1.0.1
+        uses: christian-draeger/read-properties@1.1.1
         with:
           path: './version.properties'
-          property: 'versionName'
+          properties: 'versionName'
 
       - name: set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '2.6'
-
-      - name: Install Bundle
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-
-      - name: Generate Credential File for Fastlane
-        run: |
-          echo "$PLAY_STORE_CREDENTIALS" > fastlane/play-store-credentials.json.b64
-          base64 -d -i fastlane/play-store-credentials.json.b64 > fastlane/play-store-credentials.json
-        env:
-          PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
+        uses: actions/setup-java@v3
+          with:
+            java-version: '11'
+            distribution: 'temurin'
+            cache: gradle
 
       - name: Setting env
         run: |
@@ -55,18 +38,11 @@ jobs:
         run: ./gradlew --no-daemon :app:storybook:bundleProductionRelease
 
       - name: Create a GitHub release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.release_version.outputs.value }}
-          release_name: Release ${{ steps.release_version.outputs.value }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ steps.release_version.outputs.versionName }}
+          name: Release ${{ steps.release_version.outputs.versionName }}
 
       - name: Upload to Slack
-        run: curl -F file=@"app/storybook/build/outputs/bundle/productionRelease/YDS-StoryBook-${{ steps.release_version.outputs.value }}($BUILD_NUMBER)-production-release.aab" -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android    aab 파일은 스토어에 업로드 했슈~" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
-
-      - name: Rename aab
-        run: mv app/storybook/build/outputs/bundle/productionRelease/YDS-StoryBook-${{ steps.release_version.outputs.value }}\($BUILD_NUMBER\)-production-release.aab app/storybook/build/outputs/bundle/productionRelease/app-production-release.aab
-
-      - name: Submit a new Internal Build to Play Store
-        run: bundle exec fastlane internal_release
+        run: curl -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
