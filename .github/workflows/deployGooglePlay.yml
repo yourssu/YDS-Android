@@ -82,4 +82,4 @@ jobs:
 
       # 슬랙에 완료 메시지를 전송합니다.
       - name: Send message to Slack
-        run: curl -d "text=YDS StoryBook ${{ steps.release_version.outputs.versionName }} 버전을 ${{ inputs.track }} 트랙에 배포했슈~ https://play.google.com/store/apps/details?id=com.yourssu.storybook" -d "channel=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage
+        run: curl -d "text=YDS StoryBook ${{ steps.release_version.outputs.versionName }} 버전을 ${{ inputs.track }} 트랙에 배포했슈~ https://play.google.com/store/apps/details?id=com.yourssu.storybook" -d "channel=${{ secrets.SLACK_CHANNEL_ID_ANDROID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage
