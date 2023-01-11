@@ -32,7 +32,7 @@ jobs:
       # 빌드에 필요한 환경변수를 세팅합니다.
       - name: Setting env
         run: |
-          echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=$(($GITHUB_RUN_NUMBER+139))" >> $GITHUB_ENV
           echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
           echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
           echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
@@ -47,4 +47,4 @@ jobs:
 
       # 빌드된 apk를 슬랙에 전송합니다.
       - name: Upload to Slack
-        run: curl -F file=@"app/storybook/build/outputs/apk/dev/release/YDS-StoryBook-${{ steps.release_version.outputs.value }}($BUILD_NUMBER)-dev-release.apk" -F "initial_comment=개발중인 YDS StoryBook이 나왔슈~" -F "channels=${{ secrets.SLACK_CHANNEL_ID_ANDROID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
+        run: curl -F file=@"app/storybook/build/outputs/apk/dev/release/YDS-StoryBook-${{ steps.release_version.outputs.versionName }}($BUILD_NUMBER)-dev-release.apk" -F "initial_comment=개발중인 YDS StoryBook이 나왔슈~" -F "channels=${{ secrets.SLACK_CHANNEL_ID_ANDROID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload

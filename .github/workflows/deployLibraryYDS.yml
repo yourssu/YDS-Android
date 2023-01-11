@@ -57,4 +57,4 @@ jobs:
 
       # 슬랙에 완료 메시지를 전송합니다.
       - name: Send message to Slack
-        run: curl -d "text=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android" -d "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage
+        run: curl -d "text=YDS ${{ steps.release_version.outputs.versionName }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android" -d "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage
