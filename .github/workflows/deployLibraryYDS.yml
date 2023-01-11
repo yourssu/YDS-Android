@@ -1,5 +1,7 @@
+# YDS 라이브러리를 깃헙에 배포하는 워크플로입니다.
 name: Deploy YDS Library
 
+# master 브랜치에 push가 발생하면 실행됩니다.
 on:
   push:
     branches: [ master ]
@@ -8,8 +10,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      # Github 저장소를 로컬로 복사합니다.
       - uses: actions/checkout@v3
 
+      # version.properties에 명시된 버전명을 읽어옵니다.
       - name: Read versionName property
         id: release_version
         uses: christian-draeger/read-properties@1.1.1
@@ -17,6 +21,7 @@ jobs:
           path: './version.properties'
           properties: 'versionName'
 
+      # gradle 빌드을 위해 JDK를 세팅합니다.
       - name: set up JDK 11
         uses: actions/setup-java@v3
         with:
@@ -24,6 +29,7 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
+      # 빌드에 필요한 환경변수를 세팅합니다.
       - name: Setting env
         run: |
           echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
@@ -31,18 +37,24 @@ jobs:
           echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
           echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
 
+      # gradlew에 실행 권한을 부여합니다.
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      # bundleProduction 버전의 aab를 빌드합니다. (배포 전에 문제가 없는지 테스트하기 위함)
       - name: Build with Gradle
         run: ./gradlew --no-daemon :app:storybook:bundleProductionRelease
 
+      # 릴리즈 노트를 작성하고 YDS 라이브러리를 Github에 릴리즈합니다.
       - name: Create a GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: release-drafter/release-drafter@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ steps.release_version.outputs.versionName }}
-          name: Release ${{ steps.release_version.outputs.versionName }}
+          config-name: config.yml
+          version: ${{ steps.release_version.outputs.versionName }}
+          publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload to Slack
-        run: curl -F "initial_comment=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android" -F "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload
+      # 슬랙에 완료 메시지를 전송합니다.
+      - name: Send message to Slack
+        run: curl -d "text=YDS ${{ steps.release_version.outputs.value }} 라이브러리가 등록되었슈~ https://jitpack.io/#yourssu/YDS-Android" -d "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage

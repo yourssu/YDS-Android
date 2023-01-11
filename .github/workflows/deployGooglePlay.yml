@@ -1,0 +1,85 @@
+# YDS StoryBook을 Google Play에 배포하는 워크플로입니다.
+name: Delploy YDS StoryBook to Google Play
+
+# Github에서 수동으로 실행해야 하며, 배포할 브랜치와 트랙을 선택할 수 있습니다.
+# 현재 내부 테스트와 프로덕션 트랙만 사용하며, 주석을 해제하여 비공개/공개 테스트 트랙을 사용할 수 있습니다.
+on:
+  workflow_dispatch:
+    inputs:
+      track:
+        description: 'Choose Google Play track to deploy'
+        required: true
+        default: 'internal'
+        type: choice
+        options:
+          - internal
+#          - alpha(closed)
+#          - beta(open)
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Github 저장소를 로컬로 복사합니다.
+      - uses: actions/checkout@v3
+
+      # fastlane 사용을 위해 ruby를 세팅합니다.
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+          bundler-cache: true
+
+      # 빌드에 필요한 환경변수를 세팅합니다.
+      - name: Setting env
+        run: |
+          echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+          echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
+
+      # fastlane 배포에 필요한 Google Play 인증 정보를 생성합니다.
+      - name: Generate Credential File for Fastlane
+        run: |
+          echo "$PLAY_STORE_CREDENTIALS" > play-store-credentials.json.b64
+          base64 -d -i play-store-credentials.json.b64 > play-store-credentials.json
+        env:
+          PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
+
+      # version.properties에 명시된 버전명을 읽어옵니다.
+      - name: Read versionName property
+        id: release_version
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: './version.properties'
+          properties: 'versionName'
+
+      # 버전명.txt으로 작성된 changelogs를 fastlane이 인식할 수 있게 버전코드.txt로 변경합니다.
+      - name: Apply changelogs
+        working-directory: ./fastlane/metadata/android/ko-KR/changelogs
+        run: |
+          mv ${{ steps.release_version.outputs.versionName }}.txt $BUILD_NUMBER.txt
+
+      # 내부 테스트 트랙에 배포합니다.
+      - name: Submit to internal track
+        run: bundle exec fastlane internal
+        if: ${{ inputs.track == 'internal' }}
+
+      # 비공개 테스트 트랙에 배포합니다.
+#      - name: Submit to alpha(closed) track
+#        run: bundle exec fastlane alpha
+#        if: ${{ inputs.track == 'alpha(closed)' }}
+
+      # 공개 테스트 트랙에 배포합니다.
+#      - name: Submit to beta(open) track
+#        run: bundle exec fastlane beta
+#        if: ${{ inputs.track == 'beta(open)' }}
+
+      # 프로덕션 트랙에 배포합니다.
+      - name: Submit to production track
+        run: bundle exec fastlane production
+        if: ${{ inputs.track == 'production' }}
+
+      # 슬랙에 완료 메시지를 전송합니다.
+      - name: Send message to Slack
+        run: curl -d "text=YDS StoryBook ${{ steps.release_version.outputs.value }} 버전을 ${{ inputs.track }} 트랙에 배포했슈~ https://play.google.com/store/apps/details?id=com.yourssu.storybook" -d "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage
