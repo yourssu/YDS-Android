@@ -16,10 +16,10 @@
 default_platform(:android)
 
 platform :android do
-    # devRelease 버전의 aab를 빌드 후 내부 테스트 트랙에 배포합니다.
+    # productionRelease 버전의 aab를 빌드 후 내부 테스트 트랙에 배포합니다.
     desc "Submit to internal track"
     lane :internal do
-        gradle(task: 'bundle', flavor: 'Dev', build_type: 'Release', flags: '--no-daemon')
+        gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
         upload_to_play_store(track: 'internal')
     end
 

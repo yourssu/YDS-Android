@@ -33,7 +33,7 @@ jobs:
       # 빌드에 필요한 환경변수를 세팅합니다.
       - name: Setting env
         run: |
-          echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=$(($GITHUB_RUN_NUMBER+20))" >> $GITHUB_ENV
           echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
           echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
           echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
@@ -82,4 +82,4 @@ jobs:
 
       # 슬랙에 완료 메시지를 전송합니다.
       - name: Send message to Slack
-        run: curl -d "text=YDS StoryBook ${{ steps.release_version.outputs.value }} 버전을 ${{ inputs.track }} 트랙에 배포했슈~ https://play.google.com/store/apps/details?id=com.yourssu.storybook" -d "channels=${{ secrets.SLACK_CHANNEL_ID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage
+        run: curl -d "text=YDS StoryBook ${{ steps.release_version.outputs.versionName }} 버전을 ${{ inputs.track }} 트랙에 배포했슈~ https://play.google.com/store/apps/details?id=com.yourssu.storybook" -d "channel=${{ secrets.SLACK_CHANNEL_ID_ANDROID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage
