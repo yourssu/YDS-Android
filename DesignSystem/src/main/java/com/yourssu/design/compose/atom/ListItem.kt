@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.R
@@ -30,7 +31,7 @@ fun ListItem(
     val backgroundColor = if (isPressed && !isDisabled) {
         YdsTheme.colors.bgPressed
     } else {
-        YdsTheme.colors.bgNormal
+        Color.Transparent
     }
 
     Row(
@@ -49,19 +50,20 @@ fun ListItem(
         Spacer(Modifier.width(20.dp))
 
         leftIcon?.let { icon ->
-            YdsIcon(id = icon)
+            YdsIcon(id = icon, tint = YdsTheme.colors.buttonNormal)
             Spacer(Modifier.width(8.dp))
         }
 
         Text(
             text = text,
             modifier = Modifier.weight(1.0f),
-            style = YdsTheme.typography.body1
+            style = YdsTheme.typography.body1,
+            color = YdsTheme.colors.textSecondary
         )
 
         rightIcon?.let { icon ->
             Spacer(Modifier.width(8.dp))
-            YdsIcon(id = icon)
+            YdsIcon(id = icon, tint = YdsTheme.colors.buttonNormal)
         }
 
         Spacer(Modifier.width(20.dp))
