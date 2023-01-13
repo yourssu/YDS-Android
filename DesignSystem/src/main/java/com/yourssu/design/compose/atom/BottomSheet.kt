@@ -1,7 +1,5 @@
 package com.yourssu.design.compose.atom
 
-import androidx.activity.compose.BackHandler
-import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -16,49 +14,28 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.design.compose.YdsTheme
 import com.yourssu.design.compose.foundation.Duration
 import com.yourssu.design.compose.foundation.YdsInAndOutEasing
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
-data class BottomSheetState(
-    val modalBottomSheetState: ModalBottomSheetState,
-    private val coroutineScope: CoroutineScope
-) {
-    fun show() = coroutineScope.launch {
-        modalBottomSheetState.show()
-    }
-
-    fun hide() = coroutineScope.launch {
-        modalBottomSheetState.hide()
-    }
-}
-
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun rememberBottomSheetState(
-    initialValue: ModalBottomSheetValue = ModalBottomSheetValue.HalfExpanded,
-    animationSpec: AnimationSpec<Float> = tween(
-        durationMillis = Duration.Medium.millis,
-        easing = YdsInAndOutEasing
-    ),
-    modalBottomSheetState: ModalBottomSheetState = rememberModalBottomSheetState(
-        initialValue = initialValue,
-        animationSpec = animationSpec
-    ),
-    coroutineScope: CoroutineScope = rememberCoroutineScope()
-): BottomSheetState = remember {
-    BottomSheetState(
-        modalBottomSheetState = modalBottomSheetState,
-        coroutineScope = coroutineScope
+fun rememberYdsBottomSheetState(): ModalBottomSheetState {
+    return rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        animationSpec = tween(
+            durationMillis = Duration.Medium.millis,
+            easing = YdsInAndOutEasing
+        ),
+        skipHalfExpanded = true
     )
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun BottomSheet(
-    sheetState: BottomSheetState,
-    enableScroll: Boolean = true,
-    content: @Composable ColumnScope.() -> Unit
+    sheetContent: @Composable ColumnScope.() -> Unit,
+    modifier: Modifier = Modifier,
+    sheetState: ModalBottomSheetState = rememberYdsBottomSheetState(),
+    content: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
         sheetContent = {
@@ -71,42 +48,40 @@ private fun BottomSheet(
                     .fillMaxWidth()
                     .padding(vertical = 20.dp)
                     .verticalScroll(
-                        rememberScrollState(),
-                        enabled = enableScroll
+                        state = rememberScrollState()
                     ),
-                content = content
+                content = sheetContent
             )
         },
-        sheetState = sheetState.modalBottomSheetState,
+        modifier = modifier,
+        sheetState = sheetState,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         sheetBackgroundColor = YdsTheme.colors.bgNormal,
-        scrimColor = YdsTheme.colors.dimNormal
-    ) {}
-
-    BackHandler {
-        sheetState.hide()
-    }
+        scrimColor = YdsTheme.colors.dimNormal,
+        content = content
+    )
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Preview(showSystemUi = true)
 @Composable
 fun BottomSheetPreview() {
-    val sheetState = rememberBottomSheetState()
+    val coroutineScope = rememberCoroutineScope()
+    val sheetState = rememberYdsBottomSheetState()
 
     YdsTheme {
-        Column {
-            Button(onClick = { sheetState.show() }) {
-                Text(text = "Show")
-            }
-        }
-        BottomSheet(sheetState = sheetState) {
-            repeat(15) {
-                ListItem(
-                    onClick = { /*TODO*/ },
-                    state = rememberListItemState(text = "hello $it")
-                )
-            }
+        BottomSheet(
+            sheetContent = {
+                repeat(100) {
+                    ListItem(text = "$it", onClick = { /*TODO*/ })
+                }
+            },
+            sheetState = sheetState
+        ) {
+            BoxButton(
+                onClick = { coroutineScope.launch { sheetState.show() }},
+                text = "open"
+            )
         }
     }
 }
