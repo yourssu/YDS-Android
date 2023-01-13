@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.R
@@ -61,7 +62,7 @@ fun ListItem(
     val backgroundColor = if (isPressed && !state.isDisabled) {
         YdsTheme.colors.bgPressed
     } else {
-        YdsTheme.colors.bgNormal
+        Color.Transparent
     }
 
     Row(
@@ -81,19 +82,20 @@ fun ListItem(
         Spacer(Modifier.width(20.dp))
 
         state.leftIcon?.let { leftIconId ->
-            YdsIcon(id = leftIconId)
+            YdsIcon(id = leftIconId, tint = YdsTheme.colors.buttonNormal)
             Spacer(Modifier.width(8.dp))
         }
 
         Text(
             text = state.text,
             modifier = Modifier.weight(1.0f),
-            style = YdsTheme.typography.body1
+            style = YdsTheme.typography.body1,
+            color = YdsTheme.colors.textSecondary
         )
 
         state.rightIcon?.let { rightIconId ->
             Spacer(Modifier.width(8.dp))
-            YdsIcon(id = rightIconId)
+            YdsIcon(id = rightIconId, tint = YdsTheme.colors.buttonNormal)
         }
 
         Spacer(Modifier.width(20.dp))
