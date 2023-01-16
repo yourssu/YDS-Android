@@ -16,8 +16,31 @@
 default_platform(:android)
 
 platform :android do
-  desc "Submit a new Internal Build to Play Store"
-  lane :internal_release do
-    upload_to_play_store(track: 'internal', aab: 'app/storybook/build/outputs/bundle/productionRelease/app-production-release.aab')
-  end
+    # productionRelease 버전의 aab를 빌드 후 내부 테스트 트랙에 배포합니다.
+    desc "Submit to internal track"
+    lane :internal do
+        gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
+        upload_to_play_store(track: 'internal')
+    end
+
+    # productionRelease 버전의 aab를 빌드 후 비공개 테스트 트랙에 배포합니다.
+#     desc "Submit to alpha track"
+#     lane :alpha do
+#         gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
+#         upload_to_play_store(track: 'alpha')
+#     end
+
+    # productionRelease 버전의 aab를 빌드 후 공개 테스트 트랙에 배포합니다.
+#     desc "Submit to beta track"
+#     lane :beta do
+#         gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
+#         upload_to_play_store(track: 'beta')
+#     end
+
+    # productionRelease 버전의 aab를 빌드 후 프로덕션 트랙에 배포합니다.
+    desc "Submit to production track"
+    lane :production do
+        gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
+        upload_to_play_store
+    end
 end
