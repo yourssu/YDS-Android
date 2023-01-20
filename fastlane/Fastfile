@@ -1,0 +1,46 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+    # productionRelease 버전의 aab를 빌드 후 내부 테스트 트랙에 배포합니다.
+    desc "Submit to internal track"
+    lane :internal do
+        gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
+        upload_to_play_store(track: 'internal')
+    end
+
+    # productionRelease 버전의 aab를 빌드 후 비공개 테스트 트랙에 배포합니다.
+#     desc "Submit to alpha track"
+#     lane :alpha do
+#         gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
+#         upload_to_play_store(track: 'alpha')
+#     end
+
+    # productionRelease 버전의 aab를 빌드 후 공개 테스트 트랙에 배포합니다.
+#     desc "Submit to beta track"
+#     lane :beta do
+#         gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
+#         upload_to_play_store(track: 'beta')
+#     end
+
+    # productionRelease 버전의 aab를 빌드 후 프로덕션 트랙에 배포합니다.
+    desc "Submit to production track"
+    lane :production do
+        gradle(task: 'bundle', flavor: 'Production', build_type: 'Release', flags: '--no-daemon')
+        upload_to_play_store
+    end
+end

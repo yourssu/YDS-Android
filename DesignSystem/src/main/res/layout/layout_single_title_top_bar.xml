@@ -17,21 +17,24 @@
 
         <com.yourssu.design.system.atom.Text
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="8dp"
             android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/textPrimary"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guide_end"
             app:typo="title2"
             tools:text="타이틀" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:id="@+id/guide_end"
             android:layout_marginRight="4dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
