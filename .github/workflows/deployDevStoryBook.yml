@@ -1,0 +1,50 @@
+# 개발중인 YDS StoryBook의 apk를 슬랙에 전송하는 워크플로입니다.
+name: Send YDS StoryBook dev apk to Slack
+
+# develop 브랜치에 push가 발생하면 실행됩니다.
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      # Github 저장소를 로컬로 복사합니다.
+      - uses: actions/checkout@v3
+
+      # version.properties에 명시된 버전명을 읽어옵니다.
+      - name: Read versionName property
+        id: release_version
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: './version.properties'
+          properties: 'versionName'
+
+      # gradle 빌드을 위해 JDK를 세팅합니다.
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+
+      # 빌드에 필요한 환경변수를 세팅합니다.
+      - name: Setting env
+        run: |
+          echo "BUILD_NUMBER=$(($GITHUB_RUN_NUMBER+139))" >> $GITHUB_ENV
+          echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
+
+      # gradlew에 실행 권한을 부여합니다.
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # devRelease 버전의 apk를 빌드합니다.
+      - name: Build with Gradle
+        run: ./gradlew --no-daemon :app:storybook:assembleDevRelease
+
+      # 빌드된 apk를 슬랙에 전송합니다.
+      - name: Upload to Slack
+        run: curl -F file=@"app/storybook/build/outputs/apk/dev/release/YDS-StoryBook-${{ steps.release_version.outputs.versionName }}($BUILD_NUMBER)-dev-release.apk" -F "initial_comment=개발중인 YDS StoryBook이 나왔슈~" -F "channels=${{ secrets.SLACK_CHANNEL_ID_ANDROID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" https://slack.com/api/files.upload

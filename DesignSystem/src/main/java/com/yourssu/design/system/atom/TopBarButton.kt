@@ -108,7 +108,7 @@ class TopBarButton : LinearLayout {
                 }
             }
 
-            MotionEvent.ACTION_UP -> {
+           MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 setTopBarButtonInfo()
             }
         }

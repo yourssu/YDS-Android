@@ -1,0 +1,35 @@
+name-template: "Release $RESOLVED_VERSION"
+tag-template: "$RESOLVED_VERSION"
+
+# 해당 라벨이 붙은 pr은 변경내용에 추가 안함.
+exclude-labels:
+  - 'skip'
+
+# 각 pr의 라벨에 따라서 카테고리가 나뉨.
+categories:
+  - title: '🚀 Features'
+    label: 'features'
+  - title: '🛠 Modify'
+    label: 'modify'
+  - title: '🔥 Hotfix'
+    label: 'hotfix'
+
+#  각 pr의 내용 설명 뒤에 추가될 정보. 아래와 같은 형태로 알맞은 카테고리에 문장이 추가됨.
+#  - pr제목 @pr올린사람ID (#pr번호)
+change-template: '- $TITLE @$AUTHOR (#$NUMBER) '
+
+# 카테고리 분류가 안되는 pr은 Uncategorized 타이틀로 분류.
+# 여기서 $CHANGES는 해당 PR의 제목임.
+template: |
+  ## Uncategorized
+  $CHANGES
+
+# 각 pr의 라벨에 따라서 버전 업 기준이 달라짐.
+version-resolver:
+  major:
+    labels:
+      - "features"
+  minor:
+    labels:
+      - "modify"
+  default: patch
