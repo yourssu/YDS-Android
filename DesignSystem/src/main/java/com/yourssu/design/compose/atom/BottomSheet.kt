@@ -104,7 +104,10 @@ fun BottomSheetPreview() {
             repeat(15) {
                 ListItem(
                     onClick = { /*TODO*/ },
+                    text = "$it"
+                    /*
                     state = rememberListItemState(text = "hello $it")
+                    */
                 )
             }
         }
