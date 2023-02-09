@@ -1,3 +1,4 @@
+# PR이 정상적으로 빌드되는지 확인하기 위한 워크플로입니다.
 name: Android Build
 
 on:
@@ -6,24 +7,23 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
+      # Github 저장소를 로컬로 복사합니다.
+      - uses: actions/checkout@v3
+
+      # gradle 빌드을 위해 JDK를 세팅합니다.
       - name: set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
 
-      - name: Setting env
-        run: |
-          echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
-          echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
-          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
-          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
-
+      # gradlew에 실행 권한을 부여합니다.
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      # devDebug 버전의 apk를 빌드합니다.
       - name: Build with Gradle
-        run: ./gradlew --no-daemon :app:storybook:assembleDevRelease
+        run: ./gradlew --no-daemon :app:storybook:assembleDevDebug
