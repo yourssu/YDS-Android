@@ -1,107 +1,59 @@
 package com.yourssu.design.compose.atom
 
-import android.os.Parcelable
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.compose.YdsTheme
-import kotlinx.parcelize.IgnoredOnParcel
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
-data class ToggleState(
-    private val _isSelected: Boolean,
-    private val _isDisabled: Boolean
-) : Parcelable {
-    @IgnoredOnParcel
-    var isSelected by mutableStateOf(_isSelected)
-    @IgnoredOnParcel
-    var isDisabled by mutableStateOf(_isDisabled)
-
-    val defaultTrackColor: Color
-        @Composable get() = YdsTheme.colors.buttonBG
-    val selectedTrackColor: Color
-        @Composable get() = YdsTheme.colors.buttonPoint
-
-    val thumbColor: Color
-        @Composable get() = if (isDisabled) {
-            YdsTheme.colors.buttonDisabled
-        } else {
-            YdsTheme.colors.buttonBright
-        }
-
-    val thumbBorderColor: Color
-        @Composable get() = YdsTheme.colors.borderNormal
-}
-
-@Composable
-fun rememberToggleState(
-    isSelected: Boolean = false,
-    isDisabled: Boolean = false
-): ToggleState = rememberSaveable(isSelected, isDisabled) {
-    ToggleState(isSelected, isDisabled)
-}
+import com.yourssu.design.compose.base.noRippleClickable
+import com.yourssu.design.compose.foundation.YdsInAndOutEasing
 
 @Composable
 fun Toggle(
-    state: ToggleState,
+    checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
+    isDisabled: Boolean = false,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
-    val transition = updateTransition(state.isSelected, label = "Selected indicator")
+    val transition = updateTransition(checked, label = "Selected indicator")
 
     val trackColor by transition.animateColor(label = "trackColor") { selected ->
-        if (selected && !state.isDisabled)
-            state.selectedTrackColor
+        if (selected && !isDisabled)
+            YdsTheme.colors.buttonPoint
         else
-            state.defaultTrackColor
+            YdsTheme.colors.buttonBG
     }
     val offset by transition.animateDp(
         label = "offset",
         transitionSpec = {
             tween(
                 durationMillis = 100,
-                easing = CubicBezierEasing(0.25f, 0.1f, 0.25f, 1f)  // TODO 애니메이션 따로 정리해두기
+                easing = YdsInAndOutEasing
             )
         }
     ) { selected ->
         if (selected) 10.dp else (-10).dp
     }
 
+    val clickableModifier = if (isDisabled) Modifier else
+        Modifier.noRippleClickable(interactionSource) { onCheckedChange(!checked) }
+
     Box(
         modifier = Modifier
-            .size(
-                width = 51.dp,
-                height = 31.dp
-            )
+            .size(width = 51.dp, height = 31.dp)
             .clip(RoundedCornerShape(50))
             .background(color = trackColor)
-            .toggleable(
-                value = state.isSelected,
-                interactionSource = interactionSource,
-                indication = null,
-                enabled = !state.isDisabled,
-                role = Role.Switch,
-                onValueChange = { newValue ->
-                    state.isSelected = newValue
-                    onCheckedChange(newValue)
-                }
-            )
+            .then(clickableModifier)
             .offset(x = offset),
         contentAlignment = Alignment.Center
     ) {
@@ -109,10 +61,13 @@ fun Toggle(
             modifier = Modifier
                 .size(27.dp)
                 .clip(CircleShape)
-                .background(color = state.thumbColor)
+                .background(
+                    color = if (isDisabled) YdsTheme.colors.buttonDisabled
+                    else YdsTheme.colors.buttonBright
+                )
                 .border(
                     width = YdsTheme.border.thin,
-                    color = state.thumbBorderColor,
+                    color = YdsTheme.colors.borderNormal,
                     shape = CircleShape
                 )
         )
@@ -122,17 +77,14 @@ fun Toggle(
 @Preview(showBackground = true)
 @Composable
 fun TogglePreview() {
-    val state1 = rememberToggleState(isSelected = true)
-    val state2 = rememberToggleState(isDisabled = true)
+    var checked1 by remember { mutableStateOf(false) }
+    var disabled by remember { mutableStateOf(false) }
+    var checked2 by remember { mutableStateOf(false) }
+
     YdsTheme {
         Column {
-            Toggle(
-                state = state1,
-                onCheckedChange = {
-                    state2.isSelected = it
-                }
-            )
-            Toggle(state = state2, onCheckedChange = {})
+            Toggle(checked = checked1, onCheckedChange = { checked1 = it }, isDisabled = disabled)
+            Toggle(checked = checked2, onCheckedChange = { checked2 = it; disabled = it })
         }
     }
 }
