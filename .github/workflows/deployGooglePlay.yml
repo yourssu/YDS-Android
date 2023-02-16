@@ -3,11 +3,12 @@ name: Delploy YDS StoryBook to Google Play
 
 # Github에서 수동으로 실행해야 하며, 배포할 브랜치와 트랙을 선택할 수 있습니다.
 # 현재 내부 테스트와 프로덕션 트랙만 사용하며, 주석을 해제하여 비공개/공개 테스트 트랙을 사용할 수 있습니다.
+# '배포 없이 스토어 등록정보만 수정'을 선택하면 트랙과 상관없이 스토어 정보만 업데이트됩니다.
 on:
   workflow_dispatch:
     inputs:
       track:
-        description: 'Choose Google Play track to deploy'
+        description: '배포할 Google Play 트랙 선택'
         required: true
         default: 'internal'
         type: choice
@@ -16,6 +17,10 @@ on:
 #          - alpha(closed)
 #          - beta(open)
           - production
+      metadata:
+        description: '배포 없이 스토어 등록정보만 수정'
+        required: false
+        type: boolean
 
 jobs:
   deploy:
@@ -60,25 +65,35 @@ jobs:
         run: |
           mv ${{ steps.release_version.outputs.versionName }}.txt $BUILD_NUMBER.txt
 
+      # 스토어 등록정보만 업데이트합니다.
+      - name: Update Google Play metadata
+        run: bundle exec fastlane update_metadata
+        if: ${{ inputs.metadata }}
+
       # 내부 테스트 트랙에 배포합니다.
       - name: Submit to internal track
         run: bundle exec fastlane internal
-        if: ${{ inputs.track == 'internal' }}
+        if: ${{ !inputs.metadata && inputs.track == 'internal' }}
 
       # 비공개 테스트 트랙에 배포합니다.
 #      - name: Submit to alpha(closed) track
 #        run: bundle exec fastlane alpha
-#        if: ${{ inputs.track == 'alpha(closed)' }}
+#        if: ${{ !inputs.metadata && inputs.track == 'alpha(closed)' }}
 
       # 공개 테스트 트랙에 배포합니다.
 #      - name: Submit to beta(open) track
 #        run: bundle exec fastlane beta
-#        if: ${{ inputs.track == 'beta(open)' }}
+#        if: ${{ !inputs.metadata && inputs.track == 'beta(open)' }}
 
       # 프로덕션 트랙에 배포합니다.
       - name: Submit to production track
         run: bundle exec fastlane production
-        if: ${{ inputs.track == 'production' }}
+        if: ${{ !inputs.metadata && inputs.track == 'production' }}
+
+      # 슬랙에 스토어 정보 수정 완료 메시지를 전송합니다.
+      - name: Send metadata update message to Slack
+        run: curl -d "text=YDS StoryBook의 스토어 등록 정보를 업데이트했슈~ https://play.google.com/store/apps/details?id=com.yourssu.storybook" -d "channel=${{ secrets.SLACK_CHANNEL_ID_ANDROID }}" -H "Authorization:Bearer ${{ secrets.SLACK_WORKSPACE_TOKEN }}" -X POST https://slack.com/api/chat.postMessage
+        if: ${{ inputs.metadata }}
 
       # 슬랙에 완료 메시지를 전송합니다.
       - name: Send message to Slack
