@@ -49,7 +49,7 @@ class Checkbox @JvmOverloads constructor(
         }
 
     interface SelectedListener {
-        fun onSelected(boolean: Boolean)
+        fun onSelected(selected: Boolean)
     }
 
     private var selectedListener: SelectedListener? = null
