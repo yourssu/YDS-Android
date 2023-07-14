@@ -1,3 +1,4 @@
+# PR이 정상적으로 빌드되는지 확인하기 위한 워크플로입니다.
 name: Android Build
 
 on:
@@ -19,18 +20,10 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # 빌드에 필요한 환경변수를 세팅합니다.
-      - name: Setting env
-        run: |
-          echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
-          echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
-          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
-          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
-
       # gradlew에 실행 권한을 부여합니다.
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # devRelease 버전의 apk를 빌드합니다.
+      # devDebug 버전의 apk를 빌드합니다.
       - name: Build with Gradle
-        run: ./gradlew --no-daemon :app:storybook:assembleDevRelease
+        run: ./gradlew --no-daemon :app:storybook:assembleDevDebug

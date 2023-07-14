@@ -28,10 +28,18 @@ allprojects {
 implementation "com.github.yourssu:YDS-Android:${YDSVersion}"
 ```
 #### theme
-
-<img width="420" src="https://user-images.githubusercontent.com/39309953/141673816-df48fdd2-4480-45b4-9f30-ce7f6f4ed86c.png">
-
-다크 테마는 추가예정
+- 라이트 테마
+```xml
+<application 
+   android:theme="@style/Theme.Light.YourssuDesignSystem"
+   ...
+```
+- 라이트/다크 테마
+```xml
+<application
+   android:theme="@style/Theme.DayNight.YourssuDesignSystem"
+   ...
+```
 
 ## 🧪 샘플 어플리케이션
 <img src="https://user-images.githubusercontent.com/39309953/141673413-0e76bb0b-3d52-4f06-af15-5a070e20ebad.gif" width=300 />

@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.design.compose.YdsTheme
 import com.yourssu.design.compose.states.ButtonColorState
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun NoRippleButton(
     onClick: () -> Unit,
@@ -32,9 +31,8 @@ fun NoRippleButton(
 ) {
     val contentColor by colors.contentColor(enabled, interactionSource)
     Surface(
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
+        modifier = modifier
+            .noRippleClickable(interactionSource, onClick = onClick),
         shape = shape,
         color = colors.backgroundColor(enabled, interactionSource).value,
         contentColor = contentColor,
@@ -43,7 +41,6 @@ fun NoRippleButton(
             contentColor
         ) else null,
         elevation = elevation?.elevation(enabled, interactionSource)?.value ?: 0.dp,
-        interactionSource = interactionSource
     ) {
         CompositionLocalProvider(LocalContentAlpha provides contentColor.alpha) {
             ProvideTextStyle(value = MaterialTheme.typography.button) {

@@ -14,9 +14,7 @@
             app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:tabGravity="center"
             app:tabIndicatorHeight="0dp"
-            app:tabMaxWidth="105dp"
             app:tabPaddingEnd="0dp"
             app:tabPaddingStart="0dp" />
 

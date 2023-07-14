@@ -16,6 +16,13 @@
 default_platform(:android)
 
 platform :android do
+
+    # changelogs를 제외한 스토어 등록 정보를 업데이트합니다.
+    desc "Update metadata"
+    lane :update_metadata do
+        upload_to_play_store(skip_upload_aab: true, skip_upload_changelogs: true)
+    end
+
     # productionRelease 버전의 aab를 빌드 후 내부 테스트 트랙에 배포합니다.
     desc "Submit to internal track"
     lane :internal do
