@@ -64,8 +64,10 @@ class TabBar : ConstraintLayout {
     private fun setTabBarInfo() {
         if (tabMode == MODE_SCROLLABLE) {
             binding.tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
+            binding.tabLayout.tabGravity = TabLayout.GRAVITY_START
         } else {
             binding.tabLayout.tabMode = TabLayout.MODE_FIXED
+            binding.tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         }
 
         binding.tabLayout.tabRippleColor = null // disable ripple effect
