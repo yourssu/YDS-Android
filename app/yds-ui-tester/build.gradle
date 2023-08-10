@@ -3,8 +3,6 @@ plugins {
     id 'kotlin-android'
 }
 
-apply plugin: 'kotlin-kapt'
-
 def versionProperties = new Properties()
 versionProperties.load(new FileInputStream(file("../../version.properties")))
 

@@ -31,7 +31,7 @@ abstract class BaseFullDialog: Dialog {
             window?.setDecorFitsSystemWindows(false)
             val insetController: WindowInsetsController? = window?.insetsController
             // insetController?.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-            insetController?.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_BARS_BY_SWIPE
+            insetController?.systemBarsBehavior = WindowInsetsController.BEHAVIOR_DEFAULT
         } else if (!isAttachWindow && Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
             window?.requestFeature(Window.FEATURE_NO_TITLE)

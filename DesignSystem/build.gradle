@@ -11,18 +11,6 @@ task androidSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
 }
 
-project.afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-            }
-        }
-    }
-}
-
-apply plugin: 'kotlin-kapt'
-
 def versionProperties = new Properties()
 versionProperties.load(new FileInputStream(file("../version.properties")))
 
@@ -64,6 +52,20 @@ android {
     buildFeatures {
         dataBinding = true
         compose = true
+    }
+
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId project.name
+                artifactId project.name
+                version versionProperties['versionName']
+            }
+        }
     }
 }
 
