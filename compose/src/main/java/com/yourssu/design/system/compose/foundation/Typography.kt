@@ -9,7 +9,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
-import com.yourssu.design.R
+import com.yourssu.design.system.compose.R
 
 val fonts = FontFamily(
     Font(R.font.spoqa_han_sans_neo_regular, FontWeight.Normal),

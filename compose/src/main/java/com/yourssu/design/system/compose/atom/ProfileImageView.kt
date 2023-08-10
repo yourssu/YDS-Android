@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import com.yourssu.design.R
+import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 
 class SquircleShape : Shape {
