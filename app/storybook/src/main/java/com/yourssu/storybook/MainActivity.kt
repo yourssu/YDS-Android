@@ -34,8 +34,8 @@ class MainActivity : BaseActivity() {
     }
 
     val tabList = listOf(
-        BottomBar.BottomTabInfo(TabType.XML.name, R.drawable.ic_calendar_line, R.drawable.ic_calendar_filled),
-        BottomBar.BottomTabInfo(TabType.COMPOSE.name, R.drawable.ic_checkcircle_line, R.drawable.ic_checkcircle_filled),
+        BottomBar.BottomTabInfo(TabType.XML.name, R.drawable.ic_xml, R.drawable.ic_xml),
+        BottomBar.BottomTabInfo(TabType.COMPOSE.name, R.drawable.ic_kotlin, R.drawable.ic_kotlin),
     )
 }
 
