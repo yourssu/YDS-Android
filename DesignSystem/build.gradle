@@ -54,6 +54,9 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
+                groupId project.name
+                artifactId project.name
+                version versionProperties['versionName']
             }
         }
     }
