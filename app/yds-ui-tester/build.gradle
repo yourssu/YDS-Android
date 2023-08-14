@@ -7,7 +7,8 @@ def versionProperties = new Properties()
 versionProperties.load(new FileInputStream(file("../../version.properties")))
 
 android {
-    compileSdkVersion 33
+    namespace = "com.yourssu.yds_ui_tester"
+    compileSdk 33
 
     // 당연하지만 배포용은 아니고 release 테스트용
     signingConfigs {
