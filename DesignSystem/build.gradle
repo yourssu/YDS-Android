@@ -41,17 +41,12 @@ android {
     buildFeatures {
         dataBinding = true
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
-    }
 }
 
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
+            yds(MavenPublication) {
                 from components.release
                 groupId project.name
                 artifactId project.name
