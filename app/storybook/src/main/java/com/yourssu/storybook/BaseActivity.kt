@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.yourssu.storybook.transform.ActivityAnimType
 
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
     abstract var animationType: ActivityAnimType
 
     override fun onCreate(savedInstanceState: Bundle?) {
