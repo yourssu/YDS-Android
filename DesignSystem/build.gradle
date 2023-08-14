@@ -6,11 +6,6 @@ plugins {
 }
 apply plugin: 'kotlin-kapt'
 
-//task androidSourcesJar(type: Jar) {
-//    classifier 'sources'
-//    from android.sourceSets.main.java.srcDirs
-//}
-
 def versionProperties = new Properties()
 versionProperties.load(new FileInputStream(file("../version.properties")))
 
@@ -46,6 +41,11 @@ android {
     }
     buildFeatures {
         dataBinding = true
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 }
 
