@@ -10,7 +10,6 @@ def versionProperties = new Properties()
 versionProperties.load(new FileInputStream(file("../version.properties")))
 
 android {
-    namespace = "com.yourssu.design.system"
     compileSdk 33
 
     defaultConfig {
