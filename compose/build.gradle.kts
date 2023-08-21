@@ -51,10 +51,9 @@ android {
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("YDS-Compose") {
+            create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = project.name
-                artifactId = project.name
+                artifactId = "final"
                 version = versionProperties["versionName"].toString()
             }
         }
