@@ -48,8 +48,6 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                artifactId = "final"
-                version versionProperties['versionName']
             }
         }
     }

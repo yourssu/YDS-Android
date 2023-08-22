@@ -53,8 +53,6 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                artifactId = "final"
-                version = versionProperties["versionName"].toString()
             }
         }
     }
