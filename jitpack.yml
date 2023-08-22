@@ -1,2 +1,6 @@
 jdk:
   - openjdk11
+install:
+  - ./gradlew :DesignSystem:build :DesignSystem:publishToMavenLocal -x :DesignSystem:test
+  - ./gradlew :compose:build :compose:publishToMavenLocal -x :compose:test
+  - find . -name "*.aar"
