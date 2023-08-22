@@ -1,5 +1,5 @@
 include ':DesignSystem'
+include ':compose'
 include ':app:storybook'
 include ':app:yds-ui-tester'
 rootProject.name = "YDS-Android"
-include ':compose'

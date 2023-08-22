@@ -15,17 +15,24 @@ YDS 문서는 노션 페이지에서 관리됩니다.
 
 ## 🛠 설치 방법
 #### gradle Project
-```groovy
+```kts
 allprojects {
     repositories {
         '...'
-        maven { url 'https://jitpack.io' }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 ```
 #### gradle app
-```groovy
-implementation "com.github.yourssu:YDS-Android:${YDSVersion}"
+```kts
+// YDS for both XML and Compose
+implementation("com.github.yourssu:YDS-Android:${YDSVersion}")
+
+// YDS for XML view
+implementation("com.github.yourssu.YDS-Android:DesignSystem:${YDSVersion}")
+
+// YDS for Jetpack Compose
+implementation("com.github.yourssu.YDS-Android:compose:${YDSVersion}")
 ```
 #### theme
 - 라이트 테마

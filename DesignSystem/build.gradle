@@ -46,11 +46,8 @@ android {
 afterEvaluate {
     publishing {
         publications {
-            yds(MavenPublication) {
+            release(MavenPublication) {
                 from components.release
-                groupId project.name
-                artifactId project.name
-                version versionProperties['versionName']
             }
         }
     }

@@ -1,16 +1,7 @@
-import java.util.Properties
-
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     `maven-publish`
-}
-
-val versionProperties = Properties().apply {
-    File(
-        rootProject.rootDir,
-        "version.properties"
-    ).inputStream().use { load(it) }
 }
 
 android {
@@ -51,11 +42,8 @@ android {
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("YDS-Compose") {
+            create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = project.name
-                artifactId = project.name
-                version = versionProperties["versionName"].toString()
             }
         }
     }
