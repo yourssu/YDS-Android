@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.yourssu.design.system.compose.foundation.IconSize
+import com.yourssu.design.system.compose.base.IconSize
 
 @Immutable
 data class ButtonSizeState(

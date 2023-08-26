@@ -1,4 +1,4 @@
-package com.yourssu.design.system.compose.foundation
+package com.yourssu.design.system.compose.base
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.size

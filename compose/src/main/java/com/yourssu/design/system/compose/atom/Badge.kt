@@ -11,9 +11,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.foundation.IconSize
+import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.foundation.ItemColor
-import com.yourssu.design.system.compose.foundation.YdsIcon
+import com.yourssu.design.system.compose.base.YdsIcon
 
 @Composable
 fun Badge(

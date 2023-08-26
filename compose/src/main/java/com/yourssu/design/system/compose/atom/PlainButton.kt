@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.NoRippleButton
-import com.yourssu.design.system.compose.foundation.IconSize
-import com.yourssu.design.system.compose.foundation.YdsIcon
+import com.yourssu.design.system.compose.base.IconSize
+import com.yourssu.design.system.compose.base.YdsIcon
 import com.yourssu.design.system.compose.states.ButtonColorState
 import com.yourssu.design.system.compose.states.ButtonSizeState
 
