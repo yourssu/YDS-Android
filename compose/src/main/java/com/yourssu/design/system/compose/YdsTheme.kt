@@ -14,12 +14,13 @@ import com.yourssu.design.system.compose.foundation.YdsTypography
 import com.yourssu.design.system.compose.foundation.darkColorScheme
 import com.yourssu.design.system.compose.foundation.getYDSTypography
 import com.yourssu.design.system.compose.foundation.lightColorScheme
-import com.yourssu.design.system.compose.rule.LocalYdsRounding
+import com.yourssu.design.system.compose.foundation.LocalYdsRounding
+import com.yourssu.design.system.compose.foundation.YdsRounding
 
 @Composable
 fun YdsTheme(
     typography: YdsTypography = getYDSTypography(),
-    rounding: Shapes = YdsTheme.rounding,
+    rounding: YdsRounding = YdsTheme.rounding,
     border: Border = YdsTheme.border,
     content: @Composable () -> Unit
 ) {
@@ -48,7 +49,7 @@ object YdsTheme {
         @ReadOnlyComposable
         get() = LocalYdsTypography.current
 
-    val rounding: Shapes
+    val rounding: YdsRounding
         @Composable
         @ReadOnlyComposable
         get() = LocalYdsRounding.current
