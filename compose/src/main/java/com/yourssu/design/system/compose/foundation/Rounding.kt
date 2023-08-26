@@ -1,17 +1,11 @@
 package com.yourssu.design.system.compose.foundation
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.dp
 
-internal val smallRounding = 2.dp
-internal val normalRounding = 4.dp
-internal val largeRounding = 8.dp
+internal val smallRounding = RoundedCornerShape(2.dp)
+internal val normalRounding = RoundedCornerShape(4.dp)
+internal val largeRounding = RoundedCornerShape(8.dp)
 
-data class YdsRounding(
-    val small: RoundedCornerShape = RoundedCornerShape(smallRounding),
-    val medium: RoundedCornerShape = RoundedCornerShape(normalRounding),
-    val large: RoundedCornerShape = RoundedCornerShape(largeRounding),
-)
-
-internal val LocalYdsRounding = staticCompositionLocalOf { YdsRounding() }
+internal val LocalYdsRounding = compositionLocalOf { normalRounding }
