@@ -18,8 +18,13 @@ val fonts = FontFamily(
     Font(R.font.spoqa_han_sans_neo_bold, FontWeight.Bold),
 )
 
-// 폰트 사이즈를 Dp로 표현하기 위해 사용합니다.
-// Text에 적용할 때는 `toTextStyle()`로 변환하여 사용합니다.
+/**
+ * 폰트 사이즈를 Dp로 표현하기 위해 사용합니다.
+ *
+ * Text에 적용될 때는 `toTextStyle()`로 변환하여 사용됩니다.
+ *
+ * @see com.yourssu.design.system.compose.base.Text
+ */
 @Immutable
 data class YdsTextStyle(
     val fontFamily: FontFamily,
