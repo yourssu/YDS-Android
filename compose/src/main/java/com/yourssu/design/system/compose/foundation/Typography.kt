@@ -2,7 +2,9 @@ package com.yourssu.design.system.compose.foundation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -27,10 +29,11 @@ val fonts = FontFamily(
  */
 @Immutable
 data class YdsTextStyle(
-    val fontFamily: FontFamily,
-    val fontWeight: FontWeight,
-    val fontSize: Dp,
-    val lineHeight: Dp,
+    val fontFamily: FontFamily = fonts,
+    val fontWeight: FontWeight = FontWeight.Medium,
+    val fontSize: Dp = Dp.Unspecified,
+    val lineHeight: Dp = Dp.Unspecified,
+    val color: Color = Color.Unspecified,
 ) {
     @Composable
     fun toTextStyle() = TextStyle(
@@ -38,115 +41,103 @@ data class YdsTextStyle(
         fontWeight = fontWeight,
         fontSize = with(LocalDensity.current) { fontSize.toSp() },
         lineHeight = with(LocalDensity.current) { lineHeight.toSp() },
+        color = color,
     )
+
+    companion object {
+        @Stable
+        val Default = YdsTextStyle()
+    }
 }
 
 @Immutable
 data class YdsTypography(
     val title1: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Bold,
         fontSize = 28.dp,
         lineHeight = 36.4f.dp,
     ),
     val title2: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Bold,
         fontSize = 24.dp,
         lineHeight = 31.2f.dp,
     ),
     val title3: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Bold,
         fontSize = 20.dp,
         lineHeight = 26.dp,
     ),
     val subTitle1: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 20.dp,
         lineHeight = 26.dp,
     ),
     val subTitle2: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 16.dp,
         lineHeight = 20.8f.dp,
     ),
     val subTitle3: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 14.dp,
         lineHeight = 18.2f.dp,
     ),
     val body1: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Normal,
         fontSize = 15.dp,
         lineHeight = 22.5f.dp,
     ),
     val body2: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Normal,
         fontSize = 14.dp,
         lineHeight = 21f.dp,
     ),
     val button0: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 16.dp,
         lineHeight = 22.4f.dp,
     ),
     val button1: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 16.dp,
         lineHeight = 22.4f.dp,
     ),
     val button2: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 14.dp,
         lineHeight = 18.2f.dp,
     ),
     val button3: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 14.dp,
         lineHeight = 18.2f.dp,
     ),
     val button4: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 12.dp,
         lineHeight = 16.8f.dp,
     ),
     val caption0: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 12.dp,
         lineHeight = 15.6f.dp,
     ),
     val caption1: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 12.dp,
         lineHeight = 15.6f.dp,
     ),
     val caption2: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 11.dp,
         lineHeight = 14.3f.dp,
     ),
     val display1: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Bold,
         fontSize = 40.dp,
         lineHeight = 52.dp,
     ),
     val display2: YdsTextStyle = YdsTextStyle(
-        fontFamily = fonts,
         fontWeight = FontWeight.Bold,
         fontSize = 32.dp,
         lineHeight = 41.6f.dp,
