@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -23,6 +22,7 @@ import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.NoRippleButton
 import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsIcon
+import com.yourssu.design.system.compose.foundation.YdsRounding
 import com.yourssu.design.system.compose.states.ButtonColorState
 import com.yourssu.design.system.compose.states.ButtonSizeState
 
@@ -115,13 +115,13 @@ fun BoxButton(
     isWarned: Boolean = false,
     sizeType: BoxButtonSize = BoxButtonSize.Large,
     buttonType: BoxButtonType = BoxButtonType.Filled,
-    rounding: CornerBasedShape = YdsTheme.rounding.large,
+    rounding: YdsRounding = YdsRounding.Large,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
-    val roundingShape = when (sizeType) {
-        BoxButtonSize.ExtraLarge -> YdsTheme.rounding.large
+    val rounding = when (sizeType) {
+        BoxButtonSize.ExtraLarge -> YdsRounding.Large
         BoxButtonSize.Large -> rounding
-        BoxButtonSize.Medium, BoxButtonSize.Small -> YdsTheme.rounding.medium
+        BoxButtonSize.Medium, BoxButtonSize.Small -> YdsRounding.Medium
     }
     val (typo, iconSize, height, horizontalPadding) = boxButtonSizeStateBySize(size = sizeType)
 
@@ -135,7 +135,7 @@ fun BoxButton(
         showBorder = (buttonType == BoxButtonType.Line),
         elevation = elevation(0.dp, 0.dp, 0.dp),
         interactionSource = interactionSource,
-        shape = roundingShape,
+        shape = rounding.shape,
         contentPadding = PaddingValues(
             horizontal = horizontalPadding
         )

@@ -24,6 +24,7 @@ import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsIcon
 import com.yourssu.design.system.compose.foundation.ItemColor
+import com.yourssu.design.system.compose.foundation.YdsRounding
 
 @Composable
 fun Badge(
@@ -36,7 +37,7 @@ fun Badge(
         modifier = modifier
             .requiredHeight(24.dp)
             .wrapContentWidth(),
-        shape = YdsTheme.rounding.small,
+        shape = YdsRounding.Small.shape,
         color = itemColor.getSemanticColor(),
         contentColor = YdsTheme.colors.monoItemText
     ) {
