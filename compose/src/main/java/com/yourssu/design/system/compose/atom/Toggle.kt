@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.noRippleClickable
-import com.yourssu.design.system.compose.foundation.YdsInAndOutEasing
+import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
 import com.yourssu.design.system.compose.rule.YdsBorder
 
 @Composable
