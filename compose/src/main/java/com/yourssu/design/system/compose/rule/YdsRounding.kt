@@ -1,4 +1,4 @@
-package com.yourssu.design.system.compose.foundation
+package com.yourssu.design.system.compose.rule
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.dp

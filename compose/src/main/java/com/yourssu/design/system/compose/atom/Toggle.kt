@@ -76,7 +76,7 @@ fun Toggle(
                     else YdsTheme.colors.buttonBright
                 )
                 .border(
-                    width = YdsBorder.thin,
+                    width = YdsBorder.Thin.dp,
                     color = YdsTheme.colors.borderNormal,
                     shape = CircleShape
                 )

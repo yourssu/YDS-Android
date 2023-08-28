@@ -49,7 +49,7 @@ fun NoRippleButton(
         shape = shape,
         color = buttonColors.backgroundColor(enabled).value,
         contentColor = contentColor,
-        border = if (showBorder) BorderStroke(YdsBorder.normal, contentColor) else null,
+        border = if (showBorder) BorderStroke(YdsBorder.Normal.dp, contentColor) else null,
         elevation = elevation?.elevation(enabled, interactionSource)?.value ?: 0.dp,
     ) {
         CompositionLocalProvider(LocalContentAlpha provides contentColor.alpha) {

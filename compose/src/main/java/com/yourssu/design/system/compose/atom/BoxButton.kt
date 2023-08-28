@@ -22,7 +22,7 @@ import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.NoRippleButton
 import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsIcon
-import com.yourssu.design.system.compose.foundation.YdsRounding
+import com.yourssu.design.system.compose.rule.YdsRounding
 import com.yourssu.design.system.compose.states.ButtonColorState
 import com.yourssu.design.system.compose.states.ButtonSizeState
 

@@ -23,8 +23,8 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsIcon
-import com.yourssu.design.system.compose.foundation.ItemColor
-import com.yourssu.design.system.compose.foundation.YdsRounding
+import com.yourssu.design.system.compose.rule.ItemColor
+import com.yourssu.design.system.compose.rule.YdsRounding
 
 @Composable
 fun Badge(

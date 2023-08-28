@@ -7,10 +7,8 @@ internal val minBorderWidth = 0.34.dp
 internal val normalBorderWidth = 1.dp
 internal val thickBorderWidth = 8.dp
 
-data class Border(
-    val thin: Dp = minBorderWidth,
-    val normal: Dp = normalBorderWidth,
-    val thick: Dp = thickBorderWidth
-)
-
-val YdsBorder = Border()
+enum class YdsBorder(val dp: Dp) {
+    Thin(minBorderWidth),
+    Normal(normalBorderWidth),
+    Thick(thickBorderWidth),
+}
