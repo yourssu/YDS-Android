@@ -2,6 +2,7 @@ package com.yourssu.design.system.compose.base
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -22,7 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import com.yourssu.design.system.compose.rule.LocalYdsBorder
+import com.yourssu.design.system.compose.rule.YdsBorder
 import com.yourssu.design.system.compose.states.ButtonColorState
 
 @Composable
@@ -38,17 +39,17 @@ fun NoRippleButton(
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     content: @Composable RowScope.() -> Unit
 ) {
-    val contentColor by colors.contentColor(enabled, interactionSource)
+    val localPressed by interactionSource.collectIsPressedAsState()
+    val buttonColors = colors.apply { pressed = localPressed }
+    val contentColor by buttonColors.contentColor(enabled)
+
     Surface(
         modifier = modifier
             .noRippleClickable(interactionSource, onClick = onClick),
         shape = shape,
-        color = colors.backgroundColor(enabled, interactionSource).value,
+        color = buttonColors.backgroundColor(enabled).value,
         contentColor = contentColor,
-        border = if (showBorder) BorderStroke(
-            LocalYdsBorder.current.normal,
-            contentColor
-        ) else null,
+        border = if (showBorder) BorderStroke(YdsBorder.normal, contentColor) else null,
         elevation = elevation?.elevation(enabled, interactionSource)?.value ?: 0.dp,
     ) {
         CompositionLocalProvider(LocalContentAlpha provides contentColor.alpha) {

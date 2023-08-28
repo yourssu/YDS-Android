@@ -1,43 +1,43 @@
 package com.yourssu.design.system.compose.states
 
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
-import com.yourssu.design.system.compose.util.alterColorIfPressed
+import com.yourssu.design.system.compose.foundation.pressedColorFor
 
 @Immutable
-data class ButtonColorState(
+class ButtonColorState(
     val contentColor: Color = Color.Unspecified,
     val disabledContentColor: Color = Color.Unspecified,
     val bgColor: Color = Color.Transparent,
-    val disabledBgColor: Color = Color.Transparent
+    val disabledBgColor: Color = Color.Transparent,
+    pressed: Boolean = false,
 ) {
-    @Composable
-    fun contentColor(
-        enabled: Boolean,
-        interactionSource: MutableInteractionSource
-    ): State<Color> {
-        val pressed = interactionSource.collectIsPressedAsState().value
-
-        return rememberUpdatedState(if (enabled) {
-            contentColor.alterColorIfPressed(isPressed = pressed)
-        } else {
-            disabledContentColor
-        })
-    }
+    var pressed by mutableStateOf(pressed)
+        internal set
 
     @Composable
-    fun backgroundColor(
-        enabled: Boolean,
-        interactionSource: MutableInteractionSource
-    ): State<Color> {
-        val pressed by interactionSource.collectIsPressedAsState()
+    fun contentColor(enabled: Boolean): State<Color> =
+        rememberUpdatedState(
+            when {
+                !enabled -> disabledContentColor
+                pressed -> pressedColorFor(contentColor)
+                else -> contentColor
+            }
+        )
 
-        return rememberUpdatedState(if (enabled) {
-            bgColor.alterColorIfPressed(isPressed = pressed)
-        } else {
-            disabledBgColor
-        })
-    }
+    @Composable
+    fun backgroundColor(enabled: Boolean): State<Color> =
+        rememberUpdatedState(
+            when {
+                !enabled -> disabledBgColor
+                pressed -> pressedColorFor(bgColor)
+                else -> bgColor
+            }
+        )
 }

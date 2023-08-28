@@ -1,6 +1,5 @@
 package com.yourssu.design.system.compose.rule
 
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -14,6 +13,4 @@ data class Border(
     val thick: Dp = thickBorderWidth
 )
 
-internal val YdsBorder = Border()
-
-internal val LocalYdsBorder = staticCompositionLocalOf { YdsBorder }
+val YdsBorder = Border()
