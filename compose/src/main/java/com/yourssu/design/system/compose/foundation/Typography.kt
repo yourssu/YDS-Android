@@ -5,6 +5,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -12,6 +13,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.takeOrElse
 import com.yourssu.design.system.compose.R
 
 val fonts = FontFamily(
@@ -43,6 +45,17 @@ data class YdsTextStyle(
         lineHeight = with(LocalDensity.current) { lineHeight.toSp() },
         color = color,
     )
+
+    fun merge(other: YdsTextStyle?): YdsTextStyle {
+        if (other == null || other == Default) return this
+        return YdsTextStyle(
+            fontFamily = other.fontFamily,
+            fontWeight = other.fontWeight,
+            fontSize = this.fontSize.takeOrElse { other.fontSize },
+            lineHeight = this.lineHeight.takeOrElse { other.lineHeight },
+            color = this.color.takeOrElse { other.color }
+        )
+    }
 
     companion object {
         @Stable

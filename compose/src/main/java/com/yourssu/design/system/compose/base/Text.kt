@@ -2,6 +2,7 @@ package com.yourssu.design.system.compose.base
 
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,3 +33,9 @@ fun Text(
 }
 
 val LocalTextStyle = compositionLocalOf { YdsTextStyle.Default }
+
+@Composable
+fun ProvideTextStyle(value: YdsTextStyle, content: @Composable () -> Unit) {
+    val mergedStyle = LocalTextStyle.current.merge(value)
+    CompositionLocalProvider(LocalTextStyle provides mergedStyle, content = content)
+}
