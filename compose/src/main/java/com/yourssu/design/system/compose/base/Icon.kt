@@ -1,12 +1,18 @@
 package com.yourssu.design.system.compose.base
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.toolingGraphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -20,18 +26,51 @@ sealed class IconSize(val value: Dp) {
 }
 
 @Composable
-fun YdsIcon(
+fun Icon(
     @DrawableRes id: Int,
     modifier: Modifier = Modifier,
     iconSize: IconSize = IconSize.Medium,
-    tint: Color = LocalContentColor.current
+    tint: Color = LocalContentColor.current,
 ) {
     Icon(
         imageVector = ImageVector.vectorResource(id = id),
-        contentDescription = "$id",
-        modifier = Modifier
-            .size(iconSize.value)
-            .then(modifier),
+        modifier = modifier,
+        iconSize = iconSize,
         tint = tint
+    )
+}
+
+@Composable
+fun Icon(
+    imageVector: ImageVector,
+    modifier: Modifier = Modifier,
+    iconSize: IconSize = IconSize.Medium,
+    tint: Color = LocalContentColor.current,
+) {
+    Icon(
+        painter = rememberVectorPainter(imageVector),
+        modifier = modifier,
+        iconSize = iconSize,
+        tint = tint
+    )
+}
+
+@Composable
+fun Icon(
+    painter: Painter,
+    modifier: Modifier = Modifier,
+    iconSize: IconSize = IconSize.Medium,
+    tint: Color = LocalContentColor.current,
+) {
+    val colorFilter = ColorFilter.tint(tint)
+    Box(
+        modifier
+            .toolingGraphicsLayer()
+            .size(iconSize.value)
+            .paint(
+                painter = painter,
+                colorFilter = colorFilter,
+                contentScale = ContentScale.Fit
+            )
     )
 }

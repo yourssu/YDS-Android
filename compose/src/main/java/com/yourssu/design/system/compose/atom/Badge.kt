@@ -22,7 +22,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Surface
 import com.yourssu.design.system.compose.base.Text
-import com.yourssu.design.system.compose.base.YdsIcon
+import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.rule.ItemColor
 import com.yourssu.design.system.compose.rule.YdsRounding
 
@@ -47,7 +47,7 @@ fun Badge(
             verticalAlignment = Alignment.CenterVertically
         ) {
             icon?.let { iconId ->
-                YdsIcon(
+                Icon(
                     id = iconId,
                     iconSize = IconSize.ExtraSmall
                 )

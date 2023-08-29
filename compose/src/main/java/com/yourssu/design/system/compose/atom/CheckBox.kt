@@ -21,7 +21,7 @@ import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Text
-import com.yourssu.design.system.compose.base.YdsIcon
+import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.base.noRippleClickable
 import com.yourssu.design.system.compose.states.ButtonSizeState
 
@@ -92,7 +92,7 @@ fun CheckBox(
             .then(clickableModifier),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        YdsIcon(
+        Icon(
             id = icon,
             iconSize = iconSize,
             tint = contentColor

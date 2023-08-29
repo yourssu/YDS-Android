@@ -20,7 +20,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsBaseButton
-import com.yourssu.design.system.compose.base.YdsIcon
+import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.rule.YdsRounding
 import com.yourssu.design.system.compose.states.ButtonColorState
 import com.yourssu.design.system.compose.states.ButtonSizeState
@@ -139,7 +139,7 @@ fun BoxButton(
         )
     ) {
         leftIcon?.let { icon ->
-            YdsIcon(
+            Icon(
                 id = icon,
                 iconSize = iconSize
             )
@@ -154,7 +154,7 @@ fun BoxButton(
         // leftIcon이 null일 때만
         leftIcon ?: rightIcon?.let { icon ->
             Spacer(modifier = Modifier.width(4.dp))
-            YdsIcon(
+            Icon(
                 id = icon,
                 iconSize = iconSize
             )

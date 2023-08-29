@@ -19,7 +19,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsBaseButton
-import com.yourssu.design.system.compose.base.YdsIcon
+import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.states.ButtonColorState
 import com.yourssu.design.system.compose.states.ButtonSizeState
 
@@ -85,13 +85,13 @@ fun PlainButton(
             val iconRes = leftIcon ?: rightIcon
 
             require(iconRes != null) { "Large 버튼은 아이콘이 지정되어야 합니다." }
-            YdsIcon(
+            Icon(
                 id = iconRes,
                 iconSize = iconSize
             )
         } else {
             leftIcon?.let { icon ->
-                YdsIcon(
+                Icon(
                     id = icon,
                     iconSize = iconSize
                 )
@@ -106,7 +106,7 @@ fun PlainButton(
             if (leftIcon == null) {
                 rightIcon?.let { icon ->
                     Spacer(modifier = Modifier.width(2.dp))
-                    YdsIcon(
+                    Icon(
                         id = icon,
                         iconSize = iconSize
                     )

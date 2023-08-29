@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.Text
-import com.yourssu.design.system.compose.base.YdsIcon
+import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.base.noRippleClickable
 
 @Composable
@@ -58,7 +58,7 @@ fun ListItem(
         Spacer(Modifier.width(20.dp))
 
         leftIcon?.let { icon ->
-            YdsIcon(id = icon, tint = YdsTheme.colors.buttonNormal)
+            Icon(id = icon, tint = YdsTheme.colors.buttonNormal)
             Spacer(Modifier.width(8.dp))
         }
 
@@ -71,7 +71,7 @@ fun ListItem(
 
         rightIcon?.let { icon ->
             Spacer(Modifier.width(8.dp))
-            YdsIcon(id = icon, tint = YdsTheme.colors.buttonNormal)
+            Icon(id = icon, tint = YdsTheme.colors.buttonNormal)
         }
 
         Spacer(Modifier.width(20.dp))
