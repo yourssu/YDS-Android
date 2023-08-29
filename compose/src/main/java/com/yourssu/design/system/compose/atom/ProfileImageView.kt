@@ -109,7 +109,7 @@ fun ProfileImageView(
             .size(size.value)
             .clip(SquircleShape())
             .border(
-                width = YdsBorder.normal,
+                width = YdsBorder.Normal.dp,
                 color = YdsTheme.colors.borderNormal,
                 shape = SquircleShape()
             )
