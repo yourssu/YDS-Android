@@ -9,34 +9,36 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.ButtonElevation
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ProvideTextStyle
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
+import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.rule.YdsBorder
+import com.yourssu.design.system.compose.rule.YdsRounding
 import com.yourssu.design.system.compose.states.ButtonColorState
 
+/**
+ * (전) NoRippleButton
+ *
+ * BoxButton, PlainButton의 베이스가 되는, Ripple 효과가 없는 Composable 함수 입니다.
+ *
+ * @see com.yourssu.design.system.compose.atom.BoxButton
+ * @see com.yourssu.design.system.compose.atom.PlainButton
+ */
 @Composable
-fun NoRippleButton(
+internal fun YdsBaseButton(
     onClick: () -> Unit,
     colors: ButtonColorState,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     showBorder: Boolean = false,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    elevation: ButtonElevation? = ButtonDefaults.elevation(),
-    shape: Shape = MaterialTheme.shapes.small,
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    shape: Shape = YdsRounding.Large.shape,
+    contentPadding: PaddingValues = YdsButtonDefaults.ContentPadding,
     content: @Composable RowScope.() -> Unit
 ) {
     val localPressed by interactionSource.collectIsPressedAsState()
@@ -44,28 +46,40 @@ fun NoRippleButton(
     val contentColor by buttonColors.contentColor(enabled)
 
     Surface(
-        modifier = modifier
-            .noRippleClickable(interactionSource, onClick = onClick),
+        onClick = onClick,
+        modifier = modifier,
         shape = shape,
         color = buttonColors.backgroundColor(enabled).value,
         contentColor = contentColor,
         border = if (showBorder) BorderStroke(YdsBorder.Normal.dp, contentColor) else null,
-        elevation = elevation?.elevation(enabled, interactionSource)?.value ?: 0.dp,
+        interactionSource = interactionSource,
     ) {
-        CompositionLocalProvider(LocalContentAlpha provides contentColor.alpha) {
-            ProvideTextStyle(value = MaterialTheme.typography.button) {
-                Row(
-                    modifier = Modifier
-                        .defaultMinSize(
-                            minWidth = ButtonDefaults.MinWidth,
-                            minHeight = ButtonDefaults.MinHeight
-                        )
-                        .padding(contentPadding),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                    content = content
-                )
-            }
+        ProvideTextStyle(value = YdsTheme.typography.button2) {
+            Row(
+                modifier = Modifier
+                    .defaultMinSize(
+                        minWidth = YdsButtonDefaults.MinWidth,
+                        minHeight = YdsButtonDefaults.MinHeight
+                    )
+                    .padding(contentPadding),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                content = content
+            )
         }
     }
+}
+
+object YdsButtonDefaults {
+    private val ButtonHorizontalPadding = 16.dp
+    private val ButtonVerticalPadding = 12.dp
+
+    val ContentPadding = PaddingValues(
+        horizontal = ButtonHorizontalPadding,
+        vertical = ButtonVerticalPadding
+    )
+
+    // YDS에 명시되어 있지 않아서 Material에서 가져옴
+    val MinWidth = 64.dp
+    val MinHeight = 36.dp
 }

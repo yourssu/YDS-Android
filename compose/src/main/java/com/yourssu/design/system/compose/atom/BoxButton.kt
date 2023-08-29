@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
-import com.yourssu.design.system.compose.base.NoRippleButton
 import com.yourssu.design.system.compose.base.Text
+import com.yourssu.design.system.compose.base.YdsBaseButton
 import com.yourssu.design.system.compose.base.YdsIcon
 import com.yourssu.design.system.compose.rule.YdsRounding
 import com.yourssu.design.system.compose.states.ButtonColorState
@@ -125,7 +124,7 @@ fun BoxButton(
     }
     val (typo, iconSize, height, horizontalPadding) = boxButtonSizeStateBySize(size = sizeType)
 
-    NoRippleButton(
+    YdsBaseButton(
         onClick = onClick,
         colors = boxButtonColorByType(isWarned = isWarned, type = buttonType),
         modifier = Modifier
@@ -133,7 +132,6 @@ fun BoxButton(
             .height(height),
         enabled = !isDisabled,
         showBorder = (buttonType == BoxButtonType.Line),
-        elevation = elevation(0.dp, 0.dp, 0.dp),
         interactionSource = interactionSource,
         shape = rounding.shape,
         contentPadding = PaddingValues(
