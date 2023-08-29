@@ -14,8 +14,40 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.semantics.isContainer
+import androidx.compose.ui.semantics.semantics
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.foundation.LocalContentColor
+
+@Composable
+fun Surface(
+    modifier: Modifier = Modifier,
+    shape: Shape = RectangleShape,
+    color: Color = YdsTheme.colors.bgNormal,
+    contentColor: Color = LocalContentColor.current,
+    border: BorderStroke? = null,
+    content: @Composable () -> Unit,
+) {
+    CompositionLocalProvider(
+        LocalContentColor provides contentColor,
+    ) {
+        Box(
+            modifier = modifier
+                .surface(
+                    shape = shape,
+                    backgroundColor = color,
+                    border = border,
+                )
+                .semantics { isContainer = true }
+                .pointerInput(Unit) {},
+            propagateMinConstraints = true,
+        ) {
+            content()
+        }
+    }
+}
+
 
 /**
  * todo: 설명 작성하기
@@ -32,10 +64,10 @@ fun Surface(
     contentColor: Color = LocalContentColor.current,
     border: BorderStroke? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
-        LocalContentColor provides contentColor
+        LocalContentColor provides contentColor,
     ) {
         Box(
             modifier = modifier
@@ -50,7 +82,7 @@ fun Surface(
                     enabled = enabled,
                     onClick = onClick,
                 ),
-            propagateMinConstraints = true
+            propagateMinConstraints = true,
         ) {
             content()
         }

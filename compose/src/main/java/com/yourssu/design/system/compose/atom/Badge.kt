@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
+import com.yourssu.design.system.compose.base.Surface
 import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsIcon
 import com.yourssu.design.system.compose.rule.ItemColor
@@ -38,7 +38,7 @@ fun Badge(
             .requiredHeight(24.dp)
             .wrapContentWidth(),
         shape = YdsRounding.Small.shape,
-        color = itemColor.getSemanticColor(),
+        color = itemColor.semanticColor,
         contentColor = YdsTheme.colors.monoItemText
     ) {
         Row(
