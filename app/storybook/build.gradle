@@ -84,8 +84,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
 
     implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("androidx.navigation:navigation-compose:2.7.1")
-    implementation("androidx.compose.material3:material3:1.1.1") // YDS TextField 나오면 의존성 제거
+    implementation("androidx.navigation:navigation-compose:2.6.0")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.4.0")
+    implementation("androidx.compose.material3:material3:1.0.0") // fixme: YDS TextField 나오면 삭제
+
+    // fixme: YDS BottomSheet 문제(ExperimentalMaterialApi optin 어노테이션 붙여야 하는거) 해결되면 삭제
+    implementation("androidx.compose.material:material:1.0.0")
+
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

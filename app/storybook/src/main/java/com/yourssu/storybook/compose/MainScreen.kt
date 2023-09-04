@@ -5,6 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.yourssu.design.system.compose.atom.BoxButton
+import com.yourssu.storybook.compose.atom.BoxButtonScreen
 
 enum class Atoms {
     Badge,
@@ -17,7 +19,7 @@ enum class Atoms {
     PlainButton,
     ProfileImageView,
     // TextField,
-    Toggle,
+    Toggle;
 }
 
 //enum class Components {
@@ -48,7 +50,7 @@ fun Navigation(
 
         }
         composable(Atoms.BoxButton.name) {
-
+            BoxButtonScreen(navController)
         }
         composable(Atoms.Checkbox.name) {
 
@@ -76,5 +78,8 @@ fun Navigation(
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-
+    BoxButton(
+        onClick = { navController.navigate(Atoms.BoxButton.name) },
+        text = "테스트"
+    )
 }
