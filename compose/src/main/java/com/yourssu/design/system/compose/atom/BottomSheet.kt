@@ -31,7 +31,7 @@ fun rememberYdsBottomSheetState(): ModalBottomSheetState {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun BottomSheet(
+fun BottomSheet(
     sheetContent: @Composable ColumnScope.() -> Unit,
     modifier: Modifier = Modifier,
     sheetState: ModalBottomSheetState = rememberYdsBottomSheetState(),
