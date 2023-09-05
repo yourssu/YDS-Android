@@ -33,6 +33,10 @@ class StoryBookConfig<SIZE, TYPE>(
     var isDisabled by mutableStateOf(isDisabled)
     var leftIcon by mutableStateOf(leftIcon)
     var rightIcon by mutableStateOf(rightIcon)
+    var leftIconText by mutableStateOf("")
+    var rightIconText by mutableStateOf("")
+    var leftIconToggle by mutableStateOf(false)
+    var rightIconToggle by mutableStateOf(false)
     var itemColor by mutableStateOf(itemColor)
 
     override fun equals(other: Any?): Boolean {

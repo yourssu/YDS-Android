@@ -17,5 +17,9 @@ val typographies: Map<String, YdsTextStyle> by lazy {
 
 val icons: Map<String, Int> by lazy {
     val iconList = Icon.getList()
-    iconList.map { Icon.getName(it) }.zip(iconList).toMap()
+    iconList
+        .map { Icon.getName(it) }
+        .zip(
+            iconList.map { Icon.getIconDrawable(it) }
+        ).toMap()
 }
