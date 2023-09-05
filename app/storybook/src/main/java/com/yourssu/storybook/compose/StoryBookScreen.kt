@@ -234,7 +234,13 @@ fun IconsConfig(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text("LeftIcon")
-        Toggle(checked = config.leftIconToggle, onCheckedChange = { config.leftIconToggle = it })
+        Toggle(
+            checked = config.leftIconToggle,
+            onCheckedChange = {
+                config.leftIcon = if (it) icons[config.leftIconText] else null
+                config.leftIconToggle = it
+            },
+        )
     }
     Spacer(Modifier.height(8.dp))
     BoxButton(
@@ -254,7 +260,13 @@ fun IconsConfig(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text("RightIcon")
-        Toggle(checked = config.rightIconToggle, onCheckedChange = { config.rightIconToggle = it })
+        Toggle(
+            checked = config.rightIconToggle,
+            onCheckedChange = {
+                config.rightIcon = if (it) icons[config.rightIconText] else null
+                config.rightIconToggle = it
+            },
+        )
     }
     Spacer(Modifier.height(8.dp))
     BoxButton(
