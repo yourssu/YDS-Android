@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.Text
+import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
 fun Picker(
@@ -147,7 +147,7 @@ private fun PickerItem(
                 vertical = 4.dp
             )
     ) {
-        Text(
+        YdsText(
             text = text,
             style = YdsTheme.typography.body1,
             color = if (showed) {

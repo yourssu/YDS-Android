@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
-import com.yourssu.design.system.compose.base.Text
+import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.base.noRippleClickable
 import com.yourssu.design.system.compose.states.ButtonSizeState
@@ -100,7 +100,7 @@ fun CheckBox(
 
         Spacer(Modifier.width(betweenSpace))
 
-        Text(
+        YdsText(
             text = text,
             style = typo,
             color = contentColor

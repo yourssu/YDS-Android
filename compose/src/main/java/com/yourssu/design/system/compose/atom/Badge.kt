@@ -22,7 +22,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Surface
-import com.yourssu.design.system.compose.base.Text
+import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.rule.ItemColor
 
 @Composable
@@ -52,7 +52,7 @@ fun Badge(
                 )
                 Spacer(Modifier.width(4.dp))
             }
-            Text(text = text, style = YdsTheme.typography.caption1)
+            YdsText(text = text, style = YdsTheme.typography.caption1)
         }
     }
 }

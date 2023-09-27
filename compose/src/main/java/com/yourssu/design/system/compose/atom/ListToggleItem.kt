@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.Text
+import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
 fun ListToggleItem(
@@ -38,7 +38,7 @@ fun ListToggleItem(
     ) {
         Spacer(Modifier.width(20.dp))
 
-        Text(
+        YdsText(
             text = text,
             modifier = Modifier.weight(1f),
             style = YdsTheme.typography.body1

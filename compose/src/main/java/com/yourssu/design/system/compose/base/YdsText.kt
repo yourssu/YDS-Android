@@ -11,7 +11,7 @@ import com.yourssu.design.system.compose.foundation.LocalContentColor
 import com.yourssu.design.system.compose.foundation.YdsTextStyle
 
 @Composable
-fun Text(
+fun YdsText(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,

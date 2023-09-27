@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.Text
+import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.rule.YdsBorder
 
 enum class Direction {
@@ -89,20 +89,20 @@ fun Divider(
 fun DividerPreview() {
     YdsTheme {
         Column(modifier = Modifier.height(IntrinsicSize.Min)) {
-            Text(text = "one")
-            Text(text = "two")
+            YdsText(text = "one")
+            YdsText(text = "two")
             Divider(thickness = Thickness.Thick)
-            Text(text = "three")
+            YdsText(text = "three")
 
             Spacer(Modifier.height(8.dp))
 
             Row(modifier = Modifier.height(IntrinsicSize.Min)) {
-                Text(
+                YdsText(
                     text = "abcd",
                     modifier = Modifier.padding(end = 8.dp),
                 )
                 Divider(thickness = Thickness.Thin)
-                Text(
+                YdsText(
                     text = "efgh",
                     modifier = Modifier.padding(start = 8.dp),
                 )

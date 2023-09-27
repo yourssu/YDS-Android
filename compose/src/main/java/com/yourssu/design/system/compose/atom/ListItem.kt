@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.Text
+import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.base.noRippleClickable
 
@@ -62,7 +62,7 @@ fun ListItem(
             Spacer(Modifier.width(8.dp))
         }
 
-        Text(
+        YdsText(
             text = text,
             modifier = Modifier.weight(1.0f),
             style = YdsTheme.typography.body1,

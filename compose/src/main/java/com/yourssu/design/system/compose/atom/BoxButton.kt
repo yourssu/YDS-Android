@@ -20,8 +20,8 @@ import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.base.IconSize
-import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsBaseButton
+import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.states.ButtonColorState
 import com.yourssu.design.system.compose.states.ButtonSizeState
 
@@ -146,7 +146,7 @@ fun BoxButton(
             Spacer(modifier = Modifier.width(4.dp))
         }
 
-        Text(
+        YdsText(
             text = text,
             style = typo
         )

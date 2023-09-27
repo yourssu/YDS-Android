@@ -27,7 +27,7 @@ val fonts = FontFamily(
  *
  * Text에 적용될 때는 `toTextStyle()`로 변환하여 사용됩니다.
  *
- * @see com.yourssu.design.system.compose.base.Text
+ * @see com.yourssu.design.system.compose.base.YdsText
  */
 @Immutable
 data class YdsTextStyle(
