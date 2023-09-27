@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
@@ -17,13 +18,15 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.isContainer
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.foundation.LocalContentColor
 
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
-    shape: Shape = RectangleShape,
+    rounding: Dp? = null,
+    shape: Shape = rounding?.let { RoundedCornerShape(it) } ?: RectangleShape,
     color: Color = YdsTheme.colors.bgNormal,
     contentColor: Color = LocalContentColor.current,
     border: BorderStroke? = null,
@@ -59,7 +62,8 @@ fun Surface(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    shape: Shape = RectangleShape,
+    rounding: Dp? = null,
+    shape: Shape = rounding?.let { RoundedCornerShape(it) } ?: RectangleShape,
     color: Color = YdsTheme.colors.bgNormal,
     contentColor: Color = LocalContentColor.current,
     border: BorderStroke? = null,
