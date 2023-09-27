@@ -2,19 +2,24 @@ package com.yourssu.design.system.compose.atom
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.ButtonDefaults.elevation
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.NoRippleButton
-import com.yourssu.design.system.compose.foundation.IconSize
-import com.yourssu.design.system.compose.foundation.YdsIcon
+import com.yourssu.design.system.compose.base.IconSize
+import com.yourssu.design.system.compose.base.YdsText
+import com.yourssu.design.system.compose.base.YdsBaseButton
+import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.states.ButtonColorState
 import com.yourssu.design.system.compose.states.ButtonSizeState
 
@@ -67,12 +72,11 @@ fun PlainButton(
     val typo = sizeState.typo
     val iconSize = sizeState.iconSize
 
-    NoRippleButton(
+    YdsBaseButton(
         onClick = onClick,
         modifier = modifier,
         enabled = !isDisabled,
         colors = plainButtonColor(isWarned = isWarned, isPointed = isPointed),
-        elevation = elevation(0.dp, 0.dp, 0.dp),
         interactionSource = interactionSource,
         contentPadding = PaddingValues(0.dp)
     ) {
@@ -80,23 +84,21 @@ fun PlainButton(
             // sizeType이 Large일 때는 아이콘만
             val iconRes = leftIcon ?: rightIcon
 
-            require(iconRes != null) {
-                "Large 버튼은 아이콘이 지정되어야 합니다."
-            }
-            YdsIcon(
+            require(iconRes != null) { "Large 버튼은 아이콘이 지정되어야 합니다." }
+            Icon(
                 id = iconRes,
                 iconSize = iconSize
             )
         } else {
             leftIcon?.let { icon ->
-                YdsIcon(
+                Icon(
                     id = icon,
                     iconSize = iconSize
                 )
                 Spacer(modifier = Modifier.width(2.dp))
             }
 
-            Text(
+            YdsText(
                 text = text,
                 style = typo
             )
@@ -104,7 +106,7 @@ fun PlainButton(
             if (leftIcon == null) {
                 rightIcon?.let { icon ->
                     Spacer(modifier = Modifier.width(2.dp))
-                    YdsIcon(
+                    Icon(
                         id = icon,
                         iconSize = iconSize
                     )

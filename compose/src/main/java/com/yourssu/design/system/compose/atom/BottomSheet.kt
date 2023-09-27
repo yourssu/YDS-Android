@@ -12,8 +12,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.foundation.Duration
-import com.yourssu.design.system.compose.foundation.YdsInAndOutEasing
+import com.yourssu.design.system.compose.rule.Duration
+import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)

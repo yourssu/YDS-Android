@@ -1,12 +1,19 @@
 package com.yourssu.design.system.compose.atom
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
@@ -14,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
+import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
 fun Picker(
@@ -28,9 +36,8 @@ fun Picker(
     onSecondItemChange: ((index: Int) -> Unit)? = null,
     onThirdItemChange: ((index: Int) -> Unit)? = null,
 ) {
-    val itemHeightDp: Dp = with(LocalDensity.current) {
-        YdsTheme.typography.body1.lineHeight.toDp()
-    }
+    val itemHeightDp: Dp = YdsTheme.typography.body1.lineHeight
+
     val totalItemHeightDp = itemHeightDp + 4.dp * 2 // 위 아래 패딩 4dp
 
     val itemLists = listOf(firstItemList, secondItemList, thirdItemList)
@@ -140,7 +147,7 @@ private fun PickerItem(
                 vertical = 4.dp
             )
     ) {
-        Text(
+        YdsText(
             text = text,
             style = YdsTheme.typography.body1,
             color = if (showed) {
