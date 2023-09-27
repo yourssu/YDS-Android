@@ -14,11 +14,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.rule.YdsBorder
-import com.yourssu.design.system.compose.rule.YdsRounding
 import com.yourssu.design.system.compose.states.ButtonColorState
 
 /**
@@ -36,9 +35,9 @@ internal fun YdsBaseButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     showBorder: Boolean = false,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    shape: Shape = YdsRounding.Large.shape,
+    rounding: Dp = 8.dp,
     contentPadding: PaddingValues = YdsButtonDefaults.ContentPadding,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable RowScope.() -> Unit
 ) {
     val localPressed by interactionSource.collectIsPressedAsState()
@@ -48,7 +47,7 @@ internal fun YdsBaseButton(
     Surface(
         onClick = onClick,
         modifier = modifier,
-        shape = shape,
+        rounding = rounding,
         color = buttonColors.backgroundColor(enabled).value,
         contentColor = contentColor,
         border = if (showBorder) BorderStroke(YdsBorder.Normal.dp, contentColor) else null,

@@ -19,12 +19,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
+import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Surface
 import com.yourssu.design.system.compose.base.Text
-import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.rule.ItemColor
-import com.yourssu.design.system.compose.rule.YdsRounding
 
 @Composable
 fun Badge(
@@ -37,7 +36,7 @@ fun Badge(
         modifier = modifier
             .requiredHeight(24.dp)
             .wrapContentWidth(),
-        shape = YdsRounding.Small.shape,
+        rounding = 2.dp,
         color = itemColor.semanticColor,
         contentColor = YdsTheme.colors.monoItemText
     ) {

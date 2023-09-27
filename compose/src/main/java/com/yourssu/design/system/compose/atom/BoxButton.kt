@@ -14,14 +14,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
+import com.yourssu.design.system.compose.base.Icon
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Text
 import com.yourssu.design.system.compose.base.YdsBaseButton
-import com.yourssu.design.system.compose.base.Icon
-import com.yourssu.design.system.compose.rule.YdsRounding
 import com.yourssu.design.system.compose.states.ButtonColorState
 import com.yourssu.design.system.compose.states.ButtonSizeState
 
@@ -114,13 +114,13 @@ fun BoxButton(
     isWarned: Boolean = false,
     sizeType: BoxButtonSize = BoxButtonSize.Large,
     buttonType: BoxButtonType = BoxButtonType.Filled,
-    rounding: YdsRounding = YdsRounding.Large,
+    rounding: Dp = 8.dp,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
-    val rounding = when (sizeType) {
-        BoxButtonSize.ExtraLarge -> YdsRounding.Large
+    val roundingDp = when (sizeType) {
+        BoxButtonSize.ExtraLarge -> 8.dp
         BoxButtonSize.Large -> rounding
-        BoxButtonSize.Medium, BoxButtonSize.Small -> YdsRounding.Medium
+        BoxButtonSize.Medium, BoxButtonSize.Small -> 4.dp
     }
     val (typo, iconSize, height, horizontalPadding) = boxButtonSizeStateBySize(size = sizeType)
 
@@ -133,7 +133,7 @@ fun BoxButton(
         enabled = !isDisabled,
         showBorder = (buttonType == BoxButtonType.Line),
         interactionSource = interactionSource,
-        shape = rounding.shape,
+        rounding = roundingDp,
         contentPadding = PaddingValues(
             horizontal = horizontalPadding
         )
