@@ -1,13 +1,12 @@
 package com.yourssu.storybook.compose.baseScreen
 
 import androidx.compose.runtime.Composable
-import com.yourssu.storybook.compose.baseScreen.StoryBookConfig
 
 /**
  * @param S 사이즈 열거형
  * @param T 버튼 타입 열거형
  *
- * @see com.yourssu.storybook.compose.StoryBookConfig
+ * @see com.yourssu.storybook.compose.baseScreen.StoryBookConfig
  */
 @Composable
 fun <S : Enum<S>, T : Enum<T>> StoryBookScreen(
