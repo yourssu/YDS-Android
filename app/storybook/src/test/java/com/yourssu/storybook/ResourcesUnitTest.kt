@@ -1,6 +1,7 @@
 package com.yourssu.storybook
 
 import com.yourssu.design.system.compose.foundation.YdsTypography
+import com.yourssu.storybook.compose.typographies
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import kotlin.reflect.full.declaredMemberProperties
@@ -22,5 +23,12 @@ class ResourcesUnitTest {
             typoPropertyNames
         )
         assertEquals(properties.first().get(instance), instance.body1)
+    }
+
+    @Test
+    fun `typographies resource test`() {
+        val typographiesKeys = typographies.keys.toList()
+
+        assertEquals(typographiesKeys, typoPropertyNames)
     }
 }
