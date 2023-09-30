@@ -1,6 +1,7 @@
-package com.yourssu.storybook.compose
+package com.yourssu.storybook.compose.baseScreen
 
 import androidx.compose.runtime.Composable
+import com.yourssu.storybook.compose.baseScreen.StoryBookConfig
 
 /**
  * @param S 사이즈 열거형

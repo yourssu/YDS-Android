@@ -1,4 +1,4 @@
-package com.yourssu.storybook.compose
+package com.yourssu.storybook.compose.baseScreen
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Stable
