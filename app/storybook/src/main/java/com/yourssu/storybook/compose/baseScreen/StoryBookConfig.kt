@@ -10,20 +10,50 @@ import com.yourssu.design.system.compose.foundation.YdsTextStyle
 import com.yourssu.design.system.compose.rule.ItemColor
 
 /**
- * TODO: 설명 작성
- * @param S 사이즈 열거형
- * (ex: BoxButtonSize, PlainButtonSize, ProfileImageViewSize 등)
+ * [StoryBookConfig]에서 size, type 열거형 타입 추가된 클래스
  *
- * @param T 버튼 타입 열거형
+ * @param SIZE 사이즈 열거형
+ * (ex: BoxButtonSize, PlainButtonSize, ProfileImageViewSize 등)
+ * @param TYPE 버튼 타입 열거형
  * (ex: BoxButtonType 등)
  */
 @Stable
-class StoryBookConfig<S : Enum<S>, T : Enum<T>>(
+class StoryBookConfigImpl<SIZE, TYPE>(
+    size: SIZE,
+    type: TYPE,
+) : StoryBookConfig() {
+    var size by mutableStateOf(size)
+    var type by mutableStateOf(type)
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        if (!super.equals(other)) return false
+
+        other as StoryBookConfigImpl<*, *>
+
+        if (size != other.size) return false
+        if (type != other.type) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + (size?.hashCode() ?: 0)
+        result = 31 * result + (type?.hashCode() ?: 0)
+        return result
+    }
+}
+
+/**
+ * TODO: 설명 작성
+ */
+@Stable
+abstract class StoryBookConfig(
     text: String = "",
-    typo: YdsTextStyle? = null,
-    rounding: Dp? = null,
-    size: S? = null,
-    type: T? = null,
+    typo: YdsTextStyle = YdsTextStyle.Default,
+    rounding: Dp = Dp.Unspecified,
     isPointed: Boolean = false,
     isWarned: Boolean = false,
     isDisabled: Boolean = false,
@@ -34,8 +64,6 @@ class StoryBookConfig<S : Enum<S>, T : Enum<T>>(
     var text by mutableStateOf(text)
     var typo by mutableStateOf(typo)
     var rounding by mutableStateOf(rounding)
-    var size by mutableStateOf(size)
-    var type by mutableStateOf(type)
     var isPointed by mutableStateOf(isPointed)
     var isWarned by mutableStateOf(isWarned)
     var isDisabled by mutableStateOf(isDisabled)
@@ -47,13 +75,11 @@ class StoryBookConfig<S : Enum<S>, T : Enum<T>>(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as StoryBookConfig<*, *>
+        other as StoryBookConfig
 
         if (text != other.text) return false
         if (typo != other.typo) return false
         if (rounding != other.rounding) return false
-        if (size != other.size) return false
-        if (type != other.type) return false
         if (isPointed != other.isPointed) return false
         if (isWarned != other.isWarned) return false
         if (isDisabled != other.isDisabled) return false
@@ -66,10 +92,8 @@ class StoryBookConfig<S : Enum<S>, T : Enum<T>>(
 
     override fun hashCode(): Int {
         var result = text.hashCode()
-        result = 31 * result + (typo?.hashCode() ?: 0)
-        result = 31 * result + (rounding?.hashCode() ?: 0)
-        result = 31 * result + (size?.hashCode() ?: 0)
-        result = 31 * result + (type?.hashCode() ?: 0)
+        result = 31 * result + typo.hashCode()
+        result = 31 * result + rounding.hashCode()
         result = 31 * result + isPointed.hashCode()
         result = 31 * result + isWarned.hashCode()
         result = 31 * result + isDisabled.hashCode()
