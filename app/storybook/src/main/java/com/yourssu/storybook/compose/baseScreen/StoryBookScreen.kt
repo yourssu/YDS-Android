@@ -1,11 +1,26 @@
 package com.yourssu.storybook.compose.baseScreen
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.atom.BoxButton
-import com.yourssu.design.system.compose.atom.BoxButtonSize
-import com.yourssu.design.system.compose.atom.BoxButtonType
+import com.yourssu.design.system.compose.atom.BottomSheet
+import com.yourssu.design.system.compose.atom.rememberYdsBottomSheetState
 import com.yourssu.design.system.compose.base.YdsText
 
 /**
@@ -23,7 +38,9 @@ import com.yourssu.design.system.compose.base.YdsText
  */
 @Composable
 fun <S : Enum<S>, T : Enum<T>> StoryBookScreen(
-    description: String? = null,
+    description: String,
+    sizeEnumValues: () -> Array<S>,
+    typeEnumValues: () -> Array<T>,
     showText: Boolean = false,
     showTypo: Boolean = false,
     showRounding: Boolean = false,
@@ -34,16 +51,15 @@ fun <S : Enum<S>, T : Enum<T>> StoryBookScreen(
     showIsDisable: Boolean = false,
     showIcons: Boolean = false,
     showItemColor: Boolean = false,
-    sizeEnumValues: () -> Array<S>,
-    typeEnumValues: () -> Array<T>,
     sampleContent: @Composable (StoryBookConfigImpl<S, T>) -> Unit,
 ) {
 }
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun StoryBookScreen(
-    description: String? = null,
+    description: String,
     showText: Boolean = false,
     showTypo: Boolean = false,
     showRounding: Boolean = false,
@@ -53,48 +69,102 @@ fun StoryBookScreen(
     showIcons: Boolean = false,
     showItemColor: Boolean = false,
     additionalItems: (@Composable () -> Unit)? = null,
+    storyBookConfig: StoryBookConfig? = null,
     sampleContent: @Composable (StoryBookConfig) -> Unit,
 ) {
+    val config = remember {
+        storyBookConfig ?: StoryBookConfig(text = description)
+    }
+    val sheetState = rememberYdsBottomSheetState()
+    var pickerType by remember { mutableStateOf(PickerType.Typo) }
 
-}
-
-@Preview
-@Composable
-fun StoryBookScreenPreview_AllList() {
-    YdsTheme {
-        StoryBookScreen<BoxButtonSize, BoxButtonType>(
-            showText = true,
-            showTypo = true,
-            showRounding = true,
-            showSize = true,
-            showButtonType = true,
-            showIsPoint = true,
-            showIsWarn = true,
-            showIsDisable = true,
-            showIcons = true,
-            showItemColor = true,
-            sizeEnumValues = BoxButtonSize::values,
-            typeEnumValues = BoxButtonType::values,
-        ) { config ->
-            BoxButton(
-                onClick = { /*TODO*/ },
-                text = config.text,
-                leftIcon = config.leftIcon,
-                rightIcon = config.rightIcon,
-                isDisabled = config.isDisabled,
-                isWarned = config.isWarned,
-                sizeType = config.size,
-                buttonType = config.type,
+    BottomSheet(
+        modifier = Modifier.fillMaxSize(),
+        sheetContent = {
+            StoryBookPicker(
+                config = config,
+                pickerType = pickerType,
             )
+        },
+        sheetState = sheetState,
+    ) {
+
+        Column(Modifier.fillMaxSize()) {
+            // 컴포넌트 부분
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .background(YdsTheme.colors.bgDimDark),
+                contentAlignment = Alignment.Center,
+            ) {
+                sampleContent(config)
+            }
+
+            // 컴포넌트 속성 리스트 부분
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(16.dp),
+            ) {
+                if (showText) {
+                    TextConfig(config)
+                }
+                if (showTypo) {
+                    TypoConfig(
+                        openBottomSheet = {
+                            pickerType = PickerType.Typo
+                            sheetState.show()
+                        },
+                    )
+                }
+
+            }
         }
     }
 }
 
-@Preview
+//@Preview(showSystemUi = true, name = "모든 리스트 아이템 테스트")
+//@Composable
+//fun StoryBookScreenPreview_AllList() {
+//    YdsTheme {
+//        StoryBookScreen<BoxButtonSize, BoxButtonType>(
+//            description = "BoxButton",
+//            showText = true,
+//            showTypo = true,
+//            showRounding = true,
+//            showSize = true,
+//            showButtonType = true,
+//            showIsPoint = true,
+//            showIsWarn = true,
+//            showIsDisable = true,
+//            showIcons = true,
+//            showItemColor = true,
+//            sizeEnumValues = BoxButtonSize::values,
+//            typeEnumValues = BoxButtonType::values,
+//        ) { config ->
+//            BoxButton(
+//                onClick = { /*TODO*/ },
+//                text = config.text,
+//                leftIcon = config.leftIcon,
+//                rightIcon = config.rightIcon,
+//                isDisabled = config.isDisabled,
+//                isWarned = config.isWarned,
+//                sizeType = config.size,
+//                buttonType = config.type,
+//            )
+//        }
+//    }
+//}
+
+@Preview(showSystemUi = true, name = "YdsText 스크린 샘플")
 @Composable
 fun StoryBookScreenPreview_YdsText() {
     YdsTheme {
         StoryBookScreen(
+            description = "YdsText",
             showText = true,
             showTypo = true,
         ) { config ->
