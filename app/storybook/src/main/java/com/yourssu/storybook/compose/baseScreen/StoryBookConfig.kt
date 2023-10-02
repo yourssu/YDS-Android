@@ -50,7 +50,7 @@ class StoryBookConfigImpl<SIZE, TYPE>(
  * TODO: 설명 작성
  */
 @Stable
-abstract class StoryBookConfig(
+open class StoryBookConfig(
     text: String = "",
     typo: YdsTextStyle = YdsTextStyle.Default,
     rounding: Dp = Dp.Unspecified,
