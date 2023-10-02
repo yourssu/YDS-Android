@@ -6,6 +6,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.atom.BoxButton
 import com.yourssu.design.system.compose.atom.BoxButtonSize
 import com.yourssu.design.system.compose.atom.BoxButtonType
+import com.yourssu.design.system.compose.base.YdsText
 
 /**
  * 스토리북의 각 컴포넌트 테스트 화면의 기반이 되는 함수입니다.
@@ -33,9 +34,9 @@ fun <S : Enum<S>, T : Enum<T>> StoryBookScreen(
     showIsDisable: Boolean = false,
     showIcons: Boolean = false,
     showItemColor: Boolean = false,
-    sizeEnumValues: (() -> Array<S>)? = null,
-    typeEnumValues: (() -> Array<T>)? = null,
-    sampleContent: @Composable (StoryBookConfig<S, T>) -> Unit,
+    sizeEnumValues: () -> Array<S>,
+    typeEnumValues: () -> Array<T>,
+    sampleContent: @Composable (StoryBookConfigImpl<S, T>) -> Unit,
 ) {
 }
 
@@ -51,29 +52,15 @@ fun StoryBookScreen(
     showIsDisable: Boolean = false,
     showIcons: Boolean = false,
     showItemColor: Boolean = false,
-    sampleContent: @Composable (StoryBookConfig<Nothing, Nothing>) -> Unit,
+    additionalItems: (@Composable () -> Unit)? = null,
+    sampleContent: @Composable (StoryBookConfig) -> Unit,
 ) {
-    StoryBookScreen(
-        description = description,
-        showText = showText,
-        showTypo = showTypo,
-        showRounding = showRounding,
-        showSize = false,
-        showButtonType = false,
-        showIsPoint = showIsPoint,
-        showIsWarn = showIsWarn,
-        showIsDisable = showIsDisable,
-        showIcons = showIcons,
-        showItemColor = showItemColor,
-        sizeEnumValues = null,
-        typeEnumValues = null,
-        sampleContent = sampleContent,
-    )
+
 }
 
 @Preview
 @Composable
-fun StoryBookScreenPreview() {
+fun StoryBookScreenPreview_AllList() {
     YdsTheme {
         StoryBookScreen<BoxButtonSize, BoxButtonType>(
             showText = true,
@@ -96,8 +83,24 @@ fun StoryBookScreenPreview() {
                 rightIcon = config.rightIcon,
                 isDisabled = config.isDisabled,
                 isWarned = config.isWarned,
-                sizeType = config.size ?: BoxButtonSize.Medium,
-                buttonType = config.type ?: BoxButtonType.Line,
+                sizeType = config.size,
+                buttonType = config.type,
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun StoryBookScreenPreview_YdsText() {
+    YdsTheme {
+        StoryBookScreen(
+            showText = true,
+            showTypo = true,
+        ) { config ->
+            YdsText(
+                text = config.text,
+                style = config.typo,
             )
         }
     }
