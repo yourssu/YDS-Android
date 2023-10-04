@@ -13,7 +13,10 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
@@ -22,6 +25,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.YdsText
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun Picker(
@@ -97,7 +101,7 @@ private fun WheelPicker(
     val currentOnItemChange by rememberUpdatedState(onItemChange)
 
     // TODO: warning 뜨는거 고치기
-    LaunchedEffect(lazyListState.firstVisibleItemIndex) {
+    UpdateEffect(lazyListState.firstVisibleItemIndex) {
         currentOnItemChange?.invoke(lazyListState.firstVisibleItemIndex)
     }
 
@@ -156,6 +160,22 @@ private fun PickerItem(
                 YdsTheme.colors.textDisabled
             }
         )
+    }
+}
+
+/**
+ * The same as [LaunchedEffect] but skips the first invocation
+ */
+@Composable
+fun UpdateEffect(key: Any, block: suspend CoroutineScope.() -> Unit) {
+    var isTriggered by remember { mutableStateOf(false) }
+
+    LaunchedEffect(key) {
+        if (isTriggered) {
+            block()
+        } else {
+            isTriggered = true
+        }
     }
 }
 
