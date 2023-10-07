@@ -36,11 +36,12 @@ import com.yourssu.design.system.compose.base.YdsText
  *
  * @see [StoryBookConfig]
  */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun <S : Enum<S>, T : Enum<T>> StoryBookScreen(
     description: String,
-    sizeEnumValues: () -> Array<S>,
-    typeEnumValues: () -> Array<T>,
+    sizeEnumValues: () -> Array<S>? = { null },
+    typeEnumValues: () -> Array<T>? = { null },
     showText: Boolean = false,
     showTypo: Boolean = false,
     showRounding: Boolean = false,
@@ -51,30 +52,9 @@ fun <S : Enum<S>, T : Enum<T>> StoryBookScreen(
     showIsDisable: Boolean = false,
     showIcons: Boolean = false,
     showItemColor: Boolean = false,
-    sampleContent: @Composable (StoryBookConfigImpl<S, T>) -> Unit,
+    sampleContent: @Composable (StoryBookConfig<S, T>) -> Unit,
 ) {
-}
-
-
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun StoryBookScreen(
-    description: String,
-    showText: Boolean = false,
-    showTypo: Boolean = false,
-    showRounding: Boolean = false,
-    showIsPoint: Boolean = false,
-    showIsWarn: Boolean = false,
-    showIsDisable: Boolean = false,
-    showIcons: Boolean = false,
-    showItemColor: Boolean = false,
-    additionalItems: (@Composable () -> Unit)? = null,
-    storyBookConfig: StoryBookConfig? = null,
-    sampleContent: @Composable (StoryBookConfig) -> Unit,
-) {
-    val config = remember {
-        storyBookConfig ?: StoryBookConfig(text = description)
-    }
+    val config = remember { StoryBookConfig<S, T>(text = description) }
     val sheetState = rememberYdsBottomSheetState()
     var pickerType by remember { mutableStateOf(PickerType.Typo) }
 
@@ -126,6 +106,35 @@ fun StoryBookScreen(
     }
 }
 
+@Composable
+fun StoryBookScreen(
+    description: String,
+    showText: Boolean = false,
+    showTypo: Boolean = false,
+    showRounding: Boolean = false,
+    showIsPoint: Boolean = false,
+    showIsWarn: Boolean = false,
+    showIsDisable: Boolean = false,
+    showIcons: Boolean = false,
+    showItemColor: Boolean = false,
+    sampleContent: @Composable (StoryBookConfig<*, *>) -> Unit,
+) {
+    StoryBookScreen<Nothing, Nothing>(
+        description = description,
+        showText = showText,
+        showTypo = showTypo,
+        showRounding = showRounding,
+        showSize = false,
+        showButtonType = false,
+        showIsPoint = showIsPoint,
+        showIsWarn = showIsWarn,
+        showIsDisable = showIsDisable,
+        showIcons = showIcons,
+        showItemColor = showItemColor,
+        sampleContent = sampleContent,
+    )
+}
+
 //@Preview(showSystemUi = true, name = "모든 리스트 아이템 테스트")
 //@Composable
 //fun StoryBookScreenPreview_AllList() {
@@ -172,6 +181,7 @@ fun StoryBookScreenPreview_YdsText() {
                 text = config.text,
                 style = config.typo,
             )
+            config.size
         }
     }
 }

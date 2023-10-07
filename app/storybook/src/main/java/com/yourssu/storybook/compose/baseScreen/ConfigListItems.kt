@@ -15,7 +15,7 @@ import com.yourssu.design.system.compose.base.YdsText
 import kotlinx.coroutines.launch
 
 @Composable
-fun TextConfig(config: StoryBookConfig) {
+fun TextConfig(config: StoryBookConfig<*, *>) {
     Column(Modifier.fillMaxWidth()) {
         YdsText("Text")
         Spacer(Modifier.height(8.dp))

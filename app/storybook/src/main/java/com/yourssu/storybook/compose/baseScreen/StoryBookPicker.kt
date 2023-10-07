@@ -16,7 +16,7 @@ enum class PickerType {
  */
 @Composable
 fun StoryBookPicker(
-    config: StoryBookConfig,
+    config: StoryBookConfig<*, *>,
     pickerType: PickerType,
 ) {
     val (pickerFirstItem, keys) = remember(pickerType) {

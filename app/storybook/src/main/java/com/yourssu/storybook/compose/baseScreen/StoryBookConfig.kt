@@ -18,40 +18,10 @@ import com.yourssu.design.system.compose.rule.ItemColor
  * (ex: BoxButtonType 등)
  */
 @Stable
-class StoryBookConfigImpl<SIZE, TYPE>(
-    size: SIZE,
-    type: TYPE,
-) : StoryBookConfig() {
-    var size by mutableStateOf(size)
-    var type by mutableStateOf(type)
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-        if (!super.equals(other)) return false
-
-        other as StoryBookConfigImpl<*, *>
-
-        if (size != other.size) return false
-        if (type != other.type) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = super.hashCode()
-        result = 31 * result + (size?.hashCode() ?: 0)
-        result = 31 * result + (type?.hashCode() ?: 0)
-        return result
-    }
-}
-
-/**
- * TODO: 설명 작성
- */
-@Stable
-open class StoryBookConfig(
+class StoryBookConfig<SIZE, TYPE>(
     text: String = "",
+    size: SIZE? = null,
+    type: TYPE? = null,
     typo: YdsTextStyle = YdsTextStyle.Default,
     rounding: Dp = Dp.Unspecified,
     isPointed: Boolean = false,
@@ -70,12 +40,14 @@ open class StoryBookConfig(
     var leftIcon by mutableStateOf(leftIcon)
     var rightIcon by mutableStateOf(rightIcon)
     var itemColor by mutableStateOf(itemColor)
+    var size by mutableStateOf(size)
+    var type by mutableStateOf(type)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as StoryBookConfig
+        other as StoryBookConfig<*, *>
 
         if (text != other.text) return false
         if (typo != other.typo) return false
@@ -86,6 +58,8 @@ open class StoryBookConfig(
         if (leftIcon != other.leftIcon) return false
         if (rightIcon != other.rightIcon) return false
         if (itemColor != other.itemColor) return false
+        if (size != other.size) return false
+        if (type != other.type) return false
 
         return true
     }
@@ -100,6 +74,8 @@ open class StoryBookConfig(
         result = 31 * result + (leftIcon ?: 0)
         result = 31 * result + (rightIcon ?: 0)
         result = 31 * result + (itemColor?.hashCode() ?: 0)
+        result = 31 * result + (size?.hashCode() ?: 0)
+        result = 31 * result + (type?.hashCode() ?: 0)
         return result
     }
 }
