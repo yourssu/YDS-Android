@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
@@ -18,6 +19,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
@@ -33,6 +35,7 @@ fun SimpleTextField(
     onValueChange: (value: String) -> Unit,
     placeHolder: String = "",
     hintText: String = "",
+    keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
 ) {
     var text by rememberSaveable { mutableStateOf("") }
     Column(modifier = modifier) {
@@ -74,6 +77,8 @@ fun SimpleTextField(
                 }
             },
             textStyle = YdsTheme.typography.body1.toTextStyle(),
+            keyboardOptions = keyboardOptions,
+            singleLine = true,
         )
         if (hintText.isNotEmpty()) {
             Row(modifier = Modifier.padding(top = 8.dp)) {
@@ -107,10 +112,7 @@ fun PreviewSimpleTextField() {
             isError = isError, isEnabled = true,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
-                if(value.equals("x"))
-                    isError = true
-                else
-                    isError = false
+                isError = value.equals("x")
             },
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),
