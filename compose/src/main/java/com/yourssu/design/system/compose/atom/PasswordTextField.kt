@@ -20,6 +20,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
@@ -29,17 +31,16 @@ import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
-fun SimpleTextField(
+fun PasswordTextField(
     modifier: Modifier = Modifier,
     isError: Boolean = false,
     isEnabled: Boolean = true,
     onValueChange: (value: String) -> Unit,
     placeHolder: String = "",
     hintText: String = "",
-    keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-    onErrorChange: (Boolean) -> Unit,
 ) {
     var text by rememberSaveable { mutableStateOf("") }
+    var showPassword by remember { mutableStateOf(value = false) }
     Column(modifier = modifier) {
         OutlinedTextField(
             value = text,
@@ -57,7 +58,7 @@ fun SimpleTextField(
                 focusedBorderColor = YdsTheme.colors.textPointed,
                 disabledTextColor = YdsTheme.colors.textDisabled,
                 disabledBorderColor = Color.Transparent,
-                textColor = YdsTheme.colors.textSecondary,
+                textColor = YdsTheme.colors.textSecondary
             ),
             isError = isError,
             enabled = isEnabled,
@@ -68,23 +69,30 @@ fun SimpleTextField(
                     color = YdsTheme.colors.textTertiary,
                 )
             },
+            visualTransformation = if (showPassword) {
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            },
             trailingIcon = {
-                if (text.isNotEmpty()) {
-                    IconButton(
-                        onClick = {
-                            text = ""
-                            onErrorChange(false)
-                        },
-                    ) {
+                if (showPassword) {
+                    IconButton(onClick = { showPassword = false}) {
                         Icon(
-                            id = R.drawable.ic_x_line,
-                            iconSize = IconSize.ExtraSmall,
+                            id = R.drawable.ic_eyeclosed_line,
+                            iconSize = IconSize.Medium
+                        )
+                    }
+                } else {
+                    IconButton(onClick = { showPassword = true}) {
+                        Icon(
+                            id = R.drawable.ic_eyeopen_line,
+                            iconSize = IconSize.Medium
                         )
                     }
                 }
             },
             textStyle = YdsTheme.typography.body1.toTextStyle(),
-            keyboardOptions = keyboardOptions,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             singleLine = true,
         )
         if (hintText.isNotEmpty()) {
@@ -112,10 +120,10 @@ fun SimpleTextField(
 
 @Preview
 @Composable
-fun PreviewSimpleTextField() {
+fun PreviewPasswordTextField() {
     var isError by remember { mutableStateOf(false) }
     Column {
-        SimpleTextField(
+        PasswordTextField(
             isError = isError, isEnabled = true,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
@@ -123,29 +131,18 @@ fun PreviewSimpleTextField() {
             },
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),
-            onErrorChange = { error ->
-                isError = error
-            },
         )
 
-        SimpleTextField(
+        PasswordTextField(
             isEnabled = false,
             onValueChange = { value ->
 
             },
             modifier = Modifier.padding(bottom = 10.dp),
             hintText = "힌트 텍스트",
-            onErrorChange = { error ->
-                isError = error
-            },
         )
 
-        SimpleTextField(
-            isError = true, onValueChange = { value -> },
-            onErrorChange = { error ->
-                isError = error
-            },
-        )
+        PasswordTextField(isError = true, onValueChange = { value -> })
 
     }
 }
