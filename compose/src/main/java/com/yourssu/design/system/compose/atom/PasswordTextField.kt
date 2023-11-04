@@ -58,7 +58,7 @@ fun PasswordTextField(
                 focusedBorderColor = YdsTheme.colors.textPointed,
                 disabledTextColor = YdsTheme.colors.textDisabled,
                 disabledBorderColor = Color.Transparent,
-                textColor = YdsTheme.colors.textSecondary
+                textColor = YdsTheme.colors.textSecondary,
             ),
             isError = isError,
             enabled = isEnabled,
@@ -76,17 +76,17 @@ fun PasswordTextField(
             },
             trailingIcon = {
                 if (showPassword) {
-                    IconButton(onClick = { showPassword = false}) {
+                    IconButton(onClick = { showPassword = false }) {
                         Icon(
                             id = R.drawable.ic_eyeclosed_line,
-                            iconSize = IconSize.Medium
+                            iconSize = IconSize.Medium,
                         )
                     }
                 } else {
-                    IconButton(onClick = { showPassword = true}) {
+                    IconButton(onClick = { showPassword = true }) {
                         Icon(
                             id = R.drawable.ic_eyeopen_line,
-                            iconSize = IconSize.Medium
+                            iconSize = IconSize.Medium,
                         )
                     }
                 }
@@ -100,10 +100,10 @@ fun PasswordTextField(
                 Spacer(
                     modifier = Modifier
                         .width(16.dp)
-                        .padding(0.dp),
                 )
                 YdsText(
-                    text = hintText, style = YdsTheme.typography.caption1,
+                    text = hintText,
+                    style = YdsTheme.typography.caption1,
                     color = if (isError) {
                         YdsTheme.colors.textWarned
                     } else if (!isEnabled) {
@@ -122,12 +122,14 @@ fun PasswordTextField(
 @Composable
 fun PreviewPasswordTextField() {
     var isError by remember { mutableStateOf(false) }
+    var text by rememberSaveable { mutableStateOf("") }
     Column {
         PasswordTextField(
             isError = isError, isEnabled = true,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
                 isError = value.equals("x")
+                text = value
             },
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),

@@ -30,6 +30,7 @@ import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
 fun SimpleTextField(
+    text: String = "",
     modifier: Modifier = Modifier,
     isError: Boolean = false,
     isEnabled: Boolean = true,
@@ -39,14 +40,10 @@ fun SimpleTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
     onErrorChange: (Boolean) -> Unit,
 ) {
-    var text by rememberSaveable { mutableStateOf("") }
     Column(modifier = modifier) {
         OutlinedTextField(
             value = text,
-            onValueChange = { value: String ->
-                text = value
-                onValueChange(value)
-            },
+            onValueChange = onValueChange,
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -72,7 +69,7 @@ fun SimpleTextField(
                 if (text.isNotEmpty()) {
                     IconButton(
                         onClick = {
-                            text = ""
+                            onValueChange("")
                             onErrorChange(false)
                         },
                     ) {
@@ -92,10 +89,10 @@ fun SimpleTextField(
                 Spacer(
                     modifier = Modifier
                         .width(16.dp)
-                        .padding(0.dp),
                 )
                 YdsText(
-                    text = hintText, style = YdsTheme.typography.caption1,
+                    text = hintText,
+                    style = YdsTheme.typography.caption1,
                     color = if (isError) {
                         YdsTheme.colors.textWarned
                     } else if (!isEnabled) {
@@ -114,12 +111,15 @@ fun SimpleTextField(
 @Composable
 fun PreviewSimpleTextField() {
     var isError by remember { mutableStateOf(false) }
+    var text by rememberSaveable { mutableStateOf("") }
     Column {
         SimpleTextField(
+            text = text,
             isError = isError, isEnabled = true,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
-                isError = value.equals("x")
+                isError = value == "x"
+                text = value
             },
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),
