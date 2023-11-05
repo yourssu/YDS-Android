@@ -47,6 +47,7 @@ internal fun YdsBaseButton(
     Surface(
         onClick = onClick,
         modifier = modifier,
+        enabled = enabled,
         rounding = rounding,
         color = buttonColors.backgroundColor(enabled).value,
         contentColor = contentColor,
