@@ -57,10 +57,10 @@ internal fun YdsBaseButton(
         ProvideTextStyle(value = YdsTheme.typography.button2) {
             Row(
                 modifier = Modifier
-                    .defaultMinSize(
-                        minWidth = YdsButtonDefaults.MinWidth,
-                        minHeight = YdsButtonDefaults.MinHeight
-                    )
+//                    .defaultMinSize(
+//                        minWidth = YdsButtonDefaults.MinWidth,
+//                        minHeight = YdsButtonDefaults.MinHeight
+//                    )
                     .padding(contentPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,

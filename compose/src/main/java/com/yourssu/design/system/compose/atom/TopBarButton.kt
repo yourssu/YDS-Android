@@ -3,32 +3,22 @@ package com.yourssu.design.system.compose.atom
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.Icon
-import com.yourssu.design.system.compose.base.LocalTextStyle
 import com.yourssu.design.system.compose.base.YdsBaseButton
 import com.yourssu.design.system.compose.base.YdsText
-import com.yourssu.design.system.compose.foundation.LocalYdsTypography
-import com.yourssu.design.system.compose.foundation.White000
-import com.yourssu.design.system.compose.foundation.YdsTextStyle
-import com.yourssu.design.system.compose.foundation.YdsTypography
 import com.yourssu.design.system.compose.states.ButtonColorState
 
 
@@ -39,7 +29,7 @@ private enum class TextOrIconState {
 
 @Composable
 fun TopBarButton(
-    onClick: () -> Unit,
+    onClick: () -> Unit = {},
     modifier: Modifier = Modifier,
     isDisabled: Boolean = true,
     text: String = "",
@@ -60,7 +50,7 @@ fun TopBarButton(
 
     YdsBaseButton(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.fillMaxHeight(),
         colors = ButtonColorState(
             contentColor = YdsTheme.colors.buttonNormal,
             disabledContentColor = YdsTheme.colors.buttonDisabled
@@ -71,7 +61,10 @@ fun TopBarButton(
     ) {
         when (textOrIcon) {
             TextOrIconState.Text -> {
-                YdsText(text = text, style = YdsTheme.typography.button0)
+                YdsText(
+                    text = text,
+                    style = YdsTheme.typography.button0,
+                )
             }
 
             TextOrIconState.Icon -> {
@@ -108,10 +101,12 @@ private fun PreviewTopBarButton() {
 
     YdsTheme {
         Row(
+            modifier = Modifier.height(56.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
+                modifier = Modifier.height(56.dp),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -131,6 +126,7 @@ private fun PreviewTopBarButton() {
                 )
             }
             Column(
+                modifier = Modifier.height(56.dp),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
