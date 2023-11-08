@@ -38,6 +38,7 @@ internal fun YdsBaseButton(
     rounding: Dp = 8.dp,
     contentPadding: PaddingValues = YdsButtonDefaults.ContentPadding,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    isDefaultMinSize: Boolean = false,
     content: @Composable RowScope.() -> Unit
 ) {
     val localPressed by interactionSource.collectIsPressedAsState()
@@ -57,10 +58,15 @@ internal fun YdsBaseButton(
         ProvideTextStyle(value = YdsTheme.typography.button2) {
             Row(
                 modifier = Modifier
-//                    .defaultMinSize(
-//                        minWidth = YdsButtonDefaults.MinWidth,
-//                        minHeight = YdsButtonDefaults.MinHeight
-//                    )
+                    .conditional(
+                        condition = isDefaultMinSize,
+                        ifTrue = {
+                            defaultMinSize(
+                                minWidth = YdsButtonDefaults.MinWidth,
+                                minHeight = YdsButtonDefaults.MinHeight
+                            )
+                        },
+                    )
                     .padding(contentPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
@@ -68,6 +74,16 @@ internal fun YdsBaseButton(
             )
         }
     }
+}
+
+inline fun Modifier.conditional(
+    condition: Boolean,
+    ifTrue: Modifier.() -> Modifier,
+    ifFalse: Modifier.() -> Modifier = { this },
+): Modifier = if (condition) {
+    then(ifTrue(Modifier))
+} else {
+    then(ifFalse(Modifier))
 }
 
 object YdsButtonDefaults {
