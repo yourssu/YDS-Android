@@ -5,8 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -39,13 +37,13 @@ import com.yourssu.design.system.compose.states.ButtonColorState
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SearchTextField(
+    modifier: Modifier = Modifier,
     text: String = "",
     placeHolderText: String = "",
     isDisabled: Boolean = false,
     onValueChange: (String) -> Unit,
     onSearch: () -> Unit,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    modifier: Modifier = Modifier,
 ) {
     val isFocused: Boolean = interactionSource.collectIsFocusedAsState().value
     val isTyping: Boolean = isFocused and text.isNotBlank()
@@ -65,10 +63,7 @@ fun SearchTextField(
             },
         ),
         cursorBrush = SolidColor(YdsTheme.colors.textPointed),
-        modifier = Modifier
-            .width(350.dp)
-            .height(40.dp)
-            .then(modifier)
+        modifier = modifier
             .background(
                 color = YdsTheme.colors.inputFieldElevated,
                 shape = RoundedCornerShape(8.dp),
