@@ -31,29 +31,29 @@ import com.yourssu.design.system.compose.base.YdsScaffold
 fun SearchTopBar(
     text: String = "",
     placeHolderText: String = "",
+    modifier: Modifier = Modifier,
     isDisabled: Boolean = false,
     onValueChange: (String) -> Unit,
-    onX: () -> Unit,
     onSearch: () -> Unit,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     navigationIcon: @Composable () -> Unit = {},
 ) {
     TopAppBar(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(56.dp),
         backgroundColor = YdsTheme.colors.bgElevated,
         contentColor = YdsTheme.colors.textPrimary,
         elevation = 0.dp,
-        contentPadding = PaddingValues(start = 4.dp)
+        contentPadding = PaddingValues(start = 4.dp),
     ) {
         Box(
             modifier = Modifier
                 .padding(start = 4.dp)
-                .fillMaxWidth()
+                .fillMaxWidth(),
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 navigationIcon()
                 SearchTextField(
@@ -61,12 +61,11 @@ fun SearchTopBar(
                     placeHolderText = placeHolderText,
                     isDisabled = isDisabled,
                     onValueChange = onValueChange,
-                    onX = onX,
                     onSearch = onSearch,
                     interactionSource = interactionSource,
                     modifier = Modifier
                         .padding(start = 4.dp, end = 16.dp)
-                        .align(alignment = CenterVertically)
+                        .align(alignment = CenterVertically),
                 )
             }
         }
@@ -89,19 +88,11 @@ private fun PreviewSearchTopBar() {
                     onValueChange = {
                         text = it
                     },
-                    onX = {
-                        Toast.makeText(
-                            context,
-                            "Erase!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        text = ""
-                    },
                     onSearch = {
                         Toast.makeText(
                             context,
                             "onSearch!",
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         ).show()
                     },
                     navigationIcon = {
@@ -112,13 +103,13 @@ private fun PreviewSearchTopBar() {
                                 Toast.makeText(
                                     context,
                                     "navigationIcon Clicked!",
-                                    Toast.LENGTH_SHORT
+                                    Toast.LENGTH_SHORT,
                                 ).show()
-                            }
+                            },
                         )
-                    }
+                    },
                 )
-            }
+            },
         ) {
 
         }

@@ -27,10 +27,11 @@ import com.yourssu.design.system.compose.base.YdsText
 @Composable
 fun SingleTitleTopBar(
     title: String = "",
+    modifier: Modifier = Modifier,
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(56.dp),
         backgroundColor = YdsTheme.colors.bgElevated,

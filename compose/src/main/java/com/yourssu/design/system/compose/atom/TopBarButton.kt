@@ -21,12 +21,6 @@ import com.yourssu.design.system.compose.base.YdsBaseButton
 import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.states.ButtonColorState
 
-
-private enum class TextOrIconState {
-    Text,
-    Icon
-}
-
 @Composable
 fun TopBarButton(
     onClick: () -> Unit = {},
@@ -35,48 +29,30 @@ fun TopBarButton(
     text: String = "",
     @DrawableRes icon: Int? = null,
 ) {
-
-    val textOrIcon = if (icon == null && text.isNotEmpty()) {
-        TextOrIconState.Text
-    } else if (icon != null && text.isEmpty()) {
-        TextOrIconState.Icon
-    } else {
-        TextOrIconState.Text
-    }
-
-//    } else { // icon != null && text.isNotEmpty() /// icon == null && text.isEmpty()
-//          이런 경우가 발생할 가능성? => 일단은 text 모드로
-//    }
-
     YdsBaseButton(
         onClick = onClick,
         modifier = modifier.fillMaxHeight(),
         colors = ButtonColorState(
             contentColor = YdsTheme.colors.buttonNormal,
-            disabledContentColor = YdsTheme.colors.buttonDisabled
+            disabledContentColor = YdsTheme.colors.buttonDisabled,
         ),
         enabled = !isDisabled,
         rounding = 0.dp,
-        contentPadding = PaddingValues(horizontal = 12.dp)
+        contentPadding = PaddingValues(horizontal = 12.dp),
     ) {
-        when (textOrIcon) {
-            TextOrIconState.Text -> {
-                YdsText(
-                    text = text,
-                    style = YdsTheme.typography.button0,
+        if (icon == null && text.isNotEmpty()) {
+            YdsText(
+                text = text,
+                style = YdsTheme.typography.button0,
+            )
+        } else {
+            if (icon != null) {
+                Icon(
+                    id = icon,
                 )
-            }
-
-            TextOrIconState.Icon -> {
-                if (icon != null) {
-                    Icon(
-                        id = icon
-                    )
-                }
             }
         }
     }
-
 }
 
 
@@ -84,7 +60,7 @@ fun TopBarButton(
     name = "TopBarButton",
     showBackground = true,
     showSystemUi = true,
-    backgroundColor = 0xFFFFFF
+    backgroundColor = 0xFFFFFF,
 )
 @Composable
 private fun PreviewTopBarButton() {
@@ -95,7 +71,7 @@ private fun PreviewTopBarButton() {
         Toast.makeText(
             context,
             "Click!",
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_SHORT,
         ).show()
     }
 
@@ -103,7 +79,7 @@ private fun PreviewTopBarButton() {
         Row(
             modifier = Modifier.height(56.dp),
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(
                 modifier = Modifier.height(56.dp),
@@ -115,14 +91,14 @@ private fun PreviewTopBarButton() {
                         onClick()
                     },
                     icon = R.drawable.ic_ground_filled,
-                    isDisabled = false
+                    isDisabled = false,
                 )
                 TopBarButton(
                     onClick = {
                         onClick()
                     },
                     icon = R.drawable.ic_ground_filled,
-                    isDisabled = true
+                    isDisabled = true,
                 )
             }
             Column(
@@ -135,14 +111,14 @@ private fun PreviewTopBarButton() {
                         onClick()
                     },
                     text = "닫기",
-                    isDisabled = false
+                    isDisabled = false,
                 )
                 TopBarButton(
                     onClick = {
                         onClick()
                     },
                     text = "닫기",
-                    isDisabled = true
+                    isDisabled = true,
                 )
             }
         }

@@ -24,10 +24,11 @@ import com.yourssu.design.system.compose.base.YdsText
 fun DoubleTitleTopBar(
     title: String = "",
     subtitle: String = "",
+    modifier: Modifier = Modifier,
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(72.dp),
         backgroundColor = YdsTheme.colors.bgElevated,

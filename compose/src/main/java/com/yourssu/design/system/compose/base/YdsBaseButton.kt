@@ -38,8 +38,9 @@ internal fun YdsBaseButton(
     rounding: Dp = 8.dp,
     contentPadding: PaddingValues = YdsButtonDefaults.ContentPadding,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    isDefaultMinSize: Boolean = false,
-    content: @Composable RowScope.() -> Unit
+    minWidth: Dp = YdsButtonDefaults.MinWidth,
+    minHeight: Dp = YdsButtonDefaults.MinHeight,
+    content: @Composable RowScope.() -> Unit,
 ) {
     val localPressed by interactionSource.collectIsPressedAsState()
     val buttonColors = colors.apply { pressed = localPressed }
@@ -47,7 +48,9 @@ internal fun YdsBaseButton(
 
     Surface(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier
+            .width(minWidth)
+            .height(minHeight),
         enabled = enabled,
         rounding = rounding,
         color = buttonColors.backgroundColor(enabled).value,
@@ -58,32 +61,13 @@ internal fun YdsBaseButton(
         ProvideTextStyle(value = YdsTheme.typography.button2) {
             Row(
                 modifier = Modifier
-                    .conditional(
-                        condition = isDefaultMinSize,
-                        ifTrue = {
-                            defaultMinSize(
-                                minWidth = YdsButtonDefaults.MinWidth,
-                                minHeight = YdsButtonDefaults.MinHeight
-                            )
-                        },
-                    )
                     .padding(contentPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                content = content
+                content = content,
             )
         }
     }
-}
-
-inline fun Modifier.conditional(
-    condition: Boolean,
-    ifTrue: Modifier.() -> Modifier,
-    ifFalse: Modifier.() -> Modifier = { this },
-): Modifier = if (condition) {
-    then(ifTrue(Modifier))
-} else {
-    then(ifFalse(Modifier))
 }
 
 object YdsButtonDefaults {
@@ -92,7 +76,7 @@ object YdsButtonDefaults {
 
     val ContentPadding = PaddingValues(
         horizontal = ButtonHorizontalPadding,
-        vertical = ButtonVerticalPadding
+        vertical = ButtonVerticalPadding,
     )
 
     // YDS에 명시되어 있지 않아서 Material에서 가져옴

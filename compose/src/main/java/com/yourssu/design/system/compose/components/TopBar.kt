@@ -24,11 +24,12 @@ import com.yourssu.design.system.compose.base.YdsText
 @Composable
 fun TopBar(
     title: String = "",
+    modifier: Modifier = Modifier,
     navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(56.dp),
         backgroundColor = YdsTheme.colors.bgElevated,

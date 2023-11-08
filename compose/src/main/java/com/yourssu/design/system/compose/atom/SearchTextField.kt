@@ -43,7 +43,6 @@ fun SearchTextField(
     placeHolderText: String = "",
     isDisabled: Boolean = false,
     onValueChange: (String) -> Unit,
-    onX: () -> Unit,
     onSearch: () -> Unit,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     modifier: Modifier = Modifier,
@@ -58,12 +57,12 @@ fun SearchTextField(
         enabled = !isDisabled,
         singleLine = true,
         keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Search
+            imeAction = ImeAction.Search,
         ),
         keyboardActions = KeyboardActions(
             onSearch = {
                 onSearch()
-            }
+            },
         ),
         cursorBrush = SolidColor(YdsTheme.colors.textPointed),
         modifier = Modifier
@@ -72,7 +71,7 @@ fun SearchTextField(
             .then(modifier)
             .background(
                 color = YdsTheme.colors.inputFieldElevated,
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
             ),
         interactionSource = interactionSource,
         decorationBox = { innerTextField ->
@@ -84,7 +83,7 @@ fun SearchTextField(
                     YdsText(
                         text = placeHolderText,
                         style = YdsTheme.typography.body1,
-                        color = YdsTheme.colors.textTertiary
+                        color = YdsTheme.colors.textTertiary,
                     )
                 },
                 leadingIcon = {
@@ -95,12 +94,17 @@ fun SearchTextField(
                             YdsTheme.colors.textSecondary
                         } else {
                             LocalContentColor.current
-                        }
+                        },
                     )
                 },
                 trailingIcon = {
                     if (isTyping) {
-                        YdsBaseButton(onClick = { onX() }, colors = ButtonColorState()) {
+                        YdsBaseButton(
+                            onClick = {
+                                onValueChange("")
+                            },
+                            colors = ButtonColorState(),
+                        ) {
                             Icon(
                                 id = R.drawable.ic_x_line,
                                 iconSize = IconSize.ExtraSmall,
@@ -135,10 +139,10 @@ fun SearchTextField(
                     disabledLabelColor = Color.Transparent,
                     errorLabelColor = Color.Transparent,
                     placeholderColor = YdsTheme.colors.textTertiary,
-                    disabledPlaceholderColor = YdsTheme.colors.textDisabled
-                )
+                    disabledPlaceholderColor = YdsTheme.colors.textDisabled,
+                ),
             )
-        }
+        },
     )
 }
 
@@ -152,19 +156,11 @@ private fun PreviewSearchTextField() {
         onValueChange = {
             text = it
         },
-        onX = {
-            Toast.makeText(
-                context,
-                "Erase!",
-                Toast.LENGTH_SHORT
-            ).show()
-            text = ""
-        },
         onSearch = {
             Toast.makeText(
                 context,
                 "onSearch!",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
         },
         text = text,
