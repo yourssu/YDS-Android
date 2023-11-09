@@ -2,21 +2,28 @@ package com.yourssu.design.system.compose.atom
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CornerBasedShape
-import androidx.compose.material.ButtonDefaults.elevation
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.NoRippleButton
-import com.yourssu.design.system.compose.foundation.IconSize
-import com.yourssu.design.system.compose.foundation.YdsIcon
-import com.yourssu.design.system.compose.states.ButtonSizeState
+import com.yourssu.design.system.compose.base.Icon
+import com.yourssu.design.system.compose.base.IconSize
+import com.yourssu.design.system.compose.base.YdsBaseButton
+import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.states.ButtonColorState
+import com.yourssu.design.system.compose.states.ButtonSizeState
 
 enum class BoxButtonType {
     Filled,
@@ -107,17 +114,17 @@ fun BoxButton(
     isWarned: Boolean = false,
     sizeType: BoxButtonSize = BoxButtonSize.Large,
     buttonType: BoxButtonType = BoxButtonType.Filled,
-    rounding: CornerBasedShape = YdsTheme.rounding.large,
+    rounding: Dp = 8.dp,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
-    val roundingShape = when (sizeType) {
-        BoxButtonSize.ExtraLarge -> YdsTheme.rounding.large
+    val roundingDp = when (sizeType) {
+        BoxButtonSize.ExtraLarge -> 8.dp
         BoxButtonSize.Large -> rounding
-        BoxButtonSize.Medium, BoxButtonSize.Small -> YdsTheme.rounding.medium
+        BoxButtonSize.Medium, BoxButtonSize.Small -> 4.dp
     }
     val (typo, iconSize, height, horizontalPadding) = boxButtonSizeStateBySize(size = sizeType)
 
-    NoRippleButton(
+    YdsBaseButton(
         onClick = onClick,
         colors = boxButtonColorByType(isWarned = isWarned, type = buttonType),
         modifier = Modifier
@@ -125,22 +132,21 @@ fun BoxButton(
             .height(height),
         enabled = !isDisabled,
         showBorder = (buttonType == BoxButtonType.Line),
-        elevation = elevation(0.dp, 0.dp, 0.dp),
         interactionSource = interactionSource,
-        shape = roundingShape,
+        rounding = roundingDp,
         contentPadding = PaddingValues(
             horizontal = horizontalPadding
         )
     ) {
         leftIcon?.let { icon ->
-            YdsIcon(
+            Icon(
                 id = icon,
                 iconSize = iconSize
             )
             Spacer(modifier = Modifier.width(4.dp))
         }
 
-        Text(
+        YdsText(
             text = text,
             style = typo
         )
@@ -148,7 +154,7 @@ fun BoxButton(
         // leftIcon이 null일 때만
         leftIcon ?: rightIcon?.let { icon ->
             Spacer(modifier = Modifier.width(4.dp))
-            YdsIcon(
+            Icon(
                 id = icon,
                 iconSize = iconSize
             )

@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
+import com.yourssu.design.system.compose.rule.YdsBorder
 
 class SquircleShape : Shape {
     override fun createOutline(
@@ -108,7 +109,7 @@ fun ProfileImageView(
             .size(size.value)
             .clip(SquircleShape())
             .border(
-                width = YdsTheme.border.normal,
+                width = YdsBorder.Normal.dp,
                 color = YdsTheme.colors.borderNormal,
                 shape = SquircleShape()
             )

@@ -1,8 +1,12 @@
 package com.yourssu.design.system.compose.foundation
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import com.yourssu.design.system.compose.YdsTheme
 
 @Immutable
 data class YdsColorScheme(
@@ -10,8 +14,8 @@ data class YdsColorScheme(
     val bgNormal: Color = White000,
     val bgElevated: Color = White000,
     val bgRecomment: Color = Gray050,
-    val bgSelected: Color = Gray100,
-    val bgPressed: Color = Gray100,
+    val bgSelected: Color = Gray900A5,
+    val bgPressed: Color = Gray900A5,
     val bgNormalDark: Color = RealBlack,
     val bgElevatedDark: Color = RealBlack,
     val bgDimDark: Color = Gray900A30,
@@ -190,4 +194,18 @@ val darkColorScheme = YdsColorScheme(
     // 나머지 Item Color는 동일
 )
 
+@Composable
+@ReadOnlyComposable
+fun pressedColorFor(color: Color) = YdsTheme.colors.pressedColorFor(color)
+
+private fun YdsColorScheme.pressedColorFor(color: Color): Color {
+    return when (color) {
+        buttonNormal -> buttonNormalPressed
+        buttonPoint -> buttonPointPressed
+        buttonWarned -> buttonWarnedPressed
+        else -> color
+    }
+}
+
 internal val LocalYdsColorScheme = staticCompositionLocalOf { lightColorScheme }
+internal val LocalContentColor = compositionLocalOf { lightColorScheme.textPrimary }
