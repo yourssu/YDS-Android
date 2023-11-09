@@ -23,8 +23,8 @@ import com.yourssu.design.system.compose.states.ButtonColorState
 
 @Composable
 fun TopBarButton(
-    onClick: () -> Unit = {},
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
     isDisabled: Boolean = true,
     text: String = "",
     @DrawableRes icon: Int? = null,
@@ -38,6 +38,8 @@ fun TopBarButton(
         ),
         enabled = !isDisabled,
         rounding = 0.dp,
+        minWidth = 0.dp,
+        minHeight = 0.dp,
         contentPadding = PaddingValues(horizontal = 12.dp),
     ) {
         if (icon == null && text.isNotEmpty()) {

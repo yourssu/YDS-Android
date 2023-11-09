@@ -4,7 +4,10 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -67,7 +70,8 @@ fun SearchTextField(
             .background(
                 color = YdsTheme.colors.inputFieldElevated,
                 shape = RoundedCornerShape(8.dp),
-            ),
+            )
+            .height(40.dp),
         interactionSource = interactionSource,
         decorationBox = { innerTextField ->
             TextFieldDefaults.OutlinedTextFieldDecorationBox(
@@ -95,15 +99,15 @@ fun SearchTextField(
                 trailingIcon = {
                     if (isTyping) {
                         YdsBaseButton(
-                            onClick = {
-                                onValueChange("")
-                            },
-                            colors = ButtonColorState(),
+                            onClick = { onValueChange("") },
+                            colors = ButtonColorState(
+                                contentColor = YdsTheme.colors.buttonNormal,
+                                disabledContentColor = Color.Transparent
+                            )
                         ) {
                             Icon(
                                 id = R.drawable.ic_x_line,
-                                iconSize = IconSize.ExtraSmall,
-                                tint = YdsTheme.colors.buttonNormal,
+                                iconSize = IconSize.ExtraSmall
                             )
                         }
                     }
@@ -147,19 +151,26 @@ private fun PreviewSearchTextField() {
     val context = LocalContext.current
     var text: String by rememberSaveable { mutableStateOf("") }
 
-    SearchTextField(
-        onValueChange = {
-            text = it
-        },
-        onSearch = {
-            Toast.makeText(
-                context,
-                "onSearch!",
-                Toast.LENGTH_SHORT,
-            ).show()
-        },
-        text = text,
-        placeHolderText = "플레이스 홀더 입니다",
-        isDisabled = false,
-    )
+    Column(
+        Modifier
+            .background(Color.White)
+            .fillMaxWidth()
+    ) {
+        SearchTextField(
+            onValueChange = {
+                text = it
+            },
+            onSearch = {
+                Toast.makeText(
+                    context,
+                    "onSearch!",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            },
+            text = text,
+            placeHolderText = "플레이스 홀더 입니다",
+            isDisabled = false,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }

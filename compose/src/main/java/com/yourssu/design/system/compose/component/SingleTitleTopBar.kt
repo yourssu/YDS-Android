@@ -1,13 +1,14 @@
-package com.yourssu.design.system.compose.components
+package com.yourssu.design.system.compose.component
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,49 +22,38 @@ import com.yourssu.design.system.compose.base.YdsScaffold
 import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
-fun DoubleTitleTopBar(
-    title: String = "",
-    subtitle: String = "",
+fun SingleTitleTopBar(
     modifier: Modifier = Modifier,
+    title: String = "",
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
         modifier = modifier
             .fillMaxWidth()
-            .height(72.dp),
+            .height(56.dp),
         backgroundColor = YdsTheme.colors.bgElevated,
         contentColor = YdsTheme.colors.textPrimary,
         elevation = 0.dp,
         contentPadding = PaddingValues(end = 4.dp)
     ) {
         Box(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
         ) {
-
-            Column(
-                modifier = Modifier.padding(
-                    start = 16.dp,
-                    top = 12.dp,
-                    end = 16.dp,
-                    bottom = 8.dp
-                )
-            ) {
-                YdsText(
-                    text = subtitle,
-                    style = YdsTheme.typography.body2,
-                    color = YdsTheme.colors.textPrimary
-                )
-                YdsText(
-                    text = title,
-                    style = YdsTheme.typography.title2,
-                    color = YdsTheme.colors.textPrimary
-                )
-            }
+            YdsText(
+                modifier = Modifier
+                    .padding(16.dp, 17.dp, 16.dp, 8.dp)
+                    .wrapContentHeight(),
+                text = title,
+                style = YdsTheme.typography.title2,
+                color = YdsTheme.colors.textPrimary
+            )
 
             Row(
                 modifier = Modifier
-                    .padding(top = 16.dp)
-                    .align(Alignment.BottomEnd),
+                    .fillMaxHeight()
+                    .padding(0.dp)
+                    .align(Alignment.TopEnd),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 actions()
@@ -72,15 +62,14 @@ fun DoubleTitleTopBar(
     }
 }
 
-@Preview(name = "DoubleTitleTopBar")
+@Preview(name = "SingleTitleTopBar")
 @Composable
-private fun PreviewDoubleTitleTopBar() {
+private fun PreviewSingleTitleTopBar() {
     YdsTheme {
         YdsScaffold(
             topBar = {
-                DoubleTitleTopBar(
+                SingleTitleTopBar(
                     title = "타이틀",
-                    subtitle = "서브타이틀",
                     actions = {
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,

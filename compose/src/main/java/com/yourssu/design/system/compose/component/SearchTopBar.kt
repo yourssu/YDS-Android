@@ -1,4 +1,4 @@
-package com.yourssu.design.system.compose.components
+package com.yourssu.design.system.compose.component
 
 import android.widget.Toast
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -29,9 +29,9 @@ import com.yourssu.design.system.compose.base.YdsScaffold
 
 @Composable
 fun SearchTopBar(
+    modifier: Modifier = Modifier,
     text: String = "",
     placeHolderText: String = "",
-    modifier: Modifier = Modifier,
     isDisabled: Boolean = false,
     onValueChange: (String) -> Unit,
     onSearch: () -> Unit,
@@ -65,6 +65,7 @@ fun SearchTopBar(
                     interactionSource = interactionSource,
                     modifier = Modifier
                         .padding(start = 4.dp, end = 16.dp)
+                        .fillMaxWidth()
                         .align(alignment = CenterVertically),
                 )
             }

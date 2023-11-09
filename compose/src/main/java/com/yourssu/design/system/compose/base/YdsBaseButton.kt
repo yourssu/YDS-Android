@@ -7,9 +7,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -49,9 +48,7 @@ internal fun YdsBaseButton(
 
     Surface(
         onClick = onClick,
-        modifier = modifier
-            .width(minWidth)
-            .height(minHeight),
+        modifier = modifier,
         enabled = enabled,
         rounding = rounding,
         color = buttonColors.backgroundColor(enabled).value,
@@ -62,6 +59,10 @@ internal fun YdsBaseButton(
         ProvideTextStyle(value = YdsTheme.typography.button2) {
             Row(
                 modifier = Modifier
+                    .defaultMinSize(
+                        minWidth = minWidth,
+                        minHeight = minHeight,
+                    )
                     .padding(contentPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
