@@ -82,7 +82,7 @@ fun PasswordTextField(
                         modifier = Modifier.indication(interactionSource, null),
                     ) {
                         Icon(
-                            id = R.drawable.ic_eyeclosed_line,
+                            id = R.drawable.ic_eyeopen_line,
                             iconSize = IconSize.Medium,
                         )
                     }
@@ -92,7 +92,7 @@ fun PasswordTextField(
                         modifier = Modifier.indication(interactionSource, null),
                     ) {
                         Icon(
-                            id = R.drawable.ic_eyeopen_line,
+                            id = R.drawable.ic_eyeclosed_line,
                             iconSize = IconSize.Medium,
                         )
                     }
