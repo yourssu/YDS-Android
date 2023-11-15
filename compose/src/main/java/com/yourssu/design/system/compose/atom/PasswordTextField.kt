@@ -38,14 +38,13 @@ fun PasswordTextField(
     modifier: Modifier = Modifier,
     isError: Boolean = false,
     isEnabled: Boolean = true,
-    isShowPasword: Boolean,
     onValueChange: (value: String) -> Unit,
     onErrorChange: (Boolean) -> Unit,
-    onShowPasswordChange: (Boolean) -> Unit,
     placeHolder: String = "",
     hintText: String = "",
 ) {
     val interactionSource = remember { MutableInteractionSource() }
+    var showPassword by remember { mutableStateOf(false) }
     Column(modifier = modifier) {
         OutlinedTextField(
             value = text,
@@ -71,15 +70,15 @@ fun PasswordTextField(
                     color = YdsTheme.colors.textTertiary,
                 )
             },
-            visualTransformation = if (isShowPasword) {
+            visualTransformation = if (showPassword) {
                 VisualTransformation.None
             } else {
                 PasswordVisualTransformation()
             },
             trailingIcon = {
-                if (isShowPasword) {
+                if (showPassword) {
                     IconButton(
-                        onClick = { onShowPasswordChange(false) },
+                        onClick = { showPassword = true },
                         modifier = Modifier.indication(interactionSource, null),
                     ) {
                         Icon(
@@ -89,7 +88,7 @@ fun PasswordTextField(
                     }
                 } else {
                     IconButton(
-                        onClick = { onShowPasswordChange(true) },
+                        onClick = { showPassword = false },
                         modifier = Modifier.indication(interactionSource, null),
                     ) {
                         Icon(
@@ -131,7 +130,6 @@ fun PasswordTextField(
 fun PreviewPasswordTextField() {
     var isError by remember { mutableStateOf(false) }
     var text by rememberSaveable { mutableStateOf("") }
-    var showPassword by remember { mutableStateOf(false) }
     Column {
         PasswordTextField(
             text = text,
@@ -141,11 +139,9 @@ fun PreviewPasswordTextField() {
                 isError = value.equals("x")
                 text = value
             },
-            isShowPasword = showPassword,
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),
             onErrorChange = { isError = it },
-            onShowPasswordChange = { showPassword = it },
         )
 
         var text2 by rememberSaveable { mutableStateOf("") }
@@ -157,20 +153,16 @@ fun PreviewPasswordTextField() {
             onValueChange = { value ->
                 text2 = value
             },
-            isShowPasword = showPassword,
             modifier = Modifier.padding(bottom = 10.dp),
             hintText = "힌트 텍스트",
             onErrorChange = { isError = it },
-            onShowPasswordChange = { showPassword = it },
         )
 
         PasswordTextField(
             text = text3,
             isError = true,
-            isShowPasword = showPassword,
             onValueChange = { value -> text3 = value },
             onErrorChange = { isError = it },
-            onShowPasswordChange = { showPassword = it },
         )
 
     }
