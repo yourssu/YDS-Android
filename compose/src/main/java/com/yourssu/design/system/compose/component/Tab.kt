@@ -4,7 +4,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
@@ -26,9 +25,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.ProvideTextStyle
 import kotlin.math.max
-
 
 @Composable
 fun Tab(
@@ -40,39 +37,14 @@ fun Tab(
     icon: @Composable (() -> Unit)? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     selectedContentColor: Color = YdsTheme.colors.bottomBarSelected,
-    unselectedContentColor: Color = YdsTheme.colors.bottomBarNormal
-) {
-    val styledText: @Composable (() -> Unit)? = text?.let {
-        @Composable {
-            val style = YdsTheme.typography.button2.copy()
-            ProvideTextStyle(style, content = text)
-        }
-    }
-    Tab(
-        selected,
-        onClick,
-        modifier,
-        enabled,
-        interactionSource,
-        selectedContentColor,
-        unselectedContentColor
-    ) {
-        TabBaselineLayout(icon = icon, text = styledText) // 이따 스타일드텍스트 없애고 확인
-    }
-}
-
-@Composable
-fun Tab(
-    selected: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    selectedContentColor: Color = YdsTheme.colors.bottomBarSelected,
     unselectedContentColor: Color = YdsTheme.colors.bottomBarNormal,
-    content: @Composable ColumnScope.() -> Unit
 ) {
-    TabTransition(selectedContentColor, unselectedContentColor, selected) {
+    val color = if (selected) selectedContentColor else unselectedContentColor
+
+    CompositionLocalProvider(
+        LocalContentColor provides color.copy(alpha = 1f),
+        LocalContentAlpha provides color.alpha,
+    ) {
         Column(
             modifier = modifier
                 .selectable(
@@ -85,26 +57,11 @@ fun Tab(
                 )
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            content = content
-        )
+            verticalArrangement = Arrangement.Center
+        ) {
+            TabBaselineLayout(icon = icon, text = text)
+        }
     }
-}
-
-
-@Composable
-private fun TabTransition(
-    activeColor: Color,
-    inactiveColor: Color,
-    selected: Boolean,
-    content: @Composable () -> Unit
-) {
-    val color = if (selected) activeColor else inactiveColor
-    CompositionLocalProvider(
-        LocalContentColor provides color.copy(alpha = 1f),
-        LocalContentAlpha provides color.alpha,
-        content = content
-    )
 }
 
 @Composable
@@ -119,10 +76,17 @@ private fun TabBaselineLayout(
                     Modifier
                         .layoutId("text")
                         .padding(horizontal = HorizontalTextPadding)
-                ) { text() }
+                ) {
+                    text()
+                }
             }
             if (icon != null) {
-                Box(Modifier.layoutId("icon")) { icon() }
+                Box(
+                    Modifier
+                        .layoutId("icon")
+                ) {
+                    icon()
+                }
             }
         }
     ) { measurables, constraints ->
@@ -140,7 +104,7 @@ private fun TabBaselineLayout(
 
         val tabWidth = max(textPlaceable?.width ?: 0, iconPlaceable?.width ?: 0)
 
-        val tabHeight = if (textPlaceable != null && iconPlaceable != null) {
+        val tabHeight = if (textPlaceable != null && iconPlaceable != null) { // text, icon 다 있다면
             LargeTabHeight
         } else {
             SmallTabHeight
@@ -151,7 +115,7 @@ private fun TabBaselineLayout(
 
         layout(tabWidth, tabHeight) {
             when {
-                textPlaceable != null && iconPlaceable != null -> placeTextAndIcon(
+                textPlaceable != null && iconPlaceable != null -> placeTextAndIcon( // text, icon X
                     density = this@Layout,
                     textPlaceable = textPlaceable,
                     iconPlaceable = iconPlaceable,
@@ -161,8 +125,8 @@ private fun TabBaselineLayout(
                     lastBaseline = lastBaseline!!
                 )
 
-                textPlaceable != null -> placeTextOrIcon(textPlaceable, tabHeight)
-                iconPlaceable != null -> placeTextOrIcon(iconPlaceable, tabHeight)
+                textPlaceable != null -> placeTextOrIcon(textPlaceable, tabHeight) // text
+                iconPlaceable != null -> placeTextOrIcon(iconPlaceable, tabHeight) // icon
                 else -> {
                 }
             }
