@@ -1,5 +1,7 @@
 package com.yourssu.design.system.compose.atom
 
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,22 +34,22 @@ import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
 fun PasswordTextField(
+    text: String,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
     isEnabled: Boolean = true,
+    isShowPasword: Boolean,
     onValueChange: (value: String) -> Unit,
+    onErrorChange: (Boolean) -> Unit,
+    onShowPasswordChange: (Boolean) -> Unit,
     placeHolder: String = "",
     hintText: String = "",
 ) {
-    var text by rememberSaveable { mutableStateOf("") }
-    var showPassword by remember { mutableStateOf(value = false) }
+    val interactionSource = remember { MutableInteractionSource() }
     Column(modifier = modifier) {
         OutlinedTextField(
             value = text,
-            onValueChange = { value: String ->
-                text = value
-                onValueChange(value)
-            },
+            onValueChange = onValueChange,
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -69,21 +71,27 @@ fun PasswordTextField(
                     color = YdsTheme.colors.textTertiary,
                 )
             },
-            visualTransformation = if (showPassword) {
+            visualTransformation = if (isShowPasword) {
                 VisualTransformation.None
             } else {
                 PasswordVisualTransformation()
             },
             trailingIcon = {
-                if (showPassword) {
-                    IconButton(onClick = { showPassword = false }) {
+                if (isShowPasword) {
+                    IconButton(
+                        onClick = { onShowPasswordChange(false) },
+                        modifier = Modifier.indication(interactionSource, null),
+                    ) {
                         Icon(
                             id = R.drawable.ic_eyeclosed_line,
                             iconSize = IconSize.Medium,
                         )
                     }
                 } else {
-                    IconButton(onClick = { showPassword = true }) {
+                    IconButton(
+                        onClick = { onShowPasswordChange(true) },
+                        modifier = Modifier.indication(interactionSource, null),
+                    ) {
                         Icon(
                             id = R.drawable.ic_eyeopen_line,
                             iconSize = IconSize.Medium,
@@ -99,7 +107,7 @@ fun PasswordTextField(
             Row(modifier = Modifier.padding(top = 8.dp)) {
                 Spacer(
                     modifier = Modifier
-                        .width(16.dp)
+                        .width(16.dp),
                 )
                 YdsText(
                     text = hintText,
@@ -123,28 +131,47 @@ fun PasswordTextField(
 fun PreviewPasswordTextField() {
     var isError by remember { mutableStateOf(false) }
     var text by rememberSaveable { mutableStateOf("") }
+    var showPassword by remember { mutableStateOf(false) }
     Column {
         PasswordTextField(
+            text = text,
             isError = isError, isEnabled = true,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
                 isError = value.equals("x")
                 text = value
             },
+            isShowPasword = showPassword,
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),
+            onErrorChange = { isError = it },
+            onShowPasswordChange = { showPassword = it },
+        )
+
+        var text2 by rememberSaveable { mutableStateOf("") }
+        var text3 by rememberSaveable { mutableStateOf("") }
+
+        PasswordTextField(
+            text = text2,
+            isEnabled = false,
+            onValueChange = { value ->
+                text2 = value
+            },
+            isShowPasword = showPassword,
+            modifier = Modifier.padding(bottom = 10.dp),
+            hintText = "힌트 텍스트",
+            onErrorChange = { isError = it },
+            onShowPasswordChange = { showPassword = it },
         )
 
         PasswordTextField(
-            isEnabled = false,
-            onValueChange = { value ->
-
-            },
-            modifier = Modifier.padding(bottom = 10.dp),
-            hintText = "힌트 텍스트",
+            text = text3,
+            isError = true,
+            isShowPasword = showPassword,
+            onValueChange = { value -> text3 = value },
+            onErrorChange = { isError = it },
+            onShowPasswordChange = { showPassword = it },
         )
-
-        PasswordTextField(isError = true, onValueChange = { value -> })
 
     }
 }
