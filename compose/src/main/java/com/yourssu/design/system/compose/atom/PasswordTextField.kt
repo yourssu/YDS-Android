@@ -78,7 +78,7 @@ fun PasswordTextField(
             trailingIcon = {
                 if (showPassword) {
                     IconButton(
-                        onClick = { showPassword = true },
+                        onClick = { showPassword = false },
                         modifier = Modifier.indication(interactionSource, null),
                     ) {
                         Icon(
@@ -88,7 +88,7 @@ fun PasswordTextField(
                     }
                 } else {
                     IconButton(
-                        onClick = { showPassword = false },
+                        onClick = { showPassword = true },
                         modifier = Modifier.indication(interactionSource, null),
                     ) {
                         Icon(
