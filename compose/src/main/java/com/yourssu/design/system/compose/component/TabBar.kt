@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.ScrollableTabRow
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
@@ -32,7 +30,6 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.SubcomposeLayout
-import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Density
@@ -43,86 +40,183 @@ import com.yourssu.design.system.compose.atom.Direction
 import com.yourssu.design.system.compose.atom.Thickness
 import com.yourssu.design.system.compose.base.Surface
 import com.yourssu.design.system.compose.base.YdsScaffold
-import com.yourssu.design.system.compose.component.TabRowDefaults.tabIndicatorOffset
+import com.yourssu.design.system.compose.base.YdsText
+import com.yourssu.design.system.compose.component.TabBarDefaults.tabIndicatorOffset
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-
+/**
+ * This is [FixedTabBar] containing various navigation menus. Usually used at the top.
+ *
+ * A [FixedTabBar] contains a row of [Tab]s, and displays an indicator underneath the currently
+ * selected tab. A TabRow places its tabs evenly spaced along the entire row, with each tab
+ * taking up an equal amount of space. See [ScrollableTabBar] for a tab row that does not enforce
+ * equal size, and allows scrolling to tabs that do not fit on screen.
+ *
+ * As well as customizing the tab, you can also provide a custom [indicator], to customize
+ * the indicator displayed for a tab. [indicator] will be placed to fill the entire TabBar, so it
+ * should internally take care of sizing and positioning the indicator to match changes to
+ * [selectedTabIndex].
+ *
+ * * It doesn't scroll. The width of each tab is 1/n of the total width.
+ * Please use a minimum of 2 and a maximum of 5 tabs.
+ *
+ * * There is no change depending on the device.
+ *
+ * @param selectedTabIndex the index of the currently selected tab
+ * @param modifier optional [Modifier] for this TabBar
+ * @param backgroundColor The background color for the TabBar. Use [Color.Transparent] to have
+ * no color.
+ * @param contentColor The preferred content color provided by this TabBar to its children.
+ * Defaults to either the matching content color for [backgroundColor], or if [backgroundColor] is
+ * not a color from the theme, this will keep the same value set above this TabBar.
+ * @param indicator the indicator that represents which tab is currently selected. By default this
+ * will be a [TabBarDefaults.Indicator], using a [TabBarDefaults.tabIndicatorOffset]
+ * modifier to animate its position. Note that this indicator will be forced to fill up the
+ * entire TabBar, so you should use [TabBarDefaults.tabIndicatorOffset] or similar to
+ * animate the actual drawn indicator inside this space, and provide an offset from the start.
+ * @param divider the divider displayed at the bottom of the TabBar. This provides a layer of
+ * separation between the TabRow and the content displayed underneath.
+ * @param tabs the tabs inside this TabBar. Typically this will be multiple [Tab]s. Each element
+ * inside this lambda will be measured and placed evenly across the TabRow, each taking up equal
+ * space.
+ */
 @Composable
 fun FixedTabBar(
     selectedTabIndex: Int,
-    modifier: Modifier = Modifier
-        .fillMaxWidth()
-        .height(48.dp),
+    modifier: Modifier = Modifier,
     backgroundColor: Color = YdsTheme.colors.bgElevated,
     contentColor: Color = YdsTheme.colors.bottomBarNormal,
-    indicator: @Composable @UiComposable (tabPositions: List<TabPosition>) -> Unit = @Composable { tabPositions ->
-        TabRowDefaults.Indicator(
-            Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
-        )
-    },
+    indicator: @Composable @UiComposable (tabPositions: List<TabPosition>) -> Unit =
+        @Composable { tabPositions ->
+            TabBarDefaults.Indicator(
+                Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
+            )
+        },
     divider: @Composable @UiComposable () -> Unit = @Composable {
-        TabRowDefaults.Divider()
+        TabBarDefaults.Divider()
     },
     tabs: @Composable @UiComposable () -> Unit
 ) {
     Surface(
-        modifier = modifier.selectableGroup(),
+        modifier = modifier
+            .selectableGroup(),
         color = backgroundColor,
         contentColor = contentColor
     ) {
-        SubcomposeLayout(Modifier.fillMaxWidth()) { constraints ->
-            val tabRowWidth = constraints.maxWidth
-            val tabMeasurables = subcompose(TabSlots.Tabs, tabs)
-            val tabCount = tabMeasurables.size
-            val tabWidth = (tabRowWidth / tabCount)
-            val tabPlaceables = tabMeasurables.map {
-                it.measure(constraints.copy(minWidth = tabWidth, maxWidth = tabWidth))
-            }
-
-            val tabRowHeight = tabPlaceables.maxByOrNull { it.height }?.height ?: 0
-
-            val tabPositions = List(tabCount) { index ->
-                TabPosition(tabWidth.toDp() * index, tabWidth.toDp())
-            }
-
-            layout(tabRowWidth, tabRowHeight) {
-                tabPlaceables.forEachIndexed { index, placeable ->
-                    placeable.placeRelative(index * tabWidth, 0)
+        SubcomposeLayout(
+            modifier = Modifier.fillMaxWidth(),
+            measurePolicy = { constraints ->
+                val tabBarWidth = constraints.maxWidth
+                val measurableTabs = subcompose(
+                    slotId = TabSlots.Tabs,
+                    content = tabs
+                )
+                val tabCount = measurableTabs.size
+                val tabWidth = (tabBarWidth / tabCount)
+                val placeableTabs = measurableTabs.map {
+                    it.measure(
+                        constraints.copy(minWidth = tabWidth, maxWidth = tabWidth)
+                    )
                 }
 
-                subcompose(TabSlots.Divider, divider).forEach {
-                    val placeable = it.measure(constraints.copy(minHeight = 0))
-                    placeable.placeRelative(0, tabRowHeight - placeable.height)
+                val tabBarHeight = placeableTabs.first().height
+
+                val tabPositions = List(tabCount) { index ->
+                    TabPosition(
+                        left = tabWidth.toDp() * index,
+                        width = tabWidth.toDp()
+                    )
                 }
 
-                subcompose(TabSlots.Indicator) {
-                    indicator(tabPositions)
-                }.forEach {
-                    it.measure(Constraints.fixed(tabRowWidth, tabRowHeight)).placeRelative(0, 0)
+                layout(tabBarWidth, tabBarHeight) {
+                    placeableTabs.forEachIndexed { index, placeable ->
+                        placeable.placeRelative(index * tabWidth, 0)
+                    }
+
+                    subcompose(
+                        slotId = TabSlots.Divider,
+                        content = {
+                            divider()
+                        }
+                    ).forEach {
+                        val placeableDivider = it.measure(
+                            constraints.copy(
+                                minWidth = tabBarWidth,
+                                maxWidth = tabBarWidth
+                            )
+                        )
+                        placeableDivider.placeRelative(0, tabBarHeight - placeableDivider.height)
+                    }
+
+                    subcompose(
+                        slotId = TabSlots.Indicator,
+                        content = {
+                            indicator(tabPositions)
+                        }
+                    ).forEach {
+                        val placeableIndicator = it.measure(
+                            Constraints.fixed(tabBarWidth, tabBarHeight)
+                        )
+                        placeableIndicator.placeRelative(0, 0)
+                    }
                 }
             }
-        }
+        )
     }
 }
 
+/**
+ * When a set of tabs cannot fit on screen, use scrollable tabs.
+ * They are best used for browsing on touch interfaces.
+ *
+ * A ScrollableTabRow contains a row of [Tab]s, and displays an indicator underneath the currently
+ * selected tab. A ScrollableTabBar places its tabs offset from the starting edge, and allows
+ * scrolling to tabs that are placed off screen. For a fixed tab row that does not allow
+ * scrolling, and evenly places its tabs, see [FixedTabBar].
+ *
+ * * It scrolls. The width of each tab is fixed at 88.
+ * There is no limit to the minimum/maximum number of tabs.
+ * * If the device is mobile, there is a margin of 16 to the left of the first tab
+ * and to the right of the last tab.
+ *
+ * @param selectedTabIndex the index of the currently selected tab
+ * @param modifier optional [Modifier] for this ScrollableTabRow
+ * @param backgroundColor The background color for the ScrollableTabBar. Use [Color.Transparent] to
+ * have no color.
+ * @param contentColor The preferred content color provided by this ScrollableTabBar to its
+ * children. Defaults to either the matching content color for [backgroundColor], or if
+ * [backgroundColor] is not a color from the theme, this will keep the same value set above this
+ * ScrollableTabBar.
+ * @param edgePadding the padding between the starting and ending edge of ScrollableTabBar, and
+ * the tabs inside the ScrollableTabBar.
+ * @param indicator the indicator that represents which tab is currently selected. By default this
+ * will be a [TabBarDefaults.Indicator], using a [TabBarDefaults.tabIndicatorOffset]
+ * modifier to animate its position. Note that this indicator will be forced to fill up the
+ * entire ScrollableTabBar, so you should use [TabBarDefaults.tabIndicatorOffset] or similar to
+ * animate the actual drawn indicator inside this space, and provide an offset from the start.
+ * @param divider the divider displayed at the bottom of the ScrollableTabBar. This provides a layer
+ * of separation between the ScrollableTabBar and the content displayed underneath.
+ * @param tabs the tabs inside this ScrollableTabBar. Typically this will be multiple [Tab]s. Each
+ * element inside this lambda will be measured and placed evenly across the TabBar, each taking
+ * up equal space.
+ */
 @Composable
 fun ScrollableTabBar(
     selectedTabIndex: Int,
     modifier: Modifier = Modifier,
     backgroundColor: Color = YdsTheme.colors.bgElevated,
     contentColor: Color = YdsTheme.colors.bottomBarNormal,
-    edgePadding: Dp = TabRowDefaults.ScrollableTabRowPadding,
-    indicator: @Composable @UiComposable
-        (tabPositions: List<TabPosition>) -> Unit = @Composable { tabPositions ->
-        TabRowDefaults.Indicator(
-            Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
-        )
-    },
-    divider: @Composable @UiComposable () -> Unit =
-        @Composable {
-            TabRowDefaults.Divider()
+    edgePadding: Dp = TabBarDefaults.ScrollableTabPadding,
+    indicator: @Composable @UiComposable (tabPositions: List<TabPosition>) -> Unit =
+        @Composable { tabPositions ->
+            TabBarDefaults.Indicator(
+                Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
+            )
         },
+    divider: @Composable @UiComposable () -> Unit = @Composable {
+        TabBarDefaults.Divider()
+    },
     tabs: @Composable @UiComposable () -> Unit
 ) {
     Surface(
@@ -146,26 +240,31 @@ fun ScrollableTabBar(
                 .selectableGroup()
                 .clipToBounds()
         ) { constraints ->
-            val minTabWidth = ScrollableTabRowMinimumTabWidth.roundToPx()
-            val padding = edgePadding.roundToPx()
+            val minTabWidth = ScrollableTabWidth.roundToPx()
+            val edgeRadding = edgePadding.roundToPx()
             val tabConstraints = constraints.copy(minWidth = minTabWidth)
 
-            val tabPlaceables = subcompose(TabSlots.Tabs, tabs)
-                .map { it.measure(tabConstraints) }
+            val placeableTabs = subcompose(
+                slotId = TabSlots.Tabs,
+                content = {
+                    tabs()
+                }
+            ).map { it.measure(tabConstraints) }
 
-            var layoutWidth = padding * 2
-            var layoutHeight = 0
-            tabPlaceables.forEach {
-                layoutWidth += it.width
-                layoutHeight = maxOf(layoutHeight, it.height)
+            var tabBarWidth = edgeRadding * 2
+            var tabBarHeight = placeableTabs.first().height
+
+            placeableTabs.forEach {
+                tabBarWidth += it.width
             }
 
             // Position the children.
-            layout(layoutWidth, layoutHeight) {
+            layout(tabBarWidth, tabBarHeight) {
                 // Place the tabs
                 val tabPositions = mutableListOf<TabPosition>()
-                var left = padding
-                tabPlaceables.forEach {
+                var left = edgeRadding
+
+                placeableTabs.forEach {
                     it.placeRelative(left, 0)
                     tabPositions.add(
                         TabPosition(
@@ -176,30 +275,36 @@ fun ScrollableTabBar(
                     left += it.width
                 }
 
-                // The divider is measured with its own height, and width equal to the total width
-                // of the tab row, and then placed on top of the tabs.
-                subcompose(TabSlots.Divider, divider).forEach {
-                    val placeable = it.measure(
+                subcompose(
+                    slotId = TabSlots.Divider,
+                    content = {
+                        divider()
+                    }
+                ).forEach {
+                    val placeableDivider = it.measure(
                         constraints.copy(
-                            minHeight = 0,
-                            minWidth = layoutWidth,
-                            maxWidth = layoutWidth
+                            minWidth = tabBarWidth,
+                            maxWidth = tabBarWidth
                         )
                     )
-                    placeable.placeRelative(0, layoutHeight - placeable.height)
+                    placeableDivider.placeRelative(0, tabBarHeight - placeableDivider.height)
                 }
 
-                // The indicator container is measured to fill the entire space occupied by the tab
-                // row, and then placed on top of the divider.
-                subcompose(TabSlots.Indicator) {
-                    indicator(tabPositions)
-                }.forEach {
-                    it.measure(Constraints.fixed(layoutWidth, layoutHeight)).placeRelative(0, 0)
+                subcompose(
+                    slotId = TabSlots.Indicator,
+                    content = {
+                        indicator(tabPositions)
+                    }
+                ).forEach {
+                    val placeableIndicator = it.measure(
+                        Constraints.fixed(tabBarWidth, tabBarHeight)
+                    )
+                    placeableIndicator.placeRelative(0, 0)
                 }
 
                 scrollableTabData.onLaidOut(
                     density = this@SubcomposeLayout,
-                    edgeOffset = padding,
+                    edgeOffset = edgeRadding,
                     tabPositions = tabPositions,
                     selectedTab = selectedTabIndex
                 )
@@ -208,11 +313,11 @@ fun ScrollableTabBar(
     }
 }
 
-private val ScrollableTabRowMinimumTabWidth = 88.dp
+private val ScrollableTabWidth = 88.dp
 
 
 /**
- * Class holding onto state needed for [ScrollableTabRow]
+ * Class holding onto state needed for [ScrollableTabBar]
  */
 private class ScrollableTabData(
     private val scrollState: ScrollState,
@@ -247,7 +352,7 @@ private class ScrollableTabData(
     }
 
     /**
-     * @return the offset required to horizontally center the tab inside this TabRow.
+     * @return the offset required to horizontally center the tab inside this TabBar.
      * If the tab is at the start / end, and there is not enough space to fully centre the tab, this
      * will just clamp to the min / max position given the max width.
      */
@@ -287,10 +392,8 @@ private val ScrollableTabRowScrollSpec: AnimationSpec<Float> = tween(
  * Data class that contains information about a tab's position on screen, used for calculating
  * where to place the indicator that shows which tab is selected.
  *
- * 인디케이터를 어디에 위치시켜야하는지 계산해주고 사용되는 탭의 위치에 대한 정보를 가지는 데이터 클래스
- *
- * @property left the left edge's x position from the start of the [TabRow]
- * @property right the right edge's x position from the start of the [TabRow]
+ * @property left the left edge's x position from the start of the TabBar
+ * @property right the right edge's x position from the start of the TabBar
  * @property width the width of this tab
  */
 @Immutable
@@ -320,16 +423,15 @@ class TabPosition internal constructor(val left: Dp, val width: Dp) {
 
 
 /**
- * Contains default implementations and values used for TabRow.
+ * Contains default implementations and values used for TabBar.
  */
-object TabRowDefaults {
+object TabBarDefaults {
     /**
-     * Default [Divider], which will be positioned at the bottom of the [TabRow], underneath the
+     * Default [Divider], which will be positioned at the bottom of the TabBar, underneath the
      * indicator.
      *
-     * @param modifier modifier for the divider's layout
+     * @param direction direction of the divider
      * @param thickness thickness of the divider
-     * @param color color of the divider
      */
     @Composable
     fun Divider(
@@ -343,7 +445,7 @@ object TabRowDefaults {
     }
 
     /**
-     * Default indicator, which will be positioned at the bottom of the [TabRow], on top of the
+     * Default indicator, which will be positioned at the bottom of the TabBar, on top of the
      * divider.
      *
      * @param modifier modifier for the indicator's layout
@@ -353,7 +455,7 @@ object TabRowDefaults {
     @Composable
     fun Indicator(
         modifier: Modifier = Modifier,
-        height: Dp = IndicatorHeight,
+        height: Dp = 2.dp,
         color: Color = YdsTheme.colors.bottomBarSelected
     ) {
         Box(
@@ -365,7 +467,7 @@ object TabRowDefaults {
     }
 
     /**
-     * [Modifier] that takes up all the available width inside the [TabRow], and then animates
+     * [Modifier] that takes up all the available width inside the TabBar, and then animates
      * the offset of the indicator it is applied to, depending on the [currentTabPosition].
      *
      * @param currentTabPosition [TabPosition] of the currently selected tab. This is used to
@@ -373,12 +475,7 @@ object TabRowDefaults {
      */
     fun Modifier.tabIndicatorOffset(
         currentTabPosition: TabPosition
-    ): Modifier = composed(
-        inspectorInfo = debugInspectorInfo {
-            name = "tabIndicatorOffset"
-            value = currentTabPosition
-        }
-    ) {
+    ): Modifier = composed {
         val currentTabWidth = currentTabPosition.width
         val indicatorOffset = currentTabPosition.left
 
@@ -388,23 +485,17 @@ object TabRowDefaults {
             .width(currentTabWidth)
     }
 
-
     /**
-     * Default height for [Indicator]
+     * The default padding from the starting edge before a tab in a [ScrollableTabBar].
      */
-    val IndicatorHeight: Dp = 2.dp
-
-    /**
-     * The default padding from the starting edge before a tab in a [ScrollableTabRow].
-     */
-    val ScrollableTabRowPadding: Dp = 16.dp
+    val ScrollableTabPadding: Dp = 16.dp
 }
 
 @Preview(name = "FixedTabBar")
 @Composable
 private fun PreviewFixedTabBar() {
     var tabIndex by remember { mutableStateOf(0) }
-    val tabs = listOf("Home", "About", "Settings")
+    val tabs = listOf("선택됨", "선택됨", "선택됨", "선택됨")
 
     YdsScaffold(
         modifier = Modifier.fillMaxSize(),
@@ -412,7 +503,7 @@ private fun PreviewFixedTabBar() {
             FixedTabBar(selectedTabIndex = tabIndex, modifier = Modifier) {
                 tabs.forEachIndexed { index, title ->
                     Tab(
-                        text = { Text(title) },
+                        text = { YdsText(title, style = YdsTheme.typography.button2) },
                         selected = tabIndex == index,
                         onClick = { tabIndex = index },
                     )
@@ -423,17 +514,20 @@ private fun PreviewFixedTabBar() {
     ) {
         when (tabIndex) {
             0 -> Column {
-                Text("0")
+                YdsText("0", style = YdsTheme.typography.button2)
             }
 
             1 -> Column {
-                Text("1")
+                YdsText("1", style = YdsTheme.typography.button2)
             }
 
             2 -> Column {
-                Text("2")
+                YdsText("2", style = YdsTheme.typography.button2)
             }
 
+            3 -> Column {
+                YdsText("3", style = YdsTheme.typography.button2)
+            }
         }
     }
 }
@@ -442,7 +536,7 @@ private fun PreviewFixedTabBar() {
 @Composable
 private fun PreviewScrollableTabBar() {
     var tabIndex by remember { mutableStateOf(0) }
-    val tabs = listOf("Home", "About", "Settings", "Home", "About", "Settings")
+    val tabs = listOf("선택됨", "선택됨", "선택됨", "선택됨", "선택됨", "선택됨")
 
     YdsScaffold(
         modifier = Modifier.fillMaxSize(),
@@ -450,9 +544,11 @@ private fun PreviewScrollableTabBar() {
             ScrollableTabBar(selectedTabIndex = tabIndex, modifier = Modifier) {
                 tabs.forEachIndexed { index, title ->
                     Tab(
-                        text = { Text(title) },
+                        text = { YdsText(title, style = YdsTheme.typography.button2) },
                         selected = tabIndex == index,
-                        onClick = { tabIndex = index },
+                        onClick = {
+                            tabIndex = index
+                        },
                     )
                 }
             }
@@ -461,17 +557,20 @@ private fun PreviewScrollableTabBar() {
     ) {
         when (tabIndex) {
             0 -> Column {
-                Text("0")
+                YdsText("0", style = YdsTheme.typography.button2)
             }
 
             1 -> Column {
-                Text("1")
+                YdsText("1", style = YdsTheme.typography.button2)
             }
 
             2 -> Column {
-                Text("2")
+                YdsText("2", style = YdsTheme.typography.button2)
             }
 
+            3 -> Column {
+                YdsText("3", style = YdsTheme.typography.button2)
+            }
         }
     }
 }
