@@ -217,15 +217,15 @@ fun ScrollableTabBar(
     divider: @Composable @UiComposable () -> Unit = @Composable {
         TabBarDefaults.Divider()
     },
-    tabs: @Composable @UiComposable () -> Unit
+    tabs: @Composable @UiComposable () -> Unit,
+    scrollState: ScrollState = rememberScrollState(),
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
 ) {
     Surface(
         modifier = modifier,
         color = backgroundColor,
         contentColor = contentColor
     ) {
-        val scrollState = rememberScrollState()
-        val coroutineScope = rememberCoroutineScope()
         val scrollableTabData = remember(scrollState, coroutineScope) {
             ScrollableTabData(
                 scrollState = scrollState,
