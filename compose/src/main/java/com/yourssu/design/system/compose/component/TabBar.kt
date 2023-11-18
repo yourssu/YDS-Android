@@ -53,11 +53,6 @@ import kotlinx.coroutines.launch
  * taking up an equal amount of space. See [ScrollableTabBar] for a tab row that does not enforce
  * equal size, and allows scrolling to tabs that do not fit on screen.
  *
- * As well as customizing the tab, you can also provide a custom [indicator], to customize
- * the indicator displayed for a tab. [indicator] will be placed to fill the entire TabBar, so it
- * should internally take care of sizing and positioning the indicator to match changes to
- * [selectedTabIndex].
- *
  * * It doesn't scroll. The width of each tab is 1/n of the total width.
  * Please use a minimum of 2 and a maximum of 5 tabs.
  *
@@ -70,13 +65,6 @@ import kotlinx.coroutines.launch
  * @param contentColor The preferred content color provided by this TabBar to its children.
  * Defaults to either the matching content color for [backgroundColor], or if [backgroundColor] is
  * not a color from the theme, this will keep the same value set above this TabBar.
- * @param indicator the indicator that represents which tab is currently selected. By default this
- * will be a [TabBarDefaults.Indicator], using a [TabBarDefaults.tabIndicatorOffset]
- * modifier to animate its position. Note that this indicator will be forced to fill up the
- * entire TabBar, so you should use [TabBarDefaults.tabIndicatorOffset] or similar to
- * animate the actual drawn indicator inside this space, and provide an offset from the start.
- * @param divider the divider displayed at the bottom of the TabBar. This provides a layer of
- * separation between the TabRow and the content displayed underneath.
  * @param tabs the tabs inside this TabBar. Typically this will be multiple [Tab]s. Each element
  * inside this lambda will be measured and placed evenly across the TabRow, each taking up equal
  * space.
@@ -87,15 +75,6 @@ fun FixedTabBar(
     modifier: Modifier = Modifier,
     backgroundColor: Color = YdsTheme.colors.bgElevated,
     contentColor: Color = YdsTheme.colors.bottomBarNormal,
-    indicator: @Composable @UiComposable (tabPositions: List<TabPosition>) -> Unit =
-        @Composable { tabPositions ->
-            TabBarDefaults.Indicator(
-                Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
-            )
-        },
-    divider: @Composable @UiComposable () -> Unit = @Composable {
-        TabBarDefaults.Divider()
-    },
     tabs: @Composable @UiComposable () -> Unit
 ) {
     Surface(
@@ -113,6 +92,11 @@ fun FixedTabBar(
                     content = tabs
                 )
                 val tabCount = measurableTabs.size
+
+                require(tabCount in 2..5) {
+                    "Please use a minimum of 2 and a maximum of 5 tabs."
+                }
+
                 val tabWidth = (tabBarWidth / tabCount)
                 val placeableTabs = measurableTabs.map {
                     it.measure(
@@ -137,7 +121,7 @@ fun FixedTabBar(
                     subcompose(
                         slotId = TabSlots.Divider,
                         content = {
-                            divider()
+                            TabBarDefaults.Divider()
                         }
                     ).forEach {
                         val placeableDivider = it.measure(
@@ -152,7 +136,9 @@ fun FixedTabBar(
                     subcompose(
                         slotId = TabSlots.Indicator,
                         content = {
-                            indicator(tabPositions)
+                            TabBarDefaults.Indicator(
+                                Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
+                            )
                         }
                     ).forEach {
                         val placeableIndicator = it.measure(
@@ -188,15 +174,6 @@ fun FixedTabBar(
  * children. Defaults to either the matching content color for [backgroundColor], or if
  * [backgroundColor] is not a color from the theme, this will keep the same value set above this
  * ScrollableTabBar.
- * @param edgePadding the padding between the starting and ending edge of ScrollableTabBar, and
- * the tabs inside the ScrollableTabBar.
- * @param indicator the indicator that represents which tab is currently selected. By default this
- * will be a [TabBarDefaults.Indicator], using a [TabBarDefaults.tabIndicatorOffset]
- * modifier to animate its position. Note that this indicator will be forced to fill up the
- * entire ScrollableTabBar, so you should use [TabBarDefaults.tabIndicatorOffset] or similar to
- * animate the actual drawn indicator inside this space, and provide an offset from the start.
- * @param divider the divider displayed at the bottom of the ScrollableTabBar. This provides a layer
- * of separation between the ScrollableTabBar and the content displayed underneath.
  * @param tabs the tabs inside this ScrollableTabBar. Typically this will be multiple [Tab]s. Each
  * element inside this lambda will be measured and placed evenly across the TabBar, each taking
  * up equal space.
@@ -207,16 +184,6 @@ fun ScrollableTabBar(
     modifier: Modifier = Modifier,
     backgroundColor: Color = YdsTheme.colors.bgElevated,
     contentColor: Color = YdsTheme.colors.bottomBarNormal,
-    edgePadding: Dp = TabBarDefaults.ScrollableTabPadding,
-    indicator: @Composable @UiComposable (tabPositions: List<TabPosition>) -> Unit =
-        @Composable { tabPositions ->
-            TabBarDefaults.Indicator(
-                Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
-            )
-        },
-    divider: @Composable @UiComposable () -> Unit = @Composable {
-        TabBarDefaults.Divider()
-    },
     tabs: @Composable @UiComposable () -> Unit
 ) {
     Surface(
@@ -240,8 +207,8 @@ fun ScrollableTabBar(
                 .selectableGroup()
                 .clipToBounds()
         ) { constraints ->
-            val minTabWidth = ScrollableTabWidth.roundToPx()
-            val edgeRadding = edgePadding.roundToPx()
+            val minTabWidth = TabBarDefaults.ScrollableTabWidth.roundToPx()
+            val edgePadding = TabBarDefaults.ScrollableTabPadding.roundToPx()
             val tabConstraints = constraints.copy(minWidth = minTabWidth)
 
             val placeableTabs = subcompose(
@@ -251,8 +218,8 @@ fun ScrollableTabBar(
                 }
             ).map { it.measure(tabConstraints) }
 
-            var tabBarWidth = edgeRadding * 2
-            var tabBarHeight = placeableTabs.first().height
+            var tabBarWidth = edgePadding * 2
+            val tabBarHeight = placeableTabs.first().height
 
             placeableTabs.forEach {
                 tabBarWidth += it.width
@@ -262,7 +229,7 @@ fun ScrollableTabBar(
             layout(tabBarWidth, tabBarHeight) {
                 // Place the tabs
                 val tabPositions = mutableListOf<TabPosition>()
-                var left = edgeRadding
+                var left = edgePadding
 
                 placeableTabs.forEach {
                     it.placeRelative(left, 0)
@@ -278,7 +245,7 @@ fun ScrollableTabBar(
                 subcompose(
                     slotId = TabSlots.Divider,
                     content = {
-                        divider()
+                        TabBarDefaults.Divider()
                     }
                 ).forEach {
                     val placeableDivider = it.measure(
@@ -293,7 +260,9 @@ fun ScrollableTabBar(
                 subcompose(
                     slotId = TabSlots.Indicator,
                     content = {
-                        indicator(tabPositions)
+                        TabBarDefaults.Indicator(
+                            Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
+                        )
                     }
                 ).forEach {
                     val placeableIndicator = it.measure(
@@ -304,7 +273,7 @@ fun ScrollableTabBar(
 
                 scrollableTabData.onLaidOut(
                     density = this@SubcomposeLayout,
-                    edgeOffset = edgeRadding,
+                    edgeOffset = edgePadding,
                     tabPositions = tabPositions,
                     selectedTab = selectedTabIndex
                 )
@@ -312,8 +281,6 @@ fun ScrollableTabBar(
         }
     }
 }
-
-private val ScrollableTabWidth = 88.dp
 
 
 /**
@@ -489,6 +456,11 @@ object TabBarDefaults {
      * The default padding from the starting edge before a tab in a [ScrollableTabBar].
      */
     val ScrollableTabPadding: Dp = 16.dp
+
+    /**
+     * The default width of a [Tab] when tab is in [ScrollableTabBar].
+     */
+    val ScrollableTabWidth: Dp = 88.dp
 }
 
 @Preview(name = "FixedTabBar")

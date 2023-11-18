@@ -3,8 +3,10 @@ package com.yourssu.design.system.compose.component
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -12,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
@@ -72,42 +73,14 @@ fun Tab(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            TabLayout(
-                text = text,
-            )
-        }
-    }
-}
-
-/**
- * A [Layout] that positions [text]
- *
- */
-@Composable
-fun TabLayout(
-    text: @Composable (() -> Unit)
-) {
-    Layout(
-        content = {
-            text()
-        },
-        measurePolicy = { measurables, constraints ->
-            val placeableText = measurables
-                .first()
-                .measure(
-                    constraints
-                )
-
-            val tabWidth = placeableText.width
-
-            val tabHeight = TabHeight.roundToPx()
-
-            layout(width = tabWidth, height = tabHeight) {
-                val contentY = (tabHeight - placeableText.height) / 2
-                placeableText.placeRelative(0, contentY)
+            Box(
+                modifier = Modifier.height(TabHeight),
+                contentAlignment = Alignment.Center
+            ) {
+                text()
             }
         }
-    )
+    }
 }
 
 private val TabHeight = 48.dp
