@@ -2,9 +2,7 @@ package com.yourssu.design.system.compose.component
 
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.selection.selectable
@@ -61,7 +59,7 @@ fun Tab(
     CompositionLocalProvider(
         LocalContentColor provides color.copy(alpha = 1f),
     ) {
-        Column(
+        Box(
             modifier = modifier
                 .selectable(
                     selected = selected,
@@ -69,16 +67,11 @@ fun Tab(
                     indication = null,
                     enabled = true,
                     onClick = onClick
-                ),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                )
+                .height(TabHeight),
+            contentAlignment = Alignment.Center
         ) {
-            Box(
-                modifier = Modifier.height(TabHeight),
-                contentAlignment = Alignment.Center
-            ) {
-                text()
-            }
+            text()
         }
     }
 }
