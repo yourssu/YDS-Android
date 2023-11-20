@@ -475,7 +475,7 @@ private fun PreviewFixedTabBar() {
             FixedTabBar(selectedTabIndex = tabIndex, modifier = Modifier) {
                 tabs.forEachIndexed { index, title ->
                     Tab(
-                        text = { YdsText(title, style = YdsTheme.typography.button2) },
+                        text = title,
                         selected = tabIndex == index,
                         onClick = { tabIndex = index },
                     )
@@ -516,7 +516,7 @@ private fun PreviewScrollableTabBar() {
             ScrollableTabBar(selectedTabIndex = tabIndex, modifier = Modifier) {
                 tabs.forEachIndexed { index, title ->
                     Tab(
-                        text = { YdsText(title, style = YdsTheme.typography.button2) },
+                        text = title,
                         selected = tabIndex == index,
                         onClick = {
                             tabIndex = index

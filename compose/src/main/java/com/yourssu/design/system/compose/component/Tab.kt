@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,7 +15,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.YdsText
-import com.yourssu.design.system.compose.foundation.LocalContentColor
 
 /**
  *
@@ -49,30 +47,30 @@ fun Tab(
     selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    text: @Composable (() -> Unit),
+    text: String,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     selectedContentColor: Color = YdsTheme.colors.bottomBarSelected,
     unselectedContentColor: Color = YdsTheme.colors.bottomBarNormal,
 ) {
     val color = if (selected) selectedContentColor else unselectedContentColor
 
-    CompositionLocalProvider(
-        LocalContentColor provides color.copy(alpha = 1f),
+    Box(
+        modifier = modifier
+            .selectable(
+                selected = selected,
+                interactionSource = interactionSource,
+                indication = null,
+                enabled = true,
+                onClick = onClick
+            )
+            .height(TabHeight),
+        contentAlignment = Alignment.Center
     ) {
-        Box(
-            modifier = modifier
-                .selectable(
-                    selected = selected,
-                    interactionSource = interactionSource,
-                    indication = null,
-                    enabled = true,
-                    onClick = onClick
-                )
-                .height(TabHeight),
-            contentAlignment = Alignment.Center
-        ) {
-            text()
-        }
+        YdsText(
+            text = text,
+            style = YdsTheme.typography.button2,
+            color = color
+        )
     }
 }
 
@@ -87,23 +85,13 @@ private fun PreviewTab() {
             selected = true,
             onClick = {
             },
-            text = {
-                YdsText(
-                    text = "선택됨",
-                    style = YdsTheme.typography.button2
-                )
-            },
+            text = "선택됨"
         )
         Tab(
             selected = false,
             onClick = {
             },
-            text = {
-                YdsText(
-                    text = "선택안됨",
-                    style = YdsTheme.typography.button2
-                )
-            },
+            text = "선택안됨"
         )
     }
 }
