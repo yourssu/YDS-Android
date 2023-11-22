@@ -1,10 +1,11 @@
 # YDS 라이브러리를 깃헙에 배포하는 워크플로입니다.
+# 깃허브에 배포되면 자동으로 jitpack에 등록됩니다. (https://jitpack.io/#yourssu/YDS-Android)
 name: Deploy YDS Library
 
-# master 브랜치에 push가 발생하면 실행됩니다.
+# develop 브랜치에 push가 발생하면 실행됩니다.
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
   release:
