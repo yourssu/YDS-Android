@@ -213,9 +213,9 @@ fun ScrollableTabBar(
                 tabBarWidth += it.width
             }
 
-            // Position the children.
+        
             layout(tabBarWidth, tabBarHeight) {
-                // Place the tabs
+                
                 val tabPositions = mutableListOf<TabPosition>()
                 var left = edgePadding
 

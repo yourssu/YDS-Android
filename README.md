@@ -57,4 +57,4 @@ implementation("com.github.yourssu.YDS-Android:compose:${YDSVersion}")
 
 ## 💻 타 버전 저장소
 [YDS-iOS](https://github.com/yourssu/YDS-iOS)  
-[YDS-Web](https://github.com/yourssu/YDS-Web)
+[YDS-React](https://github.com/yourssu/YDS-React)
