@@ -46,28 +46,24 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 /**
- * This is [FixedTabBar] containing various navigation menus. Usually used at the top.
+ * 다양한 네비게이션 메뉴가 포함된 [FixedTabBar]입니다. 보통 상단에 사용됩니다.
  *
- * A [FixedTabBar] contains a row of [Tab]s, and displays an indicator underneath the currently
- * selected tab. A TabRow places its tabs evenly spaced along the entire row, with each tab
- * taking up an equal amount of space. See [ScrollableTabBar] for a tab row that does not enforce
- * equal size, and allows scrolling to tabs that do not fit on screen.
+ * [FixedTabBar]에는 [Tab] 행이 포함되어 있으며 현재 선택된 탭 아래에 인디케이터가 표시됩니다.
+ * [FixedTabBar]는 전체 행을 따라 균등한 간격으로 탭을 배치하며 각 탭은 동일한 공간을 차지합니다.
+ * 동일한 크기를 적용하지 않고 스크롤할 수 있는 탭바에 대해서는 [ScrollableTabBar] 참조하세요.
  *
- * * It doesn't scroll. The width of each tab is 1/n of the total width.
- * Please use a minimum of 2 and a maximum of 5 tabs.
+ * * 스크롤되지 않습니다. 각 탭의 너비는 전체 너비의 1/n입니다.
+ * 최소 2개, 최대 5개 탭을 사용해주세요.
  *
- * * There is no change depending on the device.
+ * * 기기에 따른 변화는 없습니다.
  *
- * @param selectedTabIndex the index of the currently selected tab
- * @param modifier optional [Modifier] for this TabBar
- * @param backgroundColor The background color for the TabBar. Use [Color.Transparent] to have
- * no color.
- * @param contentColor The preferred content color provided by this TabBar to its children.
- * Defaults to either the matching content color for [backgroundColor], or if [backgroundColor] is
- * not a color from the theme, this will keep the same value set above this TabBar.
- * @param tabs the tabs inside this TabBar. Typically this will be multiple [Tab]s. Each element
- * inside this lambda will be measured and placed evenly across the TabRow, each taking up equal
- * space.
+ * @param selectedTabIndex 현재 선택된 탭의 인덱스
+ * @param modifier 이 TabBar에 대한 선택적 Modifier
+ * @param backgroundColor TabBar의 배경색입니다.
+ * @param contentColor TabBar의 콘텐츠 색상입니다.
+ * @param tabs 이 TabBar 내부의 탭입니다. 일반적으로 이는 여러 개의 [Tab]이 됩니다. 각 요소
+ * 이 람다 내부에서는 측정되어 TabBar 전체에 균등하게 배치됩니다. 각 항목은 동일한 크기를 차지합니다.
+ *
  */
 @Composable
 fun FixedTabBar(
@@ -152,31 +148,23 @@ fun FixedTabBar(
     }
 }
 
+
 /**
- * When a set of tabs cannot fit on screen, use scrollable tabs.
- * They are best used for browsing on touch interfaces.
  *
- * A ScrollableTabRow contains a row of [Tab]s, and displays an indicator underneath the currently
- * selected tab. A ScrollableTabBar places its tabs offset from the starting edge, and allows
- * scrolling to tabs that are placed off screen. For a fixed tab row that does not allow
- * scrolling, and evenly places its tabs, see [FixedTabBar].
+ * ScrollableTabBar에는 [Tab] 행이 포함되어 있으며 현재 탭 아래에 인디케이터가 표시됩니다.
+ * ScrollableTabBar는 시작 가장자리에서 탭 오프셋을 배치하고 다음을 허용합니다.
+ * 화면 밖에 있는 탭으로 스크롤합니다. 허용하지 않는 고정 탭 행의 경우
+ * 스크롤하고 탭을 균등하게 배치하려면 [FixedTabBar]를 참조하세요.
  *
- * * It scrolls. The width of each tab is fixed at 88.
- * There is no limit to the minimum/maximum number of tabs.
- * * If the device is mobile, there is a margin of 16 to the left of the first tab
- * and to the right of the last tab.
+ * * 스크롤됩니다. 각 탭의 너비는 88로 고정되어 있습니다.
+ * 최소/최대 탭 수에는 제한이 없습니다.
+ * * 모바일 기기의 경우 첫 번째 탭 왼쪽 및 마지막 탭의 오른쪽에 16의 여백이 있습니다.
  *
- * @param selectedTabIndex the index of the currently selected tab
- * @param modifier optional [Modifier] for this ScrollableTabRow
- * @param backgroundColor The background color for the ScrollableTabBar. Use [Color.Transparent] to
- * have no color.
- * @param contentColor The preferred content color provided by this ScrollableTabBar to its
- * children. Defaults to either the matching content color for [backgroundColor], or if
- * [backgroundColor] is not a color from the theme, this will keep the same value set above this
- * ScrollableTabBar.
- * @param tabs the tabs inside this ScrollableTabBar. Typically this will be multiple [Tab]s. Each
- * element inside this lambda will be measured and placed evenly across the TabBar, each taking
- * up equal space.
+ * @param selectedTabIndex 현재 선택된 탭의 인덱스
+ * @param modifier 선택적 [Modifier]입니다.
+ * @param backgroundColor ScrollableTabBar의 배경색입니다.
+ * @param contentColor 이 ScrollableTabBar가 제공하는 기본 콘텐츠 색상입니다.
+ * @param tabs 이 ScrollableTabBar 내부의 탭들입니다. 일반적으로 이는 여러 개의 [Tab]이 됩니다.
  */
 @Composable
 fun ScrollableTabBar(
@@ -225,9 +213,9 @@ fun ScrollableTabBar(
                 tabBarWidth += it.width
             }
 
-            // Position the children.
+        
             layout(tabBarWidth, tabBarHeight) {
-                // Place the tabs
+                
                 val tabPositions = mutableListOf<TabPosition>()
                 var left = edgePadding
 
