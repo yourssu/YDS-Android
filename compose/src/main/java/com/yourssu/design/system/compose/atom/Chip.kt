@@ -24,6 +24,7 @@ import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
 fun Chip(
+    text: String = "",
     isSelected: Boolean = false,
     isDisabled: Boolean = false,
     onSelectedChange: () -> Unit = {},
@@ -54,7 +55,7 @@ fun Chip(
             verticalArrangement = Arrangement.Center
         ) {
             YdsText(
-                text = "IT대학",
+                text = text,
                 modifier = Modifier.padding(horizontal = 8.dp),
                 style = YdsTheme.typography.caption1
             )
