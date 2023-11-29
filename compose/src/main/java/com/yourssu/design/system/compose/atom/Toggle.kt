@@ -30,6 +30,7 @@ import com.yourssu.design.system.compose.rule.YdsBorder
 
 @Composable
 fun Toggle(
+    modifier: Modifier = Modifier,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     isDisabled: Boolean = false,
@@ -55,11 +56,11 @@ fun Toggle(
         if (selected) 10.dp else (-10).dp
     }
 
-    val clickableModifier = if (isDisabled) Modifier else
-        Modifier.noRippleClickable(interactionSource) { onCheckedChange(!checked) }
+    val clickableModifier = if (isDisabled) modifier else
+        modifier.noRippleClickable(interactionSource) { onCheckedChange(!checked) }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(width = 51.dp, height = 31.dp)
             .clip(RoundedCornerShape(50))
             .background(color = trackColor)
