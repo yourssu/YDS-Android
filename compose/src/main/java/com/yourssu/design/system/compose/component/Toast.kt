@@ -3,13 +3,11 @@ package com.yourssu.design.system.compose.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +18,6 @@ import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.foundation.ToastData
@@ -34,25 +31,26 @@ fun Toast(
     contentColor: Color = YdsTheme.colors.textBright,
     toastData: ToastData
 ) {
-    Layout({
-        Box(
-            modifier = modifier
-                .padding(horizontal = 8.dp)
-                .background(backgroundColor, RoundedCornerShape(8.dp))
-                .padding(
-                    horizontal = 24.dp,
-                    vertical = 16.dp
+    Layout(
+        content = {
+            Box(
+                modifier = modifier
+                    .padding(horizontal = ToastHorizontalMargin)
+                    .background(backgroundColor, RoundedCornerShape(8.dp))
+                    .padding(
+                        horizontal = ToastHorizontalPadding,
+                        vertical = ToastVerticalPadding
+                    )
+                    .fillMaxWidth()
+            ) {
+                YdsText(
+                    text = toastData.message,
+                    color = contentColor,
+                    style = YdsTheme.typography.body2,
+                    modifier = Modifier.align(Alignment.Center)
                 )
-                .fillMaxWidth()
-        ) {
-            YdsText(
-                text = toastData.message,
-                color = contentColor,
-                style = YdsTheme.typography.body2,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
-    }) { measurables, constraints ->
+            }
+        }) { measurables, constraints ->
         require(measurables.size == 1) {
             "text for Snackbar expected to have exactly only one child"
         }
@@ -76,10 +74,14 @@ fun Toast(
     }
 }
 
+private val ToastHorizontalPadding = 24.dp
+private val ToastVerticalPadding = 16.dp
+private val ToastHorizontalMargin = 8.dp
+
 
 @Preview(showBackground = false, showSystemUi = true)
 @Composable
-fun ToastPreview() {
+private fun ToastPreview() {
     Column {
         Spacer(modifier = Modifier.height(16.dp))
         Toast(toastData = object : ToastData {
@@ -131,23 +133,5 @@ fun ToastPreview() {
             override fun dismiss() {
             }
         })
-    }
-}
-
-@Preview(showSystemUi = false, showBackground = true)
-@Composable
-fun Ex() {
-    Row {
-        Text(
-            text = "Line 1\nLine 2",
-            fontSize = 20.sp,
-            modifier = Modifier.alignBy(FirstBaseline)
-        )
-
-        Text(
-            text = "Line 3",
-            fontSize = 12.sp,
-            modifier = Modifier.alignBy(LastBaseline)
-        )
     }
 }
