@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.rule.Duration
-import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
+import com.yourssu.design.system.compose.rule.YdsEasing
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -23,7 +23,7 @@ fun rememberYdsBottomSheetState(): ModalBottomSheetState {
         initialValue = ModalBottomSheetValue.Hidden,
         animationSpec = tween(
             durationMillis = Duration.Medium.millis,
-            easing = YdsInAndOutEasing
+            easing = YdsEasing
         ),
         skipHalfExpanded = true
     )
