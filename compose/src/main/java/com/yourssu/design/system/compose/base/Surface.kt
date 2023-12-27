@@ -20,7 +20,7 @@ import androidx.compose.ui.semantics.isContainer
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.foundation.LocalContentColor
+import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 
 @Composable
 fun Surface(
@@ -28,12 +28,12 @@ fun Surface(
     rounding: Dp? = null,
     shape: Shape = rounding?.let { RoundedCornerShape(it) } ?: RectangleShape,
     color: Color = YdsTheme.colors.bgNormal,
-    contentColor: Color = LocalContentColor.current,
+    contentColor: Color = LocalYdsContentColor.current,
     border: BorderStroke? = null,
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
-        LocalContentColor provides contentColor,
+        LocalYdsContentColor provides contentColor,
     ) {
         Box(
             modifier = modifier
@@ -65,13 +65,13 @@ fun Surface(
     rounding: Dp? = null,
     shape: Shape = rounding?.let { RoundedCornerShape(it) } ?: RectangleShape,
     color: Color = YdsTheme.colors.bgNormal,
-    contentColor: Color = LocalContentColor.current,
+    contentColor: Color = LocalYdsContentColor.current,
     border: BorderStroke? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
-        LocalContentColor provides contentColor,
+        LocalYdsContentColor provides contentColor,
     ) {
         Box(
             modifier = modifier

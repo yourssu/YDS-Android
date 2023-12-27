@@ -16,7 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.yourssu.design.system.compose.foundation.LocalContentColor
+import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 
 sealed class IconSize(val value: Dp) {
     object ExtraSmall : IconSize(16.dp)
@@ -30,7 +30,7 @@ fun Icon(
     @DrawableRes id: Int,
     modifier: Modifier = Modifier,
     iconSize: IconSize = IconSize.Medium,
-    tint: Color = LocalContentColor.current,
+    tint: Color = LocalYdsContentColor.current,
 ) {
     Icon(
         imageVector = ImageVector.vectorResource(id = id),
@@ -45,7 +45,7 @@ fun Icon(
     imageVector: ImageVector,
     modifier: Modifier = Modifier,
     iconSize: IconSize = IconSize.Medium,
-    tint: Color = LocalContentColor.current,
+    tint: Color = LocalYdsContentColor.current,
 ) {
     Icon(
         painter = rememberVectorPainter(imageVector),
@@ -60,7 +60,7 @@ fun Icon(
     painter: Painter,
     modifier: Modifier = Modifier,
     iconSize: IconSize = IconSize.Medium,
-    tint: Color = LocalContentColor.current,
+    tint: Color = LocalYdsContentColor.current,
 ) {
     val colorFilter = ColorFilter.tint(tint)
     Box(

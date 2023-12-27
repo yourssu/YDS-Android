@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.foundation.LocalContentColor
+import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 
 @Composable
 fun YdsScaffold(
@@ -16,7 +16,7 @@ fun YdsScaffold(
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     backgroundColor: Color = YdsTheme.colors.bgNormal,
-    contentColor: Color = LocalContentColor.current,
+    contentColor: Color = LocalYdsContentColor.current,
     content: @Composable () -> Unit
 ) {
     // TODO: Toast 추가

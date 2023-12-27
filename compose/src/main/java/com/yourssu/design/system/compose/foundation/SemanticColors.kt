@@ -208,4 +208,4 @@ private fun YdsColorScheme.pressedColorFor(color: Color): Color {
 }
 
 internal val LocalYdsColorScheme = staticCompositionLocalOf { lightColorScheme }
-internal val LocalContentColor = compositionLocalOf { lightColorScheme.textPrimary }
+val LocalYdsContentColor = compositionLocalOf { lightColorScheme.textPrimary }

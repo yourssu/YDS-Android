@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import com.yourssu.design.system.compose.base.ProvideTextStyle
-import com.yourssu.design.system.compose.foundation.LocalContentColor
+import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 import com.yourssu.design.system.compose.foundation.LocalYdsColorScheme
 import com.yourssu.design.system.compose.foundation.LocalYdsTypography
 import com.yourssu.design.system.compose.foundation.YdsColorScheme
@@ -26,7 +26,7 @@ fun YdsTheme(
     CompositionLocalProvider(
         LocalYdsColorScheme provides colors,
         LocalYdsTypography provides typography,
-        LocalContentColor provides colors.textPrimary,
+        LocalYdsContentColor provides colors.textPrimary,
     ) {
         ProvideTextStyle(value = typography.body1) {
             content()
