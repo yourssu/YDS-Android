@@ -22,7 +22,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.base.Icon
-import com.yourssu.design.system.compose.base.noRippleClickable
+import com.yourssu.design.system.compose.base.ydsClickable
 import com.yourssu.design.system.compose.states.ButtonSizeState
 
 enum class CheckBoxSize {
@@ -84,7 +84,7 @@ fun CheckBox(
     val betweenSpace = sizeState.betweenSpace
 
     val clickableModifier = if (isDisabled) Modifier else
-        Modifier.noRippleClickable(interactionSource) { onCheckedChange(!checked) }
+        Modifier.ydsClickable(interactionSource) { onCheckedChange(!checked) }
 
     Row(
         modifier = modifier

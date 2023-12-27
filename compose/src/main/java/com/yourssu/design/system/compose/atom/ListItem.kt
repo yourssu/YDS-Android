@@ -23,7 +23,7 @@ import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.base.Icon
-import com.yourssu.design.system.compose.base.noRippleClickable
+import com.yourssu.design.system.compose.base.ydsClickable
 
 @Composable
 fun ListItem(
@@ -46,7 +46,7 @@ fun ListItem(
         modifier = modifier
             .fillMaxWidth()
             .height(48.dp)
-            .noRippleClickable(interactionSource) {
+            .ydsClickable(interactionSource) {
                 if (!isDisabled) {
                     onClick()
                 }
