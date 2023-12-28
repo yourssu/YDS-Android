@@ -1,5 +1,6 @@
 package com.yourssu.design.system.compose.component
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -50,7 +51,8 @@ fun Toast(
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
-        }) { measurables, constraints ->
+        }
+    ) { measurables, constraints ->
         require(measurables.size == 1) {
             "text for Snackbar expected to have exactly only one child"
         }
@@ -60,11 +62,13 @@ fun Toast(
         require(firstBaseline != AlignmentLine.Unspecified) { "No baselines for text" }
         require(lastBaseline != AlignmentLine.Unspecified) { "No baselines for text" }
 
+        Log.d("Toast", "firstBaseline: ${firstBaseline.dp}, lastBaseline: ${lastBaseline.dp}")
+
         val minHeight =
             if (firstBaseline == lastBaseline) {
-                48.dp
+                ToastOneLineMinHeight
             } else {
-                68.dp
+                ToastTwoLineMinHeight
             }
         val containerHeight = max(minHeight.roundToPx(), textPlaceable.height)
         layout(constraints.maxWidth, containerHeight) {
@@ -77,6 +81,8 @@ fun Toast(
 private val ToastHorizontalPadding = 24.dp
 private val ToastVerticalPadding = 16.dp
 private val ToastHorizontalMargin = 8.dp
+private val ToastOneLineMinHeight = 53.dp
+private val ToastTwoLineMinHeight = 74.dp
 
 
 @Preview(showBackground = false, showSystemUi = true)

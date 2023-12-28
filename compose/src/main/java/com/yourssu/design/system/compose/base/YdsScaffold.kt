@@ -22,6 +22,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.atom.BoxButton
 import com.yourssu.design.system.compose.atom.TopBarButton
 import com.yourssu.design.system.compose.component.TopBar
+import com.yourssu.design.system.compose.foundation.LocalContentColor
 import com.yourssu.design.system.compose.foundation.ToastDuration
 import com.yourssu.design.system.compose.foundation.ToastHost
 import com.yourssu.design.system.compose.foundation.ToastHostState
@@ -37,7 +38,7 @@ fun YdsScaffold(
     bottomBar: @Composable () -> Unit = {},
     toastHost: @Composable (ToastHostState) -> Unit = { ToastHost(it) },
     backgroundColor: Color = YdsTheme.colors.bgNormal,
-    contentColor: Color = YdsTheme.colors.textPrimary,
+    contentColor: Color = LocalContentColor.current,
     content: @Composable (PaddingValues) -> Unit
 ) {
     Surface(modifier = modifier, color = backgroundColor, contentColor = contentColor) {
@@ -51,7 +52,7 @@ fun YdsScaffold(
 }
 
 @Composable
-fun ScaffoldLayout(
+private fun ScaffoldLayout(
     topBar: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit,
     toast: @Composable () -> Unit,

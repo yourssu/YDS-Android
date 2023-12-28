@@ -1,5 +1,6 @@
 package com.yourssu.design.system.compose.foundation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
@@ -14,7 +15,6 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlin.coroutines.resume
-
 
 
 interface ToastData {
@@ -93,9 +93,9 @@ fun ToastHost(
         }
     }
     FadeInFadeOutWithScale(
-        current = toastHostState.currentToastData,
+        newToastData = toastHostState.currentToastData,
         modifier = modifier,
-        content = toast
+        toast = toast
     )
 }
 
