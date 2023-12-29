@@ -25,7 +25,7 @@ import com.yourssu.design.system.compose.states.ButtonColorState
 fun TopBarButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
-    isDisabled: Boolean = true,
+    isDisabled: Boolean = false,
     text: String = "",
     @DrawableRes icon: Int? = null,
 ) {
