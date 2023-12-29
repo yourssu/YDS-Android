@@ -1,6 +1,5 @@
-package com.yourssu.design.system.compose.foundation
+package com.yourssu.design.system.compose.component.toast
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
@@ -8,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.yourssu.design.system.compose.component.Toast
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -92,7 +90,7 @@ fun ToastHost(
             currentToastData.dismiss()
         }
     }
-    FadeInFadeOutWithScale(
+    FadeInFadeOut(
         newToastData = toastHostState.currentToastData,
         modifier = modifier,
         toast = toast

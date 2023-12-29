@@ -1,9 +1,9 @@
-package com.yourssu.design.system.compose.foundation
+package com.yourssu.design.system.compose.component.toast
 
+import android.util.Log
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -20,45 +20,48 @@ import androidx.compose.ui.graphics.graphicsLayer
 import com.yourssu.design.system.compose.rule.Duration
 import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
 
-data class ToastAnimationItem(
+data class ToastTransitionItem(
     val toastData: ToastData?,
-    val opacityTransition: opacityTransition
+    val opacityTransition: OpacityTransition
 )
 
 fun Any?.helpCode() = System.identityHashCode(this) % 1000
 
-typealias opacityTransition = @Composable (toast: @Composable () -> Unit) -> Unit
+typealias OpacityTransition = @Composable (toast: @Composable () -> Unit) -> Unit
 
 /**
  * 토스트 애니메이션 FadeInFadeOut
  *
- * 구현과정 이해를 위해 주석을 남겨둘 예정입니다.
+ * 작동 이해를 위해 주석을 남겨둘 예정입니다.
  *
  * @param newToastData 새로운 토스트 데이터 입력. 입력 없다면 null
  * @param modifier Modifier
  * @param toast 토스트 컴포저블
  */
 @Composable
-fun FadeInFadeOutWithScale(
+fun FadeInFadeOut(
     newToastData: ToastData?,
     modifier: Modifier = Modifier,
     toast: @Composable (ToastData) -> Unit // Composable of Toast
 ) {
+    // 앞으로 나타나기로 예정된 토스트의 정보
     var scheduledToastData by remember { mutableStateOf<ToastData?>(null) }
-    val toastAnimations = remember { mutableListOf<ToastAnimationItem>() }
+    // 현재 나타나고 있는 토스트의 정보와 Opacity Composable
+    val toastTransitions = remember { mutableListOf<ToastTransitionItem>() }
     var scope by remember { mutableStateOf<RecomposeScope?>(null) }
 
     if (newToastData != scheduledToastData) {
-        scheduledToastData = newToastData
-        val toastDataList = toastAnimations.map {
+        // 새로 발생한 토스트 != 앞으로 나타나기로 예정된 토스트의 정보 => 새 Toast 발생
+        scheduledToastData = newToastData // 앞으로 나타날 토스트에 새로운 토스트로 업데이트
+        val toastDataList = toastTransitions.map {
             it.toastData
-        }.toMutableList()
-        toastDataList.add(newToastData)
-        toastAnimations.clear()
+        }.toMutableList() // 현재 나타난 토스트의 정보로 초기회
+        toastDataList.add(newToastData) // 새로 발생한 토스트 추가
+        toastTransitions.clear() // 현재 나타난 토스트 비우기 (새로운 토스트가 발생했으므로)
         toastDataList
             .filterNotNull()
-            .mapTo(destination = toastAnimations) { appearedToastData ->
-                ToastAnimationItem(appearedToastData) { toast ->
+            .mapTo(destination = toastTransitions) { appearedToastData ->
+                ToastTransitionItem(appearedToastData) { toast ->
                     val isVisible = appearedToastData == newToastData
                     val opacity = animatedOpacity(
                         animation = tween(
@@ -67,14 +70,15 @@ fun FadeInFadeOutWithScale(
                             durationMillis = Duration.Medium.millis
                         ),
                         visible = isVisible,
-                        onAnimationFinish = {
+                        onAnimationFinish = { // 토스트가 사라질때 발동
                             if (appearedToastData != scheduledToastData) {
-                                toastAnimations.removeAll { it.toastData == appearedToastData }
+                                toastTransitions.removeAll { it.toastData == appearedToastData }
+                                // 발생한 토스트를 제거
                                 scope?.invalidate()
                             }
                         }
                     )
-                    Box(
+                    Box( // 투명도 그래픽 레이어를 만들어주는 Toast 상위 Composable
                         Modifier
                             .graphicsLayer(
                                 alpha = opacity.value
@@ -88,7 +92,7 @@ fun FadeInFadeOutWithScale(
 
     Box(modifier) {
         scope = currentRecomposeScope
-        toastAnimations.forEach { (toastData, opacity) ->
+        toastTransitions.forEach { (toastData, opacity) ->
             key(toastData) {
                 opacity {
                     toast(toastData!!)

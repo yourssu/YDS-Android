@@ -23,9 +23,9 @@ import com.yourssu.design.system.compose.atom.BoxButton
 import com.yourssu.design.system.compose.atom.TopBarButton
 import com.yourssu.design.system.compose.component.TopBar
 import com.yourssu.design.system.compose.foundation.LocalContentColor
-import com.yourssu.design.system.compose.foundation.ToastDuration
-import com.yourssu.design.system.compose.foundation.ToastHost
-import com.yourssu.design.system.compose.foundation.ToastHostState
+import com.yourssu.design.system.compose.component.toast.ToastDuration
+import com.yourssu.design.system.compose.component.toast.ToastHost
+import com.yourssu.design.system.compose.component.toast.ToastHostState
 import kotlinx.coroutines.launch
 
 private enum class ScaffoldLayoutContent { TopBar, MainContent, Snackbar, BottomBar }
