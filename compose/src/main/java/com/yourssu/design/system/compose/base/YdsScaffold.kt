@@ -22,10 +22,10 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.atom.BoxButton
 import com.yourssu.design.system.compose.atom.TopBarButton
 import com.yourssu.design.system.compose.component.TopBar
-import com.yourssu.design.system.compose.foundation.LocalContentColor
 import com.yourssu.design.system.compose.component.toast.ToastDuration
 import com.yourssu.design.system.compose.component.toast.ToastHost
 import com.yourssu.design.system.compose.component.toast.ToastHostState
+import com.yourssu.design.system.compose.foundation.LocalContentColor
 import kotlinx.coroutines.launch
 
 private enum class ScaffoldLayoutContent { TopBar, MainContent, Snackbar, BottomBar }
@@ -33,7 +33,7 @@ private enum class ScaffoldLayoutContent { TopBar, MainContent, Snackbar, Bottom
 @Composable
 fun YdsScaffold(
     modifier: Modifier = Modifier,
-    toastHostState: ToastHostState = remember { ToastHostState() },
+    toastHostState: ToastHostState = rememberToastHostState(),
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     toastHost: @Composable (ToastHostState) -> Unit = { ToastHost(it) },
@@ -50,6 +50,9 @@ fun YdsScaffold(
         )
     }
 }
+
+@Composable
+fun rememberToastHostState(): ToastHostState = remember { ToastHostState() }
 
 @Composable
 private fun ScaffoldLayout(
