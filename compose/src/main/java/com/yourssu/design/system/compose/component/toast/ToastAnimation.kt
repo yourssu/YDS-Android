@@ -25,8 +25,6 @@ data class ToastTransitionItem(
     val opacityTransition: OpacityTransition
 )
 
-fun Any?.helpCode() = System.identityHashCode(this) % 1000
-
 typealias OpacityTransition = @Composable (toast: @Composable () -> Unit) -> Unit
 
 /**
