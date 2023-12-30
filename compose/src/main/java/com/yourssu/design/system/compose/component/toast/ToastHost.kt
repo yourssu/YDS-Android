@@ -26,8 +26,9 @@ enum class ToastResult {
     Dismissed,
 }
 
-enum class ToastDuration {
-    SHORT, LONG,
+enum class ToastDuration(val milli: Long) {
+    SHORT(1500L),
+    LONG(3000L),
 }
 
 
@@ -83,10 +84,7 @@ fun ToastHost(
     val currentToastData = toastHostState.currentToastData
     LaunchedEffect(currentToastData) {
         if (currentToastData != null) {
-            when (currentToastData.duration) {
-                ToastDuration.SHORT -> delay(ToastDurationShort)
-                ToastDuration.LONG -> delay(ToastDurationLong)
-            }
+            delay(currentToastData.duration.milli)
             currentToastData.dismiss()
         }
     }
@@ -96,6 +94,3 @@ fun ToastHost(
         toast = toast
     )
 }
-
-private const val ToastDurationShort = 1500L
-private const val ToastDurationLong = 3000L
