@@ -52,7 +52,7 @@ fun FadeInFadeOut(
         scheduledToastData = newToastData // 앞으로 나타날 토스트에 새로운 토스트로 업데이트
         val toastDataList = toastTransitions.map {
             it.toastData
-        }.toMutableList() // 현재 나타난 토스트의 정보로 초기회
+        }.toMutableList() // 현재 나타난 토스트의 정보로 초기화
         toastDataList.add(newToastData) // 새로 발생한 토스트 추가
         toastTransitions.clear() // 현재 나타난 토스트 비우기 (새로운 토스트가 발생했으므로)
         toastDataList
