@@ -25,6 +25,7 @@ import com.yourssu.design.system.compose.component.TopBar
 import com.yourssu.design.system.compose.component.toast.ToastDuration
 import com.yourssu.design.system.compose.component.toast.ToastHost
 import com.yourssu.design.system.compose.component.toast.ToastHostState
+import com.yourssu.design.system.compose.component.toast.rememberToastHostState
 import com.yourssu.design.system.compose.foundation.LocalContentColor
 import kotlinx.coroutines.launch
 
@@ -50,9 +51,6 @@ fun YdsScaffold(
         )
     }
 }
-
-@Composable
-fun rememberToastHostState(): ToastHostState = remember { ToastHostState() }
 
 @Composable
 private fun ScaffoldLayout(
@@ -126,7 +124,7 @@ private val ToastApartFromBottom = 72.dp
 @Preview
 @Composable
 private fun YdsScaffoldPreview() {
-    val toastHostState: ToastHostState = remember { ToastHostState() }
+    val toastHostState: ToastHostState = rememberToastHostState()
     val scope = rememberCoroutineScope()
 
     YdsScaffold(
