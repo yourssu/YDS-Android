@@ -1,4 +1,4 @@
-package com.yourssu.design.system.compose.component
+package com.yourssu.design.system.compose.component.topbar
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +18,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.atom.TopBarButton
 import com.yourssu.design.system.compose.base.YdsScaffold
 import com.yourssu.design.system.compose.base.YdsText
+import com.yourssu.design.system.compose.component.TopAppBar
 
 @Composable
 fun DoubleTitleTopBar(
@@ -31,9 +31,6 @@ fun DoubleTitleTopBar(
         modifier = modifier
             .fillMaxWidth()
             .height(72.dp),
-        backgroundColor = YdsTheme.colors.bgElevated,
-        contentColor = YdsTheme.colors.textPrimary,
-        elevation = 0.dp,
         contentPadding = PaddingValues(end = 4.dp)
     ) {
         Box(
