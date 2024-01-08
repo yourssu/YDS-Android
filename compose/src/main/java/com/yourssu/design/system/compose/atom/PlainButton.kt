@@ -118,7 +118,7 @@ fun PlainButton(
 
 @Preview(showBackground = true)
 @Composable
-fun PlainButtonPreview() {
+private fun PlainButtonPreview() {
 
     var sizeState by rememberSaveable { mutableStateOf(PlainButtonSize.Large) }
     var pointed by remember { mutableStateOf(false) }

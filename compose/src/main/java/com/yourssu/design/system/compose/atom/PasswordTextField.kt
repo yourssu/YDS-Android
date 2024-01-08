@@ -127,7 +127,7 @@ fun PasswordTextField(
 
 @Preview
 @Composable
-fun PreviewPasswordTextField() {
+private fun PreviewPasswordTextField() {
     var isError by remember { mutableStateOf(false) }
     var text by rememberSaveable { mutableStateOf("") }
     Column {

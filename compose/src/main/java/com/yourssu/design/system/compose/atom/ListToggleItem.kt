@@ -59,7 +59,7 @@ fun ListToggleItem(
 
 @Preview
 @Composable
-fun ListToggleItemPreview() {
+private fun ListToggleItemPreview() {
     var checked1 by remember { mutableStateOf(false) }
     var checked2 by remember { mutableStateOf(false) }
 

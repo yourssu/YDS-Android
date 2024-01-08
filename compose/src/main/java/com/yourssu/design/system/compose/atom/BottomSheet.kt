@@ -65,7 +65,7 @@ private fun BottomSheet(
 @OptIn(ExperimentalMaterialApi::class)
 @Preview(showSystemUi = true)
 @Composable
-fun BottomSheetPreview() {
+private fun BottomSheetPreview() {
     val coroutineScope = rememberCoroutineScope()
     val sheetState = rememberYdsBottomSheetState()
 
