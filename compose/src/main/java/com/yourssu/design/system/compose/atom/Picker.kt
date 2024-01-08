@@ -181,7 +181,7 @@ fun UpdateEffect(key: Any, block: suspend CoroutineScope.() -> Unit) {
 
 @Preview(showBackground = true)
 @Composable
-fun PickerPreview() {
+private fun PickerPreview() {
     val items1 = listOf("오전", "오후")
     val items2 = (1..100).map { "$it" }.toList()
 

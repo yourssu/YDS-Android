@@ -80,7 +80,7 @@ fun ListItem(
 
 @Preview(showBackground = true)
 @Composable
-fun ListItemPreview() {
+private fun ListItemPreview() {
 
     YdsTheme {
         Column {
