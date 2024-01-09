@@ -59,6 +59,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.ui:ui-tooling-preview")
 
+    val navVersion = "2.5.3"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     implementation("androidx.appcompat:appcompat:1.6.1")
