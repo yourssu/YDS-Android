@@ -1,6 +1,7 @@
 package com.yourssu.design.system.compose.component
 
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -291,7 +292,6 @@ fun PreviewNavigation() {
                                 // on the back stack as users select items
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
-                                    inclusive = true
                                 }
                                 // Avoid multiple copies of the same destination when
                                 // reselecting the same item
@@ -299,6 +299,8 @@ fun PreviewNavigation() {
                                 // Restore state when reselecting a previously selected item
                                 restoreState = true
                             }
+
+                            Log.d("KWK", "after ${navBackStackEntry.toString()}, $currentDestination")
                         }
                     )
                 }
