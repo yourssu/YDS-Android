@@ -90,7 +90,9 @@ fun RowScope.BottomNavigationItem(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     var isAnimating by remember { mutableStateOf(false) }
-
+    val iconColor = YdsTheme.colors.run {
+        if (selected) bottomBarSelected else bottomBarNormal
+    }
     val haptic = LocalHapticFeedback.current
 
     val scale by animateFloatAsState(
@@ -129,6 +131,7 @@ fun RowScope.BottomNavigationItem(
         Icon(
             id = if (selected) selectedIcon else unselectedIcon,
             iconSize = IconSize.Medium,
+            tint = iconColor,
             modifier = Modifier.scale(scale)
         )
     }
