@@ -1,7 +1,6 @@
 package com.yourssu.design.system.compose.component
 
 
-import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -53,19 +52,30 @@ import com.yourssu.design.system.compose.component.toast.ToastHost
 import com.yourssu.design.system.compose.component.topbar.TopBar
 import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
 
+/**
+ * 하단 네비게이션 바
+ *
+ * @param modifier Modifier
+ * @param backgroundColor Color
+ * @param contentColor Color
+ * @param content RowScope.() -> Unit
+ *
+ * @see Screen
+ * @see ScreenInfo
+ */
 @Composable
 fun BottomNavigation(
     modifier: Modifier = Modifier,
     backgroundColor: Color = YdsTheme.colors.bgElevated,
     contentColor: Color = YdsTheme.colors.bottomBarNormal,
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit,
 ) {
     Surface(
         color = backgroundColor,
         contentColor = contentColor,
         modifier = modifier
             .fillMaxWidth()
-            .height(BottomNavigationHeight)
+            .height(BottomNavigationHeight),
     ) {
         Column {
             Divider(thickness = Thickness.Thin)
@@ -74,12 +84,28 @@ fun BottomNavigation(
                     .selectableGroup(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                content = content
+                content = content,
             )
         }
     }
 }
 
+
+/**
+ * 하단 네비게이션 바의 아이템
+ *
+ * @param modifier Modifier
+ * @param selected Boolean
+ * @param onClick () -> Unit
+ * @param selectedIcon Int : 선택시 보여줄 아이콘
+ * @param unselectedIcon Int : 선택되지 않았을 때 보여줄 아이콘
+ * @param isImpactFeedbackEnabled Boolean : 선택시 햅틱 피드백 사용 여부
+ * @param interactionSource MutableInteractionSource
+ *
+ * @see BottomNavigation
+ * @see Screen
+ * @see ScreenInfo
+ */
 @Composable
 fun RowScope.BottomNavigationItem(
     modifier: Modifier = Modifier,
@@ -90,24 +116,24 @@ fun RowScope.BottomNavigationItem(
     isImpactFeedbackEnabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
-    var isAnimating by remember { mutableStateOf(false) }
+    var isAnimating by remember { mutableStateOf(false) } // scale 변화 animation 중인지 여부
     val iconColor = YdsTheme.colors.run {
         if (selected) bottomBarSelected else bottomBarNormal
     }
-    val haptic = LocalHapticFeedback.current
+    val haptic = LocalHapticFeedback.current // 햅틱 피드백
 
-    val scale by animateFloatAsState(
-        targetValue = if (isAnimating) 1.2f else 1f,
+    val scale by animateFloatAsState( // scale 변화 animation 상태
+        targetValue = if (isAnimating) 1.2f else 1f, // isAnimating 에 따라 scale 기본값(1f) ~ 1.2배 까지 변화
         animationSpec = tween(
             durationMillis = 25,
-            easing = YdsInAndOutEasing
+            easing = YdsInAndOutEasing,
         ),
-        finishedListener = {
+        finishedListener = {// animating 끝나면 false로 변경. scale 1.2f -> 1f로 변화
             if (isAnimating) {
                 isAnimating = false
             }
         },
-        label = ""
+        label = "",
     )
 
     Box(
@@ -117,23 +143,23 @@ fun RowScope.BottomNavigationItem(
                 interactionSource = interactionSource,
                 indication = null,
                 onClick = {
-                    if (isImpactFeedbackEnabled) {
-                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    if (isImpactFeedbackEnabled) { // 햅틱 피드백 사용 여부
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress) // 햅틱 피드백
                     }
-                    isAnimating = true
-                    onClick()
+                    isAnimating = true // scale 변화 animation 시작
+                    onClick() // 클릭 이벤트
                 },
-                role = Role.Tab
+                role = Role.Tab,
             )
             .height(BottomNavigationHeight)
             .weight(1f),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Icon(
             id = if (selected) selectedIcon else unselectedIcon,
             iconSize = IconSize.Medium,
             tint = iconColor,
-            modifier = Modifier.scale(scale)
+            modifier = Modifier.scale(scale),
         )
     }
 }
@@ -151,8 +177,14 @@ private fun ScreenA(navController: NavController) {
         BoxButton(
             text = "B로 가기",
             onClick = {
-                navController.navigate(Screen.AboutB.route)
-            }
+                navController.navigate(Screen.AboutB.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            },
         )
     }
 }
@@ -168,8 +200,14 @@ private fun ScreenB(navController: NavController) {
         BoxButton(
             text = "C로 가기",
             onClick = {
-                navController.navigate(Screen.AboutC.route)
-            }
+                navController.navigate(Screen.AboutC.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            },
         )
     }
 }
@@ -185,8 +223,14 @@ private fun ScreenC(navController: NavController) {
         BoxButton(
             text = "D로 가기",
             onClick = {
-                navController.navigate(Screen.AboutD.route)
-            }
+                navController.navigate(Screen.AboutD.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            },
         )
     }
 }
@@ -202,8 +246,14 @@ private fun ScreenD(navController: NavController) {
         BoxButton(
             text = "E로 가기",
             onClick = {
-                navController.navigate(Screen.AboutE.route)
-            }
+                navController.navigate(Screen.AboutE.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            },
         )
     }
 }
@@ -219,13 +269,23 @@ private fun ScreenE(navController: NavController) {
         BoxButton(
             text = "A로 가기",
             onClick = {
-                navController.navigate(Screen.AboutA.route)
-            }
+                navController.navigate(Screen.AboutA.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            },
         )
     }
 }
 
 
+/**
+ * 스크린 종류 정의
+ * 해당 sealed class 를 바탕으로 라우팅
+ */
 sealed class Screen(val route: String) {
     object AboutA : Screen("A")
     object AboutB : Screen("B")
@@ -271,9 +331,9 @@ fun PreviewNavigation() {
                     TopBarButton(
                         icon = R.drawable.ic_search_line,
                         isDisabled = false,
-                        onClick = { }
+                        onClick = { },
                     )
-                }
+                },
             )
         },
         bottomBar = {
@@ -287,33 +347,33 @@ fun PreviewNavigation() {
                         selected = currentDestination?.hierarchy?.any { it.route == screenInfo.screen.route } == true,
                         onClick = {
                             navController.navigate(screenInfo.screen.route) {
-                                // Pop up to the start destination of the graph to
-                                // avoid building up a large stack of destinations
-                                // on the back stack as users select items
+                                // 유저가 선택한 아이템(화면)으로 인해 백스택에 쌓이는 것을 방지하기 위해
+                                // 그래프의 시작점(여기선 ScreenA)으로 popUpTo(백스택 ScreenA까지 pop)
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
-                                // Avoid multiple copies of the same destination when
-                                // reselecting the same item
+                                // 선택한 아이템이 현재 선택된 아이템과 같을 경우, 새로운 destination 를 생성하지 않고
+                                // 기존 destination를 재사용
+                                // saveState 및 restoreState 플래그를 사용하면 하단 탐색 항목 간에 전환할 때 항목의 상태와 백 스택이 올바르게 저장되고 복원
                                 launchSingleTop = true
-                                // Restore state when reselecting a previously selected item
+                                // 선택한 아이템이 현재 선택된 아이템과 같을 경우, 해당 아이템의 상태를 복원
                                 restoreState = true
                             }
-
-                            Log.d("KWK", "after ${navBackStackEntry.toString()}, $currentDestination")
-                        }
+//                            for (i in navController.backQueue) {
+//                                println("backQueue: ${i.destination.route}")
+//                            } => 쌓인 화면들을 확인할때 사용
+                        },
                     )
                 }
             }
         },
-        toastHost = { ToastHost(it) },
         content = {
             NavHost(
                 navController,
                 startDestination = Screen.AboutA.route,
                 Modifier
                     .fillMaxSize()
-                    .padding(it)
+                    .padding(it),
             ) {
                 composable(Screen.AboutA.route) { ScreenA(navController) }
                 composable(Screen.AboutB.route) { ScreenB(navController) }
@@ -321,7 +381,7 @@ fun PreviewNavigation() {
                 composable(Screen.AboutD.route) { ScreenD(navController) }
                 composable(Screen.AboutE.route) { ScreenE(navController) }
             }
-        }
+        },
     )
 }
 
