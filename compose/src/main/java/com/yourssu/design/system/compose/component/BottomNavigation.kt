@@ -302,7 +302,7 @@ data class ScreenInfo(
 
 @Preview
 @Composable
-fun PreviewNavigation() {
+private fun PreviewNavigation() {
     val navController = rememberNavController()
 
     val items = listOf(
