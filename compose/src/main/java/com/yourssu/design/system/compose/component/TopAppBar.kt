@@ -1,4 +1,4 @@
-package com.yourssu.design.system.compose.component.topbar
+package com.yourssu.design.system.compose.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
