@@ -1,4 +1,4 @@
-package com.yourssu.design.system.compose.component
+package com.yourssu.design.system.compose.component.topbar
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,7 +18,7 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.Surface
 
 @Composable
-fun TopAppBar(
+internal fun TopAppBar(
     modifier: Modifier = Modifier,
     backgroundColor: Color = YdsTheme.colors.bgElevated,
     contentColor: Color = YdsTheme.colors.textPrimary,
