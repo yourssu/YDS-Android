@@ -19,7 +19,6 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.atom.TopBarButton
 import com.yourssu.design.system.compose.base.YdsScaffold
 import com.yourssu.design.system.compose.base.YdsText
-import com.yourssu.design.system.compose.component.TopAppBar
 
 @Composable
 fun SingleTitleTopBar(
