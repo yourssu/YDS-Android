@@ -48,8 +48,6 @@ import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Surface
 import com.yourssu.design.system.compose.base.YdsScaffold
 import com.yourssu.design.system.compose.base.YdsText
-import com.yourssu.design.system.compose.component.toast.ToastHost
-import com.yourssu.design.system.compose.component.topbar.TopBar
 import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
 
 /**
@@ -64,7 +62,7 @@ import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
  * @see ScreenInfo
  */
 @Composable
-fun BottomNavigation(
+fun BottomBar(
     modifier: Modifier = Modifier,
     backgroundColor: Color = YdsTheme.colors.bgElevated,
     contentColor: Color = YdsTheme.colors.bottomBarNormal,
@@ -102,12 +100,12 @@ fun BottomNavigation(
  * @param isImpactFeedbackEnabled Boolean : 선택시 햅틱 피드백 사용 여부
  * @param interactionSource MutableInteractionSource
  *
- * @see BottomNavigation
+ * @see BottomBar
  * @see Screen
  * @see ScreenInfo
  */
 @Composable
-fun RowScope.BottomNavigationItem(
+fun RowScope.BottomBarItem(
     modifier: Modifier = Modifier,
     selected: Boolean,
     onClick: () -> Unit,
@@ -122,7 +120,8 @@ fun RowScope.BottomNavigationItem(
     }
     val haptic = LocalHapticFeedback.current // 햅틱 피드백
 
-    val scale by animateFloatAsState( // scale 변화 animation 상태
+    val scale by animateFloatAsState(
+        // scale 변화 animation 상태
         targetValue = if (isAnimating) 1.2f else 1f, // isAnimating 에 따라 scale 기본값(1f) ~ 1.2배 까지 변화
         animationSpec = tween(
             durationMillis = 25,
@@ -337,11 +336,11 @@ private fun PreviewNavigation() {
             )
         },
         bottomBar = {
-            BottomNavigation {
+            BottomBar {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
                 items.forEach { screenInfo ->
-                    BottomNavigationItem(
+                    BottomBarItem(
                         selectedIcon = screenInfo.selectedIcon,
                         unselectedIcon = screenInfo.unselectedIcon,
                         selected = currentDestination?.hierarchy?.any { it.route == screenInfo.screen.route } == true,
