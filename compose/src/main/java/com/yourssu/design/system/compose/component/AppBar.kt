@@ -36,6 +36,24 @@ fun TopAppBar(
 }
 
 @Composable
+fun BottomAppBar(
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = YdsTheme.colors.bgElevated,
+    contentColor: Color = YdsTheme.colors.bottomBarNormal,
+    contentPadding: PaddingValues,
+    content: @Composable RowScope.() -> Unit
+) {
+    AppBar(
+        backgroundColor,
+        contentColor,
+        contentPadding,
+        RectangleShape,
+        modifier = modifier,
+        content = content
+    )
+}
+
+@Composable
 private fun AppBar(
     backgroundColor: Color,
     contentColor: Color,
