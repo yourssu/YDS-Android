@@ -1,4 +1,4 @@
-package com.yourssu.design.system.compose.component.topbar
+package com.yourssu.design.system.compose.component
 
 import android.widget.Toast
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +25,6 @@ import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.atom.SearchTextField
 import com.yourssu.design.system.compose.atom.TopBarButton
 import com.yourssu.design.system.compose.base.YdsScaffold
-import com.yourssu.design.system.compose.component.TopAppBar
 
 
 @Composable
@@ -42,6 +42,9 @@ fun SearchTopBar(
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp),
+        backgroundColor = YdsTheme.colors.bgElevated,
+        contentColor = YdsTheme.colors.textPrimary,
+        elevation = 0.dp,
         contentPadding = PaddingValues(start = 4.dp),
     ) {
         Box(
