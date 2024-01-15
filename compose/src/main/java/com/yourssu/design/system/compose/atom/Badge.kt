@@ -59,7 +59,7 @@ fun Badge(
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun BadgePreview() {
+private fun BadgePreview() {
     var text by remember { mutableStateOf("에메랄드 뱃지") }
     var itemColor by remember { mutableStateOf(ItemColor.Emerald) }
 

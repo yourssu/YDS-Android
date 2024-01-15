@@ -110,7 +110,7 @@ fun CheckBox(
 
 @Preview(showBackground = true)
 @Composable
-fun CheckBoxPreview() {
+private fun CheckBoxPreview() {
     var checked1 by remember { mutableStateOf(false) }
     var disabled by remember { mutableStateOf(false) }
     var checked2 by remember { mutableStateOf(false) }

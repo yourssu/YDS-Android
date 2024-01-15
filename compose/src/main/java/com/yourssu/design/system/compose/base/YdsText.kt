@@ -7,6 +7,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
+import androidx.compose.ui.text.TextLayoutResult
 import com.yourssu.design.system.compose.foundation.LocalContentColor
 import com.yourssu.design.system.compose.foundation.LocalYdsContentAlpha
 import com.yourssu.design.system.compose.foundation.YdsTextStyle
@@ -16,6 +17,7 @@ fun YdsText(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
     style: YdsTextStyle = LocalTextStyle.current,
 ) {
     val textColor = color.takeOrElse {
@@ -30,6 +32,7 @@ fun YdsText(
         text = text,
         modifier = modifier,
         style = mergedStyle,
+        onTextLayout = onTextLayout,
     )
 }
 

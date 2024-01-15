@@ -118,7 +118,7 @@ fun ProfileImageView(
 
 @Preview(showSystemUi = true)
 @Composable
-fun ProfileImageViewPreview() {
+private fun ProfileImageViewPreview() {
     val sizeList = listOf(
         ProfileImageViewSize.ExtraSmall,
         ProfileImageViewSize.Small,
