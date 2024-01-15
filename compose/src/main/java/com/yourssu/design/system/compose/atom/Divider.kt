@@ -86,7 +86,7 @@ fun Divider(
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
-fun DividerPreview() {
+private fun DividerPreview() {
     YdsTheme {
         Column(modifier = Modifier.height(IntrinsicSize.Min)) {
             YdsText(text = "one")

@@ -164,7 +164,7 @@ fun BoxButton(
 
 @Preview(showBackground = true)
 @Composable
-fun BoxButtonPreview() {
+private fun BoxButtonPreview() {
     var text by remember { mutableStateOf("Default") }
 
     YdsTheme {

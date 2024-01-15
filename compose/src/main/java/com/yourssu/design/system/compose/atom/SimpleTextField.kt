@@ -109,7 +109,7 @@ fun SimpleTextField(
 
 @Preview
 @Composable
-fun PreviewSimpleTextField() {
+private fun PreviewSimpleTextField() {
     var isError by remember { mutableStateOf(false) }
     var text by rememberSaveable { mutableStateOf("") }
     Column {
