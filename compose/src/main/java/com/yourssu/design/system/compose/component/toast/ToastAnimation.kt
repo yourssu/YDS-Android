@@ -63,6 +63,7 @@ fun FadeInFadeOut(
                     val opacity = animatedOpacity(
                         animation = tween(
                             easing = YdsEasing,
+                            easing = YdsInAndOutEasing,
                             delayMillis = 0,
                             durationMillis = Duration.Medium.millis
                         ),
