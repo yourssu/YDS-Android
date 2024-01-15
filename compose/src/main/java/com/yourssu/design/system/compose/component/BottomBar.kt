@@ -48,6 +48,7 @@ import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.Surface
 import com.yourssu.design.system.compose.base.YdsScaffold
 import com.yourssu.design.system.compose.base.YdsText
+import com.yourssu.design.system.compose.component.topbar.TopBar
 import com.yourssu.design.system.compose.rule.YdsEasing
 
 /**
