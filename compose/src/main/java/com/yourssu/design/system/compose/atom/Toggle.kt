@@ -24,7 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.noRippleClickable
+import com.yourssu.design.system.compose.base.ydsClickable
 import com.yourssu.design.system.compose.rule.YdsEasing
 import com.yourssu.design.system.compose.rule.YdsBorder
 
@@ -57,7 +57,7 @@ fun Toggle(
     }
 
     val clickableModifier = if (isDisabled) modifier else
-        modifier.noRippleClickable(interactionSource) { onCheckedChange(!checked) }
+        modifier.ydsClickable(interactionSource) { onCheckedChange(!checked) }
 
     Box(
         modifier = modifier
