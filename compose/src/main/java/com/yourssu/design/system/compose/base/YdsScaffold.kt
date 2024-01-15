@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,7 +20,7 @@ import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.atom.BoxButton
 import com.yourssu.design.system.compose.atom.TopBarButton
-import com.yourssu.design.system.compose.component.TopBar
+import com.yourssu.design.system.compose.component.topbar.TopBar
 import com.yourssu.design.system.compose.component.toast.ToastDuration
 import com.yourssu.design.system.compose.component.toast.ToastHost
 import com.yourssu.design.system.compose.component.toast.ToastHostState
