@@ -8,8 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextLayoutResult
-import com.yourssu.design.system.compose.foundation.LocalContentColor
 import com.yourssu.design.system.compose.foundation.LocalYdsContentAlpha
+import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 import com.yourssu.design.system.compose.foundation.YdsTextStyle
 
 @Composable
@@ -22,7 +22,7 @@ fun YdsText(
 ) {
     val textColor = color.takeOrElse {
         style.color.takeOrElse {
-            LocalContentColor.current.copy(alpha = LocalYdsContentAlpha.current)
+            LocalYdsContentColor.current.copy(alpha = LocalYdsContentAlpha.current)
         }
     }
 
