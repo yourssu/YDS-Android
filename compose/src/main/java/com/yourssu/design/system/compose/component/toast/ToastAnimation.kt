@@ -17,7 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import com.yourssu.design.system.compose.rule.Duration
-import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
+import com.yourssu.design.system.compose.rule.YdsEasing
 
 data class ToastTransitionItem(
     val toastData: ToastData?,
@@ -62,7 +62,7 @@ fun FadeInFadeOut(
                     val isVisible = appearedToastData == newToastData
                     val opacity = animatedOpacity(
                         animation = tween(
-                            easing = YdsInAndOutEasing,
+                            easing = YdsEasing,
                             delayMillis = 0,
                             durationMillis = Duration.Medium.millis
                         ),

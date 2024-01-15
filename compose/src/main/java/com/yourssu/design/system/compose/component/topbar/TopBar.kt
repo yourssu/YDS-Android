@@ -1,14 +1,13 @@
-package com.yourssu.design.system.compose.component
+package com.yourssu.design.system.compose.component.topbar
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,49 +20,49 @@ import com.yourssu.design.system.compose.base.YdsScaffold
 import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
-fun DoubleTitleTopBar(
+fun TopBar(
     modifier: Modifier = Modifier,
     title: String = "",
-    subtitle: String = "",
+    navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
         modifier = modifier
             .fillMaxWidth()
-            .height(72.dp),
-        backgroundColor = YdsTheme.colors.bgElevated,
-        contentColor = YdsTheme.colors.textPrimary,
-        elevation = 0.dp,
-        contentPadding = PaddingValues(end = 4.dp)
+            .height(56.dp),
+        contentPadding = PaddingValues(horizontal = 4.dp)
     ) {
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+                    .fillMaxHeight()
+                    .align(Alignment.TopStart)
+                    .padding(0.dp)
+            ) {
+                navigationIcon()
+            }
 
-            Column(
-                modifier = Modifier.padding(
-                    start = 16.dp,
-                    top = 12.dp,
-                    end = 16.dp,
-                    bottom = 8.dp
-                )
+            Row(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(0.dp)
+                    .align(Alignment.TopCenter),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 YdsText(
-                    text = subtitle,
-                    style = YdsTheme.typography.body2,
-                    color = YdsTheme.colors.textPrimary
-                )
-                YdsText(
                     text = title,
-                    style = YdsTheme.typography.title2,
+                    style = YdsTheme.typography.subTitle2,
                     color = YdsTheme.colors.textPrimary
                 )
             }
 
             Row(
                 modifier = Modifier
-                    .padding(top = 16.dp)
-                    .align(Alignment.BottomEnd),
+                    .fillMaxHeight()
+                    .padding(0.dp)
+                    .align(Alignment.TopEnd),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 actions()
@@ -72,27 +71,28 @@ fun DoubleTitleTopBar(
     }
 }
 
-@Preview(name = "DoubleTitleTopBar")
+@Preview(name = "TopBar")
 @Composable
-private fun PreviewDoubleTitleTopBar() {
+private fun PreviewTopBar() {
     YdsTheme {
         YdsScaffold(
             topBar = {
-                DoubleTitleTopBar(
+                TopBar(
                     title = "타이틀",
-                    subtitle = "서브타이틀",
+                    navigationIcon = {
+                        TopBarButton(
+                            icon = R.drawable.ic_arrow_left_line,
+                            isDisabled = false,
+                        )
+                    },
                     actions = {
                         TopBarButton(
-                            icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
+                            icon = R.drawable.ic_bell_line,
+                            isDisabled = false,
                         )
                         TopBarButton(
-                            icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
-                        )
-                        TopBarButton(
-                            icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
+                            icon = R.drawable.ic_search_line,
+                            isDisabled = false,
                         )
                     }
                 )

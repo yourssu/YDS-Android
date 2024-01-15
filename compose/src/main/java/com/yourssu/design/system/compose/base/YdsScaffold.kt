@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,12 +20,12 @@ import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.atom.BoxButton
 import com.yourssu.design.system.compose.atom.TopBarButton
-import com.yourssu.design.system.compose.component.TopBar
 import com.yourssu.design.system.compose.component.toast.ToastDuration
 import com.yourssu.design.system.compose.component.toast.ToastHost
 import com.yourssu.design.system.compose.component.toast.ToastHostState
 import com.yourssu.design.system.compose.component.toast.rememberToastHostState
-import com.yourssu.design.system.compose.foundation.LocalContentColor
+import com.yourssu.design.system.compose.component.topbar.TopBar
+import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 import kotlinx.coroutines.launch
 
 private enum class ScaffoldLayoutContent { TopBar, MainContent, Snackbar, BottomBar }
@@ -39,15 +38,15 @@ fun YdsScaffold(
     bottomBar: @Composable () -> Unit = {},
     toastHost: @Composable (ToastHostState) -> Unit = { ToastHost(it) },
     backgroundColor: Color = YdsTheme.colors.bgNormal,
-    contentColor: Color = LocalContentColor.current,
-    content: @Composable (PaddingValues) -> Unit
+    contentColor: Color = LocalYdsContentColor.current,
+    content: @Composable (PaddingValues) -> Unit,
 ) {
     Surface(modifier = modifier, color = backgroundColor, contentColor = contentColor) {
         ScaffoldLayout(
             topBar = topBar,
             bottomBar = bottomBar,
             toast = { toastHost(toastHostState) },
-            content = content
+            content = content,
         )
     }
 }
@@ -57,7 +56,7 @@ private fun ScaffoldLayout(
     topBar: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit,
     toast: @Composable () -> Unit,
-    content: @Composable (PaddingValues) -> Unit
+    content: @Composable (PaddingValues) -> Unit,
 ) {
     val pxValue = LocalDensity.current.run { ToastApartFromBottom.toPx() }.toInt()
 
@@ -150,12 +149,12 @@ private fun YdsScaffoldPreview() {
                             scope.launch {
                                 toastHostState.showToast(
                                     message = "Snackbar",
-                                    duration = ToastDuration.SHORT
+                                    duration = ToastDuration.SHORT,
                                 )
                             }
-                        }
+                        },
                     )
-                }
+                },
             )
         },
         bottomBar = {
@@ -168,7 +167,7 @@ private fun YdsScaffoldPreview() {
                 YdsText(
                     text = "This is 72.dp",
                     style = YdsTheme.typography.body1,
-                    color = Color.White
+                    color = Color.White,
                 )
             }
         },
@@ -177,27 +176,33 @@ private fun YdsScaffoldPreview() {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             ) {
                 YdsText(text = "content", style = YdsTheme.typography.body1)
-                BoxButton(onClick = {
-                    scope.launch {
-                        toastHostState.showToast(
-                            message = "잠, 아스라히 노새, 멀듯이, 흙으로 봅니다.",
-                            duration = ToastDuration.SHORT
-                        )
-                    }
-                }, text = "짧은 토스트 버튼")
-                BoxButton(onClick = {
-                    scope.launch {
-                        toastHostState.showToast(
-                            message = "잠, 아스라히 노새, 멀듯이, 흙으로 봅니다. 때 불러 가슴속에 나의 풀이 이름과 언덕 오면 가을 봅니다.",
-                            duration = ToastDuration.LONG
-                        )
-                    }
-                }, text = "긴 토스트 버튼")
+                BoxButton(
+                    onClick = {
+                        scope.launch {
+                            toastHostState.showToast(
+                                message = "잠, 아스라히 노새, 멀듯이, 흙으로 봅니다.",
+                                duration = ToastDuration.SHORT,
+                            )
+                        }
+                    },
+                    text = "짧은 토스트 버튼",
+                )
+                BoxButton(
+                    onClick = {
+                        scope.launch {
+                            toastHostState.showToast(
+                                message = "잠, 아스라히 노새, 멀듯이, 흙으로 봅니다. 때 불러 가슴속에 나의 풀이 이름과 언덕 오면 가을 봅니다.",
+                                duration = ToastDuration.LONG,
+                            )
+                        }
+                    },
+                    text = "긴 토스트 버튼",
+                )
             }
-        }
+        },
     )
 }
 

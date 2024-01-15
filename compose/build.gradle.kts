@@ -10,6 +10,7 @@ android {
 
     defaultConfig {
         minSdk = 23
+        vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -58,6 +59,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.ui:ui-tooling-preview")
+
+    val navVersion = "2.5.3"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
