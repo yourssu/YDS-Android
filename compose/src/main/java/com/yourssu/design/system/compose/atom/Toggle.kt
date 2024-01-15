@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yourssu.design.system.compose.YdsTheme
 import com.yourssu.design.system.compose.base.ydsClickable
-import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
+import com.yourssu.design.system.compose.rule.YdsEasing
 import com.yourssu.design.system.compose.rule.YdsBorder
 
 @Composable
@@ -49,7 +49,7 @@ fun Toggle(
         transitionSpec = {
             tween(
                 durationMillis = 100,
-                easing = YdsInAndOutEasing
+                easing = YdsEasing
             )
         }
     ) { selected ->

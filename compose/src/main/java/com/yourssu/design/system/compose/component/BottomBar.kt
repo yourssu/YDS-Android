@@ -49,7 +49,7 @@ import com.yourssu.design.system.compose.base.Surface
 import com.yourssu.design.system.compose.base.YdsScaffold
 import com.yourssu.design.system.compose.base.YdsText
 import com.yourssu.design.system.compose.component.topbar.TopBar
-import com.yourssu.design.system.compose.rule.YdsInAndOutEasing
+import com.yourssu.design.system.compose.rule.YdsEasing
 
 /**
  * 하단 네비게이션 바
@@ -126,7 +126,7 @@ fun RowScope.BottomBarItem(
         targetValue = if (isAnimating) 1.2f else 1f, // isAnimating 에 따라 scale 기본값(1f) ~ 1.2배 까지 변화
         animationSpec = tween(
             durationMillis = 25,
-            easing = YdsInAndOutEasing,
+            easing = YdsEasing,
         ),
         finishedListener = {// animating 끝나면 false로 변경. scale 1.2f -> 1f로 변화
             if (isAnimating) {
