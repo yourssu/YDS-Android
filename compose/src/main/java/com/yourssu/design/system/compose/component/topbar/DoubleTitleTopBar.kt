@@ -24,6 +24,7 @@ fun DoubleTitleTopBar(
     modifier: Modifier = Modifier,
     title: String = "",
     subtitle: String = "",
+    navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
@@ -36,24 +37,27 @@ fun DoubleTitleTopBar(
             modifier = Modifier.fillMaxWidth()
         ) {
 
-            Column(
-                modifier = Modifier.padding(
-                    start = 16.dp,
-                    top = 12.dp,
-                    end = 16.dp,
-                    bottom = 8.dp
-                )
-            ) {
-                YdsText(
-                    text = subtitle,
-                    style = YdsTheme.typography.body2,
-                    color = YdsTheme.colors.textPrimary
-                )
-                YdsText(
-                    text = title,
-                    style = YdsTheme.typography.title2,
-                    color = YdsTheme.colors.textPrimary
-                )
+            Row {
+                navigationIcon()
+                Column(
+                    modifier = Modifier.padding(
+                        start = 16.dp,
+                        top = 12.dp,
+                        end = 16.dp,
+                        bottom = 8.dp
+                    )
+                ) {
+                    YdsText(
+                        text = subtitle,
+                        style = YdsTheme.typography.body2,
+                        color = YdsTheme.colors.textPrimary
+                    )
+                    YdsText(
+                        text = title,
+                        style = YdsTheme.typography.title2,
+                        color = YdsTheme.colors.textPrimary
+                    )
+                }
             }
 
             Row(
@@ -77,6 +81,12 @@ private fun PreviewDoubleTitleTopBar() {
                 DoubleTitleTopBar(
                     title = "타이틀",
                     subtitle = "서브타이틀",
+                    navigationIcon = {
+                        TopBarButton(
+                            icon = R.drawable.ic_arrow_left_line,
+                            isDisabled = false,
+                        )
+                    },
                     actions = {
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
