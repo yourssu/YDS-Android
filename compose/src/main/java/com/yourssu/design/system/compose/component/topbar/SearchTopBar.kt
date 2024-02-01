@@ -5,6 +5,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -36,22 +37,24 @@ fun SearchTopBar(
     onSearch: () -> Unit,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     navigationIcon: @Composable () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp),
-        contentPadding = PaddingValues(start = 4.dp),
+        contentPadding = PaddingValues(0.dp)
     ) {
         Box(
             modifier = Modifier
-                .padding(start = 4.dp)
                 .fillMaxWidth(),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                navigationIcon()
+                Box(modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
+                    navigationIcon()
+                }
                 SearchTextField(
                     text = text,
                     placeHolderText = placeHolderText,
@@ -60,10 +63,12 @@ fun SearchTopBar(
                     onSearch = onSearch,
                     interactionSource = interactionSource,
                     modifier = Modifier
-                        .padding(start = 4.dp, end = 16.dp)
-                        .fillMaxWidth()
+                        .weight(1f)
                         .align(alignment = CenterVertically),
                 )
+                Row(modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
+                    actions()
+                }
             }
         }
     }
@@ -92,19 +97,25 @@ private fun PreviewSearchTopBar() {
                             Toast.LENGTH_SHORT,
                         ).show()
                     },
-                    navigationIcon = {
+//                    navigationIcon = {
+//                        TopBarButton(
+//                            icon = R.drawable.ic_arrow_left_line,
+//                            isDisabled = false,
+//                            onClick = {
+//                                Toast.makeText(
+//                                    context,
+//                                    "navigationIcon Clicked!",
+//                                    Toast.LENGTH_SHORT,
+//                                ).show()
+//                            },
+//                        )
+//                    },
+                    actions = {
                         TopBarButton(
-                            icon = R.drawable.ic_arrow_left_line,
-                            isDisabled = false,
-                            onClick = {
-                                Toast.makeText(
-                                    context,
-                                    "navigationIcon Clicked!",
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-                            },
+                            text = "취소",
+                            isDisabled = false
                         )
-                    },
+                    }
                 )
             },
         ) {
