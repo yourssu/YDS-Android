@@ -24,6 +24,7 @@ import com.yourssu.design.system.compose.base.YdsText
 fun SingleTitleTopBar(
     modifier: Modifier = Modifier,
     title: String = "",
+    navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
@@ -36,14 +37,17 @@ fun SingleTitleTopBar(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            YdsText(
-                modifier = Modifier
-                    .padding(16.dp, 17.dp, 16.dp, 8.dp)
-                    .wrapContentHeight(),
-                text = title,
-                style = YdsTheme.typography.title2,
-                color = YdsTheme.colors.textPrimary
-            )
+            Row {
+                navigationIcon()
+                YdsText(
+                    modifier = Modifier
+                        .padding(16.dp, 17.dp, 16.dp, 8.dp)
+                        .wrapContentHeight(),
+                    text = title,
+                    style = YdsTheme.typography.title2,
+                    color = YdsTheme.colors.textPrimary
+                )
+            }
 
             Row(
                 modifier = Modifier
@@ -66,6 +70,12 @@ private fun PreviewSingleTitleTopBar() {
             topBar = {
                 SingleTitleTopBar(
                     title = "타이틀",
+                    navigationIcon = {
+                        TopBarButton(
+                            icon = R.drawable.ic_arrow_left_line,
+                            isDisabled = false,
+                        )
+                    },
                     actions = {
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
