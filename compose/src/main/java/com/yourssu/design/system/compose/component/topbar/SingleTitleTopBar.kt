@@ -31,11 +31,11 @@ fun SingleTitleTopBar(
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp),
-        contentPadding = PaddingValues(end = 4.dp)
+        contentPadding = PaddingValues(end = 4.dp),
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
         ) {
             Row {
                 navigationIcon()
@@ -45,7 +45,7 @@ fun SingleTitleTopBar(
                         .wrapContentHeight(),
                     text = title,
                     style = YdsTheme.typography.title2,
-                    color = YdsTheme.colors.textPrimary
+                    color = YdsTheme.colors.textPrimary,
                 )
             }
 
@@ -54,7 +54,7 @@ fun SingleTitleTopBar(
                     .fillMaxHeight()
                     .padding(0.dp)
                     .align(Alignment.TopEnd),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 actions()
             }
@@ -79,17 +79,17 @@ private fun PreviewSingleTitleTopBar() {
                     actions = {
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
+                            isDisabled = false,
                         )
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
+                            isDisabled = false,
                         )
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
+                            isDisabled = false,
                         )
-                    }
+                    },
                 )
             }
         ) {
