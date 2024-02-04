@@ -95,7 +95,6 @@ private fun PreviewSearchTopBar() {
                     navigationIcon = {
                         TopBarButton(
                             icon = R.drawable.ic_arrow_left_line,
-                            isDisabled = false,
                             onClick = {
                                 Toast.makeText(
                                     context,

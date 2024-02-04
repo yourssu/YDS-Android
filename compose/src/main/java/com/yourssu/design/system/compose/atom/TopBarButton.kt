@@ -93,14 +93,12 @@ private fun PreviewTopBarButton() {
                         onClick()
                     },
                     icon = R.drawable.ic_ground_filled,
-                    isDisabled = false,
                 )
                 TopBarButton(
                     onClick = {
                         onClick()
                     },
                     icon = R.drawable.ic_ground_filled,
-                    isDisabled = true,
                 )
             }
             Column(
@@ -113,14 +111,12 @@ private fun PreviewTopBarButton() {
                         onClick()
                     },
                     text = "닫기",
-                    isDisabled = false,
                 )
                 TopBarButton(
                     onClick = {
                         onClick()
                     },
                     text = "닫기",
-                    isDisabled = true,
                 )
             }
         }

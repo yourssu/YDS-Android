@@ -82,17 +82,14 @@ private fun PreviewTopBar() {
                     navigationIcon = {
                         TopBarButton(
                             icon = R.drawable.ic_arrow_left_line,
-                            isDisabled = false,
                         )
                     },
                     actions = {
                         TopBarButton(
                             icon = R.drawable.ic_bell_line,
-                            isDisabled = false,
                         )
                         TopBarButton(
                             icon = R.drawable.ic_search_line,
-                            isDisabled = false,
                         )
                     }
                 )

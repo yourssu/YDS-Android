@@ -73,21 +73,17 @@ private fun PreviewSingleTitleTopBar() {
                     navigationIcon = {
                         TopBarButton(
                             icon = R.drawable.ic_arrow_left_line,
-                            isDisabled = false,
                         )
                     },
                     actions = {
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false,
                         )
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false,
                         )
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false,
                         )
                     },
                 )
