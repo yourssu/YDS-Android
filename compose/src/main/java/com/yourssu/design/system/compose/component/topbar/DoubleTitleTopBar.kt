@@ -24,43 +24,47 @@ fun DoubleTitleTopBar(
     modifier: Modifier = Modifier,
     title: String = "",
     subtitle: String = "",
+    navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
         modifier = modifier
             .fillMaxWidth()
             .height(72.dp),
-        contentPadding = PaddingValues(end = 4.dp)
+        contentPadding = PaddingValues(end = 4.dp),
     ) {
         Box(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
 
-            Column(
-                modifier = Modifier.padding(
-                    start = 16.dp,
-                    top = 12.dp,
-                    end = 16.dp,
-                    bottom = 8.dp
-                )
-            ) {
-                YdsText(
-                    text = subtitle,
-                    style = YdsTheme.typography.body2,
-                    color = YdsTheme.colors.textPrimary
-                )
-                YdsText(
-                    text = title,
-                    style = YdsTheme.typography.title2,
-                    color = YdsTheme.colors.textPrimary
-                )
+            Row {
+                navigationIcon()
+                Column(
+                    modifier = Modifier.padding(
+                        start = 16.dp,
+                        top = 12.dp,
+                        end = 16.dp,
+                        bottom = 8.dp,
+                    )
+                ) {
+                    YdsText(
+                        text = subtitle,
+                        style = YdsTheme.typography.body2,
+                        color = YdsTheme.colors.textPrimary,
+                    )
+                    YdsText(
+                        text = title,
+                        style = YdsTheme.typography.title2,
+                        color = YdsTheme.colors.textPrimary,
+                    )
+                }
             }
 
             Row(
                 modifier = Modifier
                     .padding(top = 16.dp)
                     .align(Alignment.BottomEnd),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 actions()
             }
@@ -77,20 +81,22 @@ private fun PreviewDoubleTitleTopBar() {
                 DoubleTitleTopBar(
                     title = "타이틀",
                     subtitle = "서브타이틀",
+                    navigationIcon = {
+                        TopBarButton(
+                            icon = R.drawable.ic_arrow_left_line,
+                        )
+                    },
                     actions = {
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
                         )
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
                         )
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
                         )
-                    }
+                    },
                 )
             }
         ) {

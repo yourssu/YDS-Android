@@ -24,33 +24,37 @@ import com.yourssu.design.system.compose.base.YdsText
 fun SingleTitleTopBar(
     modifier: Modifier = Modifier,
     title: String = "",
+    navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp),
-        contentPadding = PaddingValues(end = 4.dp)
+        contentPadding = PaddingValues(end = 4.dp),
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
         ) {
-            YdsText(
-                modifier = Modifier
-                    .padding(16.dp, 17.dp, 16.dp, 8.dp)
-                    .wrapContentHeight(),
-                text = title,
-                style = YdsTheme.typography.title2,
-                color = YdsTheme.colors.textPrimary
-            )
+            Row {
+                navigationIcon()
+                YdsText(
+                    modifier = Modifier
+                        .padding(16.dp, 17.dp, 16.dp, 8.dp)
+                        .wrapContentHeight(),
+                    text = title,
+                    style = YdsTheme.typography.title2,
+                    color = YdsTheme.colors.textPrimary,
+                )
+            }
 
             Row(
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(0.dp)
                     .align(Alignment.TopEnd),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 actions()
             }
@@ -66,20 +70,22 @@ private fun PreviewSingleTitleTopBar() {
             topBar = {
                 SingleTitleTopBar(
                     title = "타이틀",
+                    navigationIcon = {
+                        TopBarButton(
+                            icon = R.drawable.ic_arrow_left_line,
+                        )
+                    },
                     actions = {
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
                         )
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
                         )
                         TopBarButton(
                             icon = R.drawable.ic_ground_filled,
-                            isDisabled = false
                         )
-                    }
+                    },
                 )
             }
         ) {
