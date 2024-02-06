@@ -1,5 +1,5 @@
 jdk:
-  - openjdk11
+  - openjdk17
 install:
   - ./gradlew :DesignSystem:build :DesignSystem:publishToMavenLocal -x :DesignSystem:test
   - ./gradlew :compose:build :compose:publishToMavenLocal -x :compose:test
