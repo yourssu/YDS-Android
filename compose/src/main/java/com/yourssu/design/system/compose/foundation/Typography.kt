@@ -46,7 +46,7 @@ data class YdsTextStyle(
         fontSize = with(LocalDensity.current) { fontSize.toSp() },
         lineHeight = with(LocalDensity.current) { lineHeight.toSp() },
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 
     fun merge(other: YdsTextStyle?): YdsTextStyle {
