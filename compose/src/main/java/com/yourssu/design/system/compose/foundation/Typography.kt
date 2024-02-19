@@ -37,7 +37,7 @@ data class YdsTextStyle(
     val fontSize: Dp = Dp.Unspecified,
     val lineHeight: Dp = Dp.Unspecified,
     val color: Color = Color.Unspecified,
-    val textAlign: TextAlign = TextAlign.Start
+    val textAlign: TextAlign = TextAlign.Start,
 ) {
     @Composable
     fun toTextStyle() = TextStyle(
