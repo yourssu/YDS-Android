@@ -39,6 +39,7 @@ fun YdsText(
         onTextLayout = onTextLayout,
         overflow = overflow,
         maxLines = maxLines,
+        minLines = minLines,
     )
 }
 
