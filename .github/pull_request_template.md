@@ -18,4 +18,4 @@
 
 ### PR 올리기 전 체크 리스트
 
-- [ ] version.properties의 버전을 올렸나요?
+- [ ] version.properties의 버전을 업데이트 했나요?
