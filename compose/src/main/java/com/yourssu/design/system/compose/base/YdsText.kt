@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.style.TextOverflow
 import com.yourssu.design.system.compose.foundation.LocalYdsContentAlpha
 import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 import com.yourssu.design.system.compose.foundation.YdsTextStyle
@@ -19,6 +20,9 @@ fun YdsText(
     color: Color = Color.Unspecified,
     onTextLayout: (TextLayoutResult) -> Unit = {},
     style: YdsTextStyle = LocalTextStyle.current,
+    overflow: TextOverflow = TextOverflow.Clip,
+    maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
 ) {
     val textColor = color.takeOrElse {
         style.color.takeOrElse {
@@ -33,6 +37,8 @@ fun YdsText(
         modifier = modifier,
         style = mergedStyle,
         onTextLayout = onTextLayout,
+        overflow = overflow,
+        maxLines = maxLines,
     )
 }
 
