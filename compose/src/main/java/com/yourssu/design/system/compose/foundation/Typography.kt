@@ -11,6 +11,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.takeOrElse
@@ -36,6 +37,7 @@ data class YdsTextStyle(
     val fontSize: Dp = Dp.Unspecified,
     val lineHeight: Dp = Dp.Unspecified,
     val color: Color = Color.Unspecified,
+    val textAlign: TextAlign = TextAlign.Start,
 ) {
     @Composable
     fun toTextStyle() = TextStyle(
@@ -44,6 +46,7 @@ data class YdsTextStyle(
         fontSize = with(LocalDensity.current) { fontSize.toSp() },
         lineHeight = with(LocalDensity.current) { lineHeight.toSp() },
         color = color,
+        textAlign = textAlign,
     )
 
     fun merge(other: YdsTextStyle?): YdsTextStyle {
@@ -53,7 +56,8 @@ data class YdsTextStyle(
             fontWeight = other.fontWeight,
             fontSize = this.fontSize.takeOrElse { other.fontSize },
             lineHeight = this.lineHeight.takeOrElse { other.lineHeight },
-            color = this.color.takeOrElse { other.color }
+            color = this.color.takeOrElse { other.color },
+            textAlign = other.textAlign,
         )
     }
 
