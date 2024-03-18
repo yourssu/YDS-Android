@@ -38,7 +38,7 @@ fun SimpleTextField(
     placeHolder: String = "",
     hintText: String = "",
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-    onErrorChange: (Boolean) -> Unit,
+    onErrorChange: (Boolean) -> Unit = {},
 ) {
     Column(modifier = modifier) {
         OutlinedTextField(
@@ -88,7 +88,7 @@ fun SimpleTextField(
             Row(modifier = Modifier.padding(top = 8.dp)) {
                 Spacer(
                     modifier = Modifier
-                        .width(16.dp)
+                        .width(16.dp),
                 )
                 YdsText(
                     text = hintText,
