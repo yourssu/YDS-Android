@@ -49,8 +49,8 @@ fun Icon(
 @Composable
 fun Icon(
     imageVector: ImageVector,
-    contentDescription: String?,
     modifier: Modifier = Modifier,
+    contentDescription: String? = null,
     iconSize: IconSize = IconSize.Medium,
     tint: Color = LocalYdsContentColor.current,
 ) {
