@@ -96,8 +96,8 @@ data class YdsTypography(
     ),
     val subTitle3: YdsTextStyle = YdsTextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 14.dp,
-        lineHeight = 18.2f.dp,
+        fontSize = 18.dp,
+        lineHeight = 23.4f.dp,
     ),
     val body1: YdsTextStyle = YdsTextStyle(
         fontWeight = FontWeight.Normal,
@@ -108,6 +108,11 @@ data class YdsTypography(
         fontWeight = FontWeight.Normal,
         fontSize = 14.dp,
         lineHeight = 21f.dp,
+    ),
+    val body16: YdsTextStyle = YdsTextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.dp,
+        lineHeight = 20.8f.dp,
     ),
     val button0: YdsTextStyle = YdsTextStyle(
         fontWeight = FontWeight.Medium,
@@ -125,7 +130,7 @@ data class YdsTypography(
         lineHeight = 18.2f.dp,
     ),
     val button3: YdsTextStyle = YdsTextStyle(
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 14.dp,
         lineHeight = 18.2f.dp,
     ),
@@ -140,7 +145,7 @@ data class YdsTypography(
         lineHeight = 15.6f.dp,
     ),
     val caption1: YdsTextStyle = YdsTextStyle(
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 12.dp,
         lineHeight = 15.6f.dp,
     ),

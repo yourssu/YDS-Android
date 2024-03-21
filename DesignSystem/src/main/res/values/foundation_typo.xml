@@ -45,10 +45,10 @@
     <dimen name="subtitle2_line_height">20.8dp</dimen>
 
     <style name="Text.SubTitle3">
-        <item name="android:textSize">14dp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
     </style>
-    <dimen name="subtitle3_line_height">18.2dp</dimen>
+    <dimen name="subtitle3_line_height">23.4dp</dimen>
 
     <style name="Text.Body1">
         <item name="android:textSize">15dp</item>
@@ -61,6 +61,12 @@
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
     </style>
     <dimen name="body2_line_height">21dp</dimen>
+
+    <style name="Text.Body16">
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
+    </style>
+    <dimen name="body16_line_height">20.8dp</dimen>
 
     <style name="Text.Button0">
         <item name="android:textSize">16dp</item>
