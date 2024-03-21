@@ -120,7 +120,11 @@ data class YdsColorScheme(
     // PinkItem
     val pinkItemPrimary: Color = Pink300,
     val pinkItemBG: Color = Pink050,
-    val pinkItemText: Color = Pink600
+    val pinkItemText: Color = Pink600,
+
+    // Logo
+    val logoLightBlue: Color = LogoLightBlue,
+    val logoDarkBlue: Color = LogoDarkBlue,
 )
 
 val lightColorScheme = YdsColorScheme()
@@ -187,7 +191,7 @@ val darkColorScheme = YdsColorScheme(
     tooltipPoint = PointColor400_night,
 
     // Pressed
-    pressed = White000A10
+    pressed = White000A10,
 
     // Shadow * 다크모드에서는 Shadow를 사용하지 않습니다 *
 

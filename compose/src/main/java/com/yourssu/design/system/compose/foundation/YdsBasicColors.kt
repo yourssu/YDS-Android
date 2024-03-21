@@ -7,6 +7,8 @@ internal val LogoIndigo = Color(0xFF4E5986)
 internal val LogoViolet = Color(0xFF8969AC)
 internal val LogoBlue = Color(0xFF1653DB)
 internal val LogoYellow = Color(0xFFFDD655)
+internal val LogoLightBlue = Color(0xFF5865F2)
+internal val LogoDarkBlue = Color(0xFF423FCC)
 
 // pointColor
 internal val PointColor050 = Color(0xFFEBE6FB)
