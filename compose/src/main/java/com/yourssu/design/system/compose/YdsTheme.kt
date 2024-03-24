@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import com.yourssu.design.system.compose.base.ProvideTextStyle
-import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 import com.yourssu.design.system.compose.foundation.LocalYdsColorScheme
+import com.yourssu.design.system.compose.foundation.LocalYdsContentColor
 import com.yourssu.design.system.compose.foundation.LocalYdsTypography
 import com.yourssu.design.system.compose.foundation.YdsColorScheme
 import com.yourssu.design.system.compose.foundation.YdsTypography
@@ -15,10 +15,11 @@ import com.yourssu.design.system.compose.foundation.lightColorScheme
 
 @Composable
 fun YdsTheme(
+    isDarkMode: Boolean = isSystemInDarkTheme(),
     typography: YdsTypography = YdsTheme.typography,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-    val colors = if (isSystemInDarkTheme()) {
+    val colors = if (isDarkMode) {
         darkColorScheme
     } else {
         lightColorScheme
