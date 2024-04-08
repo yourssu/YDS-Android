@@ -100,18 +100,42 @@ fun SuffixTextField(
 @Composable
 private fun PreviewSuffixTextField() {
     var isError by remember { mutableStateOf(false) }
-    var text by rememberSaveable { mutableStateOf("") }
+    var text1 by rememberSaveable { mutableStateOf("") }
+    var text2 by rememberSaveable { mutableStateOf("") }
+    var text3 by rememberSaveable { mutableStateOf("") }
+
     Column {
         SuffixTextField(
-            text = text,
+            text = text1,
             isError = isError, isEnabled = true,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
-                text = value
+                text1 = value
             },
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),
             suffixLabel = "@soongsil.ac.kr",
+        )
+
+        SuffixTextField(
+            text = text2,
+            isEnabled = false,
+            onValueChange = { value ->
+                text2 = value
+            },
+            hintText = "힌트 텍스트",
+            modifier = Modifier.padding(bottom = 10.dp),
+            suffixLabel = "@soongsil.ac.kr",
+        )
+
+        SuffixTextField(
+            text = text3,
+            isError = true,
+            hintText = "힌트 텍스트",
+            suffixLabel = "@soongsil.ac.kr",
+            onValueChange = { value ->
+                text3 = value
+            },
         )
     }
 }
