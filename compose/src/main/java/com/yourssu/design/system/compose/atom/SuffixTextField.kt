@@ -32,10 +32,9 @@ fun SuffixTextField(
     isEnabled: Boolean = true,
     placeHolder: String = "",
     suffixLabel: String = "",
+    hintText: String = "",
     onValueChange: (value: String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-    hintText: String = "",
-    onErrorChange: (Boolean) -> Unit = {},
 ) {
     Column(modifier = modifier) {
         OutlinedTextField(
@@ -64,6 +63,7 @@ fun SuffixTextField(
             },
             trailingIcon = {
                 YdsText(
+                    modifier = Modifier.padding(16.dp),
                     text = suffixLabel,
                     style = YdsTheme.typography.body1,
                     color = YdsTheme.colors.textTertiary,
@@ -111,10 +111,7 @@ private fun PreviewSuffixTextField() {
             },
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),
-            onErrorChange = { error ->
-                isError = error
-            },
-            suffixLabel = "하이",
+            suffixLabel = "@soongsil.ac.kr",
         )
     }
 }
