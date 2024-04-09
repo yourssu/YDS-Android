@@ -29,7 +29,7 @@ fun SuffixTextField(
     text: String,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
-    isEnabled: Boolean = true,
+    isDisabled: Boolean = true,
     placeHolder: String = "",
     suffixLabel: String,
     hintText: String = "",
@@ -53,7 +53,7 @@ fun SuffixTextField(
                 textColor = YdsTheme.colors.textSecondary,
             ),
             isError = isError,
-            enabled = isEnabled,
+            enabled = isDisabled,
             placeholder = {
                 YdsText(
                     text = placeHolder,
@@ -84,7 +84,7 @@ fun SuffixTextField(
                     style = YdsTheme.typography.caption1,
                     color = if (isError) {
                         YdsTheme.colors.textWarned
-                    } else if (!isEnabled) {
+                    } else if (!isDisabled) {
                         YdsTheme.colors.textDisabled
                     } else {
                         YdsTheme.colors.textTertiary
@@ -107,7 +107,7 @@ private fun PreviewSuffixTextField() {
     Column {
         SuffixTextField(
             text = text1,
-            isError = isError, isEnabled = true,
+            isError = isError, isDisabled = true,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
                 text1 = value
@@ -119,7 +119,7 @@ private fun PreviewSuffixTextField() {
 
         SuffixTextField(
             text = text2,
-            isEnabled = false,
+            isDisabled = false,
             onValueChange = { value ->
                 text2 = value
             },
