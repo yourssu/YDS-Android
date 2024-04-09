@@ -26,12 +26,12 @@ import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
 fun SuffixTextField(
-    text: String = "",
+    text: String,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
     isEnabled: Boolean = true,
     placeHolder: String = "",
-    suffixLabel: String = "",
+    suffixLabel: String,
     hintText: String = "",
     onValueChange: (value: String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
