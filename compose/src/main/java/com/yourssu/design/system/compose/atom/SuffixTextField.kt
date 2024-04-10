@@ -77,7 +77,7 @@ fun SuffixTextField(
             Row(modifier = Modifier.padding(top = 8.dp)) {
                 Spacer(
                     modifier = Modifier
-                        .width(16.dp),
+                        .width(8.dp),
                 )
                 YdsText(
                     text = hintText,
