@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -22,23 +21,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.yourssu.design.system.compose.R
 import com.yourssu.design.system.compose.YdsTheme
-import com.yourssu.design.system.compose.base.Icon
-import com.yourssu.design.system.compose.base.IconSize
 import com.yourssu.design.system.compose.base.YdsText
 
 @Composable
-fun SimpleTextField(
-    text: String = "",
+fun SuffixTextField(
+    text: String,
+    suffixLabel: String,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
-    isEnabled: Boolean = true,
-    onValueChange: (value: String) -> Unit,
+    isDisabled: Boolean = false,
     placeHolder: String = "",
     hintText: String = "",
+    onValueChange: (value: String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-    onErrorChange: (Boolean) -> Unit = {},
 ) {
     Column(modifier = modifier) {
         OutlinedTextField(
@@ -57,7 +53,7 @@ fun SimpleTextField(
                 textColor = YdsTheme.colors.textSecondary,
             ),
             isError = isError,
-            enabled = isEnabled,
+            enabled = !isDisabled,
             placeholder = {
                 YdsText(
                     text = placeHolder,
@@ -66,19 +62,12 @@ fun SimpleTextField(
                 )
             },
             trailingIcon = {
-                if (text.isNotEmpty()) {
-                    IconButton(
-                        onClick = {
-                            onValueChange("")
-                            onErrorChange(false)
-                        },
-                    ) {
-                        Icon(
-                            id = R.drawable.ic_x_line,
-                            iconSize = IconSize.ExtraSmall,
-                        )
-                    }
-                }
+                YdsText(
+                    modifier = Modifier.padding(16.dp),
+                    text = suffixLabel,
+                    style = YdsTheme.typography.body1,
+                    color = YdsTheme.colors.textTertiary,
+                )
             },
             textStyle = YdsTheme.typography.body1.toTextStyle(),
             keyboardOptions = keyboardOptions,
@@ -95,7 +84,7 @@ fun SimpleTextField(
                     style = YdsTheme.typography.caption1,
                     color = if (isError) {
                         YdsTheme.colors.textWarned
-                    } else if (!isEnabled) {
+                    } else if (!isDisabled) {
                         YdsTheme.colors.textDisabled
                     } else {
                         YdsTheme.colors.textTertiary
@@ -109,43 +98,44 @@ fun SimpleTextField(
 
 @Preview
 @Composable
-private fun PreviewSimpleTextField() {
+private fun PreviewSuffixTextField() {
     var isError by remember { mutableStateOf(false) }
-    var text by rememberSaveable { mutableStateOf("") }
+    var text1 by rememberSaveable { mutableStateOf("") }
+    var text2 by rememberSaveable { mutableStateOf("") }
+    var text3 by rememberSaveable { mutableStateOf("") }
+
     Column {
-        SimpleTextField(
-            text = text,
-            isError = isError, isEnabled = true,
+        SuffixTextField(
+            text = text1,
+            isError = isError, isDisabled = false,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
-                isError = value == "x"
-                text = value
+                text1 = value
             },
             hintText = "힌트 텍스트",
             modifier = Modifier.padding(10.dp),
-            onErrorChange = { error ->
-                isError = error
-            },
+            suffixLabel = "@soongsil.ac.kr",
         )
 
-        SimpleTextField(
-            isEnabled = false,
+        SuffixTextField(
+            text = text2,
+            isDisabled = true,
             onValueChange = { value ->
-
+                text2 = value
             },
-            modifier = Modifier.padding(bottom = 10.dp),
             hintText = "힌트 텍스트",
-            onErrorChange = { error ->
-                isError = error
-            },
+            modifier = Modifier.padding(bottom = 10.dp),
+            suffixLabel = "@soongsil.ac.kr",
         )
 
-        SimpleTextField(
-            isError = true, onValueChange = { value -> },
-            onErrorChange = { error ->
-                isError = error
+        SuffixTextField(
+            text = text3,
+            isError = true,
+            hintText = "힌트 텍스트",
+            suffixLabel = "@soongsil.ac.kr",
+            onValueChange = { value ->
+                text3 = value
             },
         )
-
     }
 }
