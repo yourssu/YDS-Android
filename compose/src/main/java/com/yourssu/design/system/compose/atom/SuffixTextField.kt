@@ -27,11 +27,11 @@ import com.yourssu.design.system.compose.base.YdsText
 @Composable
 fun SuffixTextField(
     text: String,
+    suffixLabel: String,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
-    isDisabled: Boolean = true,
+    isDisabled: Boolean = false,
     placeHolder: String = "",
-    suffixLabel: String,
     hintText: String = "",
     onValueChange: (value: String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -53,7 +53,7 @@ fun SuffixTextField(
                 textColor = YdsTheme.colors.textSecondary,
             ),
             isError = isError,
-            enabled = isDisabled,
+            enabled = !isDisabled,
             placeholder = {
                 YdsText(
                     text = placeHolder,
@@ -107,7 +107,7 @@ private fun PreviewSuffixTextField() {
     Column {
         SuffixTextField(
             text = text1,
-            isError = isError, isDisabled = true,
+            isError = isError, isDisabled = false,
             placeHolder = "플레이스 홀더",
             onValueChange = { value ->
                 text1 = value
@@ -119,7 +119,7 @@ private fun PreviewSuffixTextField() {
 
         SuffixTextField(
             text = text2,
-            isDisabled = false,
+            isDisabled = true,
             onValueChange = { value ->
                 text2 = value
             },
