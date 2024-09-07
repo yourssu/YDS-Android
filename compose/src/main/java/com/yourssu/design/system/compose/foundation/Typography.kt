@@ -96,8 +96,8 @@ data class YdsTypography(
     ),
     val subTitle3: YdsTextStyle = YdsTextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 18.dp,
-        lineHeight = 23.4f.dp,
+        fontSize = 14.dp,
+        lineHeight = 18.2f.dp,
     ),
     val body1: YdsTextStyle = YdsTextStyle(
         fontWeight = FontWeight.Normal,
