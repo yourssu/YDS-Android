@@ -15,7 +15,7 @@ data class YdsColorScheme(
     val bgElevated: Color = White000,
     val bgRecomment: Color = Gray050,
     val bgSelected: Color = Gray900A5,
-    val bgPressed: Color = Gray900A5,
+    val bgPressed: Color = Gray100,
     val bgNormalDark: Color = RealBlack,
     val bgElevatedDark: Color = RealBlack,
     val bgDimDark: Color = Gray900A30,
